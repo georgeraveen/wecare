@@ -1,9 +1,9 @@
 <?php
 require_once("./../config/config.php");
 
-echo $_SESSION["user_id"]." ";
- echo $_SESSION["rolecode"];
- print_r($_SESSION);
+// echo $_SESSION["user_id"]." ";
+//  echo $_SESSION["rolecode"];
+//  print_r($_SESSION);
  if (!isset($_SESSION["user_id"]) || $_SESSION["user_id"] == "") {
     // not logged in send to login page
     redirect("./../index.php");
@@ -11,7 +11,17 @@ echo $_SESSION["user_id"]." ";
  if($_SESSION["rolecode"]!="MGR"){
     die("You dont have the permission to access this page");
  }
-
+//  $status = FALSE;
+//  if ( authorize($_SESSION["access"]["1"]["1"]["create"]) || 
+//  authorize($_SESSION["access"]["1"]["1"]["edit"]) || 
+//  authorize($_SESSION["access"]["1"]["1"]["view"]) || 
+//  authorize($_SESSION["access"]["1"]["1"]["delete"]) ) {
+//   $status = TRUE;
+//  }
+// //  print_r($_SESSION["access"]);
+//  if ($status === FALSE) {
+//  die("You dont have the permission to access this page");
+//  }
  
  if (!isset($_SESSION["access"])) {
 
@@ -40,6 +50,23 @@ echo $_SESSION["user_id"]." ";
         echo $ex->getMessage();
     }
 }
-
-
+// if(authorize($_SESSION["access"]["1"]["1"]["create"])){
+//     echo "create permission";
+// }
+// else{
+//    echo "no create permission";
+// }
+include './../header.php';
 ?>
+<link rel="stylesheet" href= "./../css/home.css">
+<div class="grid-container">
+  <a class="grid-item" href="#">View reports</a>
+  <a class="grid-item" href="#">Update insurance policy</a>
+  <a class="grid-item" href="#">Update weekly roster</a>  
+  <a class="grid-item" href="#">Create new employee account</a>
+  <a class="grid-item" href="#">Manage employee accounts</a>
+</div>
+
+
+</body>
+</html>

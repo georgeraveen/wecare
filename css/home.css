@@ -1,0 +1,24 @@
+body{
+    background-color: #CEB963;
+}
+.grid-container {
+    margin: 120px 100px;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    background-color: #CCC96C;
+    padding: 50px;
+    grid-gap: 50px;
+  }
+  .grid-item {
+    background-color: #F9C73A;
+    padding: 20px;
+    font-size: 30px;
+    text-align: center;
+    height: 100px;
+    font-style: normal;
+    text-decoration: none;
+    color: black;
+    font-size: large;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 10px;
+  }

@@ -3,7 +3,7 @@ require_once("./../config/config.php");
 
 // echo $_SESSION["user_id"]." ";
 //  echo $_SESSION["rolecode"];
- print_r($_SESSION);
+//  print_r($_SESSION);
  if (!isset($_SESSION["user_id"]) || $_SESSION["user_id"] == "") {
     // not logged in send to login page
     redirect("./../index.php");
@@ -58,8 +58,14 @@ require_once("./../config/config.php");
 // }
 include './../header.php';
 ?>
-
-
+<link rel="stylesheet" href= "./../css/home.css">
+<div class="grid-container">
+  <a class="grid-item" href="#">Create new insurance case</a>
+  <a class="grid-item" href="#">Create new customer profile</a>
+  <a class="grid-item" href="#">Manage customer profiles</a>  
+  <a class="grid-item" href="#">View insurance cases</a>
+  <a class="grid-item" href="#">Manage medical condition</a>
+</div>
 
 
 </body>

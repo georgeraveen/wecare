@@ -3,7 +3,21 @@ require_once("./config/config.php");
 
 if (isset($_SESSION["user_id"]) && $_SESSION["user_id"] != "") {
     // if logged in send to dashboard page
-    redirect("./dataEntry/dataEntryHome.php");
+    if($_SESSION["rolecode"] =='DEO'){
+        redirect("./dataEntry/dataEntryHome.php");
+    }
+    else if($_SESSION["rolecode"] =='FAG'){
+        redirect("./fieldAgent/fieldAgHome.php");
+    }
+    else if($_SESSION["rolecode"] =='DOC'){
+        redirect("./doctor/doctorHome.php");
+    }
+    else if($_SESSION["rolecode"] =='MGR'){
+        redirect("./manager/managerHome.php");
+    }
+    else if($_SESSION["rolecode"] =='MST'){
+        redirect("./medScru/medScruHome.php");
+    }
 }
 
 $mode = $_REQUEST["mode"];
