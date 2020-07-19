@@ -1,0 +1,43 @@
+.container{
+  width: 70%;
+  margin: 0 auto; /* Center the DIV horizontally */
+}
+.fixed-header{
+  width: 100%;
+  position: fixed;        
+  background: #333;
+  padding: 10px 0;
+  color: #fff;
+}
+.fixed-header{
+  top: 0;
+}
+.logo{
+  width: 50px;
+  height: 50px;
+}
+/* Some more styles to beutify this example */
+nav a{
+  color: #fff;
+  font-size: x-large;
+  text-decoration: none;
+  padding: 7px 20px;
+  display: inline-block;
+  vertical-align: middle;
+}
+.logout{
+  margin: 10px;
+  float: right;
+  background-color: #f2af58;
+}
+.avatar{
+  margin: 10px;
+  background-color: white;
+  color: black;
+  float: right;
+  border-radius: 50%;
+  
+}
+.container p{
+  line-height: 200px; /* Create scrollbar to test positioning */
+}

@@ -43,6 +43,8 @@ if ($mode == "login") {
                 $_SESSION["user_id"] = $username;
                 $_SESSION["rolecode"] = $userType;
                 $_SESSION["username"] = $username;
+                $_SESSION["fName"] = $results[0]["empFirstName"];
+                $_SESSION["lName"] = $results[0]["empLastName"];
 
                 if($_SESSION["rolecode"] =='DEO'){
                     redirect("./dataEntry/dataEntryHome.php");

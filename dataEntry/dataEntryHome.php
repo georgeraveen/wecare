@@ -1,8 +1,8 @@
 <?php
 require_once("./../config/config.php");
 
-echo $_SESSION["user_id"]." ";
- echo $_SESSION["rolecode"];
+// echo $_SESSION["user_id"]." ";
+//  echo $_SESSION["rolecode"];
  print_r($_SESSION);
  if (!isset($_SESSION["user_id"]) || $_SESSION["user_id"] == "") {
     // not logged in send to login page
@@ -50,10 +50,17 @@ echo $_SESSION["user_id"]." ";
         echo $ex->getMessage();
     }
 }
-if(authorize($_SESSION["access"]["1"]["1"]["create"])){
-    echo "create permission";
-}
-else{
-   echo "no create permission";
-}
+// if(authorize($_SESSION["access"]["1"]["1"]["create"])){
+//     echo "create permission";
+// }
+// else{
+//    echo "no create permission";
+// }
+include './../header.php';
 ?>
+
+
+
+
+</body>
+</html>
