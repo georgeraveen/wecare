@@ -1,0 +1,20 @@
+.containers{
+    margin: 120px 100px;
+  }
+.form-container{
+    background-color: #CCC96C;
+    padding: 25px;
+}
+.formInput{
+    margin: 10px 25px;
+}
+label{
+    margin-bottom: 5px;
+}
+.row {
+    display: flex;
+}
+
+.column {
+    flex: 50%;
+}
