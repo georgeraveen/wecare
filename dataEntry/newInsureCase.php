@@ -1,6 +1,10 @@
 <?php
 require_once("./../config/config.php");
 include './../header.php';
+include './../classes/employee.php';
+
+$employee= new Employee($DB);
+
 ?>
 <link rel="stylesheet" href= "./../css/home.css">
 <link rel="stylesheet" href= "./../css/style.css">
@@ -61,6 +65,13 @@ include './../header.php';
           <div class="formInput">
             <label for="medScrut">Medical Scrutinizer</label><br>
             <select id="medScrut" name="medScrut" required>
+              <?php               
+                $meds=$employee->getEmpByType("MED");
+                var_dump($meds);
+                foreach ($meds as $medsRow){
+                  echo "<option"."> MED".$medsRow['empID']." - ".$medsRow['empFirstName']." ".$medsRow['empLastName']."</option>";
+                }
+              ?>
               <option>User ID - Name</option>
             </select><br>
           </div>
@@ -92,5 +103,7 @@ include './../header.php';
 </div>
 
 <?php
+
+// var_dump($meds);
 include './../footer.php';
 ?>

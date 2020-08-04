@@ -26,7 +26,7 @@ try {
 }
 
 require_once 'functions.php';
-
+  
 //get error/success messages
 if ($_SESSION["errorType"] != "" && $_SESSION["errorMsg"] != "" ) {
     $ERROR_TYPE = $_SESSION["errorType"];
