@@ -13,7 +13,7 @@ include './../header.php';
         <div class="column">
           <div class="formInput">
             <label for="customer">Customer</label><br>
-            <select id="customer" name="customer">
+            <select id="customer" name="customer" required>
               <option>Customer ID - Customer Name</option>
             </select><br>
           </div>
@@ -21,7 +21,7 @@ include './../header.php';
         <div class="column">
           <div class="formInput">
             <label for="hospital">Hospital</label><br>
-            <select id="hospital" name="hospital">
+            <select id="hospital" name="hospital" required>
               <option>Hospital Name</option>
             </select><br>
           </div>
@@ -32,13 +32,13 @@ include './../header.php';
         <div class="column">
           <div class="formInput">
             <label for="admitDate">Admit Date</label><br>
-            <input type="Date" id="admitDate" name="admitDate"><br>
+            <input type="Date" id="admitDate" name="admitDate" class="input"><br>
           </div>
         </div>
         <div class="column">
           <div class="formInput">
             <label for="dischargeDate">Discharge Date</label><br>
-            <input type="Date" id="dischargeDate" name="dischargeDate"><br>
+            <input type="Date" id="dischargeDate" name="dischargeDate" class="input"><br>
           </div>
         </div>
       </div>
@@ -46,13 +46,13 @@ include './../header.php';
         <div class="column">
           <div class="formInput">
             <label for="icuFromDate">ICU From Date</label><br>
-            <input type="Date" id="icuFromDate" name="icuFromDate"><br>
+            <input type="Date" id="icuFromDate" name="icuFromDate" class="input"><br>
           </div>
         </div>
         <div class="column">
           <div class="formInput">
             <label for="icuToDate">ICU To Date</label><br>
-            <input type="Date" id="icuToDate" name="icuToDate"><br>
+            <input type="Date" id="icuToDate" name="icuToDate" class="input"><br>
           </div>
         </div>
       </div>
@@ -60,7 +60,7 @@ include './../header.php';
         <div class="column">
           <div class="formInput">
             <label for="medScrut">Medical Scrutinizer</label><br>
-            <select id="medScrut" name="medScrut">
+            <select id="medScrut" name="medScrut" required>
               <option>User ID - Name</option>
             </select><br>
           </div>
@@ -68,7 +68,7 @@ include './../header.php';
         <div class="column">
           <div class="formInput">
             <label for="fieldAg">Field Agent</label><br>
-            <select id="fieldAg" name="fieldAg">
+            <select id="fieldAg" name="fieldAg" required>
               <option>User ID - Name</option>
             </select><br>
           </div>
@@ -78,7 +78,7 @@ include './../header.php';
         <div class="column">
           <div class="formInput">
             <label for="genComments">General Comments</label><br>
-            <input type="text" id="genComments" name="genComments"><br>
+            <textarea id="genComments" name="genComments" class="commentBox"></textarea> <br>
           </div>
         </div>
         <div class="column">

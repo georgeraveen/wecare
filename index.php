@@ -48,8 +48,8 @@ if ($mode == "login") {
             // execute Query
             $stmt->execute();
             $results = $stmt->fetchAll();
-            echo $username1." ".$username;
-            print_r($results);
+            // echo $username1." ".$username;
+            // print_r($results);
             if (count($results) > 0 && $results[0]["empTypeID"]==$userType) {
                 $_SESSION["errorType"] = "success";
                 $_SESSION["errorMsg"] = "You have successfully logged in.";
