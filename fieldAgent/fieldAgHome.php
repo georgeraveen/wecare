@@ -64,5 +64,7 @@ include './../header.php';
 </div>
 
 
-</body>
-</html>
+
+<?php
+include './../footer.php';
+?>
