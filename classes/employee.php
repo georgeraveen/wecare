@@ -19,5 +19,12 @@ class Employee{
         $stmt->execute();
         return $stmt->fetchAll();
     }
+    public function getEmpByTypeList($empType){
+        $stmt= $this->conn->prepare("select empID,empFirstName,empLastName from $this->table where empTypeID = :empType ");
+        $stmt -> bindParam(':empType',$empType);
+
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
 }
 ?>

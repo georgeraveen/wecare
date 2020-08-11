@@ -7,8 +7,8 @@
 <div class="fixed-header">
     <div class="container">
         <nav>
-            <a href="#"><img class="logo" src="./../images/logo.png"></a>
-            <a href="#"><div>
+            <a href="./../"><img class="logo" src="./../images/logo.png"></a>
+            <a href="./../"><div>
               WeCare - 
               <?php   
                 if($_SESSION["rolecode"] =='DEO'){
