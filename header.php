@@ -2,6 +2,7 @@
 <html>
 <head>
   <link rel="stylesheet" href= "./../css/header.css">
+  <title>WeCare Life</title>
 </head>
 <body>
 <div class="fixed-header">

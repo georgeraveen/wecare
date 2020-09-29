@@ -10,10 +10,11 @@ $hospital= new Hospital($DB);
 $customer= new Customer($DB);
 
 ?>
+
 <link rel="stylesheet" href= "./../css/home.css">
 <link rel="stylesheet" href= "./../css/style.css">
 <div class="containers">
-  <h1>Create New Insurance Case</h1><br>
+  <h1>Create New Insurance Claim Case</h1><br>
   <div class="form-container">
     
     <form action="./back/backend.php" method="post">

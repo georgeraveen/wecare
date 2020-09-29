@@ -1,5 +1,7 @@
 <?php
+require_once("./../../config/config.php");
 include './../../classes/claimCase.php';
+
 if($_POST){
     if($_POST['newInsurance']){
         $newClaimCase = new ClaimCase($DB);

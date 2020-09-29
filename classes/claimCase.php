@@ -1,6 +1,6 @@
 
 <?php
-require_once("./../../config/config.php");
+// require_once("./../../config/config.php");
 class ClaimCase{
     private $conn;
     private $table="claim_case";
@@ -54,6 +54,12 @@ class ClaimCase{
         $stmt->execute();
 
         // echo $this->dataEntryOfficerID . $this->healthCondition;
+    }
+    public function getAllQueue(){
+        $stmt= $this->conn->prepare("select * from $this->table as i inner join hospital as h on i.hospitalID = h.hospitalID");
+        
+        $stmt->execute();
+        return $stmt->fetchAll();
     }
 
 }
