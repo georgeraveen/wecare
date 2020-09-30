@@ -56,10 +56,20 @@ class ClaimCase{
         // echo $this->dataEntryOfficerID . $this->healthCondition;
     }
     public function getAllQueue(){
-        $stmt= $this->conn->prepare("select * from $this->table as i inner join hospital as h on i.hospitalID = h.hospitalID");
+        $stmt= $this->conn->prepare("select claimID,dischargeDate,h.name,med.empFirstName as med, fag.empFirstName as fag, doc.empFirstName as doc  from $this->table as i 
+                    inner join hospital as h on i.hospitalID = h.hospitalID 
+                    inner join employee as med on i.medScruID = med.empID 
+                    inner join employee as fag on i.FieldAgID = fag.empID
+                    left join employee as doc on i.doctorID = doc.empID
+                    ");
         
         $stmt->execute();
         return $stmt->fetchAll();
+    }
+    public function deleteCase($_id){
+        $stmt= $this->conn->prepare("delete from $this->table where claimID= $_id");
+        return $stmt->execute();
+        
     }
 
 }

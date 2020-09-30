@@ -44,3 +44,40 @@ input, select{
     background-color: #CCC96C;
     padding: 25px;
 }
+.table-view{
+    border-collapse: collapse;
+    width: 100%;
+}
+th, td {
+    text-align: left;
+    padding: 18px;
+}
+tr{
+    background-color: #a09d4f;
+}
+tr:nth-child(even){
+    background-color: #cea36c
+}
+
+th {
+    background-color: #ce7808;
+    color: white;
+}
+.editBtn{
+    float: right;
+    background-color: #2372d8;
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+    padding: 5px;
+    margin-right: 10px;
+}
+.deleteBtn{
+    float: right;
+    background-color: #d82323;
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+    padding: 5px;
+    margin-right: 5px;
+}
