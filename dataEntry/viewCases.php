@@ -49,7 +49,7 @@ $claimQueue = $claimCase->getAllQueue();
               "<td>".$row['fag']."</td>".
               "<td>".$row['med']."</td>".
               "<td>".$row['doc']."</td>".
-              "<td> <a class=\"deleteBtn\" href=\"./back/backend.php?action=del&id=".$row['claimID']."\">Delete</a> <a class=\"editBtn\" href=\"#\">Edit</a> "."</td>"."</tr>";
+              "<td> <a class=\"deleteBtn\" href=\"./back/backend.php?action=del&id=".$row['claimID']."\">Delete</a> <a class=\"editBtn\" href=\"./editInsureCase.php?action=edit&id=".$row['claimID']."\">Edit</a> "."</td>"."</tr>";
       }
 
       ?>

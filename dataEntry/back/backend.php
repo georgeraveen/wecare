@@ -12,13 +12,17 @@ include './../../classes/claimCase.php';
 if($_POST){
     if($_POST['newInsurance']){
         $newClaimCase = new ClaimCase($DB);
-        $result= $newClaimCase->create($_POST['customer'],$_POST['hospital'],$_POST['admitDate'],$_POST['dischargeDate'],$_POST['icuFromDate'],$_POST['icuToDate'],$_POST['medScrut'],$_POST['fieldAg'],$_POST['healthCondition']);
+        $result= $newClaimCase->setValue($_POST['customer'],$_POST['hospital'],$_POST['admitDate'],$_POST['dischargeDate'],$_POST['icuFromDate'],$_POST['icuToDate'],$_POST['medScrut'],$_POST['fieldAg'],$_POST['healthCondition']);
+        $result= $newClaimCase->create();
         header("Location: ./../newInsureCase");
         exit;
     }
-    else{
-        
-
+    else if($_POST['editInsurance']){
+        $editClaimCase = new ClaimCase($DB);
+        $result= $editClaimCase->setValue($_POST['customer'],$_POST['hospital'],$_POST['admitDate'],$_POST['dischargeDate'],$_POST['icuFromDate'],$_POST['icuToDate'],$_POST['medScrut'],$_POST['fieldAg'],$_POST['healthCondition']);
+        $result= $editClaimCase->update($_POST['claimID']);
+        header("Location: ./../viewCases");
+        exit;
     }
 }
 if($_GET){
