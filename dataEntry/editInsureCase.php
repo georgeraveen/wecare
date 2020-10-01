@@ -74,13 +74,13 @@ else{
         <div class="column">
           <div class="formInput">
             <label for="admitDate">Admit Date</label><br>
-            <input type="Date" id="admitDate" name="admitDate" class="input" value=""><br>
+            <input type="Date" id="admitDate" name="admitDate" class="input" value=<?php echo $caseDetails[0]['admitDate']?>><br>
           </div>
         </div>
         <div class="column">
           <div class="formInput">
             <label for="dischargeDate">Discharge Date</label><br>
-            <input type="Date" id="dischargeDate" name="dischargeDate" class="input"><br>
+            <input type="Date" id="dischargeDate" name="dischargeDate" class="input" value=<?php echo $caseDetails[0]['dischargeDate']?>><br>
           </div>
         </div>
       </div>
@@ -88,13 +88,13 @@ else{
         <div class="column">
           <div class="formInput">
             <label for="icuFromDate">ICU From Date</label><br>
-            <input type="Date" id="icuFromDate" name="icuFromDate" class="input"><br>
+            <input type="Date" id="icuFromDate" name="icuFromDate" class="input" value=<?php echo $caseDetails[0]['icuFromDate']?>><br>
           </div>
         </div>
         <div class="column">
           <div class="formInput">
             <label for="icuToDate">ICU To Date</label><br>
-            <input type="Date" id="icuToDate" name="icuToDate" class="input"><br>
+            <input type="Date" id="icuToDate" name="icuToDate" class="input" value=<?php echo $caseDetails[0]['icuToDate']?>><br>
           </div>
         </div>
       </div>
@@ -137,7 +137,7 @@ else{
         <div class="column">
           <div class="formInput">
             <label for="healthCondition">Health Condition / Comments</label><br>
-            <textarea id="healthCondition" name="healthCondition" class="commentBox"></textarea> <br>
+            <textarea id="healthCondition" name="healthCondition" class="commentBox"><?php echo $caseDetails[0]['healthCondition']; ?></textarea> <br>
           </div>
         </div>
         <div class="column">
