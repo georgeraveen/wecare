@@ -15,7 +15,7 @@ if (isset($_SESSION["user_id"]) && $_SESSION["user_id"] != "") {
     else if($_SESSION["rolecode"] =='MGR'){
         redirect("./manager/managerHome.php");
     }
-    else if($_SESSION["rolecode"] =='MST'){
+    else if($_SESSION["rolecode"] =='MED'){
         redirect("./medScru/medScruHome.php");
     }
 }
@@ -72,7 +72,7 @@ if ($mode == "login") {
                 else if($_SESSION["rolecode"] =='MGR'){
                     redirect("./manager/managerHome.php");
                 }
-                else if($_SESSION["rolecode"] =='MST'){
+                else if($_SESSION["rolecode"] =='MED'){
                     redirect("./medScru/medScruHome.php");
                 }
 
