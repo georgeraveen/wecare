@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jul 16, 2020 at 04:49 AM
+-- Generation Time: Oct 02, 2020 at 08:08 AM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.14
 
@@ -77,7 +77,18 @@ CREATE TABLE IF NOT EXISTS `claim_case` (
   KEY `custID` (`custID`),
   KEY `policyID` (`policyID`),
   KEY `hospitalID` (`hospitalID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `claim_case`
+--
+
+INSERT INTO `claim_case` (`claimID`, `admitDate`, `dischargeDate`, `icuFromDate`, `icuToDate`, `payableAmount`, `healthCondition`, `doctorComment`, `custFeedback`, `documentDIR`, `custID`, `doctorID`, `medScruID`, `dataEntryOfficerID`, `FieldAgID`, `hospitalID`, `policyID`) VALUES
+(1, '2020-08-01', '2020-08-07', '2020-08-08', '2020-08-08', NULL, 'sdvx', NULL, NULL, NULL, 1, 5, 2, 1, 4, 1, NULL),
+(2, '2020-10-09', '2020-10-16', NULL, NULL, NULL, 'asdsafzzzzzzz', NULL, NULL, NULL, 1, NULL, 3, 1, 4, 1, NULL),
+(5, '2020-09-04', '2020-09-12', NULL, NULL, NULL, 'dcsdvdsv', NULL, NULL, NULL, 1, NULL, 3, 1, 4, 1, NULL),
+(6, '2020-09-10', '2020-09-19', NULL, NULL, NULL, 'accxzcz', NULL, NULL, NULL, 1, NULL, 3, 1, 4, 1, NULL),
+(10, '2020-09-12', '2020-09-14', '2020-09-27', '2020-09-27', NULL, 'ascd', NULL, NULL, NULL, 1, NULL, 2, 1, 4, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -96,8 +107,16 @@ CREATE TABLE IF NOT EXISTS `customer` (
   `email` varchar(30) DEFAULT NULL,
   `gender` varchar(1) NOT NULL,
   `policyID` int(3) NOT NULL,
-  PRIMARY KEY (`custID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`custID`),
+  KEY `policyID` (`policyID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `customer`
+--
+
+INSERT INTO `customer` (`custID`, `custName`, `password`, `custAddress`, `custNIC`, `custDOB`, `email`, `gender`, `policyID`) VALUES
+(1, 'sunil', 'asdf', 'zxcv', '123123999V', '2020-08-04', 'sdc@d.com', 'm', 1);
 
 -- --------------------------------------------------------
 
@@ -176,7 +195,7 @@ CREATE TABLE IF NOT EXISTS `employee` (
   `empTypeID` varchar(3) NOT NULL,
   PRIMARY KEY (`empID`),
   KEY `empTypeID` (`empTypeID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `employee`
@@ -184,7 +203,10 @@ CREATE TABLE IF NOT EXISTS `employee` (
 
 INSERT INTO `employee` (`empID`, `password`, `empFirstName`, `empLastName`, `gender`, `empDOB`, `empNIC`, `empAddress`, `email`, `empTypeID`) VALUES
 (1, 'asdf', 'kamal', 'perera', 'm', '2020-07-01', '1231231231', 'sadscsdcsa', 'sdc@d.com', 'DEO'),
-(2, 'asd', 'nimal', 'perera', 'm', '2020-07-01', '1231231456', 'asdsfsdc', 'asd@m.com', 'MGR');
+(2, 'asd', 'nimal', 'perera', 'm', '2020-07-01', '1231231456', 'asdsfsdc', 'asd@m.com', 'MED'),
+(3, 'asdf', 'wimal', 'wimal2', 'm', '2020-08-02', '1231231234', 'asdad', 'as@a.c', 'MED'),
+(4, 'asdf', 'kamal', 'aaaa', 'm', '2020-08-04', '1231231237', 'asd', 'aw@a.com', 'FAG'),
+(5, 'asd', 'wimal', 'perera', 'm', '2020-08-04', '1231231231', 'adsfds', 'asaf@d.c', 'DOC');
 
 -- --------------------------------------------------------
 
@@ -245,6 +267,9 @@ CREATE TABLE IF NOT EXISTS `employee_types` (
 
 INSERT INTO `employee_types` (`empTypeID`, `typeName`) VALUES
 ('DEO', 'dataEntry'),
+('DOC', 'doctor'),
+('FAG', 'fieldAgent'),
+('MED', 'medScrut'),
 ('MGR', 'manager');
 
 -- --------------------------------------------------------
@@ -272,7 +297,14 @@ CREATE TABLE IF NOT EXISTS `hospital` (
   `name` varchar(20) NOT NULL,
   `address` text NOT NULL,
   PRIMARY KEY (`hospitalID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `hospital`
+--
+
+INSERT INTO `hospital` (`hospitalID`, `name`, `address`) VALUES
+(1, 'Lanka', 'colombo');
 
 -- --------------------------------------------------------
 
@@ -300,7 +332,14 @@ CREATE TABLE IF NOT EXISTS `insurance_policy` (
   `date` date NOT NULL,
   `remarks` text NOT NULL,
   PRIMARY KEY (`policyID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `insurance_policy`
+--
+
+INSERT INTO `insurance_policy` (`policyID`, `documentDIR`, `date`, `remarks`) VALUES
+(1, 'policy/', '2020-08-05', 'adasczc');
 
 -- --------------------------------------------------------
 
@@ -421,6 +460,12 @@ ALTER TABLE `claim_case`
   ADD CONSTRAINT `claim_case_ibfk_5` FOREIGN KEY (`custID`) REFERENCES `customer` (`custID`) ON UPDATE CASCADE,
   ADD CONSTRAINT `claim_case_ibfk_6` FOREIGN KEY (`policyID`) REFERENCES `insurance_policy` (`policyID`) ON UPDATE CASCADE,
   ADD CONSTRAINT `claim_case_ibfk_7` FOREIGN KEY (`hospitalID`) REFERENCES `hospital` (`hospitalID`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `customer`
+--
+ALTER TABLE `customer`
+  ADD CONSTRAINT `customer_ibfk_1` FOREIGN KEY (`policyID`) REFERENCES `insurance_policy` (`policyID`);
 
 --
 -- Constraints for table `customer_contact`
