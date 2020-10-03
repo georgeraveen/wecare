@@ -8,7 +8,7 @@ require_once("./../config/config.php");
     // not logged in send to login page
     redirect("./../index.php");
 }
- if($_SESSION["rolecode"]!="MST"){
+ if($_SESSION["rolecode"]!="MED"){
     die("You dont have the permission to access this page");
  }
 //  $status = FALSE;

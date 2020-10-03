@@ -24,7 +24,7 @@
                 else if($_SESSION["rolecode"] =='MGR'){
                   echo "Manager";
                 }
-                else if($_SESSION["rolecode"] =='MST'){
+                else if($_SESSION["rolecode"] =='MED'){
                   echo "Medical Scrutinizer";
                 }
               ?>
