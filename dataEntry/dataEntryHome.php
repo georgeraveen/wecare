@@ -62,7 +62,7 @@ include './../header.php';
 <div class="grid-container">
   <a class="grid-item" href="./newInsureCase.php">Create new insurance claim case</a>
   <a class="grid-item" href="./newCustomer.php">Create new customer profile</a>
-  <a class="grid-item" href="#">Manage customer profiles</a>  
+  <a class="grid-item" href="./updateCustomer.php">Manage customer profiles</a>  
   <a class="grid-item" href="./viewCases.php">View insurance claim cases</a>
   <a class="grid-item" href="#">Manage medical condition</a>
 </div>
