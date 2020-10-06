@@ -34,5 +34,5 @@ function clickView(id) {
     inMedID.value=id;
 
     modal.style.display = "block";
-    console.log("hi"+id+type.innerHTML);
+    // console.log("hi"+id+type.innerHTML);
 }
