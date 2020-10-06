@@ -129,7 +129,19 @@ $customer= new Customer($DB);
         </div>
         <div class="column">
           <div class="formInput">
-            <input type="submit" id="newCustomer" name="newCustomer" class="btn-submit" value="Update Account"><br>
+            <input type="submit" id="editCustomer" name="editCustomer" class="btn-submit" value="Update Account"><br>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+      <div class="column">
+          <div class="formInput">
+            <input type="submit" id="resetCustomer" name="resetCustomer" class="btn-submit" value="Password Reset"><br>
+          </div>
+        </div>
+        <div class="column">
+          <div class="formInput">
+            <input type="submit" id="removeCustomer" name="removeCustomer" class="btn-submit" value="Remove"><br>
           </div>
         </div>
       </div>
