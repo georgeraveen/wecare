@@ -8,6 +8,7 @@ if (!isset($_SESSION["user_id"]) || $_SESSION["user_id"] == "") {
     die("You dont have the permission to access this page");
   }
 include './../../classes/claimCase.php';
+include './../../classes/customer.php';
 
 if($_POST){
     if($_POST['newInsurance']){
@@ -24,10 +25,10 @@ if($_POST){
         header("Location: ./../viewCases.php");
         exit;
     }
-    if($_POST['newCustomer']){
-        // $newClaimCase = new ClaimCase($DB);
-        // $result= $newClaimCase->setValue($_POST['customer'],$_POST['hospital'],$_POST['admitDate'],$_POST['dischargeDate'],$_POST['icuFromDate'],$_POST['icuToDate'],$_POST['medScrut'],$_POST['fieldAg'],$_POST['healthCondition']);
-        // $result= $newClaimCase->create();
+    else if($_POST['newCustomer']){
+        $newCustomer = new Customer($DB);
+        $result= $newCustomer->setValue($_POST['custName'],$_POST['custAddress'],$_POST['custNIC'],$_POST['custDOB'],$_POST['email'],$_POST['gender'],$_POST['policyID'],$_POST['custContact']);
+        $result= $newCustomer->create();
         header("Location: ./../newCustomer.php");
         exit;
     }
