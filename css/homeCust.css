@@ -13,7 +13,8 @@ body{
     /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
   }
   .grid-item {
-    background-color: #c67100;
+    /* background-color: #c67100; */
+    background-color: #003b36;
     padding: 20px;
     font-size: 30px;
     text-align: center;
@@ -25,8 +26,12 @@ body{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 10px;
   }
+  .grid-item:hover{
+    background-color: #0f534e;
+  }
   .homeIcon{
     width: 130px;
+    filter: invert(100%);
   }
   html, body, h1, h2, h3, h4, h5, h6 {
     font-family: "Verdana", cursive, sans-serif;
@@ -44,7 +49,7 @@ body{
   }
   .container-notifi{
     /* margin-top: 100px; */
-    margin-left: 20px;
+    margin-left: 40px;
     position: absolute;
     
   }
@@ -53,7 +58,12 @@ body{
     background-color: #54114D;
     padding: 10px;
     border-radius: 50px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
   .notiIcon{
     width: 100px;
+    filter: invert(100%);
   }
+  .notification-item:hover{
+    background-color: #6e2c68;
+}

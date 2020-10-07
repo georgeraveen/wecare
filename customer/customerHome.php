@@ -16,11 +16,13 @@ include './../header.php';
 ?>
 <link rel="stylesheet" href= "./../css/homeCust.css">
 <img src="./../images/undraw_medical_care_movn.svg" class="img-background">
+<a href="#">
 <div class="container-notifi">
-    <a class="notification-item" href="#">
-        <img src="./../images/icons8-notification-50.png" class="notiIcon">
-    </a></a>
+    <div class="notification-item" >
+        <img src="./../images/icons8-notification-100.png" class="notiIcon">
+    </div>
 </div>
+</a>
 <div class="grid-container">
   <a class="grid-item hide" href="#">
   
