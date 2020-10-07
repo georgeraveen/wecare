@@ -5,6 +5,12 @@
     background-color: #CCC96C;
     padding: 25px;
 }
+.form-container2{
+    background-color: #CCC96C;
+    padding: 25px;
+    max-width: 600px;
+    margin: auto;
+}
 .formInput{
     margin: 5px 25px;
 }

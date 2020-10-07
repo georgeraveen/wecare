@@ -14,19 +14,26 @@ if($_POST){
         $newClaimCase = new ClaimCase($DB);
         $result= $newClaimCase->setValue($_POST['customer'],$_POST['hospital'],$_POST['admitDate'],$_POST['dischargeDate'],$_POST['icuFromDate'],$_POST['icuToDate'],$_POST['medScrut'],$_POST['fieldAg'],$_POST['healthCondition']);
         $result= $newClaimCase->create();
-        header("Location: ./../newInsureCase");
+        header("Location: ./../newInsureCase.php");
         exit;
     }
     else if($_POST['editInsurance']){
         $editClaimCase = new ClaimCase($DB);
         $result= $editClaimCase->setValue($_POST['customer'],$_POST['hospital'],$_POST['admitDate'],$_POST['dischargeDate'],$_POST['icuFromDate'],$_POST['icuToDate'],$_POST['medScrut'],$_POST['fieldAg'],$_POST['healthCondition']);
         $result= $editClaimCase->update($_POST['claimID']);
-        header("Location: ./../viewCases");
+        header("Location: ./../viewCases.php");
+        exit;
+    }
+    if($_POST['newCustomer']){
+        // $newClaimCase = new ClaimCase($DB);
+        // $result= $newClaimCase->setValue($_POST['customer'],$_POST['hospital'],$_POST['admitDate'],$_POST['dischargeDate'],$_POST['icuFromDate'],$_POST['icuToDate'],$_POST['medScrut'],$_POST['fieldAg'],$_POST['healthCondition']);
+        // $result= $newClaimCase->create();
+        header("Location: ./../newCustomer.php");
         exit;
     }
 }
 if($_GET){
-    if($_GET['action']=="del"){
+    if($_GET['action']=="delClaimCase"){
         $deleteCase = new ClaimCase($DB);
         $result= $deleteCase->deleteCase($_GET['id']);
         if($result){
@@ -36,7 +43,7 @@ if($_GET){
             echo "Delete failed";
         }
         sleep(1);
-        header("Location: ./../viewCases") ;
+        header("Location: ./../viewCases.php") ;
     }
 }
 
