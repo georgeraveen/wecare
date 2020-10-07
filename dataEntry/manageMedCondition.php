@@ -41,7 +41,7 @@ $customer= new Customer($DB);
         <div class="column">
           <div class="formInput">
             <!-- <input type="submit" id="viewMed" name="viewMed" class="btn-submit" value="View"><br> -->
-            <a class="btn-submit" href="./viewMedCondition.php">View / Update</a>
+            <a class="btn-submit" href="./viewMedCondition.php">View/Update</a>
           </div>
         </div>
       </div>
