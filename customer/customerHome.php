@@ -15,16 +15,21 @@ require_once("./../config/config.php");
 include './../header.php';
 ?>
 <link rel="stylesheet" href= "./../css/homeCust.css">
+<img src="./../images/undraw_medical_care_movn.svg" class="img-background">
+<div class="container-notifi">
+    <a class="notification-item" href="#">
+        <img src="./../images/icons8-notification-50.png" class="notiIcon">
+    </a></a>
+</div>
 <div class="grid-container">
-  <a class="grid-item" href="#">View my claim history
-    <br><br>
-    <img src="./../images/icons8-order-history-64.png" class="homeIcon">
-  </a></a>
+  <a class="grid-item hide" href="#">
+  
+  </a>
   <a class="grid-item" href="#">View my profile
     <br><br>
     <img src="./../images/icons8-name-50.png" class="homeIcon">
   </a></a>
-  <a class="grid-item" href="#">View promotions
+  <a class="grid-item hide" href="#">View promotions
     <br><br>
     <img src="./../images/icons8-discount-50.png" class="homeIcon">
   </a></a>
@@ -32,9 +37,14 @@ include './../header.php';
     <br><br>
     <img src="./../images/icons8-treatment-64.png" class="homeIcon">
   </a>
-  <a class="grid-item" href="#">Notification
+  <a class="grid-item" href="#">View promotions
     <br><br>
-    <img src="./../images/icons8-notification-50.png" class="homeIcon">
+    <img src="./../images/icons8-discount-50.png" class="homeIcon">
+  </a></a>
+  
+  <a class="grid-item" href="#">View my claim history
+    <br><br>
+    <img src="./../images/icons8-order-history-64.png" class="homeIcon">
   </a></a>
 </div>
 
