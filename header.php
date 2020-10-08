@@ -6,7 +6,7 @@
 </head>
 <body>
 <div class="fixed-header">
-    <div class="container">
+    <div class="containerHeader">
         <nav>
             <a href="./../"><img class="logo" src="./../images/logo.png"></a>
             <a href="./../"><div>

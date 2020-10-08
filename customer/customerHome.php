@@ -27,7 +27,7 @@ include './../header.php';
   <a class="grid-item hide" href="#">
   
   </a>
-  <a class="grid-item" href="#">View my profile
+  <a class="grid-item" href="./customerProfile.php">View my profile
     <br><br>
     <img src="./../images/icons8-name-50.png" class="homeIcon">
   </a></a>
