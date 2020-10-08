@@ -31,7 +31,7 @@ if ($mode == "login") {
         // echo "s";
         try {
             $stmt = $DB->prepare($sql);
-            echo "s";
+            // echo "s";
             // bind the values
             $stmt->bindValue(":uname", $username);
             $stmt->bindValue(":upass", $pass);
