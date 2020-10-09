@@ -46,6 +46,7 @@ body{
   }
   .hide{
     visibility: hidden;
+    
   }
   .container-notifi{
     /* margin-top: 100px; */
@@ -61,9 +62,84 @@ body{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
   .notiIcon{
-    width: 100px;
+    width: 100%;
     filter: invert(100%);
   }
   .notification-item:hover{
     background-color: #6e2c68;
+}
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .grid-container{
+    margin: 150px 10px;
+    grid-template-columns: auto auto;
+    /* padding: 150px 0;
+    grid-gap: 30px; */
+  }
+  .hide{
+    display: none;
+  }
+  .notification-item{
+    box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.8), 0 6px 20px 0 rgba(255, 255, 255, 0.7);
+  }
+  .container-notifi{
+    margin-top: -60px;
+  }
+  .notiIcon{
+    width: 50%;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 768px) {
+  .grid-container{
+    margin: 150px 10px;
+    grid-template-columns: auto auto;
+    /* padding: 150px 0;
+    grid-gap: 30px; */
+  }
+  .hide{
+    display: none;
+  }
+  .notification-item{
+    box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.8), 0 6px 20px 0 rgba(255, 255, 255, 0.7);
+  }
+  .container-notifi{
+    margin-top: -60px;
+  }
+  .notiIcon{
+    width: 50%;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (max-width: 992px) {
+  .grid-container{
+    margin: 150px 10px;
+    /* grid-template-columns: auto auto; */
+    /* padding: 150px 0;
+    grid-gap: 30px; */
+  }
+  .hide{
+    /* display: none; */
+  }
+  .notification-item{
+    /* box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.8), 0 6px 20px 0 rgba(255, 255, 255, 0.7); */
+  }
+  .container-notifi{
+    margin-top: -40px;
+  }
+  .notiIcon{
+    /* width: 50%; */
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+
 }

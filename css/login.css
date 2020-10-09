@@ -42,6 +42,12 @@ body{
 
 form{
     width: 360px;
+    background-color: rgba(255,255,255,.8);
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /* opacity: 50%; */
+    
 }
 
 .avatar{
@@ -187,7 +193,7 @@ a:hover{
 }
 @media screen and (max-width: 1200px){
     form{
-        width: 290px;
+        width: 360px;
     }
     form h2{
         font-size: 2.4rem;
@@ -199,15 +205,39 @@ a:hover{
 }
 @media screen and (max-width: 1050px){
     .img{
+        /* display: none; */
+    }
+    .container{
+        grid-template-columns: 1fr;
+    }
+    .login-background{
+        /* display: none; */
+        width: none;
+        object-fit: cover;
+        left: 0px;
+    }
+    .login-container{
+        justify-content: center;
+    }
+}
+@media screen and (max-width: 500px){
+    .body{
+        background-color: #ffd149;
+    }
+    .img{
         display: none;
     }
     .container{
         grid-template-columns: 1fr;
+        padding: 0;
     }
     .login-background{
         display: none;
     }
     .login-container{
         justify-content: center;
+    }
+    .form{
+        width: 80%;
     }
 }

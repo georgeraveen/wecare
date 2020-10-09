@@ -2,6 +2,7 @@
 <html>
 <head>
   <link rel="stylesheet" href= "./../css/header.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WeCare Life</title>
 </head>
 <body>
@@ -18,9 +19,9 @@ else{
 <div class="fixed-header">
     <div class="containerHeader">
         <nav>
-            <a href= <?php echo "\"$home\"";?>><img class="logo" src="./../images/logo.png"></a>
-            <a href= <?php echo "\"$home\"";?>><div>
-              Welcome to WeCare 
+            <a class="Link" href= <?php echo "\"$home\"";?>><img class="logo" src="./../images/logo.png"></a>
+            <a class="Link" href= <?php echo "\"$home\"";?>><div>
+              WeCare 
               <?php   
                 if($_SESSION["rolecode"] =='DEO'){
                   echo "Data Entry Officer";
@@ -43,8 +44,8 @@ else{
               ?>
             </div></a>
             
-            <a class="avatar" href="#"><?php echo $_SESSION["custName"]; ?></a>
-            <a class="logout" href="./../logout.php">Logout</a>
+            <a class="avatar btn-Link" href="#"><?php echo $_SESSION["custName"]; ?></a>
+            <a class="logout btn-Link" href="./../logout.php">Logout</a>
         </nav>
     </div>
 </div>

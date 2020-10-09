@@ -32,6 +32,7 @@ include './../header.php';
       <h4>Payment Date : </h4>
       <h4>Type : </h4>
       <h4>Gender : </h4>
+      <button type="button" class="btn-add" id="btn-add">View my policy</button>
       <input type="submit" id="updateDetails" name="updateDetails" class="btn-submit" value="Update Details"><br>
       
       <input hidden type="text" id="custContacts" name="custContact"  class="input hide"  ><br>
