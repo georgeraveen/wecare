@@ -16,7 +16,16 @@ include './../header.php';
 <link rel="stylesheet" href= "./../css/home.css">
 <link rel="stylesheet" href= "./../css/style.css">
 <div class="containers">
-  <h1>Scrutinizer Completed queue</h1><br>
+  <h1>Scrutinizer Completed queue</h1>
+  <h2>Please select the date range</h2>
+  <label for="birthday">From:</label>
+  <input type="date" id="fromDate" name="From">
+  <label for="birthday">To:</label>
+  <input type="date" id="toDate" name="To">
+  <input type="submit" value="Select">
+
+
+
   <div class="table-container">
     <table class="table-view">
       <tr>

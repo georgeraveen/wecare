@@ -63,7 +63,7 @@ include './../header.php';
   <a class="grid-item" href="./medScruPendingQueue.php">View my pending cases queue</a>
   <a class="grid-item" href="./medScruCompleted.php">View my completed cases queue</a>
   <a class="grid-item" href="#">Manage medical details of customers</a>
-  <a class="grid-item" href="#">View weekly roster</a> 
+  <a class="grid-item" href="./caseView.php">View weekly roster</a> 
 </div>
 
 
