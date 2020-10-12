@@ -12,6 +12,15 @@ if (!isset($_SESSION["user_id"]) || $_SESSION["user_id"] == "") {
 
 
  include './../header.php';
+
+
+ $result = array(
+    array("claimID"=>"1","custName"=>"kamal", "admitDate"=>"2020-08-01","name"=>"MEd1","name"=>"Asiri"),
+    array("claimID"=>"2", "custName"=>"amal","admitDate"=>"2020-08-02","name"=>"MEd1","name"=>"Asiri"),
+    array("claimID"=>"3", "custName"=>"nNimal","admitDate"=>"2020-08-03","name"=>"MEd1","name"=>"Asiri"),
+    array("claimID"=>"4","custName"=>"Sunil", "admitDate"=>"2020-08-04","name"=>"MEd1","name"=>"Asiri"),
+);
+
 ?>
 
 
@@ -20,12 +29,30 @@ if (!isset($_SESSION["user_id"]) || $_SESSION["user_id"] == "") {
 
 <div class="containers">
     <h1>My pending queue</h1><br>
-        <div class = "row">
-            <div class = "column">
-               
-               
-            </div>
-        </div>
+    <div class="table-container">
+        <table class="table-view">
+            <tr>
+            <th>Claim ID</th>
+            <th>Customer Name</th>
+            <th>Date</th>
+            <th>Med.Scrutinizer</th>
+            <th>Hospital</th>
+            <th>Action</th>
+            </tr>
+                <?php
+        foreach($result as $row){
+            echo "<tr>"."<td>".$row['claimID']."</td>".
+                
+                "<td id=\"custName-".$row['claimID']."\">".$row['custName']."</td>".
+                "<td id=\"admitDate-".$row['claimID']."\">".$row['admitDate']."</td>".
+                "<td  id=\"name-".$row['recordID']."\">".$row['name']."</td>".
+                "<td  id=\"name-".$row['recordID']."\">".$row['name']."</td>".
+                "<td>  <a onclick=\"clickView(".$row['recordID'].")\" class=\"editBtn\" href=\"./reviewAndComment.php".$row['recordID']."\">View </a> "."</td>"."</tr>";
+         }
+
+                 ?>
+        </table>
+    </div>
 
 
 </div>
