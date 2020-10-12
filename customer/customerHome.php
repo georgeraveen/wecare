@@ -31,9 +31,8 @@ include './../header.php';
     <br><br>
     <img src="./../images/icons8-name-50.png" class="homeIcon">
   </a></a>
-  <a class="grid-item hide" href="#">View promotions
-    <br><br>
-    <img src="./../images/icons8-discount-50.png" class="homeIcon">
+  <a class="grid-item hide" href="#">
+    
   </a></a>
   <a class="grid-item" href="#">View my medical history
     <br><br>
@@ -44,7 +43,7 @@ include './../header.php';
     <img src="./../images/icons8-discount-50.png" class="homeIcon">
   </a></a>
   
-  <a class="grid-item" href="#">View my claim history
+  <a class="grid-item" href="./custViewCases.php">View my claim history
     <br><br>
     <img src="./../images/icons8-order-history-64.png" class="homeIcon">
   </a></a>
