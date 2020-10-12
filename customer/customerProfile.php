@@ -17,7 +17,7 @@ include './../header.php';
 <link rel="stylesheet" href= "./../css/CustStyle.css">
 <img src="./../images/undraw_personal_site_xyd1.svg" class="img-background">
 
-<div class="flex-container">
+<div class="profile-container">
   <form method="post">
     <div class="boxCard">
       <h2>View My Profile</h2>

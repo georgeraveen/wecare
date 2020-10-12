@@ -8,10 +8,12 @@
   background: #333;
   padding: 10px 0;
   color: #fff;
-}
-.fixed-header{
   top: 0;
-  /* overflow: hidden; */
+  overflow: hidden;
+  left: 0px;
+  float: left;
+  display: block;
+  /* z-index: 0; */
 }
 .logo{
   width: 50px;
@@ -57,6 +59,7 @@
   }
   .Link{
     padding-left: 0;
+    font-size: 12pt;
   }
   .logout{
     margin: 20px 10px;
@@ -75,6 +78,11 @@
   }
   .Link{
     padding-left: 0;
+  }
+  .logout{
+    margin: 20px 10px;
+    padding: 5px;
+    font-size: medium;
   }
 }
 
