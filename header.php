@@ -44,8 +44,16 @@ else{
               ?>
             </div></a>
             
-            <a class="avatar btn-Link" href="#"><?php echo $_SESSION["custName"]; ?></a>
-            <a class="logout btn-Link" href="./../logout.php">Logout</a>
+            <a class="avatar" href="#">
+            <?php 
+            if($_SESSION["rolecode"] =='CUST'){
+              echo $_SESSION["custName"];
+            }
+            else{
+              echo $_SESSION["fName"][0].$_SESSION["lName"][0];
+            }
+             ?></a>
+            <a class="logout" href="./../logout.php">Logout</a>
         </nav>
     </div>
 </div>
