@@ -1,6 +1,6 @@
-.container{
+.containerHeader{
   width: 70%;
-  margin: 0 auto; /* Center the DIV horizontally */
+  margin: 0 auto;
 }
 .fixed-header{
   width: 100%;
@@ -8,16 +8,26 @@
   background: #333;
   padding: 10px 0;
   color: #fff;
-}
-.fixed-header{
   top: 0;
+  overflow: hidden;
+  left: 0px;
+  float: left;
+  display: block;
+  /* z-index: 0; */
 }
 .logo{
   width: 50px;
   height: 50px;
 }
-/* Some more styles to beutify this example */
-nav a{
+.Link{
+  color: #fff;
+  font-size: 16pt;
+  text-decoration: none;
+  padding: 7px 20px;
+  display: inline-block;
+  vertical-align: middle;
+}
+.btn-Link{
   color: #fff;
   font-size: x-large;
   text-decoration: none;
@@ -28,7 +38,7 @@ nav a{
 .logout{
   margin: 10px;
   float: right;
-  background-color: #f2af58;
+  background-color: #e98a15;
   border-radius: 5px;
 }
 .avatar{
@@ -39,6 +49,59 @@ nav a{
   border-radius: 50%;
   
 }
-.container p{
+.containerHeader p{
   line-height: 200px; /* Create scrollbar to test positioning */
+}
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .containerHeader{
+    width: 95%;
+  }
+  .Link{
+    padding-left: 0;
+    font-size: 12pt;
+  }
+  .logout{
+    margin: 20px 10px;
+    padding: 5px;
+    font-size: medium;
+  }
+  .avatar{
+    margin: 10px 0;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .containerHeader{
+    width: 95%;
+  }
+  .Link{
+    padding-left: 0;
+  }
+  .logout{
+    margin: 20px 10px;
+    padding: 5px;
+    font-size: medium;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1100px) {
+  .containerHeader{
+    width: 70%;
+  }
+  .Link{
+    padding: 7px 20px;
+  }
 }
