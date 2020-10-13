@@ -4,7 +4,7 @@ if (!isset($_SESSION["user_id"]) || $_SESSION["user_id"] == "") {
   // not logged in send to login page
   redirect("./../index.php");
 }
-if($_SESSION["rolecode"]!="DEO"){
+if($_SESSION["rolecode"]!="CUST"){
   die("You dont have the permission to access this page");
 }
 include './../header.php';
@@ -21,10 +21,12 @@ $result = array (
 
 ?>
 
-<link rel="stylesheet" href= "./../css/home.css">
-<link rel="stylesheet" href= "./../css/style.css">
+<!-- <link rel="stylesheet" href= "./../css/home.css"> -->
+<link rel="stylesheet" href= "./../css/custStyle.css">
+<link rel="stylesheet" href= "./../css/custStyle2.css">
 <link rel="stylesheet" href= "./../css/modal.css">
-<div class="containers">
+<img src="./../images/undraw_medical_research_qg4d.svg" class="img-background img-left">
+<div class="containersMed">
   <h1>View Medical Condition</h1><br>
   <div class="table-container">
     <table class="table-view">
@@ -32,7 +34,7 @@ $result = array (
         <th>Record ID</th>
         <th>Date</th>
         <th>Type</th>
-        <th colspan="2">Action</th>
+        <th colspan="1">Action</th>
       </tr>
       <?php
       foreach($result as $row){
@@ -40,8 +42,7 @@ $result = array (
               "<td id=\"date-".$row['recordID']."\">".$row['date']."</td>".
               "<td id=\"type-".$row['recordID']."\">".$row['type']."</td>".
               "<td hidden id=\"healthCondition-".$row['recordID']."\">".$row['healthCondition']."</td>".
-              "<td hidden id=\"comments-".$row['recordID']."\">".$row['comments']."</td>".
-              "<td> <a class=\"deleteBtn\" href=\"#".$row['recordID']."\">Delete</a> <a onclick=\"clickView(".$row['recordID'].")\" class=\"editBtn\" href=\"#".$row['recordID']."\">View / Edit</a> "."</td>"."</tr>";
+              "<td><a onclick=\"clickViewMed(".$row['recordID'].")\" class=\"editBtn\" href=\"#".$row['recordID']."\">View </a> "."</td>"."</tr>";
       }
 
       ?>
@@ -86,22 +87,7 @@ $result = array (
           </div>
         </div>
       </div> 
-      <div class="row">
-        <div class="column">
-          <div class="formInput">
-            <label for="comments">Comments</label><br>
-            <textarea id="comments" name="comments" class="commentBox"></textarea> <br>
-          </div>
-        </div>
-      </div> 
-      <div class="row">
-        <div class="column">
-          <div class="formInput">
-            <input type="submit" id="editMedCondition" name="editMedCondition" class="btn-submit" value="Update medical condition"><br>
-            <input hidden type="text" id="medID" name="medID" ><br>
-          </div>
-        </div>
-      </div>
+      
     </form>
   </div>
 
