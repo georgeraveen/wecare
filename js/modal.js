@@ -47,3 +47,15 @@ function openFeedback(id) {
 
     modal.style.display = "block";
 }
+/////////////////customer med modal
+function clickViewMed(id) {
+  var medDate = document.getElementById("date-"+id);
+  var type = document.getElementById("type-"+id);
+  var healthCondition = document.getElementById("healthCondition-"+id);
+ 
+  inDate.value=medDate.innerHTML;
+  inType.value=type.innerHTML;
+  inHealthCondition.value= healthCondition.innerHTML;
+  
+  modal.style.display = "block";
+}

@@ -34,7 +34,7 @@ include './../header.php';
   <a class="grid-item hide" href="#">
     
   </a></a>
-  <a class="grid-item" href="#">View my medical history
+  <a class="grid-item" href="./custMedCondition.php">View my medical history
     <br><br>
     <img src="./../images/icons8-treatment-64.png" class="homeIcon">
   </a>
