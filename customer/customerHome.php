@@ -15,6 +15,8 @@ require_once("./../config/config.php");
 include './../header.php';
 ?>
 <link rel="stylesheet" href= "./../css/homeCust.css">
+<link rel="stylesheet" href= "./../css/modal.css">
+
 <img src="./../images/undraw_medical_care_movn.svg" class="img-background">
 <a href="#">
 <div class="container-notifi">
@@ -38,7 +40,7 @@ include './../header.php';
     <br><br>
     <img src="./../images/icons8-treatment-64.png" class="homeIcon">
   </a>
-  <a class="grid-item" href="#">View promotions
+  <a class="grid-item" href="#" onClick="viewPromo()">View promotions
     <br><br>
     <img src="./../images/icons8-discount-50.png" class="homeIcon">
   </a></a>
@@ -50,7 +52,18 @@ include './../header.php';
 </div>
 
 
+<div id="Modal" class="modal">
 
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <div>
+ Promotions
+    </div>
+  </div>
+
+</div>
+<script src="./../js/modal.js"></script>
 <?php
 include './../footer.php';
 ?>

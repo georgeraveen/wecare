@@ -59,3 +59,7 @@ function clickViewMed(id) {
   
   modal.style.display = "block";
 }
+//////////////customer promotion
+function viewPromo(){
+  modal.style.display = "block";
+}

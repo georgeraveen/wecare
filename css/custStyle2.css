@@ -2,6 +2,11 @@
     margin: 120px 100px;
     display: block;
   }
+.containersMed{
+margin: 120px 100px;
+display: block;
+min-width: 540px;
+}
 .form-container{
     background-color: #CCC96C;
     padding: 25px;
@@ -98,7 +103,12 @@ th {
 }
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
-    .containers.containersMed{
+    .containersMed{
+        margin-top: 120px;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .containers{
         margin-top: 120px;
         margin-left: 0;
         margin-right: 0;
@@ -107,7 +117,12 @@ th {
   
   /* Small devices (portrait tablets and large phones, 600px and up) */
   @media only screen and (min-width: 600px) {
-    .containers.containersMed{
+    .containersMed{
+        margin-top: 120px;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .containers{
         margin-top: 120px;
         margin-left: 0;
         margin-right: 0;
@@ -116,7 +131,12 @@ th {
   
   /* Medium devices (landscape tablets, 768px and up) */
   @media only screen and (min-width: 768px) {
-    .containers.containersMed{
+    .containersMed{
+        margin-top: 120px;
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+    .containers{
         margin-top: 120px;
         margin-left: 50px;
         margin-right: 50px;
