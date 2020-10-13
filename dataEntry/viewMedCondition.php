@@ -50,7 +50,6 @@ $result = array (
   </div>
 </div>
 <div id="Modal" class="modal">
-
   <!-- Modal content -->
   <div class="modal-content">
     <span class="close">&times;</span>
