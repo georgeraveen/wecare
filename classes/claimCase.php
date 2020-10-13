@@ -26,7 +26,7 @@ class ClaimCase{
         $this->conn=$db;
     }
     public function setValue($Pcustomer,$Phospital,$PadmitDate,$PdischargeDate,$PicuFromDate,$PicuToDate,$PmedScrut,$PfieldAg,$PhealthCondition){
-        echo $PadmitDate;
+        // echo $PadmitDate;
         $this->admitDate= !empty($PadmitDate) ? $PadmitDate : null;
         $this->dischargeDate =  !empty($PdischargeDate) ? $PdischargeDate : null;
         $this->icuFromDate= !empty($PicuToDate) ? $PicuToDate : null;
