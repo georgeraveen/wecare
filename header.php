@@ -2,15 +2,26 @@
 <html>
 <head>
   <link rel="stylesheet" href= "./../css/header.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WeCare Life</title>
 </head>
 <body>
+<?php
+
+session_start();
+if($_SESSION["rolecode"] =='CUST'){
+  $home="./../customer.php";
+}
+else{
+  $home="./../";
+}
+?>
 <div class="fixed-header">
-    <div class="container">
+    <div class="containerHeader">
         <nav>
-            <a href="./../"><img class="logo" src="./../images/logo.png"></a>
-            <a href="./../"><div>
-              Welcome to WeCare 
+            <a class="Link" href= <?php echo "\"$home\"";?>><img class="logo" src="./../images/logo.png"></a>
+            <a class="Link" href= <?php echo "\"$home\"";?>><div>
+              WeCare 
               <?php   
                 if($_SESSION["rolecode"] =='DEO'){
                   echo "Data Entry Officer";

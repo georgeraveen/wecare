@@ -60,7 +60,7 @@ include './../header.php';
 ?>
 <link rel="stylesheet" href= "./../css/home.css">
 <div class="grid-container">
-  <a class="grid-item" href="#">View reports</a>
+  <a class="grid-item" href="viewreports.php">View reports</a>
   <a class="grid-item" href="#">Update insurance policy</a>
   <a class="grid-item" href="#">Update weekly roster</a>  
   <a class="grid-item" href="#">Create new employee account</a>
