@@ -1,14 +1,5 @@
-////////////////////////////DEO modal//////////////////////////////////
-var modal = document.getElementById("editModal");
-// var modaltext = document.getElementById("modaltext");
-
+var modal = document.getElementById("Modal");
 var span = document.getElementsByClassName("close")[0];
-var inDate = document.getElementById("medDate");
-var inType = document.getElementById("type");
-var inHealthCondition = document.getElementById("healthCondition");
-var inComments = document.getElementById("comments");
-var inMedID = document.getElementById("medID");
-
 span.onclick = function() {
   modal.style.display = "none";
 }
@@ -18,10 +9,15 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
+////////////////////////////DEO modal view case//////////////////////////////////
+
+var inDate = document.getElementById("medDate");
+var inType = document.getElementById("type");
+var inHealthCondition = document.getElementById("healthCondition");
+var inComments = document.getElementById("comments");
+var inMedID = document.getElementById("medID");
 
 function clickView(id) {
-    
-    // modaltext.innerHTML="asd"+id;
     var medDate = document.getElementById("date-"+id);
     var type = document.getElementById("type-"+id);
     var healthCondition = document.getElementById("healthCondition-"+id);
@@ -34,26 +30,11 @@ function clickView(id) {
     inMedID.value=id;
 
     modal.style.display = "block";
-    // console.log("hi"+id+type.innerHTML);
 }
 
 
 
 ////////////////////////////cutomer feedback modal//////////////////////////////////
-var modal2 = document.getElementById("feedbackModal");
-// var modaltext = document.getElementById("modaltext");
-
-var span2 = document.getElementsByClassName("close")[0];
-
-span2.onclick = function() {
-  modal2.style.display = "none";
-}
-
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal2.style.display = "none";
-  }
-}
 
 function openFeedback(id) {
     var custFeedbackBox = document.getElementById("custFeedbackBox-"+id);
@@ -64,5 +45,5 @@ function openFeedback(id) {
     claimIDModal.value=id;
     custFeedbackModal.value=custFeedbackBox.value;
 
-    modal2.style.display = "block";
+    modal.style.display = "block";
 }

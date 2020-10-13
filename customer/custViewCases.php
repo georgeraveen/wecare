@@ -59,7 +59,7 @@ $claimQueue = $claimCase->getAllQueue();
     
   </div>
 </div>
-<div id="feedbackModal" class="modal">
+<div id="Modal" class="modal">
 
   <!-- Modal content -->
   <div class="modal-content">

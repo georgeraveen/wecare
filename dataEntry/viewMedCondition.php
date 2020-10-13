@@ -49,7 +49,7 @@ $result = array (
     
   </div>
 </div>
-<div id="editModal" class="modal">
+<div id="Modal" class="modal">
 
   <!-- Modal content -->
   <div class="modal-content">
