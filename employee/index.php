@@ -1,5 +1,5 @@
 <?php
-require_once("./config/config.php");
+require_once("./../app/config/config.php");
 
 if (isset($_SESSION["user_id"]) && $_SESSION["user_id"] != "") {
     // if logged in send to dashboard page

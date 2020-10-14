@@ -24,7 +24,7 @@ try {
   echo $ex->getMessage();
   die;
 }
-
+// var_dump($DB);
 require_once 'functions.php';
   
 //get error/success messages

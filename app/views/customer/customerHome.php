@@ -1,18 +1,18 @@
 <?php
-require_once("./../config/config.php");
+// require_once("./../config/config.php");
 
 // echo $_SESSION["user_id"]." ";
 //  echo $_SESSION["rolecode"];
 //  print_r($_SESSION);
- if (!isset($_SESSION["user_id"]) || $_SESSION["user_id"] == "") {
-    // not logged in send to login page
-    redirect("./../customer.php");
-}
+//  if (!isset($_SESSION["user_id"]) || $_SESSION["user_id"] == "") {
+//     // not logged in send to login page
+//     redirect("./../customer.php");
+// }
  if($_SESSION["rolecode"]!="CUST"){
     die("You dont have the permission to access this page");
  }
  
-include './../header.php';
+// include './../header.php';
 ?>
 <link rel="stylesheet" href= "./../css/homeCust.css">
 <link rel="stylesheet" href= "./../css/modal.css">
@@ -66,5 +66,5 @@ include './../header.php';
 </div>
 <script src="./../js/modal.js"></script>
 <?php
-include './../footer.php';
+// include './../footer.php';
 ?>
