@@ -3,6 +3,7 @@
 class CustViewCases extends Controller{
     
     public function index(){
+        $this->checkPermissionCust();
         $this->model('claimCase');
         $claimCase= new ClaimCase();
         // var_dump($claimCase);

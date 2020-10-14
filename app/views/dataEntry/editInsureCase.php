@@ -1,13 +1,3 @@
-<?php
-if (!isset($_SESSION["user_id"]) || $_SESSION["user_id"] == "") {
-  // not logged in send to login page
-  redirect("./../index.php");
-}
-if($_SESSION["rolecode"]!="DEO"){
-  die("You dont have the permission to access this page");
-}
-
-?>
 
 <link rel="stylesheet" href= "./../../css/home.css">
 <link rel="stylesheet" href= "./../../css/style.css">

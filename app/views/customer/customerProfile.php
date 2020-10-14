@@ -1,13 +1,4 @@
-<?php
-if (!isset($_SESSION["user_id"]) || $_SESSION["user_id"] == "") {
-  // not logged in send to login page
-  redirect("./../customer");
-}
-if($_SESSION["rolecode"]!="CUST"){
-  die("You dont have the permission to access this page");
-}
- 
-?>
+
 <link rel="stylesheet" href= "./../../css/CustStyle.css">
 <img src="./../../images/undraw_personal_site_xyd1.svg" class="img-background">
 

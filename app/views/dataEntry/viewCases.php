@@ -1,18 +1,3 @@
-<?php
- if (!isset($_SESSION["user_id"]) || $_SESSION["user_id"] == "") {
-  // not logged in send to login page
-  $_SESSION["portal"]="employee";
-  redirect("./../../employee");
-}
-if($_SESSION["rolecode"]!="DEO"){
-  die("You dont have the permission to access this page");
-}
-
-// $claimQueue = $claimCase->getAllQueue();
-// var_dump($claimQueue);
-// echo $claimQueue->num_rows."sdsd";
-
-?>
 
 <link rel="stylesheet" href= "./../../css/home.css">
 <link rel="stylesheet" href= "./../../css/style.css">

@@ -1,8 +1,9 @@
 <?php
 
 class insureCase extends Controller{
-
+    
     public function index(){
+        $this->checkPermission("DEO");
         $this->model('customer');
         $customerMod= new Customer();
         $custList=$customerMod->getList();
@@ -24,6 +25,7 @@ class insureCase extends Controller{
         // echo "asas";
     }
     public function newCase(){
+        $this->checkPermission("DEO");
         // echo "hi";
         var_dump($_POST);
         if($_POST['newInsurance']){
@@ -36,6 +38,7 @@ class insureCase extends Controller{
         }
     }
     public function viewCase(){
+        $this->checkPermission("DEO");
         $this->model('claimCase');
         $claimCase= new ClaimCase();
         // var_dump($claimCase);
@@ -46,6 +49,7 @@ class insureCase extends Controller{
         include './../app/footer.php';
     }
     public function editCase(){
+        $this->checkPermission("DEO");
         $this->model('claimCase');
         $editCase= new ClaimCase();
 
@@ -74,6 +78,7 @@ class insureCase extends Controller{
         }
     }
     public function updateCase(){
+        $this->checkPermission("DEO");
         if($_POST['editInsurance']){
             $this->model('claimCase');
             $editClaimCase = new ClaimCase();
@@ -84,6 +89,7 @@ class insureCase extends Controller{
         }
     }
     public function deleteCase(){
+        $this->checkPermission("DEO");
         if($_GET['action']=="delClaimCase"){
             $this->model('claimCase');
             $deleteCase = new ClaimCase();

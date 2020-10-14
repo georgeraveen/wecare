@@ -1,11 +1,4 @@
 <?php
-if (!isset($_SESSION["user_id"]) || $_SESSION["user_id"] == "") {
-  // not logged in send to login page
-  redirect("./../customer");
-}
-if($_SESSION["rolecode"]!="CUST"){
-  die("You dont have the permission to access this page");
-}
 
 $result = array (
   array("recordID"=>"1","date"=>"2020-08-01","type"=>"a","healthCondition"=>"22","comments"=>"18"),
