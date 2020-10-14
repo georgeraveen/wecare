@@ -1,26 +1,6 @@
-<?php
-require_once("./../config/config.php");
-if (!isset($_SESSION["user_id"]) || $_SESSION["user_id"] == "") {
-  // not logged in send to login page
-  redirect("./../index.php");
-}
-if($_SESSION["rolecode"]!="DEO"){
-  die("You dont have the permission to access this page");
-}
 
-include './../header.php';
-// include './../classes/employee.php';
-// include './../classes/hospital.php';
-// include './../classes/customer.php';
-
-// $employee= new Employee($DB);
-// $hospital= new Hospital($DB);
-// $customer= new Customer($DB);
-
-?>
-
-<link rel="stylesheet" href= "./../css/home.css">
-<link rel="stylesheet" href= "./../css/style.css">
+<link rel="stylesheet" href= "./../../css/home.css">
+<link rel="stylesheet" href= "./../../css/style.css">
 <div class="containers">
   <h1>Add New Medical Condition for "**cust**" </h1><br>
   <div class="form-container2">
@@ -76,9 +56,3 @@ include './../header.php';
     </form>
   </div>
 </div>
-
-<?php
-
-// var_dump($meds);
-include './../footer.php';
-?>
