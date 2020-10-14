@@ -6,21 +6,8 @@ if (!isset($_SESSION["user_id"]) || $_SESSION["user_id"] == "") {
 if($_SESSION["rolecode"]!="CUST"){
   die("You dont have the permission to access this page");
 }
-// include './../header.php';
-// include './../classes/employee.php';
-// include './../classes/hospital.php';
-// include './../classes/customer.php';
-// include './../classes/claimCase.php';
 
-// $employee= new Employee($DB);
-// $hospital= new Hospital($DB);
-// $customer= new Customer($DB);
-// $claimCase= new ClaimCase($DB);
-
-// $claimQueue = $claimCase->getAllQueue();
-// var_dump($claimQueue);
-// echo $claimQueue->num_rows."sdsd";
-
+// var_dump($data);
 ?>
 
 <!-- <link rel="stylesheet" href= "./../css/home.css">   -->
@@ -43,7 +30,7 @@ if($_SESSION["rolecode"]!="CUST"){
         <th>Feedback</th>
       </tr>
       <?php
-      foreach($claimQueue as $row){
+      foreach($data as $row){
         echo "<tr>"."<td>".$row['claimID']."</td>".
               "<td>".$row['dischargeDate']."</td>".
               "<td>".$row['claimID']."</td>".

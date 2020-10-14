@@ -1,7 +1,6 @@
 
 <?php
-// require_once("./../../config/config.php");
-class ClaimCase{
+class ClaimCase extends Models{
     private $conn;
     private $table="claim_case";
     private $claimID="";
@@ -22,8 +21,8 @@ class ClaimCase{
     private $hospital;
     private $policyID;
 
-    public function __construct($db){
-        $this->conn=$db;
+    public function __construct(){
+        $this->conn=$this->dataConnect();
     }
     public function setValue($Pcustomer,$Phospital,$PadmitDate,$PdischargeDate,$PicuFromDate,$PicuToDate,$PmedScrut,$PfieldAg,$PhealthCondition){
         // echo $PadmitDate;
@@ -56,6 +55,7 @@ class ClaimCase{
         // echo $this->dataEntryOfficerID . $this->healthCondition;
     }
     public function getAllQueue(){
+        // var_dump($this->conn);
         $stmt= $this->conn->prepare("select claimID,dischargeDate,h.name,med.empFirstName as med, fag.empFirstName as fag, doc.empFirstName as doc  from $this->table as i 
                     inner join hospital as h on i.hospitalID = h.hospitalID 
                     inner join employee as med on i.medScruID = med.empID 
