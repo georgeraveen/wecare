@@ -1,13 +1,12 @@
 
 <?php
 
-class Hospital{
+class Hospital  extends Models{
     private $conn;
     private $table="hospital";
 
-    public function __construct($db){
-        $this->conn=$db;
-        // var_dump($this->conn);
+    public function __construct(){
+        $this->conn=$this->dataConnect();
     }
     public function read(){
 

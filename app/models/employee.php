@@ -1,13 +1,12 @@
 
 <?php
 
-class Employee{
+class Employee extends Models{
     private $conn;
     private $table="employee";
 
-    public function __construct($db){
-        $this->conn=$db;
-        // var_dump($this->conn);
+    public function __construct(){
+        $this->conn=$this->dataConnect();
     }
     public function read(){
 

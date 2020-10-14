@@ -1,7 +1,7 @@
 
 <?php
 
-class Customer{
+class Customer extends Models{
     private $conn;
     private $table="customer";
     private $custID;
@@ -14,9 +14,8 @@ class Customer{
     private $policyID;
     private $custContact;
 
-    public function __construct($db){
-        $this->conn=$db;
-        // var_dump($this->conn);
+    public function __construct(){
+        $this->conn=$this->dataConnect();
     }
     public function read(){
 
@@ -29,7 +28,7 @@ class Customer{
     }
     public function getList(){
         $stmt= $this->conn->prepare("select custID, custName from $this->table");
-        
+        // var_dump($this->conn);
         $stmt->execute();
         return $stmt->fetchAll();
     }

@@ -5,6 +5,7 @@ class CustViewCases extends Controller{
     public function index(){
         $this->model('claimCase');
         $claimCase= new ClaimCase();
+        // var_dump($claimCase);
         $queue=$claimCase->getAllQueue();
 
         include './../app/header.php';

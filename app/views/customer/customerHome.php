@@ -63,7 +63,4 @@
   </div>
 
 </div>
-<script src="./../js/modal.js"></script>
-<?php
-// include './../footer.php';
-?>
+<script src="./../../js/modal.js"></script>
