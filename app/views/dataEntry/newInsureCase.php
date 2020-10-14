@@ -24,7 +24,7 @@ if($_SESSION["rolecode"]!="DEO"){
   <h1>Create New Insurance Claim Case</h1><br>
   <div class="form-container">
     
-    <form action="#" method="post">
+    <form action="./newcase" method="post">
       <div class="row">
         <div class="column">
           <div class="formInput">
