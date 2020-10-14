@@ -44,13 +44,13 @@ if (!isset($_SESSION["user_id"]) || $_SESSION["user_id"] == "") {
                 <div class="column">
                     <div class="formInput">
                         <label for="admitDate">Admit Date</label><br>
-                        <input type="date" id="admitDate" name="admitDate" class="input" value="YYYY-MM-DD" ><br>
+                        <input type="date" id="admitDate" name="admitDate" class="input" value="2019-08-08" ><br>
                     </div>
                 </div>
                 <div class="column">
                     <div class="formInput">
                         <label for="ICUfromDate" >ICU from Date</label><br>
-                        <input type="date" id="ICUfromDate" name="ICUfromDate" class="input"  value="YYYY-MM-DD" ><br>
+                        <input type="date" id="ICUfromDate" name="ICUfromDate" class="input"  value="2019-08-10" ><br>
                     </div>
                 </div>
             </div>
@@ -58,13 +58,13 @@ if (!isset($_SESSION["user_id"]) || $_SESSION["user_id"] == "") {
                 <div class="column">
                     <div class="formInput">
                         <label for="dischargeDate" >Discharge Date</label><br>
-                        <input type="date" id="dischargeDate" name="dischargeDate" class="input" value="YYYY-MM-DD"  ><br>
+                        <input type="date" id="dischargeDate" name="dischargeDate" class="input" value="2019-08-15"  ><br>
                     </div>
                 </div>
                 <div class="column">
                     <div class="formInput">
                         <label  for="ICUtoDate">ICU to Date</label><br>
-                        <input type="date" id="ICUtoDate" name="ICUtoDate" class="input" value="YYYY-MM-DD"  ><br>
+                        <input type="date" id="ICUtoDate" name="ICUtoDate" class="input" value="2019-08-12"  ><br>
                     </div>
                 </div>
             </div>
