@@ -1,16 +1,11 @@
 <?php
-require_once("./../config/config.php");
 if (!isset($_SESSION["user_id"]) || $_SESSION["user_id"] == "") {
   // not logged in send to login page
-  redirect("./../index.php");
+  redirect("./../customer");
 }
 if($_SESSION["rolecode"]!="CUST"){
   die("You dont have the permission to access this page");
 }
-include './../header.php';
-include './../classes/customer.php';
-
-$customer= new Customer($DB);
 
 $result = array (
   array("recordID"=>"1","date"=>"2020-08-01","type"=>"a","healthCondition"=>"22","comments"=>"18"),
@@ -22,10 +17,10 @@ $result = array (
 ?>
 
 <!-- <link rel="stylesheet" href= "./../css/home.css"> -->
-<link rel="stylesheet" href= "./../css/custStyle.css">
-<link rel="stylesheet" href= "./../css/custStyle2.css">
-<link rel="stylesheet" href= "./../css/modal.css">
-<img src="./../images/undraw_medical_research_qg4d.svg" class="img-background img-left">
+<link rel="stylesheet" href= "./../../css/custStyle.css">
+<link rel="stylesheet" href= "./../../css/custStyle2.css">
+<link rel="stylesheet" href= "./../../css/modal.css">
+<img src="./../../images/undraw_medical_research_qg4d.svg" class="img-background img-left">
 <div class="containersMed">
   <h1>View Medical Condition</h1><br>
   <div class="table-container">
@@ -55,7 +50,7 @@ $result = array (
   <!-- Modal content -->
   <div class="modal-content">
     <span class="close">&times;</span>
-    <form action="./back/backend.php" method="post">
+    <form action="#" method="post">
       <div class="row">
         <div class="column">
           <div class="formInput">
@@ -92,9 +87,7 @@ $result = array (
   </div>
 
 </div>
-<script src="./../js/modal.js"></script>
+<script src="./../../js/modal.js"></script>
 <?php
 
-// var_dump($meds);
-include './../footer.php';
 ?>

@@ -13,7 +13,7 @@ if($_SESSION["rolecode"] =='CUST'){
   $home="./../customer.php";
 }
 else{
-  $home="./../";
+  $home="./../../employee";
 }
 ?>
 <div class="fixed-header">

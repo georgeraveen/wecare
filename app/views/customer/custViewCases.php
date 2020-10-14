@@ -1,5 +1,4 @@
 <?php
-require_once("./../config/config.php");
 if (!isset($_SESSION["user_id"]) || $_SESSION["user_id"] == "") {
   // not logged in send to login page
   redirect("./../index.php");
@@ -7,29 +6,29 @@ if (!isset($_SESSION["user_id"]) || $_SESSION["user_id"] == "") {
 if($_SESSION["rolecode"]!="CUST"){
   die("You dont have the permission to access this page");
 }
-include './../header.php';
-include './../classes/employee.php';
-include './../classes/hospital.php';
-include './../classes/customer.php';
-include './../classes/claimCase.php';
+// include './../header.php';
+// include './../classes/employee.php';
+// include './../classes/hospital.php';
+// include './../classes/customer.php';
+// include './../classes/claimCase.php';
 
-$employee= new Employee($DB);
-$hospital= new Hospital($DB);
-$customer= new Customer($DB);
-$claimCase= new ClaimCase($DB);
+// $employee= new Employee($DB);
+// $hospital= new Hospital($DB);
+// $customer= new Customer($DB);
+// $claimCase= new ClaimCase($DB);
 
-$claimQueue = $claimCase->getAllQueue();
+// $claimQueue = $claimCase->getAllQueue();
 // var_dump($claimQueue);
 // echo $claimQueue->num_rows."sdsd";
 
 ?>
 
 <!-- <link rel="stylesheet" href= "./../css/home.css">   -->
-<link rel="stylesheet" href= "./../css/custStyle.css">
-<link rel="stylesheet" href= "./../css/custStyle2.css">
-<link rel="stylesheet" href= "./../css/modal.css">
+<link rel="stylesheet" href= "./../../css/custStyle.css">
+<link rel="stylesheet" href= "./../../css/custStyle2.css">
+<link rel="stylesheet" href= "./../../css/modal.css">
 
-<img src="./../images/undraw_progress_data_4ebj.svg" class="img-background img-right">
+<img src="./../../images/undraw_progress_data_4ebj.svg" class="img-background img-right">
 <div class="containers">
 
   <h1>View My Insurance Claim Cases</h1><br>
@@ -64,7 +63,7 @@ $claimQueue = $claimCase->getAllQueue();
   <!-- Modal content -->
   <div class="modal-content">
     <span class="close">&times;</span>
-    <form action="./back/backend.php" method="get">
+    <form action="#" method="get">
       
       <div class="row">
         <div class="column">
@@ -86,9 +85,4 @@ $claimQueue = $claimCase->getAllQueue();
   </div>
 
 </div>
-<script src="./../js/modal.js"></script>
-<?php
-
-// var_dump($meds);
-include './../footer.php';
-?>
+<script src="./../../js/modal.js"></script>

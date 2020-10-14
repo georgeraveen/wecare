@@ -12,7 +12,6 @@
     die("You dont have the permission to access this page");
  }
  
-// include './../header.php';
 ?>
 <link rel="stylesheet" href= "./../../css/homeCust.css">
 <link rel="stylesheet" href= "./../../css/modal.css">
@@ -29,14 +28,14 @@
   <a class="grid-item hide" href="#">
   
   </a>
-  <a class="grid-item" href="./customerProfile.php">View my profile
+  <a class="grid-item" href="./../customerProfile/index">View my profile
     <br><br>
     <img src="./../../images/icons8-name-50.png" class="homeIcon">
   </a></a>
   <a class="grid-item hide" href="#">
     
   </a></a>
-  <a class="grid-item" href="./custMedCondition.php">View my medical history
+  <a class="grid-item" href="./../custMedCondition/index">View my medical history
     <br><br>
     <img src="./../../images/icons8-treatment-64.png" class="homeIcon">
   </a>
@@ -45,7 +44,7 @@
     <img src="./../../images/icons8-discount-50.png" class="homeIcon">
   </a></a>
   
-  <a class="grid-item" href="./custViewCases.php">View my claim history
+  <a class="grid-item" href="./../custViewCases/index">View my claim history
     <br><br>
     <img src="./../../images/icons8-order-history-64.png" class="homeIcon">
   </a></a>

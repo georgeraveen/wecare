@@ -1,21 +1,15 @@
 <?php
-require_once("./../config/config.php");
-
-// echo $_SESSION["user_id"]." ";
-//  echo $_SESSION["rolecode"];
-//  print_r($_SESSION);
- if (!isset($_SESSION["user_id"]) || $_SESSION["user_id"] == "") {
-    // not logged in send to login page
-    redirect("./../customer.php");
+if (!isset($_SESSION["user_id"]) || $_SESSION["user_id"] == "") {
+  // not logged in send to login page
+  redirect("./../customer");
 }
- if($_SESSION["rolecode"]!="CUST"){
-    die("You dont have the permission to access this page");
- }
+if($_SESSION["rolecode"]!="CUST"){
+  die("You dont have the permission to access this page");
+}
  
-include './../header.php';
 ?>
-<link rel="stylesheet" href= "./../css/CustStyle.css">
-<img src="./../images/undraw_personal_site_xyd1.svg" class="img-background">
+<link rel="stylesheet" href= "./../../css/CustStyle.css">
+<img src="./../../images/undraw_personal_site_xyd1.svg" class="img-background">
 
 <div class="profile-container">
   <form method="post">
@@ -44,7 +38,4 @@ include './../header.php';
 </div> -->
 
 
-<script type="text/javascript" src="./../js/customer.js"></script>
-<?php
-include './../footer.php';
-?>
+<script type="text/javascript" src="./../../js/customer.js"></script>
