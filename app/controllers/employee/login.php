@@ -5,12 +5,25 @@ class Login extends Controller{
     public function index(){
         if (isset($_SESSION["user_id"]) && $_SESSION["user_id"] != "") {
             // if logged in send to dashboard page
-            if($_SESSION["rolecode"] =='CUST'){
-                redirect("./../../customer-portal/customerHome");
+            
+            if($_SESSION["rolecode"] =='DEO'){
+                redirect("./../../dataEntry/dataEntryHome");
+            }
+            else if($_SESSION["rolecode"] =='FAG'){
+                redirect("./fieldAgent/fieldAgHome.php");
+            }
+            else if($_SESSION["rolecode"] =='DOC'){
+                redirect("./doctor/doctorHome.php");
+            }
+            else if($_SESSION["rolecode"] =='MGR'){
+                redirect("./manager/managerHome.php");
+            }
+            else if($_SESSION["rolecode"] =='MED'){
+                redirect("./medScru/medScruHome.php");
             }
             
         }
-        $this->view('customer/index');
+        $this->view('employee/index');
     }
     public function autho(){
         // var_dump($_POST);
@@ -20,8 +33,21 @@ class Login extends Controller{
         // var_dump($DB);
         if (isset($_SESSION["user_id"]) && $_SESSION["user_id"] != "") {
             // if logged in send to dashboard page
-            if($_SESSION["rolecode"] =='CUST'){
-                redirect("./../customer-portal/customerHome");
+            
+            if($_SESSION["rolecode"] =='DEO'){
+                redirect("./../../dataEntry/dataEntryHome");
+            }
+            else if($_SESSION["rolecode"] =='FAG'){
+                redirect("./fieldAgent/fieldAgHome.php");
+            }
+            else if($_SESSION["rolecode"] =='DOC'){
+                redirect("./doctor/doctorHome.php");
+            }
+            else if($_SESSION["rolecode"] =='MGR'){
+                redirect("./manager/managerHome.php");
+            }
+            else if($_SESSION["rolecode"] =='MED'){
+                redirect("./medScru/medScruHome.php");
             }
             
         }
@@ -33,9 +59,7 @@ class Login extends Controller{
             
             $username = str_split($username1,4)[1];
             // echo "s".$username;
-            if($userType != "CUST"){
-                redirect("./../../customer-portal");
-            }
+            
             // echo "here";
             if ($username == "" || $pass == "") {
 
@@ -44,39 +68,54 @@ class Login extends Controller{
             }
             
             else {
-                $sql = "SELECT * FROM customer WHERE custID = :uname AND password = :upass ";
-                // echo "db";
-                // var_dump($DB);
+                $sql = "SELECT * FROM employee WHERE empID = :uname AND password = :upass ";
+        
                 try {
                     $stmt = $DB->prepare($sql);
-                    // echo "s";
+        
                     // bind the values
                     $stmt->bindValue(":uname", $username);
                     $stmt->bindValue(":upass", $pass);
-
+        
                     // execute Query
                     $stmt->execute();
                     $results = $stmt->fetchAll();
                     // echo $username1." ".$username;
                     // print_r($results);
-                    if (count($results) > 0) {
+                    if (count($results) > 0 && $results[0]["empTypeID"]==$userType) {
                         $_SESSION["errorType"] = "success";
                         $_SESSION["errorMsg"] = "You have successfully logged in.";
-
+        
                         $_SESSION["user_id"] = $username;
-                        $_SESSION["rolecode"] = "CUST";
+                        $_SESSION["rolecode"] = $userType;
                         $_SESSION["username"] = $username;
-                        $_SESSION["custName"] = $results[0]["custName"];
-                        // echo "s";
-                        redirect("./../../customer-portal/customerHome");
+                        $_SESSION["fName"] = $results[0]["empFirstName"];
+                        $_SESSION["lName"] = $results[0]["empLastName"];
+        
+                        if($_SESSION["rolecode"] =='DEO'){
+                            redirect("./../../dataEntry/dataEntryHome");
 
+                        }
+                        else if($_SESSION["rolecode"] =='FAG'){
+                            redirect("./fieldAgent/fieldAgHome.php");
+                        }
+                        else if($_SESSION["rolecode"] =='DOC'){
+                            redirect("./doctor/doctorHome.php");
+                        }
+                        else if($_SESSION["rolecode"] =='MGR'){
+                            redirect("./manager/managerHome.php");
+                        }
+                        else if($_SESSION["rolecode"] =='MED'){
+                            redirect("./medScru/medScruHome.php");
+                        }
+        
                         exit;
                     } else {
                         $_SESSION["errorType"] = "info";
                         $_SESSION["errorMsg"] = "username or password does not exist.";
                     }
                 } catch (Exception $ex) {
-
+        
                     $_SESSION["errorType"] = "danger";
                     $_SESSION["errorMsg"] = $ex->getMessage();
                 }

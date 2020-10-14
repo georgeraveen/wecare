@@ -6,19 +6,19 @@
 
 <head>
     <title>Login Page</title>
-    <link rel="stylesheet" type="text/css" href="./../css/login.css">
+    <link rel="stylesheet" type="text/css" href="./../../css/login.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 </head>
 
 <body>
-    <img class="login-background" src="./../images/undraw_medicine_b1ol.svg">
+    <img class="login-background" src="./../../images/undraw_medicine_b1ol.svg">
     <div class="container">
 
         <div class="login-container">
-            <form method="post" action="./login/autho">
+            <form method="post" action="./../login/autho">
                 <input type="hidden" name="mode" value="login" >
-                <img class="avatar" src="./../images/undraw_Login_re_4vu2.svg">
+                <img class="avatar" src="./../../images/undraw_Login_re_4vu2.svg">
                 <h2>WeCare Customer Web Portal</h2>
                 <div class="input-div one">
                     <div class="i">
@@ -47,7 +47,7 @@
 
         </div>
     </div>
-    <script type="text/javascript" src="./../js/login.js"></script>
+    <script type="text/javascript" src="./../../js/login.js"></script>
 </body>
 
 </html>

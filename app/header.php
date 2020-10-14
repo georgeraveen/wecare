@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="stylesheet" href= "./../css/header.css">
+  <link rel="stylesheet" href= "./../../css/header.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WeCare Life</title>
 </head>
@@ -19,7 +19,7 @@ else{
 <div class="fixed-header">
     <div class="containerHeader">
         <nav>
-            <a class="Link" href= <?php echo "\"$home\"";?>><img class="logo" src="./../images/logo.png"></a>
+            <a class="Link" href= <?php echo "\"$home\"";?>><img class="logo" src="./../../images/logo.png"></a>
             <a class="Link" href= <?php echo "\"$home\"";?>><div>
               WeCare 
               <?php   
@@ -53,7 +53,7 @@ else{
               echo $_SESSION["fName"][0].$_SESSION["lName"][0];
             }
              ?></a>
-            <a class="logout btn-Link" href="./../logout.php">Logout</a>
+            <a class="logout btn-Link" href="./../login/logout">Logout</a>
         </nav>
     </div>
 </div>

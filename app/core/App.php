@@ -17,7 +17,7 @@ class App{
         // echo $this->controller;
         if(file_exists('../app/controllers/'.$_SESSION["portal"].'/' . $url[0] . '.php')){
             $this->controller = $url[0];
-            unset($url[0]);
+            // unset($url[0]);
         }
         require_once '../app/controllers/'.$_SESSION["portal"].'/' . $this->controller . '.php';
         // echo $this->controller;
@@ -25,13 +25,25 @@ class App{
         // var_dump($this->controller);
 
         //goto the relavent method
+        if(!isset($url[0])){
+            redirect("./login/index");
+        }
+        // var_dump($url[1]);
+        // if($url[1]==null){
+        //     redirect("./../".$url[0]."/index");
+        // }
         if(isset($url[1])){
-            if(method_exists($this->controller, $url[1])){
+           if(method_exists($this->controller, $url[1])){
                 // echo 'OK';
                 $this->method =  $url[1];
                 unset($url[1]);
             }
         }
+        else{
+            // var_dump($url[0]);
+            redirect("./".$url[0]."/index");
+        }
+        unset($url[0]);
         // print_r($url);
         $this->params = $url ? array_values($url) : [];
         // print_r($this->params);

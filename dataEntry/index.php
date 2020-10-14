@@ -1,7 +1,7 @@
 
 <?php
 session_start();
-$_SESSION["portal"]="employee";
+$_SESSION["portal"]="dataEntry";
 
 require_once '../app/init.php';
 
