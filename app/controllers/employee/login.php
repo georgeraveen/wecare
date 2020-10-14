@@ -35,6 +35,7 @@ class Login extends Controller{
             // if logged in send to dashboard page
             
             if($_SESSION["rolecode"] =='DEO'){
+                $_SESSION["portal"]="dataEntry";
                 redirect("./../../dataEntry/dataEntryHome");
             }
             else if($_SESSION["rolecode"] =='FAG'){
@@ -55,21 +56,19 @@ class Login extends Controller{
         if ($mode == "login") {
             $username1 = trim($_POST['username']);
             $pass = trim($_POST['user_password']);
-            $userType = str_split($username1,4)[0];
+            $userType = str_split($username1,3)[0];
             
-            $username = str_split($username1,4)[1];
+            $username = str_split($username1,3)[1];
             // echo "s".$username;
             
             // echo "here";
             if ($username == "" || $pass == "") {
-
                 $_SESSION["errorType"] = "danger";
                 $_SESSION["errorMsg"] = "Enter manadatory fields";
             }
             
             else {
                 $sql = "SELECT * FROM employee WHERE empID = :uname AND password = :upass ";
-        
                 try {
                     $stmt = $DB->prepare($sql);
         
@@ -91,8 +90,10 @@ class Login extends Controller{
                         $_SESSION["username"] = $username;
                         $_SESSION["fName"] = $results[0]["empFirstName"];
                         $_SESSION["lName"] = $results[0]["empLastName"];
-        
+                        // echo "s";
                         if($_SESSION["rolecode"] =='DEO'){
+                            $_SESSION["portal"]="dataEntry";
+
                             redirect("./../../dataEntry/dataEntryHome");
 
                         }
@@ -120,7 +121,7 @@ class Login extends Controller{
                     $_SESSION["errorMsg"] = $ex->getMessage();
                 }
             }
-        redirect("./../../customer-portal");
+        redirect("./../../employee");
         }
     }
 

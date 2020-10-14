@@ -15,6 +15,9 @@ class App{
         // echo $url[0]."..".$url[1]."..".$url[2]."..";
         // echo $_SESSION["portal"];
         // echo $this->controller;
+        if($_SESSION["portal"]!="customer" && $url[0]=='login'){
+            $_SESSION["portal"]="employee";
+        }
         if(file_exists('../app/controllers/'.$_SESSION["portal"].'/' . $url[0] . '.php')){
             $this->controller = $url[0];
             // unset($url[0]);

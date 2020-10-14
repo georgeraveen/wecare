@@ -4,10 +4,10 @@
 // echo $_SESSION["user_id"]." ";
 //  echo $_SESSION["rolecode"];
 //  print_r($_SESSION);
-//  if (!isset($_SESSION["user_id"]) || $_SESSION["user_id"] == "") {
-//     // not logged in send to login page
-//     redirect("./../customer.php");
-// }
+ if (!isset($_SESSION["user_id"]) || $_SESSION["user_id"] == "") {
+    // not logged in send to login page
+    redirect("./../customer");
+}
  if($_SESSION["rolecode"]!="CUST"){
     die("You dont have the permission to access this page");
  }

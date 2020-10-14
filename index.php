@@ -11,6 +11,6 @@ function redirect($url) {
 
     return true;
 }
-redirect("./customer-portal")
+// redirect("./customer-portal")
 
 ?>
