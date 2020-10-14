@@ -15,10 +15,10 @@ if (!isset($_SESSION["user_id"]) || $_SESSION["user_id"] == "") {
 
 
  $result = array(
-    array("claimID"=>"1","custName"=>"kamal", "admitDate"=>"2020-08-01","name"=>"MEd1","name"=>"Asiri"),
-    array("claimID"=>"2", "custName"=>"amal","admitDate"=>"2020-08-02","name"=>"MEd1","name"=>"Asiri"),
-    array("claimID"=>"3", "custName"=>"nNimal","admitDate"=>"2020-08-03","name"=>"MEd1","name"=>"Asiri"),
-    array("claimID"=>"4","custName"=>"Sunil", "admitDate"=>"2020-08-04","name"=>"MEd1","name"=>"Asiri"),
+    array("claimID"=>"1","custName"=>"Mr.Perera", "admitDate"=>"2020-08-01","name"=>"MEd1","name"=>"Asiri"),
+    array("claimID"=>"2", "custName"=>"Mr.Samarasinghe","admitDate"=>"2020-08-02","name"=>"MEd1","name"=>"Asiri"),
+    array("claimID"=>"3", "custName"=>"Mr.Fernando","admitDate"=>"2020-08-03","name"=>"MEd1","name"=>"Asiri"),
+    array("claimID"=>"4","custName"=>"Mr.Karunathilake", "admitDate"=>"2020-08-04","name"=>"MEd1","name"=>"Asiri"),
 );
 
 ?>

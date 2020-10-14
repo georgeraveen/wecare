@@ -30,55 +30,55 @@ if (!isset($_SESSION["user_id"]) || $_SESSION["user_id"] == "") {
                 <div class="column">
                     <div class="formInput">
                         <label for="customer">Customer</label><br>
-                        <textarea readonly>Mr. Perera</textarea>
+                       <input type="text" id="customer" name="custName" class="input" value="MR.Perera" readonly><br>
                     </div>
                 </div>
                 <div class="column">
                     <div class="formInput">
-                        <label >Claim ID</label><br>
-                        <textarea readonly>001</textarea>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="column">
-                    <div class="formInput">
-                        <label for="date">Admit Date</label><br>
-                        <textarea readonly>23.04.2019</textarea>
-                    </div>
-                </div>
-                <div class="column">
-                    <div class="formInput">
-                        <label >ICU from Date</label><br>
-                        <textarea readonly>28.04.2019</textarea>
+                        <label for="claimID" >Claim ID</label><br>
+                        <input type="text" id="claimID" name="claimID" class="input" value="005" readonly><br>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="column">
                     <div class="formInput">
-                        <label >Discharge Date</label><br>
-                        <textarea readonly>24.04.2019</textarea>
+                        <label for="admitDate">Admit Date</label><br>
+                        <input type="date" id="admitDate" name="admitDate" class="input" value="YYYY-MM-DD" ><br>
                     </div>
                 </div>
                 <div class="column">
                     <div class="formInput">
-                        <label >ICU to Date</label><br>
-                        <textarea readonly>26.04.2019</textarea>
+                        <label for="ICUfromDate" >ICU from Date</label><br>
+                        <input type="date" id="ICUfromDate" name="ICUfromDate" class="input"  value="YYYY-MM-DD" ><br>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="column">
                     <div class="formInput">
-                        <label >Hospital</label><br>
-                        <textarea readonly>Asiri</textarea>
+                        <label for="dischargeDate" >Discharge Date</label><br>
+                        <input type="date" id="dischargeDate" name="dischargeDate" class="input" value="YYYY-MM-DD"  ><br>
                     </div>
                 </div>
                 <div class="column">
                     <div class="formInput">
-                        <label >condition</label><br>
-                        <textarea ></textarea>
+                        <label  for="ICUtoDate">ICU to Date</label><br>
+                        <input type="date" id="ICUtoDate" name="ICUtoDate" class="input" value="YYYY-MM-DD"  ><br>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column">
+                    <div class="formInput">
+                        <label for="hospital">Hospital</label><br>
+                        <input type="text" id="hospital" name="hospital" class="input" value="Asiri" readonly><br>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="formInput">
+                        <label for="condition" >condition</label><br>
+                        <textarea type="text" id="condition" name="condition" class="commentBox" value="Conditions..."></textarea>
                     </div>
                 </div>
             </div>
@@ -86,25 +86,28 @@ if (!isset($_SESSION["user_id"]) || $_SESSION["user_id"] == "") {
                 <div class="column">
                     <div class="row">
                         <div class="column">
-                        <lable>DOC1</lable>
+                        <textarea readonly>DOC1</textarea>
                         </div>
                         <div class="column">
-                        <button type="button">viewFile</button>
+                        <input type="view" id="view"  class="editBtn" value= "View File" ><br>
                         </div>
                     </div>
                     <div class="row">
-                        <lable>DOC2</lable>
+                        <textarea>DOC2</textarea>
                     </div>
                 </div>
                 <div class="column">
                     <div class="formInput">
-                        <label>Doctor's Comment</label><br>
-                        <textarea ></textarea><br>
+                        <label for="doctorComment">Doctor's Comment</label><br>
+                        <textarea  type="text" id="doctorComment" name="doctorComment" class="commentBox" placeholder="comments..."></textarea><br>
                     </div>
                 </div>
-
-                <button type="button">submit</button>
-
+            </div>
+            <div class="row">
+            <div class="formInput">
+            <input type="submit" id="submit" name="reviewCase" class="btn-submit" value= "Submit" ><br>
+           
+          </div>
             </div>
 
            
