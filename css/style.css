@@ -35,6 +35,8 @@
     background-color: #efa33a;
     border: none;
     cursor: pointer;
+    text-decoration: none;
+    color: black;
 }
 .btn-submit:hover{
     background-color: #f2af58;

@@ -9,13 +9,13 @@ if($_SESSION["rolecode"]!="DEO"){
 }
 
 include './../header.php';
-include './../classes/employee.php';
-include './../classes/hospital.php';
-include './../classes/customer.php';
+// include './../classes/employee.php';
+// include './../classes/hospital.php';
+// include './../classes/customer.php';
 
-$employee= new Employee($DB);
-$hospital= new Hospital($DB);
-$customer= new Customer($DB);
+// $employee= new Employee($DB);
+// $hospital= new Hospital($DB);
+// $customer= new Customer($DB);
 
 ?>
 
@@ -44,17 +44,17 @@ $customer= new Customer($DB);
       <div class="row">
         <div class="column">
           <div class="formInput">
-            <label for="dob">Date of birth</label><br>
-            <input type="Date" id="dob" name="dob" class="input" value="" required><br>
+            <label for="custDOB">Date of birth</label><br>
+            <input type="Date" id="custDOB" name="custDOB" class="input" value="" required><br>
           </div>
         </div>
         <div class="column">
           <div class="formInput">
             <label for="gender">Gender</label><br>
             <select id="gender" name="gender" required>
-              <option>Male</option>
-              <option>Female</option>
-              <option>Other</option>
+              <option value="m">Male</option>
+              <option value="f">Female</option>
+              <option value="o">Other</option>
             </select><br>
           </div>
         </div>
@@ -76,6 +76,7 @@ $customer= new Customer($DB);
           <div class="formInput">
             <label for="policyID">Select insurance policy</label><br>
             <select id="policyID" name="policyID" required>
+              <option value=1>1</option>
               <?php               
                 // $meds=$employee->getEmpByTypeList("MED");
                 // // var_dump($meds);
@@ -86,8 +87,8 @@ $customer= new Customer($DB);
             </select><br>
           </div>
           <div class="formInput">
-            <label for="custNIC">Customer contact numbers</label><br>
-            <input type="text" id="custNIC" name="custNIC" required class="input" placeholder="Enter numbers with comma seperated"><br>
+            <label for="custContact">Customer contact numbers</label><br>
+            <input type="text" id="custContact" name="custContact" required class="input" placeholder="Enter numbers with comma seperated"><br>
           </div>
         </div>
       </div>
