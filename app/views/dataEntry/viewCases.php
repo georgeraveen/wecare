@@ -1,31 +1,21 @@
 <?php
-require_once("./../config/config.php");
-if (!isset($_SESSION["user_id"]) || $_SESSION["user_id"] == "") {
+ if (!isset($_SESSION["user_id"]) || $_SESSION["user_id"] == "") {
   // not logged in send to login page
-  redirect("./../index.php");
+  $_SESSION["portal"]="employee";
+  redirect("./../../employee");
 }
 if($_SESSION["rolecode"]!="DEO"){
   die("You dont have the permission to access this page");
 }
-include './../header.php';
-include './../classes/employee.php';
-include './../classes/hospital.php';
-include './../classes/customer.php';
-include './../classes/claimCase.php';
 
-$employee= new Employee($DB);
-$hospital= new Hospital($DB);
-$customer= new Customer($DB);
-$claimCase= new ClaimCase($DB);
-
-$claimQueue = $claimCase->getAllQueue();
+// $claimQueue = $claimCase->getAllQueue();
 // var_dump($claimQueue);
 // echo $claimQueue->num_rows."sdsd";
 
 ?>
 
-<link rel="stylesheet" href= "./../css/home.css">
-<link rel="stylesheet" href= "./../css/style.css">
+<link rel="stylesheet" href= "./../../css/home.css">
+<link rel="stylesheet" href= "./../../css/style.css">
 <div class="containers">
   <h1>View Insurance Claim Cases</h1><br>
   <div class="table-container">
@@ -41,7 +31,7 @@ $claimQueue = $claimCase->getAllQueue();
         <th>Action</th>
       </tr>
       <?php
-      foreach($claimQueue as $row){
+      foreach($data as $row){
         echo "<tr>"."<td>".$row['claimID']."</td>".
               "<td>".$row['dischargeDate']."</td>".
               "<td>".$row['claimID']."</td>".
@@ -49,7 +39,7 @@ $claimQueue = $claimCase->getAllQueue();
               "<td>".$row['fag']."</td>".
               "<td>".$row['med']."</td>".
               "<td>".$row['doc']."</td>".
-              "<td> <a class=\"deleteBtn\" href=\"./back/backend.php?action=delClaimCase&id=".$row['claimID']."\">Delete</a> <a class=\"editBtn\" href=\"./editInsureCase.php?action=edit&id=".$row['claimID']."\">Edit</a> "."</td>"."</tr>";
+              "<td> <a class=\"deleteBtn\" href=\"./deleteCase?action=delClaimCase&id=".$row['claimID']."\">Delete</a> <a class=\"editBtn\" href=\"./editCase?action=edit&id=".$row['claimID']."\">View/Edit</a> "."</td>"."</tr>";
       }
 
       ?>
@@ -57,9 +47,3 @@ $claimQueue = $claimCase->getAllQueue();
     
   </div>
 </div>
-
-<?php
-
-// var_dump($meds);
-include './../footer.php';
-?>

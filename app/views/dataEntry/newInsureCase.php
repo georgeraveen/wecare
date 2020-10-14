@@ -1,20 +1,12 @@
 <?php
-if (!isset($_SESSION["user_id"]) || $_SESSION["user_id"] == "") {
+ if (!isset($_SESSION["user_id"]) || $_SESSION["user_id"] == "") {
   // not logged in send to login page
-  redirect("./../index.php");
+  $_SESSION["portal"]="employee";
+  redirect("./../../employee");
 }
 if($_SESSION["rolecode"]!="DEO"){
   die("You dont have the permission to access this page");
 }
-
-// include './../header.php';
-// include './../classes/employee.php';
-// include './../classes/hospital.php';
-// include './../classes/customer.php';
-
-// $employee= new Employee($DB);
-// $hospital= new Hospital($DB);
-// $customer= new Customer($DB);
 // var_dump($data['hospList']);
 ?>
 
@@ -32,7 +24,6 @@ if($_SESSION["rolecode"]!="DEO"){
             <select id="customer" name="customer" required>
               <!-- <option>Customer ID - Customer Name</option> -->
               <?php               
-                // $customers=$customer->getList();
                 foreach ($data['custList'] as $customersRow){
                   echo "<option value= \"".$customersRow['custID']."\"> CUST".$customersRow['custID']." - ".$customersRow['custName']."</option>";
                 }
@@ -46,7 +37,6 @@ if($_SESSION["rolecode"]!="DEO"){
             <select id="hospital" name="hospital" required>
               <!-- <option>Hospital Name</option> -->
               <?php               
-                // $hospitals=$hospital->getAll();
                 foreach ($data['hospList'] as $hospitalsRow){
                   echo "<option value= \"".$hospitalsRow['hospitalID']."\">(".$hospitalsRow['hospitalID'].") - ".$hospitalsRow['name']."</option>";
                 }
@@ -90,8 +80,6 @@ if($_SESSION["rolecode"]!="DEO"){
             <label for="medScrut">Medical Scrutinizer</label><br>
             <select id="medScrut" name="medScrut" required>
               <?php               
-                // $meds=$employee->getEmpByTypeList("MED");
-                // var_dump($meds);
                 foreach ($data['medList'] as $medsRow){
                   echo "<option value= \"".$medsRow['empID']."\"> MED".$medsRow['empID']." - ".$medsRow['empFirstName']." ".$medsRow['empLastName']."</option>";
                 }
@@ -106,7 +94,6 @@ if($_SESSION["rolecode"]!="DEO"){
             <select id="fieldAg" name="fieldAg" required>
               <!-- <option>User ID - Name</option> -->
               <?php               
-                // $fags=$employee->getEmpByTypeList("FAG");
                 foreach ($data['fagList'] as $fagsRow){
                   echo "<option value= \"".$fagsRow['empID']."\"> FAG".$fagsRow['empID']." - ".$fagsRow['empFirstName']." ".$fagsRow['empLastName']."</option>";
                 }
