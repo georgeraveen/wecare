@@ -10,16 +10,16 @@ class Login extends Controller{
                 redirect("./../../dataEntry/dataEntryHome");
             }
             else if($_SESSION["rolecode"] =='FAG'){
-                redirect("./fieldAgent/fieldAgHome.php");
+                redirect("./../../fieldAgent/fieldAgHome");
             }
             else if($_SESSION["rolecode"] =='DOC'){
                 redirect("./../../doctor/doctorHome");
             }
             else if($_SESSION["rolecode"] =='MGR'){
-                redirect("./manager/managerHome.php");
+                redirect("./../../manager/managerHome");
             }
             else if($_SESSION["rolecode"] =='MED'){
-                redirect("./medScru/medScruHome.php");
+                redirect("./../../medScru/medScruHome");
             }
             
         }
@@ -39,17 +39,20 @@ class Login extends Controller{
                 redirect("./../../dataEntry/dataEntryHome");
             }
             else if($_SESSION["rolecode"] =='FAG'){
-                redirect("./fieldAgent/fieldAgHome.php");
+                $_SESSION["portal"]="fieldAgent";
+                redirect("./../../fieldAgent/fieldAgHome");
             }
             else if($_SESSION["rolecode"] =='DOC'){
                 $_SESSION["portal"]="doctor";
                 redirect("./../../doctor/doctorHome");
             }
             else if($_SESSION["rolecode"] =='MGR'){
-                redirect("./manager/managerHome.php");
+                $_SESSION["portal"]="manager";
+                redirect("./../../manager/managerHome");
             }
             else if($_SESSION["rolecode"] =='MED'){
-                redirect("./medScru/medScruHome.php");
+                $_SESSION["portal"]="medScru";
+                redirect("./../../medScru/medScruHome");
             }
             
         }
@@ -99,17 +102,20 @@ class Login extends Controller{
 
                         }
                         else if($_SESSION["rolecode"] =='FAG'){
-                            redirect("./fieldAgent/fieldAgHome.php");
+                            $_SESSION["portal"]="fieldAgent";
+                            redirect("./../../fieldAgent/fieldAgHome");
                         }
                         else if($_SESSION["rolecode"] =='DOC'){
                             $_SESSION["portal"]="doctor";
                             redirect("./../../doctor/doctorHome");
                         }
                         else if($_SESSION["rolecode"] =='MGR'){
-                            redirect("./manager/managerHome.php");
+                            $_SESSION["portal"]="manager";
+                            redirect("./../../manager/managerHome");
                         }
                         else if($_SESSION["rolecode"] =='MED'){
-                            redirect("./medScru/medScruHome.php");
+                            $_SESSION["portal"]="medScru";
+                            redirect("./../../medScru/medScruHome");
                         }
         
                         exit;
