@@ -13,7 +13,7 @@ class Login extends Controller{
                 redirect("./fieldAgent/fieldAgHome.php");
             }
             else if($_SESSION["rolecode"] =='DOC'){
-                redirect("./doctor/doctorHome.php");
+                redirect("./../../doctor/doctorHome");
             }
             else if($_SESSION["rolecode"] =='MGR'){
                 redirect("./manager/managerHome.php");
@@ -42,7 +42,8 @@ class Login extends Controller{
                 redirect("./fieldAgent/fieldAgHome.php");
             }
             else if($_SESSION["rolecode"] =='DOC'){
-                redirect("./doctor/doctorHome.php");
+                $_SESSION["portal"]="doctor";
+                redirect("./../../doctor/doctorHome");
             }
             else if($_SESSION["rolecode"] =='MGR'){
                 redirect("./manager/managerHome.php");
@@ -101,7 +102,8 @@ class Login extends Controller{
                             redirect("./fieldAgent/fieldAgHome.php");
                         }
                         else if($_SESSION["rolecode"] =='DOC'){
-                            redirect("./doctor/doctorHome.php");
+                            $_SESSION["portal"]="doctor";
+                            redirect("./../../doctor/doctorHome");
                         }
                         else if($_SESSION["rolecode"] =='MGR'){
                             redirect("./manager/managerHome.php");

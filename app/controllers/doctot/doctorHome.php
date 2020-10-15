@@ -1,11 +1,11 @@
 <?php
 
-class DataEntryHome extends Controller{
+class DoctorHome extends Controller{
 
     public function index(){
-        $this->checkPermission("DEO");
+        $this->checkPermission("DOC");
         include './../app/header.php';
-        $this->view('dataEntry/dataEntryHome');
+        $this->view('doctor/doctorHome');
         include './../app/footer.php';
         // echo "asas";
     }
