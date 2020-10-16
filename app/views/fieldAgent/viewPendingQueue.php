@@ -1,17 +1,5 @@
 <?php
-require_once("./../config/config.php");
 
-if (!isset($_SESSION["user_id"]) || $_SESSION["user_id"] == "") {
-    // not logged in send to login page
-    redirect("./../index.php");
-}
- if($_SESSION["rolecode"]!="FAG"){
-    die("You dont have the permission to access this page");
- }
-
-
-
- include './../header.php';
 
 
  $result = array(
@@ -25,8 +13,8 @@ if (!isset($_SESSION["user_id"]) || $_SESSION["user_id"] == "") {
 
 
 
-<link rel="stylesheet" href= "./../css/home.css">
-<link rel="stylesheet" href= "./../css/style.css">
+<link rel="stylesheet" href= "./../../css/home.css">
+<link rel="stylesheet" href= "./../../css/style.css">
 
 
 <div class="containers">
@@ -50,7 +38,7 @@ if (!isset($_SESSION["user_id"]) || $_SESSION["user_id"] == "") {
                 "<td  id=\"name-".$row['recordID']."\">".$row['name']."</td>".
                 "<td  id=\"name-".$row['recordID']."\">".$row['name']."</td>".
                 "<td  id=\"status-".$row['recordID']."\">".$row['status']."</td>".
-                "<td>  <a onclick=\"clickView(".$row['recordID'].")\" class=\"editBtn\" href=\"./updateCase.php".$row['recordID']."\">View </a> "."</td>"."</tr>";
+                "<td>  <a onclick=\"clickView(".$row['recordID'].")\" class=\"editBtn\" href=\"./review".$row['recordID']."\">View </a> "."</td>"."</tr>";
          }
 
 ?>

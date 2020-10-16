@@ -1,23 +1,6 @@
-<?php
-require_once("./../config/config.php");
 
-if (!isset($_SESSION["user_id"]) || $_SESSION["user_id"] == "") {
-    // not logged in send to login page
-    redirect("./../index.php");
-}
- if($_SESSION["rolecode"]!="FAG"){
-    die("You dont have the permission to access this page");
- }
-
-
-
- include './../header.php';
-
- 
-?>
-
-<link rel="stylesheet" href= "./../css/home.css">
-<link rel="stylesheet" href= "./../css/style.css">
+<link rel="stylesheet" href= "./../../css/home.css">
+<link rel="stylesheet" href= "./../../css/style.css">
 
 <div class="containers">
     <h1>Update Case</h1><br>
@@ -75,12 +58,7 @@ if (!isset($_SESSION["user_id"]) || $_SESSION["user_id"] == "") {
                         <input type="text" id="hospital" name="hospital" class="input" value="Asiri" readonly><br>
                     </div>
                 </div>
-                <div class="column">
-                    <div class="formInput">
-                        <label for="condition" >condition</label><br>
-                        <textarea type="text" id="condition" name="condition" class="commentBox" value="Conditions..."></textarea>
-                    </div>
-                </div>
+               
             </div>
             <div class="row">
                 <div class="column">
@@ -97,17 +75,13 @@ if (!isset($_SESSION["user_id"]) || $_SESSION["user_id"] == "") {
                     </div>
                 </div>
                 <div class="column">
-                    <div class="formInput">
-                        <label for="doctorComment">Doctor's Comment</label><br>
-                        <textarea  type="text" id="doctorComment" name="doctorComment" class="commentBox" placeholder="comments..."></textarea><br>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
             <div class="formInput">
             <input type="submit" id="submit" name="reviewCase" class="btn-submit" value= "Submit" ><br>
            
           </div>
+              
+            </div>
+           
             </div>
 
            
