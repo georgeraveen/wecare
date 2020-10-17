@@ -23,7 +23,7 @@
             <label for="type">Type</label><br>
             <select id="type" name="type" required>
               <option>VIP</option>
-              <option>NORMAL</option>
+              <option>Regular</option>
             </select><br>
           </div>
         </div>
@@ -57,7 +57,7 @@
             <label for="type">Type</label><br>
             <select id="type" name="type" required>
               <option>VIP</option>
-              <option>NORMAL</option>
+              <option>Regular</option>
             </select><br>
           </div>
         </div>
@@ -91,7 +91,7 @@
             <label for="type">Type</label><br>
             <select id="type" name="type" required>
               <option>VIP</option>
-              <option>NORMAL</option>
+              <option>Regular</option>
             </select><br>
           </div>
         </div>
