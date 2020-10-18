@@ -56,14 +56,17 @@ class Employee extends Models{
     public function create(){
         function password_generate($chars){
             $data = '1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcefghijklmnopqrstuvwxyz';
-            return substr(str_shuffle($data), 0, $chars);
+            $randPass=substr(str_shuffle($data), 0, $chars);
+            return array($randPass,password_hash( $randPass, PASSWORD_DEFAULT, [ 'cost' => 11 ] ));
         }
 
-        $stmt= $this->conn->prepare("insert into $this->table (empFirstName,empLastName,password,gender,empDOB,empNIC,empAddress,email,empTypeID) 
-                                                            values (:empFirstName, :empLastName, :password, :gender, :empDOB, :empNIC, :empAddress, :email, :empTypeID) ");
+        $stmt= $this->conn->prepare("insert into $this->table (empFirstName,empLastName,password,hashPass,gender,empDOB,empNIC,empAddress,email,empTypeID) 
+                                                            values (:empFirstName, :empLastName, :password, :hashPassword, :gender, :empDOB, :empNIC, :empAddress, :email, :empTypeID) ");
         $stmt -> bindParam(':empFirstName', $this->empFirstName );
         $stmt -> bindParam(':empLastName', $this->empLastName );
-        $stmt -> bindParam(':password', password_generate(3) );
+        $passDetails=password_generate(3);
+        $stmt -> bindParam(':password', $passDetails[0]);
+        $stmt -> bindParam(':hashPassword',  $passDetails[1]);
         $stmt -> bindParam(':gender', $this->gender );
         $stmt -> bindParam(':empDOB', $this->empDOB );
         $stmt -> bindParam(':empNIC', $this->empNIC );
