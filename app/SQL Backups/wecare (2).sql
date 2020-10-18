@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 02, 2020 at 08:08 AM
+-- Generation Time: Oct 18, 2020 at 06:29 AM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.14
 
@@ -77,18 +77,20 @@ CREATE TABLE IF NOT EXISTS `claim_case` (
   KEY `custID` (`custID`),
   KEY `policyID` (`policyID`),
   KEY `hospitalID` (`hospitalID`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `claim_case`
 --
 
 INSERT INTO `claim_case` (`claimID`, `admitDate`, `dischargeDate`, `icuFromDate`, `icuToDate`, `payableAmount`, `healthCondition`, `doctorComment`, `custFeedback`, `documentDIR`, `custID`, `doctorID`, `medScruID`, `dataEntryOfficerID`, `FieldAgID`, `hospitalID`, `policyID`) VALUES
-(1, '2020-08-01', '2020-08-07', '2020-08-08', '2020-08-08', NULL, 'sdvx', NULL, NULL, NULL, 1, 5, 2, 1, 4, 1, NULL),
-(2, '2020-10-09', '2020-10-16', NULL, NULL, NULL, 'asdsafzzzzzzz', NULL, NULL, NULL, 1, NULL, 3, 1, 4, 1, NULL),
+(1, '2020-07-01', '2020-08-07', '2020-08-08', '2020-08-08', 123, 'sdvxrrrrrrrrrrrrrrrr', NULL, NULL, NULL, 7, 5, 2, 1, 4, 1, NULL),
+(2, '2020-10-09', '2020-10-08', NULL, NULL, NULL, 'asdsafzzzzzzz', NULL, NULL, NULL, 1, NULL, 3, 1, 4, 1, NULL),
 (5, '2020-09-04', '2020-09-12', NULL, NULL, NULL, 'dcsdvdsv', NULL, NULL, NULL, 1, NULL, 3, 1, 4, 1, NULL),
 (6, '2020-09-10', '2020-09-19', NULL, NULL, NULL, 'accxzcz', NULL, NULL, NULL, 1, NULL, 3, 1, 4, 1, NULL),
-(10, '2020-09-12', '2020-09-14', '2020-09-27', '2020-09-27', NULL, 'ascd', NULL, NULL, NULL, 1, NULL, 2, 1, 4, 1, NULL);
+(10, '2020-09-12', '2020-09-14', '2020-09-27', '2020-09-27', NULL, 'ascdbbbbbbbbbbbbbb', NULL, NULL, NULL, 1, NULL, 2, 1, 4, 1, NULL),
+(12, '2020-10-14', '2020-10-14', '2020-10-14', '2020-10-14', NULL, 'sdfbbbbbbbbbbbbbbbnnnnnnnnnnnnnnnnnnnn', NULL, NULL, NULL, 1, NULL, 2, 1, 4, 1, NULL),
+(13, '2020-10-14', '2020-10-14', '2020-10-14', '2020-10-14', NULL, 'sfgr', NULL, NULL, NULL, 1, NULL, 3, 1, 4, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -100,7 +102,8 @@ DROP TABLE IF EXISTS `customer`;
 CREATE TABLE IF NOT EXISTS `customer` (
   `custID` int(6) NOT NULL AUTO_INCREMENT,
   `custName` varchar(40) NOT NULL,
-  `password` varchar(20) NOT NULL,
+  `password` varchar(20) DEFAULT NULL,
+  `hashPass` varchar(255) NOT NULL,
   `custAddress` text NOT NULL,
   `custNIC` varchar(11) NOT NULL,
   `custDOB` date NOT NULL,
@@ -109,14 +112,16 @@ CREATE TABLE IF NOT EXISTS `customer` (
   `policyID` int(3) NOT NULL,
   PRIMARY KEY (`custID`),
   KEY `policyID` (`policyID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `customer`
 --
 
-INSERT INTO `customer` (`custID`, `custName`, `password`, `custAddress`, `custNIC`, `custDOB`, `email`, `gender`, `policyID`) VALUES
-(1, 'sunil', 'asdf', 'zxcv', '123123999V', '2020-08-04', 'sdc@d.com', 'm', 1);
+INSERT INTO `customer` (`custID`, `custName`, `password`, `hashPass`, `custAddress`, `custNIC`, `custDOB`, `email`, `gender`, `policyID`) VALUES
+(1, 'sunil', 'asdf', '$2y$11$39NlAEz4tbGMuzJOkuvdKeg0R4yeOnLf6Qb2sscczQsMm/AyIsAvK', 'zxcv', '123123999V', '2020-08-04', 'sdc@d.com', 'm', 1),
+(7, 'anil2', 'zOa', '$2y$11$UXVr3HDDMBgzO4IGEepeXusYnl0/JNQLlFEk8T6mtRgbF08Dma3aW', 'dcds\r\ndscsd\r\nd', '56442', '2020-09-27', 'as@m.c', 'm', 1),
+(8, 'amara', 'auh', '$2y$11$42zyFxjTR7E3BDgDeh80M.TKZoR6QpA5DXhqVTgFVxcYY4futZQQ2', 'xxxxxxxxxxxxxxxxxxxxx', '444444', '2020-10-14', 'as@s.co', 'f', 1);
 
 -- --------------------------------------------------------
 
@@ -131,6 +136,15 @@ CREATE TABLE IF NOT EXISTS `customer_contact` (
   PRIMARY KEY (`custContactNo`),
   KEY `custID` (`custID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `customer_contact`
+--
+
+INSERT INTO `customer_contact` (`custID`, `custContactNo`) VALUES
+(7, 123),
+(7, 345),
+(8, 111111);
 
 -- --------------------------------------------------------
 
@@ -184,7 +198,8 @@ CREATE TABLE IF NOT EXISTS `doctor` (
 DROP TABLE IF EXISTS `employee`;
 CREATE TABLE IF NOT EXISTS `employee` (
   `empID` int(4) NOT NULL AUTO_INCREMENT,
-  `password` varchar(20) NOT NULL,
+  `password` varchar(20) DEFAULT NULL,
+  `hashPass` varchar(255) NOT NULL,
   `empFirstName` varchar(20) NOT NULL,
   `empLastName` varchar(20) NOT NULL,
   `gender` varchar(1) NOT NULL,
@@ -195,18 +210,19 @@ CREATE TABLE IF NOT EXISTS `employee` (
   `empTypeID` varchar(3) NOT NULL,
   PRIMARY KEY (`empID`),
   KEY `empTypeID` (`empTypeID`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `employee`
 --
 
-INSERT INTO `employee` (`empID`, `password`, `empFirstName`, `empLastName`, `gender`, `empDOB`, `empNIC`, `empAddress`, `email`, `empTypeID`) VALUES
-(1, 'asdf', 'kamal', 'perera', 'm', '2020-07-01', '1231231231', 'sadscsdcsa', 'sdc@d.com', 'DEO'),
-(2, 'asd', 'nimal', 'perera', 'm', '2020-07-01', '1231231456', 'asdsfsdc', 'asd@m.com', 'MED'),
-(3, 'asdf', 'wimal', 'wimal2', 'm', '2020-08-02', '1231231234', 'asdad', 'as@a.c', 'MED'),
-(4, 'asdf', 'kamal', 'aaaa', 'm', '2020-08-04', '1231231237', 'asd', 'aw@a.com', 'FAG'),
-(5, 'asd', 'wimal', 'perera', 'm', '2020-08-04', '1231231231', 'adsfds', 'asaf@d.c', 'DOC');
+INSERT INTO `employee` (`empID`, `password`, `hashPass`, `empFirstName`, `empLastName`, `gender`, `empDOB`, `empNIC`, `empAddress`, `email`, `empTypeID`) VALUES
+(1, 'asdf', '$2y$11$d/O5dcEZAqRJDOvPFbcfsO8kPdYPVIZmk28yjwHh/VGqMz6EggPBW', 'kamal', 'perera', 'm', '2020-07-01', '1231231231', 'sadscsdcsa', 'sdc@d.com', 'DEO'),
+(2, 'asd', '$2y$11$5lngklDjotWxydvMeD44E.uGqE.O8jK0cOaaP7da1Cmnm/YmqZ/bu', 'nimal', 'perera', 'm', '2020-07-01', '1231231456', 'asdsfsdc', 'asd@m.com', 'MED'),
+(3, 'asdf', '$2y$11$d/O5dcEZAqRJDOvPFbcfsO8kPdYPVIZmk28yjwHh/VGqMz6EggPBW', 'wimal', 'wimal2', 'm', '2020-08-02', '1231231234', 'asdad', 'as@a.c', 'MED'),
+(4, 'asdf', '$2y$11$d/O5dcEZAqRJDOvPFbcfsO8kPdYPVIZmk28yjwHh/VGqMz6EggPBW', 'kamal', 'aaaa', 'm', '2020-08-04', '1231231237', 'asd', 'aw@a.com', 'FAG'),
+(5, 'asd', '$2y$11$5lngklDjotWxydvMeD44E.uGqE.O8jK0cOaaP7da1Cmnm/YmqZ/bu', 'wimal', 'perera', 'm', '2020-08-04', '1231231231', 'adsfds', 'asaf@d.c', 'DOC'),
+(6, 'asd', '$2y$11$5lngklDjotWxydvMeD44E.uGqE.O8jK0cOaaP7da1Cmnm/YmqZ/bu', 'sisil', 'perera', 'm', '2020-08-04', '1231231456', 'adsfds', 'sdc@d.com', 'MGR');
 
 -- --------------------------------------------------------
 
