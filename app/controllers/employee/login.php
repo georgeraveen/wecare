@@ -1,5 +1,15 @@
 <?php
 
+
+// // Our password.. the kind of thing and idiot would have on his luggage:
+// $password_plaintext = "asd";
+
+// // Hash it up, fuzzball!
+// $password_hash = password_hash( $password_plaintext, PASSWORD_DEFAULT, [ 'cost' => 11 ] );
+
+// // What do we get?
+// print_r(  $password_hash );
+
 class Login extends Controller{
 
     public function index(){
@@ -72,20 +82,21 @@ class Login extends Controller{
             }
             
             else {
-                $sql = "SELECT * FROM employee WHERE empID = :uname AND password = :upass ";
+                // $sql = "SELECT * FROM employee WHERE empID = :uname AND password = :upass ";
+                $sql2 = "SELECT empID,hashPass,empFirstName,empLastName,empTypeID FROM employee WHERE empID = :uname";
                 try {
-                    $stmt = $DB->prepare($sql);
+                    $stmt = $DB->prepare($sql2);
         
                     // bind the values
                     $stmt->bindValue(":uname", $username);
-                    $stmt->bindValue(":upass", $pass);
+                    // $stmt->bindValue(":upass", $pass);
         
                     // execute Query
                     $stmt->execute();
                     $results = $stmt->fetchAll();
                     // echo $username1." ".$username;
                     // print_r($results);
-                    if (count($results) > 0 && $results[0]["empTypeID"]==$userType) {
+                    if (password_verify($pass,$results[0]["hashPass"]) && $results[0]["empTypeID"]==$userType) {
                         $_SESSION["errorType"] = "success";
                         $_SESSION["errorMsg"] = "You have successfully logged in.";
         
