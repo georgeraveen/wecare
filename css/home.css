@@ -27,3 +27,48 @@ body{
   html, body, h1, h2, h3, h4, h5, h6 {
     font-family: "Verdana", cursive, sans-serif;
   }
+  /* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .grid-container{
+    margin: 150px 10px;
+    grid-template-columns: auto ;
+    /* padding: 150px 0;
+    grid-gap: 30px; */
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .grid-container{
+    margin: 150px 10px;
+    grid-template-columns: auto auto;
+    /* padding: 150px 0;
+    grid-gap: 30px; */
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .grid-container{
+    margin: 150px 10px;
+    grid-template-columns: auto auto auto;
+    /* padding: 150px 0;
+    grid-gap: 30px; */
+  }
+  
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .grid-container{
+    margin: 150px 100px;
+    /* grid-template-columns: auto auto; */
+    /* padding: 150px 0;
+    grid-gap: 30px; */
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+
+}
