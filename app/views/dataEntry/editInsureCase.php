@@ -107,11 +107,21 @@
           </div>
         </div>
         <div class="column">
-          <div class="formInput">
-            <input type="submit" id="submit" name="editInsurance" class="btn-submit" value= "Submit" ><br>
-            <input type="hidden" id="submit" name="claimID" value= <?php echo $data['id'];?> >
+          <div class="row">
+            <div class="column">
+              <div class="formInput">
+                <input type="submit" id="submit" name="editInsurance" class="btn-submit" value= "Submit" ><br>
+                <input type="hidden" id="submit" name="claimID" value= <?php echo $data['id'];?> >
+              </div>
+            </div>
+            <div class="column">
+              <div class="formInput">
+                <a id="a" href="./viewCase" class="btn-submit" >Cancel</a><br>
+              </div>
+            </div>
           </div>
         </div>
+       
       </div>
     </form>
   </div>
