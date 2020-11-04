@@ -31,4 +31,10 @@ class Controller{
             die("You dont have the permission to access this page");
         }
     }
+    function valValidate($data) {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+      }
 }
