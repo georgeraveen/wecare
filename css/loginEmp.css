@@ -6,6 +6,8 @@
 
 body{
     font-family: "Trebuchet MS", Helvetica, sans-serif;
+    background-image: linear-gradient(to bottom right,#028075,  #003B36);
+    background-attachment: fixed;
 }
 .login-background{
     position: fixed;
@@ -174,7 +176,7 @@ a:hover{
     font-size: 1.2rem;
     outline: none;
     border: none;
-    background-image: linear-gradient(to right, #1a615c, #0f534e, #0c4743);
+    background-image: linear-gradient(to right, #752969, #6d1f60, #59114d);
     cursor: pointer;
     color: white;
     text-transform: uppercase;

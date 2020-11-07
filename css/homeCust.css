@@ -1,5 +1,7 @@
 body{
-    background-color: #ffd149;
+    /* background-color: #ffd149; */
+    background-image: linear-gradient(to bottom right,#cabbc8,  #ddbbd7);
+    background-attachment: fixed;
 }
 
 .grid-container {
