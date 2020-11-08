@@ -1,5 +1,5 @@
 <link rel="stylesheet" href= "./../../css/home.css">
-<!-- <link rel="stylesheet" href= "./../../css/modal.css"> -->
+<link rel="stylesheet" href= "./../../css/modal.css">
 <link rel="stylesheet" href= "./../../css/style.css">
 <div class="containers">
   <h1>Create New Roster</h1><br>
@@ -53,6 +53,24 @@
     
   </div>
 </div>
+<form action="./create">
+<div class="row">
+    <div class="column">
+      <div class="formInput">
+        <input type="submit" id="submitRoster" name="submitRoster" class="btn-submit" value="Create Roster"><br>
+      </div>
+    </div>
+  </div>
+  <?php 
+  for($j=1;$j<=3;$j++){
+    for($i=1;$i<=7;$i++){
+      echo "<input class=\"hide\" type=\"text\" id=\"A".$j.$i."\" name=\"A".$j.$i."\" >";
+    }
+    echo "<br><br>";
+  }
+  ?>
+  
+</form>
 <div id="Modal" class="modal">
   <!-- Modal content -->
   <div class="modal-content">
