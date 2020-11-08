@@ -57,5 +57,6 @@ function addToTable(){
         else if(slotNo==2) slot3RowNo++;
     }
     document.getElementById("A"+slotNo+columnNo).value+=(","+newMedID.value);
+    modal.style.display = "none";
     
 }

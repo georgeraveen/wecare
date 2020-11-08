@@ -75,16 +75,16 @@
   <!-- Modal content -->
   <div class="modal-content">
     <span class="close">&times;</span>
-            <input id="btnIDModel" type="text">
+            <input id="btnIDModel" type="text" hidden>
       <div class="row">
         <div class="column">
           <div class="formInput">
-            <label for="newMedID">Type</label><br>
+            <label for="newMedID">Select medical scrutinizer</label><br>
             <select id="newMedID" name="newMedID">
-              <option value=a>a</option>
-              <option value=b>b</option>
-              <option value=c>c</option>
-              <option value=d>d</option>
+              <option value="MED1 - Kamal">MED1 - Kamal Perera</option>
+              <option value="MED2 - Amal">MED2 - Amal Perera</option>
+              <option value="MED3 - Sunil">MED3 - Sunil Perera</option>
+              <option value="MED4 - Nimal">MED4 - Nimal Perera</option>
             </select><br>
           </div>
           
