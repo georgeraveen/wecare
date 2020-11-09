@@ -1,7 +1,7 @@
 
 <?php
 session_start();
-$_SESSION["portal"]="manager";
+$_SESSION["portal"]="medScru";
 
 require_once '../app/init.php';
 
