@@ -1,0 +1,251 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    background-image: linear-gradient(to bottom right,#028075,  #003B36);
+    background-attachment: fixed;
+}
+.login-background{
+    position: fixed;
+    left: 150px;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+}
+
+.container{
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(1,1fr);
+    grid-gap: 7rem;
+    padding: 0 4rem;
+}
+
+.img{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.img img{
+    width: 500px;
+}
+
+.login-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+form{
+    width: 360px;
+    background-color: rgba(255,255,255,.8);
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /* opacity: 50%; */
+    
+}
+
+.avatar{
+    width: 300px;
+}
+form h2{
+    font-size: 2.9rem;
+    /* text-transform: uppercase; */
+    margin: 15px 0;
+    color: goldenrod;
+}
+
+.input-div{
+    position: relative;
+    display: grid;
+    grid-template-columns: 7% 93%;
+    margin: 25px 0;
+    padding: 5px 0;
+    border-bottom: 2px solid purple;
+}
+
+.input-div:after, .input-div:before{
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    width: 0;
+    height: 2px;
+    background-color: black;
+    transition: .3s;
+}
+
+.input-div:after{
+    right: 50%;
+}
+
+.input-div:before{
+    left: 50%;
+}
+
+.input-div.focus .i i{
+    color: #010e5a;
+}
+
+.input-div.focus div h5{
+    top: -5px;
+    font-size: 15px;
+}
+
+.input-div.focus:after, .input-div.focus:before{
+    width: 50%;
+}
+
+/* .input-div.focus:before{
+
+} */
+
+.input-div.one{
+    margin-top: 0;
+}
+
+.input-div.two{
+    margin-bottom: 4px;
+}
+
+.i{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.i i{
+    color: black;
+    transition: .3s;
+}
+
+.input-div > div{
+    position: relative;
+    height: 45px;
+}
+
+.input-div > div h5{
+    position: absolute;
+    left: 10px;
+    top: 25px;
+    transform: translateY(-50%);
+    color: palevioletred;
+    font-size: 18px;
+    transition: .3s;
+}
+
+.input{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border: none;
+    outline: none;
+    background: none;
+    padding: 0.5rem 0.7rem;
+    font-size: 1.2rem;
+    color: black;
+}
+
+a{
+    display: block;
+    text-align: right;
+    text-decoration: none;
+    color: palevioletred;
+    font-size: 0.9rem;
+    transition: .3s;
+}
+
+a:hover{
+    color: indigo;
+}
+
+.btn-submit{
+    display: block;
+    width: 100%;
+    height: 50px;
+    border-radius: 25px;
+    margin: 1rem 0;
+    font-size: 1.2rem;
+    outline: none;
+    border: none;
+    background-image: linear-gradient(to right, #752969, #6d1f60, #59114d);
+    cursor: pointer;
+    color: white;
+    text-transform: uppercase;
+    background-size: 200%;
+    transition: .5s;
+}
+
+.btn-submit:hover{
+    background-position: right;
+}
+
+@media screen and (max-width: 1500px){
+    .container{
+        grid-gap: 5rem;
+    }
+    .login-container{
+        justify-content: center;
+    }
+}
+@media screen and (max-width: 1200px){
+    form{
+        width: 360px;
+    }
+    form h2{
+        font-size: 2.4rem;
+        margin: 8px 0;
+    }
+    .img img{
+        width: 400px;
+    }
+    .login-container{
+        justify-content: center;
+    }
+}
+@media screen and (max-width: 1050px){
+    .img{
+        /* display: none; */
+    }
+    .container{
+        grid-template-columns: 1fr;
+    }
+    .login-background{
+        /* display: none; */
+        width: none;
+        object-fit: cover;
+        left: 0px;
+    }
+    .login-container{
+        justify-content: center;
+    }
+}
+@media screen and (max-width: 500px){
+    .body{
+        background-color: #ffd149;
+    }
+    .img{
+        display: none;
+    }
+    .container{
+        grid-template-columns: 1fr;
+        padding: 0;
+    }
+    .login-background{
+        display: none;
+    }
+    .login-container{
+        justify-content: center;
+    }
+    .form{
+        width: 80%;
+    }
+}

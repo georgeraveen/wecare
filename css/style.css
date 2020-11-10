@@ -1,15 +1,22 @@
 .containers{
     margin: 120px 100px;
+    display: block;
+
   }
 .form-container{
-    background-color: #CCC96C;
+    /* background-image:linear-gradient(to bottom right,#f59b2d,  #e98a15); */
+    background-color: rgba(255,255,255,.8);
     padding: 25px;
+    border-radius: 5px;
+    color: black;    
 }
 .form-container2{
-    background-color: #CCC96C;
+    background-color: rgba(255,255,255,.8);
+    /* background-color: #CCC96C; */
     padding: 25px;
     max-width: 600px;
     margin: auto;
+    border-radius: 5px;
 }
 .formInput{
     margin: 5px 25px;
@@ -19,7 +26,7 @@
     border-radius: 4px;
     box-sizing: border-box;
     margin: 4px;
-    background-color: #ecdc93;
+    background-color: #ece5f0;
     border: 1px solid #ccc;
 }
 .row {
@@ -32,12 +39,14 @@
 }
 .btn-submit{
     padding: 10px 30px;
-    background-color: #efa33a;
+    background-color: #59114d;
     border: none;
     cursor: pointer;
+    text-decoration: none;
+    color: white;
 }
 .btn-submit:hover{
-    background-color: #f2af58;
+    background-color: #742767;
 }
 input, select{
     width: 100%;
@@ -48,6 +57,7 @@ input, select{
 }
 .table-container{
     background-color: #CCC96C;
+    border-radius: 5px;
     padding: 25px;
 }
 .table-view{
@@ -87,3 +97,49 @@ th {
     padding: 5px;
     margin-right: 5px;
 }
+
+.hide{
+    visibility: hidden;
+
+@media only screen and (max-width: 600px) {
+    .containers{
+        margin: 120px 10px;
+      }
+    .form-container{
+        padding: 10px;
+    }
+    .row{
+        display: block;
+    }
+  }
+  
+  /* Small devices (portrait tablets and large phones, 600px and up) */
+  @media only screen and (min-width: 600px) {
+    .containers{
+        margin: 120px 10px;
+      }
+    .form-container{
+        padding: 10px;
+    }
+  }
+  
+  /* Medium devices (landscape tablets, 768px and up) */
+  @media only screen and (min-width: 768px) {
+    
+  }
+  
+  /* Large devices (laptops/desktops, 992px and up) */
+  @media only screen and (min-width: 992px) {
+    .containers{
+        margin: 120px 100px;
+      }
+    .form-container{
+        padding: 25px;
+    }
+  }
+  
+  /* Extra large devices (large laptops and desktops, 1200px and up) */
+  @media only screen and (min-width: 1200px) {
+
+    
+  }
