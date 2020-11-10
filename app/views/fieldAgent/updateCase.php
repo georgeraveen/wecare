@@ -55,7 +55,7 @@
                 <div class="column">
                     <div class="formInput">
                         <label for="hospital">Hospital</label><br>
-                        <input type="text" id="hospital" name="hospital" class="input" value="Asiri" ><br>
+                        <input type="text" id="hospital" name="hospital" class="input" value="Asiri" readonly><br>
                     </div>
                 </div>
             
