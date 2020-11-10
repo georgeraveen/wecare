@@ -4,16 +4,16 @@
 
 <div class="containers">
     <h1>Update Case</h1><br>
-<div class="form-container">
+    <div class="form-container">
 
 
 
-    <form action="#">
+        <form action="#" method="post" enctype="multipart/form-data" >
             <div class="row">
                 <div class="column">
                     <div class="formInput">
                         <label for="customer">Customer</label><br>
-                       <input type="text" id="customer" name="custName" class="input" value="MR.Perera" readonly><br>
+                        <input type="text" id="customer" name="custName" class="input" value="MR.Perera" readonly><br>
                     </div>
                 </div>
                 <div class="column">
@@ -58,36 +58,21 @@
                         <input type="text" id="hospital" name="hospital" class="input" value="Asiri" readonly><br>
                     </div>
                 </div>
-               
+            
             </div>
             <div class="row">
                 <div class="column">
-                    <div class="row">
-                        <div class="column">
-                        <textarea readonly>DOC1</textarea>
-                        </div>
-                        <div class="column">
-                        <input type="view" id="view"  class="editBtn" value= "View File" ><br>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <textarea>DOC2</textarea>
+                    <div class="formInput">
+                        <label for="documentDIR">Upload Hospital Documents</label>
+                        <input type="file" id="documentDIR" name="documentDIR" multiple accept=".pdf, image/*">
                     </div>
                 </div>
                 <div class="column">
-            <div class="formInput">
-            <input type="submit" id="submit" name="reviewCase" class="btn-submit" value= "Submit" ><br>
-           
-          </div>
-              
+                    <div class="formInput">
+                    <input type="submit" id="submit" name="reviewCase" class="btn-submit" value= "Submit" ><br>
+                
+                </div>
             </div>
-           
-            </div>
-
-           
-
-
-
-    </form>
-</div>
+        </form>
+    </div>
 </div>
