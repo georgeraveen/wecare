@@ -51,7 +51,8 @@ class ClaimCase extends Models{
         $stmt -> bindParam(':FieldAgID', $this->FieldAgID );
         $stmt -> bindParam(':hospitalID', $this->hospital);
         $stmt->execute();
-
+        $newCaseID=$this->conn->lastInsertID();
+        mkdir("./../documents/claimCases/".$newCaseID);
         // echo $this->dataEntryOfficerID . $this->healthCondition;
     }
     public function getAllQueue(){
