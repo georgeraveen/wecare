@@ -96,9 +96,9 @@ class ClaimCase extends Models{
         // echo $this->dataEntryOfficerID . $this->healthCondition;
     }
     //Docter-view pending queue
-    public function getDoctorList(){
+    public function getDoctorList($doctorID){
         // var_dump($this->conn);
-        $stmt= $this->conn->prepare("SELECT claimID, customer.custName,admitDate, CONCAT(employee.empFirstName, " ", employee.empLastName) AS medSrcName , hospital.name
+        $stmt= $this->conn->prepare("SELECT claimID, customer.custName,admitDate, CONCAT(employee.empFirstName, \" \", employee.empLastName) AS medSrcName , hospital.name
         FROM claim_case
         INNER JOIN customer
             ON claim_case.custID=customer.custID
@@ -106,7 +106,7 @@ class ClaimCase extends Models{
             ON claim_case.hospitalID=hospital.hospitalID
         INNER JOIN employee
             ON claim_case.medScruID=employee.empID
-        WHERE claim_case.doctorID = 5;
+        WHERE claim_case.doctorID = $doctorID;
                     ");
         
         $stmt->execute();

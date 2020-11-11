@@ -32,7 +32,7 @@
                 
                 "<td id=\"custName-".$row['claimID']."\">".$row['custName']."</td>".
                 "<td id=\"admitDate-".$row['claimID']."\">".$row['admitDate']."</td>".
-                "<td  id=\"name-".$row['recordID']."\">".$row['name']."</td>".
+                "<td  id=\"name-".$row['recordID']."\">".$row['medSrcName']."</td>".
                 "<td  id=\"name-".$row['recordID']."\">".$row['name']."</td>".
                 "<td>  <a onclick=\"clickView(".$row['recordID'].")\" class=\"editBtn\" href=\"./review".$row['recordID']."\">View </a> "."</td>"."</tr>";
          }
