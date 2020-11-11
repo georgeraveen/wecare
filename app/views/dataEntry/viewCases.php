@@ -24,7 +24,7 @@
               "<td>".$row['fag']."</td>".
               "<td>".$row['med']."</td>".
               "<td>".$row['doc']."</td>".
-              "<td> <a class=\"deleteBtn\" href=\"./deleteCase?action=delClaimCase&id=".$row['claimID']."\">Delete</a> <a class=\"editBtn\" href=\"./editCase?action=edit&id=".$row['claimID']."\">View/Edit</a> "."</td>"."</tr>";
+              "<td> <a class=\"deleteBtn\" href=\"./deleteCase?action=delClaimCase&id=".$row['claimID']."\">Delete</a> <a class=\"editBtn\" href=\"./?editCaseaction=edit&id=".$row['claimID']."\">View/Edit</a> "."</td>"."</tr>";
       }
 
       ?>
