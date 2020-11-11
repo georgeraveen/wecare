@@ -95,5 +95,22 @@ class ClaimCase{
 
         // echo $this->dataEntryOfficerID . $this->healthCondition;
     }
+    //Docter-view pending queue
+    public function getDoctorList(){
+        // var_dump($this->conn);
+        $stmt= $this->conn->prepare("SELECT claimID, customer.custName,admitDate, CONCAT(employee.empFirstName, " ", employee.empLastName) AS medSrcName , hospital.name
+        FROM claim_case
+        INNER JOIN customer
+            ON claim_case.custID=customer.custID
+        INNER JOIN hospital
+            ON claim_case.hospitalID=hospital.hospitalID
+        INNER JOIN employee
+            ON claim_case.medScruID=employee.empID
+        WHERE claim_case.doctorID = 5;
+                    ");
+        
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
 }
 ?>
