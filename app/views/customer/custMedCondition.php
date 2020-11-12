@@ -1,10 +1,10 @@
 <?php
 
 $result = array (
-  array("recordID"=>"1","date"=>"2020-08-01","type"=>"a","healthCondition"=>"22","comments"=>"18"),
-  array("recordID"=>"2","date"=>"2020-08-02","type"=>"b","healthCondition"=>"15","comments"=>"13"),
-  array("recordID"=>"3","date"=>"2020-08-03","type"=>"c","healthCondition"=>"5","comments"=>"2"),
-  array("recordID"=>"4","date"=>"2020-08-04","type"=>"d","healthCondition"=>"17","comments"=>"15")
+  array("recordID"=>"1","date"=>"2018-12-01","type"=>"Normal","healthCondition"=>"Fever","comments"=>"-"),
+  array("recordID"=>"2","date"=>"2019-08-02","type"=>"Normal","healthCondition"=>"Fever","comments"=>"-"),
+  array("recordID"=>"3","date"=>"2020-04-03","type"=>"Critical","healthCondition"=>"Heart attack","comments"=>"-"),
+  array("recordID"=>"4","date"=>"2020-07-04","type"=>"Critical","healthCondition"=>"Heart attack","comments"=>"-")
 );
 
 ?>
@@ -57,10 +57,8 @@ $result = array (
           <div class="formInput">
             <label for="type">Type</label><br>
             <select id="type" name="type" required>
-              <option value=a>a</option>
-              <option value=b>b</option>
-              <option value=c>c</option>
-              <option value=d>d</option>
+              <option value="Critical">Critical</option>
+              <option value="Normal">Normal</option>
             </select><br>
           </div>
           
