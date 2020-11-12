@@ -32,6 +32,11 @@ class Customer extends Models{
         $stmt->execute();
         return $stmt->fetchAll();
     }
+    public function getPolicy($id){
+        $stmt= $this->conn->prepare("select policyID from $this->table where custID = $id");
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
     public function setValue($custName,$custAddress,$custNIC,$custDOB,$email,$gender,$policyID,$custContact){
         $this->custName= $custName;
         $this->custAddress =  $custAddress;
