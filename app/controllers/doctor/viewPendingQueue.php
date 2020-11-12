@@ -48,7 +48,7 @@ class viewPendingQueue extends Controller{
            // $medList=$empMod->getEmpByTypeList("MED");
             //$fagList=$empMod->getEmpByTypeList("FAG");
             //$caseDetails=$editCase->getDetails($this->valValidate($_GET['id']));
-            //include './../app/header.php';
+            include './../app/header.php';
             $this->view('doctor/reviewAndComment',['id'=>$this->valValidate($_GET['id']),'singleCaseDetails'=>$singleCaseDetails]);
             include './../app/footer.php';
         }

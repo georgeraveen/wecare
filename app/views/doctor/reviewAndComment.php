@@ -1,6 +1,6 @@
 
 <?php
-var_dump($data);
+//var_dump($data);
 //var_dump($data['singleCaseDetails'][0]['custName']);
 
 
@@ -39,7 +39,7 @@ var_dump($data);
                 <div class="column">
                     <div class="formInput">
                         <label for="ICUfromDate" >ICU from Date</label><br>
-                        <input type="date" id="ICUfromDate" name="ICUfromDate" class="input"  value=<?php echo $data['singleCaseDetails'][0]['icuFromDate']?>> ><br>
+                        <input type="date" id="ICUfromDate" name="ICUfromDate" class="input"  value=<?php echo $data['singleCaseDetails'][0]['icuFromDate']?> ><br>
                     </div>
                 </div>
             </div>
@@ -47,13 +47,13 @@ var_dump($data);
                 <div class="column">
                     <div class="formInput">
                         <label for="dischargeDate" >Discharge Date</label><br>
-                        <input type="date" id="dischargeDate" name="dischargeDate" class="input" value=<?php echo $data['singleCaseDetails'][0]['dischargeDate']?>> ><br>
+                        <input type="date" id="dischargeDate" name="dischargeDate" class="input" value=<?php echo $data['singleCaseDetails'][0]['dischargeDate']?> ><br>
                     </div>
                 </div>
                 <div class="column">
                     <div class="formInput">
                         <label  for="ICUtoDate">ICU to Date</label><br>
-                        <input type="date" id="ICUtoDate" name="ICUtoDate" class="input" value=<?php echo $data['singleCaseDetails'][0]['icuToDate']?>> ><br>
+                        <input type="date" id="ICUtoDate" name="ICUtoDate" class="input" value=<?php echo $data['singleCaseDetails'][0]['icuToDate']?>> <br>
                     </div>
                 </div>
             </div>
@@ -67,7 +67,7 @@ var_dump($data);
                 <div class="column">
                     <div class="formInput">
                         <label for="condition" >condition</label><br>
-                        <textarea type="text" id="condition" name="condition" class="commentBox" value=<?php echo $data['singleCaseDetails'][0]['healthCondition']?>></textarea>
+                        <input type="text" id="condition" name="condition" class="commentBox" value=<?php echo $data['singleCaseDetails'][0]['healthCondition']?>></textarea>
                     </div>
                 </div>
             </div>
