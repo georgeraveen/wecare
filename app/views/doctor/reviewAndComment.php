@@ -67,7 +67,7 @@
                 <div class="column">
                     <div class="formInput">
                         <label for="condition" >condition</label><br>
-                        <input type="text" id="condition" name="condition" class="commentBox" value=<?php echo $data['singleCaseDetails'][0]['healthCondition']?>></textarea>
+                        <textarea  id="healthCondition" name="healthCondition" class="commentBox" ><?php echo $data['singleCaseDetails'][0]['healthCondition']?></textarea>
                     </div>
                 </div>
             </div>
