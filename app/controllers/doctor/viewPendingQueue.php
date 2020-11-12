@@ -26,10 +26,10 @@ class viewPendingQueue extends Controller{
     public function editCase(){
         $this->checkPermission("DOC");
         $this->model('claimCase');
-        $pendingQueue= new ClaimCase();
+        $caseDetails= new ClaimCase();
         $doctorID=$_SESSION["user_id"];
-        $queue=$pendingQueue->getDoctorList( $doctorID);  
-        $editCase= new ClaimCase();
+        $singleCaseDetails=$caseDetails->getDoctorList( $doctorID);  
+      
 
         $this->model('customer');
         $customerMod= new Customer();
@@ -43,8 +43,8 @@ class viewPendingQueue extends Controller{
        
 
         if($_GET['action']=="edit"){
-           // $custList=$customerMod->getList();
-           // $hospList=$hospitalMod->getAll();
+            $custList=$customerMod->getList();
+            $hospList=$hospitalMod->getAll();
            // $medList=$empMod->getEmpByTypeList("MED");
             //$fagList=$empMod->getEmpByTypeList("FAG");
             $caseDetails=$editCase->getDetails($this->valValidate($_GET['id']));
