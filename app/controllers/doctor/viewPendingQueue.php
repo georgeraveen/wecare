@@ -49,7 +49,7 @@ class viewPendingQueue extends Controller{
             //$fagList=$empMod->getEmpByTypeList("FAG");
             //$caseDetails=$editCase->getDetails($this->valValidate($_GET['id']));
             //include './../app/header.php';
-            $this->view('doctort/reviewAndComment',['id'=>$this->valValidate($_GET['id']);
+            $this->view('doctor/reviewAndComment',['id'=>$this->valValidate($_GET['id','singleCaseDetails'=>$singleCaseDetails]])));
             include './../app/footer.php';
         }
         else{
