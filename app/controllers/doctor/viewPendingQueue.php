@@ -21,9 +21,14 @@ class viewPendingQueue extends Controller{
         include './../app/footer.php';
         // echo "asas";
     }
+
+    //doctor-pendingQueue edit
     public function editCase(){
-        $this->checkPermission("DEO");
+        $this->checkPermission("DOC");
         $this->model('claimCase');
+        $pendingQueue= new ClaimCase();
+        $doctorID=$_SESSION["user_id"];
+        $queue=$pendingQueue->getDoctorList( $doctorID);  
         $editCase= new ClaimCase();
 
         $this->model('customer');
@@ -35,23 +40,25 @@ class viewPendingQueue extends Controller{
         $this->model('employee');
         $empMod= new Employee();
 
+       
+
         if($_GET['action']=="edit"){
-            $custList=$customerMod->getList();
-            $hospList=$hospitalMod->getAll();
-            $medList=$empMod->getEmpByTypeList("MED");
-            $fagList=$empMod->getEmpByTypeList("FAG");
+           // $custList=$customerMod->getList();
+           // $hospList=$hospitalMod->getAll();
+           // $medList=$empMod->getEmpByTypeList("MED");
+            //$fagList=$empMod->getEmpByTypeList("FAG");
             $caseDetails=$editCase->getDetails($this->valValidate($_GET['id']));
-            include './../app/header.php';
-            $this->view('dataEntry/editInsureCase',['id'=>$this->valValidate($_GET['id']),'caseDetails'=>$caseDetails,'custList'=>$custList,'hospList'=>$hospList,'medList'=>$medList,'fagList'=>$fagList]);
+            //include './../app/header.php';
+            $this->view('doctort/reviewAndComment',['id'=>$this->valValidate($_GET['id']),'customerNme'=>$customerNme,'claimID'=>$claimID,'admitDate'=>$admitDate,'ICUfromDate'=>$ICUfromDate,'disChargeDate'=>$disChargeDate,'ICUtoDate'=>$ICUtoDate,'hospital'=>$hospital,'condition'=>$condition]);
             include './../app/footer.php';
         }
         else{
-            header("Location: ./viewCase");
+            header("Location: ./viewPendingQueue");
             exit;
         }
     }
     public function updateCase(){
-        $this->checkPermission("DEO");
+        $this->checkPermission("DOC");
         if($_POST['editInsurance']){
             $this->model('claimCase');
             $editClaimCase = new ClaimCase();
