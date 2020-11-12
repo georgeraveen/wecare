@@ -141,7 +141,7 @@ class ClaimCase extends Models{
             ON claim_case.hospitalID=hospital.hospitalID 
         INNER JOIN customer
             ON claim_case.custID=customer.custID 
-        WHERE doctorID = $claimID");
+        WHERE claimID = $claimID");
         $stmt->execute();
         return $stmt->fetchAll();
     }
