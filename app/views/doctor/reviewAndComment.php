@@ -1,6 +1,7 @@
 
 <php
-var_dump($data) ?>
+var_dump($data);
+ ?>
 <link rel="stylesheet" href= "./../../css/home.css">
 <link rel="stylesheet" href= "./../../css/style.css">
 
