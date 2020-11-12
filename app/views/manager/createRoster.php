@@ -50,11 +50,9 @@
         </tr>
       </tbody>
     </table>
-    
-  </div>
-</div>
-<form action="./create">
-<div class="row">
+  <br><br>
+<form action="./create" method="post">
+  <div class="row">
     <div class="column">
       <div class="formInput">
         <input type="submit" id="submitRoster" name="submitRoster" class="btn-submit" value="Create Roster"><br>
@@ -66,25 +64,28 @@
     for($i=1;$i<=7;$i++){
       echo "<input class=\"hide\" type=\"text\" id=\"A".$j.$i."\" name=\"A".$j.$i."\" >";
     }
-    echo "<br><br>";
+    // echo "<br><br>";
   }
   ?>
-  
 </form>
+  
+</div>
+</div>
 <div id="Modal" class="modal">
   <!-- Modal content -->
-  <div class="modal-content">
+  <div class="modal-content sm">
     <span class="close">&times;</span>
-            <input id="btnIDModel" type="text" hidden>
+    <div class="form-container2">
+      <input id="btnIDModel" type="text" hidden>
       <div class="row">
         <div class="column">
           <div class="formInput">
             <label for="newMedID">Select medical scrutinizer</label><br>
             <select id="newMedID" name="newMedID">
-              <option value="MED1 - Kamal">MED1 - Kamal Perera</option>
-              <option value="MED2 - Amal">MED2 - Amal Perera</option>
-              <option value="MED3 - Sunil">MED3 - Sunil Perera</option>
-              <option value="MED4 - Nimal">MED4 - Nimal Perera</option>
+              <option value="1">MED1 - Kamal Perera</option>
+              <option value="2">MED2 - Amal Perera</option>
+              <option value="3">MED3 - Sunil Perera</option>
+              <option value="4">MED4 - Nimal Perera</option>
             </select><br>
           </div>
           
@@ -98,6 +99,8 @@
           
         </div>
       </div>
+    </div>
+  </div>
      
 </div>
 <script type="text/javascript" src="./../../js/roster1.js"></script>
