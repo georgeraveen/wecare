@@ -28,28 +28,28 @@ class viewPendingQueue extends Controller{
         $this->model('claimCase');
         $caseDetails= new ClaimCase();
         $doctorID=$_SESSION["user_id"];
-        $singleCaseDetails=$caseDetails->getDoctorList( $doctorID);  
+        $singleCaseDetails=$caseDetails->getCaseDetailsDoctor( $this->valValidate($_GET['id']));  
       
 
-        $this->model('customer');
-        $customerMod= new Customer();
+        // $this->model('customer');
+        // $customerMod= new Customer();
 
-        $this->model('hospital');
-        $hospitalMod= new Hospital();
+        // $this->model('hospital');
+        // $hospitalMod= new Hospital();
 
-        $this->model('employee');
-        $empMod= new Employee();
+        // $this->model('employee');
+        // $empMod= new Employee();
 
        
 
         if($_GET['action']=="edit"){
-            $custList=$customerMod->getList();
-            $hospList=$hospitalMod->getAll();
+            //$custList=$customerMod->getList();
+            //$hospList=$hospitalMod->getAll();
            // $medList=$empMod->getEmpByTypeList("MED");
             //$fagList=$empMod->getEmpByTypeList("FAG");
-            $caseDetails=$editCase->getDetails($this->valValidate($_GET['id']));
+            //$caseDetails=$editCase->getDetails($this->valValidate($_GET['id']));
             //include './../app/header.php';
-            $this->view('doctort/reviewAndComment',['id'=>$this->valValidate($_GET['id']),'customerNme'=>$customerNme,'claimID'=>$claimID,'admitDate'=>$admitDate,'ICUfromDate'=>$ICUfromDate,'disChargeDate'=>$disChargeDate,'ICUtoDate'=>$ICUtoDate,'hospital'=>$hospital,'condition'=>$condition]);
+            $this->view('doctort/reviewAndComment',['id'=>$this->valValidate($_GET['id']);
             include './../app/footer.php';
         }
         else{

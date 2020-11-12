@@ -134,7 +134,7 @@ class ClaimCase extends Models{
         // echo $this->dataEntryOfficerID . $this->healthCondition;
     }
     //doctor-view from pending queue
-    public function getDetailsDoctor($claimID){
+    public function getCaseDetailsDoctor($claimID){
         $stmt= $this->conn->prepare("SELECT customer.custName,claimID,admitDate,icuFromDate,dischargeDate,icuToDate,hospital.name,healthCondition 
         FROM claim_case 
         INNER JOIN hospital 
