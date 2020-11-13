@@ -54,10 +54,10 @@
                 <div class="column">
                     <div class="formInput">
                         <label for="gender">Gender</label><br>
-                        <select id="gender" name="gender" placeholder=<?php echo $data['empDetails'][0]['gender'];?>>
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                            <option value="Other">Other</option>
+                        <select id="gender" name="gender">
+                            <option value="m"><?php ($data['empDetails'][0]['gender'])==m) ? echo "selected":echo " " ?></option>
+                            <option value="f"><?php ($data['empDetails'][0]['gender'])==m) ? echo "selected":echo " " ?></option>
+                            <option value="o">o</option>
                         </select><br>
                     </div>
                 </div>

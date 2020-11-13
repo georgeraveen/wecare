@@ -112,7 +112,7 @@ class Employee extends Models{
         $stmt -> bindParam(':empTypeID', $this->empTypeID );
         $stmt->execute();
 
-        // echo $this->dataEntryOfficerID . $this->healthCondition;
+   
     }
 }
 ?>
