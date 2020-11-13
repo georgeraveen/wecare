@@ -44,22 +44,25 @@ class Login extends Controller{
             }
             
             else {
-                $sql = "SELECT * FROM customer WHERE custID = :uname AND password = :upass ";
+                // $sql = "SELECT * FROM customer WHERE custID = :uname AND password = :upass ";
+                $sql2 = "SELECT custID,custName,hashPass FROM customer WHERE custID = :uname";
+
                 // echo "db";
                 // var_dump($DB);
                 try {
-                    $stmt = $DB->prepare($sql);
+                    $stmt = $DB->prepare($sql2);
                     // echo "s";
                     // bind the values
                     $stmt->bindValue(":uname", $username);
-                    $stmt->bindValue(":upass", $pass);
+                    // $stmt->bindValue(":upass", $pass);
 
                     // execute Query
                     $stmt->execute();
                     $results = $stmt->fetchAll();
                     // echo $username1." ".$username;
                     // print_r($results);
-                    if (count($results) > 0) {
+                    // if (count($results) > 0) {
+                    if (password_verify($pass,$results[0]["hashPass"])) {
                         $_SESSION["errorType"] = "success";
                         $_SESSION["errorMsg"] = "You have successfully logged in.";
 
@@ -67,11 +70,12 @@ class Login extends Controller{
                         $_SESSION["rolecode"] = "CUST";
                         $_SESSION["username"] = $username;
                         $_SESSION["custName"] = $results[0]["custName"];
-                        // echo "s";
+                        // echo "success";
                         redirect("./../../customer-portal/customerHome");
 
                         exit;
                     } else {
+                        // echo "fail";
                         $_SESSION["errorType"] = "info";
                         $_SESSION["errorMsg"] = "username or password does not exist.";
                     }

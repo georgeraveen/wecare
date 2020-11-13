@@ -32,6 +32,11 @@ class Customer extends Models{
         $stmt->execute();
         return $stmt->fetchAll();
     }
+    public function getPolicy($id){
+        $stmt= $this->conn->prepare("select policyID from $this->table where custID = $id");
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
     public function setValue($custName,$custAddress,$custNIC,$custDOB,$email,$gender,$policyID,$custContact){
         $this->custName= $custName;
         $this->custAddress =  $custAddress;
@@ -45,13 +50,16 @@ class Customer extends Models{
     public function create(){
         function password_generate($chars){
             $data = '1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcefghijklmnopqrstuvwxyz';
-            return substr(str_shuffle($data), 0, $chars);
+            $randPass=substr(str_shuffle($data), 0, $chars);
+            return array($randPass,password_hash( $randPass, PASSWORD_DEFAULT, [ 'cost' => 11 ] ));
         }
-
-        $stmt= $this->conn->prepare("insert into $this->table (custName,password,custAddress,custNIC,custDOB,email,gender,policyID) 
-                                                            values (:custName, :password, :custAddress, :custNIC, :custDOB, :email, :gender, :policyID) ");
+////////////////////remove password once email done///////////////////
+        $stmt= $this->conn->prepare("insert into $this->table (custName,password,hashPass,custAddress,custNIC,custDOB,email,gender,policyID) 
+                                                            values (:custName, :password, :hashPassword, :custAddress, :custNIC, :custDOB, :email, :gender, :policyID) ");
         $stmt -> bindParam(':custName', $this->custName );
-        $stmt -> bindParam(':password', password_generate(3) );
+        $passDetails=password_generate(3);
+        $stmt -> bindParam(':password',  $passDetails[0]);
+        $stmt -> bindParam(':hashPassword',  $passDetails[1]);
         $stmt -> bindParam(':custAddress', $this->custAddress );
         $stmt -> bindParam(':custNIC', $this->custNIC );
         $stmt -> bindParam(':custDOB', $this->custDOB );

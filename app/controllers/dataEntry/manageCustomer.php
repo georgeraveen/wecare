@@ -14,7 +14,9 @@ class manageCustomer extends Controller{
         if($_POST['newCustomer']){
             $this->model('customer');
             $newCustomer = new Customer();
-            $result= $newCustomer->setValue($_POST['custName'],$_POST['custAddress'],$_POST['custNIC'],$_POST['custDOB'],$_POST['email'],$_POST['gender'],$_POST['policyID'],$_POST['custContact']);
+            $result= $newCustomer->setValue($this->valValidate($_POST['custName']),$this->valValidate($_POST['custAddress']),
+                    $this->valValidate($_POST['custNIC']),$this->valValidate($_POST['custDOB']),$this->valValidate($_POST['email']),
+                    $this->valValidate($_POST['gender']),$this->valValidate($_POST['policyID']),$this->valValidate($_POST['custContact']));
             $result= $newCustomer->create();
             header("Location: ./index");
             exit;
