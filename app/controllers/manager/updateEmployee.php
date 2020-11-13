@@ -26,10 +26,10 @@ class updateEmployee extends Controller{
         $this->checkPermission("MGR");
         $this->model('employee');
         $editEmp= new Employee();
-        if($this->valValidate($_GET['action']=="edit")){
+        if($this->valValidate($_GET['action'])=="edit"){
             $empDetails=$editEmp->getDetails($this->valValidate($_GET['id']));
             include './../app/header.php';
-            $this->view('manager/editEmployee',['id'=>$this->valValidate($_GET['id'])]);
+            $this->view('manager/editEmployee',['id'=>$this->valValidate($_GET['id']),'empDetails'=>$empDetails]);
             include './../app/footer.php';
         }
         else{

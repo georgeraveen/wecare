@@ -20,7 +20,7 @@
                 <div class="column">
                     <div class="formInput">
                         <label for="empAddress">Address</label><br>
-                        <textarea id="empAddress" name="empAddress" class="commentBox"></textarea> <br>
+                        <textarea id="empAddress" name="empAddress" class="commentBox"><?php echo $data['empDetails'][0]['empAddress']; ?></textarea> <br>
                     </div>
                 </div>
             </div>
@@ -28,13 +28,13 @@
                 <div class="column">
                     <div class="formInput">
                         <label for="empNIC">NIC</label><br>
-                        <input type="text" id="empNIC" name="empNIC" required class="input"><br>
+                        <input type="text" id="empNIC" name="empNIC" class="input" value=<?php echo $data['empDetails'][0]['empNIC']?>><br>
                     </div>
                 </div>
                 <div class="column">
                     <div class="formInput">
                         <label for="empTypeID">Role</label><br>
-                        <select id="empTypeID" name="empTypeID" required>
+                        <select id="empTypeID" name="empTypeID" placeholder=<?php echo $data['empDetails'][0]['empTypeID'];?>> 
                             <option value="DEO">DEO</option>
                             <option value="DOC">DOC</option>
                             <option value="FAG">FAG</option>
@@ -48,16 +48,16 @@
                 <div class="column">
                     <div class="formInput">
                         <label for="email">Email</label><br>
-                        <input type="email" id="email" name="email" class="input"><br>
+                        <input type="email" id="email" name="email" class="input" value=<?php echo $data['empDetails'][0]['email']?>><br>
                     </div>
                 </div>
                 <div class="column">
                     <div class="formInput">
                         <label for="gender">Gender</label><br>
-                        <select id="gender" name="gender" required>
-                            <option value="m">Male</option>
-                            <option value="f">Female</option>
-                            <option value="o">Other</option>
+                        <select id="gender" name="gender" placeholder=<?php echo $data['empDetails'][0]['gender'];?>>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
                         </select><br>
                     </div>
                 </div>
@@ -66,7 +66,7 @@
                 <div class="column">
                     <div class="formInput">
                         <label for="empContactNo">Contact numbers</label><br>
-                        <input type="text" id="empContactNo" name="empContactNo" required class="input" placeholder="Enter numbers with comma seperated"><br>
+                        <input type="text" id="empContactNo" name="empContactNo" class="input" placeholder="Enter numbers with comma seperated"><br>
                     </div>
                 </div>
                 <div class="column">
@@ -84,7 +84,7 @@
                 <div class="column">
                     <div class="formInput">
                         <label for="empDOB">Date of birth</label><br>
-                        <input type="Date" id="empDOB" name="empDOB" class="input" value="" required><br>
+                        <input type="Date" id="empDOB" name="empDOB" class="input" value=<?php echo $data['empDetails'][0]['empDOB']?>><br>
                     </div>
                 </div>
                 <div class="column">

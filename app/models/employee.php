@@ -99,7 +99,7 @@ class Employee extends Models{
     }
     public function update($_id){
         $stmt= $this->conn->prepare("update $this->table set empFirstName= :empFirstName, empLastName= :empLastName, gender= :gender, empDOB= :empDOB,
-                                                            empNIC= :empNIC, empAddress= :empAddress, email= :email, empTypeID= :empTypeID,
+                                                            empNIC= :empNIC, empAddress= :empAddress, email= :email, empTypeID= :empTypeID
                                                              where empID = $_id ") ;
 
         $stmt -> bindParam(':empFirstName', $this->empFirstName );
