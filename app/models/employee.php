@@ -29,13 +29,20 @@ class Employee extends Models{
         return $stmt->fetchAll();
     }
     public function getAllView(){
-        $stmt= $this->conn->prepare("select empID,empFirstName,empLastName,gender,empNIC,empAddress,email,empTypeID from $this->table");
+        $stmt= $this->conn->prepare("select empID,empFirstName,empLastName,gender,empNIC,empAddress,email,empTypeID from $this->table
+");
         
         $stmt->execute();
         return $stmt->fetchAll();
     }
     public function getDetails($_id){
         $stmt= $this->conn->prepare("select * from $this->table where empID= $_id");
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+    public function getContactDetails($_id){
+        $stmt= $this->conn->prepare("select * from employee_contact where empID= $_id");
+
         $stmt->execute();
         return $stmt->fetchAll();
     }

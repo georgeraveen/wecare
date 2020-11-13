@@ -28,8 +28,9 @@ class updateEmployee extends Controller{
         $editEmp= new Employee();
         if($this->valValidate($_GET['action'])=="edit"){
             $empDetails=$editEmp->getDetails($this->valValidate($_GET['id']));
+            $empContactDetails=$editEmp->getContactDetails($this->valValidate($_GET['id']));
             //include './../app/header.php';
-            $this->view('manager/editEmployee',['id'=>$this->valValidate($_GET['id']),'empDetails'=>$empDetails]);
+            $this->view('manager/editEmployee',['id'=>$this->valValidate($_GET['id']),'empDetails'=>$empDetails,'empContactDetails'=>$empContactDetails]);
             include './../app/footer.php';
         }
         else{
