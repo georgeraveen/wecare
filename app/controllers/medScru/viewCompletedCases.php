@@ -7,6 +7,5 @@ class viewCompletedCases extends Controller{
         include './../app/header.php';
         $this->view('medScru/completedCases');
         include './../app/footer.php';
-        // echo "asas";
     }
 }
