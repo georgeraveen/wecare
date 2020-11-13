@@ -8,6 +8,11 @@
             <div class="row">
                 <div class="column">
                     <div class="formInput">
+                        <label for="empID">Employee ID</label><br>
+                        <input type="text" id="empID" name="empID" class="input" readonly value=<?php echo $data['empDetails'][0]['empID']?>><br>
+                    </div>
+
+                    <div class="formInput">
                         <label for="empFirstName">First Name</label><br>
                         <input type="text" id="empFirstName" name="empFirstName" class="input" value=<?php echo $data['empDetails'][0]['empFirstName']?>><br>
                     </div>
@@ -34,7 +39,7 @@
                 <div class="column">
                     <div class="formInput">
                         <label for="empTypeID">Role</label><br>
-                        <select id="empTypeID" name="empTypeID" placeholder=<?php echo $data['empDetails'][0]['empTypeID'];?>> 
+                        <select id="empTypeID" name="empTypeID"> 
                             <option value="DEO">DEO</option>
                             <option value="DOC">DOC</option>
                             <option value="FAG">FAG</option>
@@ -55,9 +60,9 @@
                     <div class="formInput">
                         <label for="gender">Gender</label><br>
                         <select id="gender" name="gender">
-                            <option value="m"><?php ($data['empDetails'][0]['gender'])==m) ? echo "selected":echo " " ?></option>
-                            <option value="f"><?php ($data['empDetails'][0]['gender'])==m) ? echo "selected":echo " " ?></option>
-                            <option value="o">o</option>
+                            <option value="m">Male</option>
+                            <option value="f">Female</option>
+                            <option value="o">Other</option>
                         </select><br>
                     </div>
                 </div>
@@ -66,7 +71,7 @@
                 <div class="column">
                     <div class="formInput">
                         <label for="empContactNo">Contact numbers</label><br>
-                        <input type="text" id="empContactNo" name="empContactNo" class="input" placeholder="Enter numbers with comma seperated"><br>
+                        <input type="text" id="empContactNo" name="empContactNo" class="input" placeholder="Enter numbers with comma seperated" value=<?php echo $data['empDetails'][0]['empContactNo']?>><br>
                     </div>
                 </div>
                 <div class="column">

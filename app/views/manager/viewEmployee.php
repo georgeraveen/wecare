@@ -8,6 +8,7 @@
         <th>ID</th>
         <th>First Name</th>
         <th>Last Name</th>
+        <th>Gender</th>
         <th>NIC</th>
         <th>Address</th>
         <th>Email</th>
@@ -19,6 +20,7 @@
         echo "<tr>"."<td>".$row['empID']."</td>".
               "<td>".$row['empFirstName']."</td>".
               "<td>".$row['empLastName']."</td>".
+              "<td>".$row['gender']."</td>".
               "<td>".$row['empNIC']."</td>".
               "<td>".$row['empAddress']."</td>".
               "<td>".$row['email']."</td>".
