@@ -1,3 +1,12 @@
+
+<?php 
+    $contactDetails="";
+    foreach($data["empContactDetails"] as $row){
+    $contactDetails+=",";
+    $contactDetails+=$row["empContactNo"];
+}
+var_dump ($contactDetails);
+?>
 <link rel="stylesheet" href= "./../../css/home.css">
 <link rel="stylesheet" href= "./../../css/style.css">
 <div class="containers">
@@ -106,4 +115,4 @@
         </form>
     </div>
 </div>
-<?php var_dump ($data[empContactDetails])?>
+<?php var_dump ($data["empContactDetails"]);?>
