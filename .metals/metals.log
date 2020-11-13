@@ -1,0 +1,43 @@
+2020.11.01 20:49:41 INFO  started: Metals version 0.9.4 in workspace 'C:\xampp\htdocs\wecare' for client vscode.
+2020.11.01 20:49:42 INFO  time: initialize in 1.05s
+2020.11.01 20:49:45 WARN  no build tool detected in workspace 'C:\xampp\htdocs\wecare'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+2020.11.09 22:57:42 INFO  started: Metals version 0.9.4 in workspace 'C:\xampp\htdocs\wecare' for client vscode.
+2020.11.09 22:57:43 INFO  time: initialize in 1.32s
+2020.11.09 22:57:50 WARN  no build tool detected in workspace 'C:\xampp\htdocs\wecare'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+2020.11.09 23:21:14 INFO  shutting down Metals
+2020.11.10 20:34:06 INFO  started: Metals version 0.9.4 in workspace 'C:\xampp\htdocs\wecare' for client vscode.
+2020.11.10 20:34:06 INFO  time: initialize in 0.66s
+2020.11.10 20:34:09 WARN  no build tool detected in workspace 'C:\xampp\htdocs\wecare'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+2020.11.11 01:03:55 INFO  shutting down Metals
+2020.11.12 13:42:25 INFO  started: Metals version 0.9.4 in workspace 'C:\xampp\htdocs\wecare' for client vscode.
+2020.11.12 13:42:30 INFO  time: initialize in 5.32s
+2020.11.12 13:42:36 WARN  no build tool detected in workspace 'C:\xampp\htdocs\wecare'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+Nov 12, 2020 1:59:49 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTraceNotification
+Nov 12, 2020 2:00:52 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTraceNotification
+2020.11.12 14:22:24 INFO  shutting down Metals
+2020.11.12 14:51:01 INFO  Started: Metals version 0.9.5 in workspace 'C:\xampp\htdocs\wecare' for client vscode.
+2020.11.12 14:51:02 INFO  time: initialize in 0.57s
+2020.11.12 14:51:06 WARN  Build server is not auto-connectable.
+2020.11.12 14:51:06 WARN  no build tool detected in workspace 'C:\xampp\htdocs\wecare'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+Nov 12, 2020 2:51:50 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTraceNotification
+2020.11.12 22:04:06 INFO  Started: Metals version 0.9.5 in workspace 'C:\xampp\htdocs\wecare' for client vscode.
+2020.11.12 22:04:06 INFO  time: initialize in 0.59s
+2020.11.12 22:04:12 WARN  Build server is not auto-connectable.
+2020.11.12 22:04:12 WARN  no build tool detected in workspace 'C:\xampp\htdocs\wecare'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+Nov 12, 2020 10:38:02 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTraceNotification
+Nov 12, 2020 10:38:55 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTraceNotification
+2020.11.13 01:04:22 INFO  shutting down Metals
+2020.11.13 10:14:52 INFO  Started: Metals version 0.9.5 in workspace 'C:\xampp\htdocs\wecare' for client vscode.
+2020.11.13 10:14:52 INFO  time: initialize in 0.91s
+2020.11.13 10:14:54 WARN  Build server is not auto-connectable.
+2020.11.13 10:14:54 WARN  no build tool detected in workspace 'C:\xampp\htdocs\wecare'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+2020.11.13 10:52:23 INFO  shutting down Metals
+2020.11.13 10:53:16 INFO  Started: Metals version 0.9.5 in workspace 'C:\xampp\htdocs\wecare' for client vscode.
+2020.11.13 10:53:17 INFO  time: initialize in 0.45s
+2020.11.13 10:53:18 WARN  Build server is not auto-connectable.
+2020.11.13 10:53:18 WARN  no build tool detected in workspace 'C:\xampp\htdocs\wecare'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 

@@ -28,6 +28,17 @@ class Employee extends Models{
         $stmt->execute();
         return $stmt->fetchAll();
     }
+    public function getAllView(){
+        $stmt= $this->conn->prepare("select empID,empFirstName,empLastName,empNIC,empAddress,email,empTypeID from $this->table");
+        
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+    public function getDetails($_id){
+        $stmt= $this->conn->prepare("select * from $this->table where empID= $_id");
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
     public function getEmpByType($empType){
         $stmt= $this->conn->prepare("select * from $this->table where empTypeID = :empType ");
         $stmt -> bindParam(':empType',$empType);
@@ -85,6 +96,23 @@ class Employee extends Models{
             $stmt1->execute();
         }
 
+    }
+    public function update($_id){
+        $stmt= $this->conn->prepare("update $this->table set empFirstName= :empFirstName, empLastName= :empLastName, gender= :gender, empDOB= :empDOB,
+                                                            empNIC= :empNIC, empAddress= :empAddress, email= :email, empTypeID= :empTypeID,
+                                                             where empID = $_id ") ;
+
+        $stmt -> bindParam(':empFirstName', $this->empFirstName );
+        $stmt -> bindParam(':empLastName', $this->empLastName );
+        $stmt -> bindParam(':gender', $this->gender );
+        $stmt -> bindParam(':empDOB', $this->empDOB );
+        $stmt -> bindParam(':empNIC', $this->empNIC );
+        $stmt -> bindParam(':empAddress', $this->empAddress );
+        $stmt -> bindParam(':email', $this->email );
+        $stmt -> bindParam(':empTypeID', $this->empTypeID );
+        $stmt->execute();
+
+        // echo $this->dataEntryOfficerID . $this->healthCondition;
     }
 }
 ?>
