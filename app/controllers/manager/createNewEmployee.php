@@ -16,7 +16,7 @@ class createNewEmployee extends Controller{
             $this->model('employee');
             $newEmployee = new Employee();
             $result= $newEmployee->setValue($_POST['empFirstName'],$_POST['empLastName'],$_POST['gender'],$_POST['empDOB'],$_POST['empNIC'],$_POST['empAddress'],$_POST['email'],$_POST['empTypeID'],$_POST['empContactNo']);
-            $result= $newEmployee->create();
+            // $result= $newEmployee->create();
             header("Location: ./index");
             exit;
         }
