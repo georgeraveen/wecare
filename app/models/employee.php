@@ -119,6 +119,16 @@ class Employee extends Models{
         $stmt -> bindParam(':empTypeID', $this->empTypeID );
         $stmt->execute();
 
+        $last_id = $this->conn->lastInsertId();
+        foreach($this->empContactNo as $number){
+            $stmt1= $this->conn->prepare("update employee_contact set empContactNo= :empContactNo where empID = $_id ");
+            $n=(int)$number;
+            // echo $last_id."-".$n;
+            //$stmt1 -> bindParam(':empID', $last_id );
+            $stmt1 -> bindParam(':empContactNo', $n);
+            $stmt1->execute();
+        }
+
    
     }
 }

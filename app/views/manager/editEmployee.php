@@ -2,10 +2,9 @@
 <?php 
     $contactDetails="";
     foreach($data["empContactDetails"] as $row){
-    $contactDetails+=",";
-    $contactDetails+=$row["empContactNo"];
+    $contactDetails .= $row["empContactNo"];
+    $contactDetails .= ",";
 }
-var_dump ($contactDetails);
 ?>
 <link rel="stylesheet" href= "./../../css/home.css">
 <link rel="stylesheet" href= "./../../css/style.css">
@@ -49,11 +48,11 @@ var_dump ($contactDetails);
                     <div class="formInput">
                         <label for="empTypeID">Role</label><br>
                         <select id="empTypeID" name="empTypeID"> 
-                            <option value="DEO">DEO</option>
-                            <option value="DOC">DOC</option>
-                            <option value="FAG">FAG</option>
-                            <option value="MED">MED</option>
-                            <option value="MGR">MGR</option>
+                            <option value="DEO" <?php echo ($data['empDetails'][0]['empTypeID'] =="DEO" ? ("selected") : (""))?>>DEO</option>
+                            <option value="DOC" <?php echo ($data['empDetails'][0]['empTypeID'] =="DOC" ? ("selected") : (""))?>>DOC</option>
+                            <option value="FAG" <?php echo ($data['empDetails'][0]['empTypeID'] =="FAG" ? ("selected") : (""))?>>FAG</option>
+                            <option value="MED" <?php echo ($data['empDetails'][0]['empTypeID'] =="MED" ? ("selected") : (""))?>>MED</option>
+                            <option value="MGR" <?php echo ($data['empDetails'][0]['empTypeID'] =="MGR" ? ("selected") : (""))?>>MGR</option>
                         </select><br>
                     </div>
                 </div>
@@ -69,9 +68,9 @@ var_dump ($contactDetails);
                     <div class="formInput">
                         <label for="gender">Gender</label><br>
                         <select id="gender" name="gender">
-                            <option value="m">Male</option>
-                            <option value="f">Female</option>
-                            <option value="o">Other</option>
+                            <option value="m" <?php echo ($data['empDetails'][0]['gender'] =="m" ? ("selected") : (""))?>>Male</option>
+                            <option value="f" <?php echo ($data['empDetails'][0]['gender'] =="f" ? ("selected") : (""))?>>Female</option>
+                            <option value="o" <?php echo ($data['empDetails'][0]['gender'] =="o" ? ("selected") : (""))?>>Other</option>
                         </select><br>
                     </div>
                 </div>
@@ -80,7 +79,7 @@ var_dump ($contactDetails);
                 <div class="column">
                     <div class="formInput">
                         <label for="empContactNo">Contact numbers</label><br>
-                        <input type="text" id="empContactNo" name="empContactNo" class="input" placeholder="Enter numbers with comma seperated" value=<?php echo $data['empDetails'][0]['empContactNo']?>><br>
+                        <input type="text" id="empContactNo" name="empContactNo" class="input" placeholder="Enter numbers with comma seperated" value=<?php echo $contactDetails ?>><br>
                     </div>
                 </div>
                 <div class="column">
@@ -115,4 +114,3 @@ var_dump ($contactDetails);
         </form>
     </div>
 </div>
-<?php var_dump ($data["empContactDetails"]);?>

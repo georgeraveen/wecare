@@ -16,7 +16,6 @@ class updateEmployee extends Controller{
         $empView= new Employee();
         // var_dump($employee);
         $queue=$empView->getAllView();
-
         include './../app/header.php';
         $this->view('manager/viewEmployee',$queue);
         include './../app/footer.php';
@@ -29,7 +28,7 @@ class updateEmployee extends Controller{
         if($this->valValidate($_GET['action'])=="edit"){
             $empDetails=$editEmp->getDetails($this->valValidate($_GET['id']));
             $empContactDetails=$editEmp->getContactDetails($this->valValidate($_GET['id']));
-            //include './../app/header.php';
+            include './../app/header.php';
             $this->view('manager/editEmployee',['id'=>$this->valValidate($_GET['id']),'empDetails'=>$empDetails,'empContactDetails'=>$empContactDetails]);
             include './../app/footer.php';
         }
