@@ -14,13 +14,13 @@ class viewPendingQueue extends Controller{
         // echo "asas";
     }
 
-    public function review(){
-        $this->checkPermission("FAG");
-       // include './../app/header.php';
-        $this->view('fieldAgent/updateCase');
-        include './../app/footer.php';
-        // echo "asas";
-    }
+    // public function review(){
+    //     $this->checkPermission("FAG");
+    //     include './../app/header.php';
+    //     $this->view('fieldAgent/updateCase');
+    //     include './../app/footer.php';
+    //     // echo "asas";
+    // }
 
 //single case edit
     public function editCase(){
@@ -28,7 +28,7 @@ class viewPendingQueue extends Controller{
         $this->model('claimCase');
         $caseDetails= new ClaimCase();
         $fieldAgID=$_SESSION["user_id"];
-        $singleCaseDetails=$caseDetails->getCaseDetailsFieldAg( $this->valValidate($_GET['id']));  
+        $singleCaseDetails=$caseDetails->getCaseDetailsFieldAg($this->valValidate($_GET['id']));  
       
 
        
@@ -36,7 +36,7 @@ class viewPendingQueue extends Controller{
         if($_GET['action']=="edit"){
             
             include './../app/header.php';
-            $this->view('doctor/updateCase',['id'=>$this->valValidate($_GET['id']),'singleCaseDetails'=>$singleCaseDetails]);
+            $this->view('fieldAgent/updateCase',['id'=>$this->valValidate($_GET['id']),'singleCaseDetails'=>$singleCaseDetails]);
             include './../app/footer.php';
         }
 
