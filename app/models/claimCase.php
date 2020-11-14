@@ -95,8 +95,7 @@ class ClaimCase extends Models{
 
         // echo $this->dataEntryOfficerID . $this->healthCondition;
     }
-<<<<<<< Updated upstream
-=======
+
 
 
 
@@ -174,6 +173,6 @@ class ClaimCase extends Models{
 
 }
 
->>>>>>> Stashed changes
+
 }
 ?>
