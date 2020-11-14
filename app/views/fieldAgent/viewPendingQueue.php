@@ -40,6 +40,7 @@
                 "<td  id=\"status-".$row['recordID']."\">".$row['caseStatus']."</td>".
                 "<td>  <a onclick=\"clickView(".$row['recordID'].")\" class=\"editBtn\" href=\"./review".$row['recordID']."\">View </a> "."</td>"."</tr>";
          }
+         
 
 ?>
         </table>
