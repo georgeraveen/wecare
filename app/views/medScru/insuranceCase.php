@@ -94,11 +94,11 @@
                     echo "> MED".$medsRow['empID']." - ".$medsRow['empFirstName']." ".$medsRow['empLastName']."</option>";
                     }
                     ?>
-                    <!-- <option>User ID - Name</option> -->
+                    <!-- options -->
                     </select><br>
                     </div>
                 </div>
-                
+
                 <div class="column">
                 </div>
 
