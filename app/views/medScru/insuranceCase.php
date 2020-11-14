@@ -82,16 +82,23 @@
                 </div>
             </div>
             <div class="row">
-                <div class="column">
-                    <div class="formInput">
-                        <input type="submit" id="submit" name="reviewCase" class="btn-submit" value= "Submit" > <br>
-                    </div>
-                </div>
-                <div class="column">
+                    <div class="column">
                     <div class="formInput">
                         <a id="a" href="./../viewPendingCases/index" class="btn-submit" >Cancel</a>
-                </div>    
+                        </div>   
                     </div>
+                    <div class="column">
+                        <!--cmnt-->
+                    </div>
+                    <div class="column">
+                        <!--cmnt-->
+                    </div>
+                    <div class="column">
+                        <div class="formInput">
+                         <input type="submit" id="submit" name="reviewCase" class="btn-submit" value= "Submit" ><br>
+                        </div> 
+                    </div>
+                    
             </div>
     </form>
 </div>

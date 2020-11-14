@@ -8,18 +8,26 @@
     <form>
       <div class="row">
         <div class="column">
+        <div class="formInput">
   <label for="fromDate">From:</label>
   <input type="date" id="fromDate" name="From">
         </div>
-        <div class="column"> 
+        </div>
+        <div class="column">
+        <div class="formInput"> 
   <label for="toDate">To:</label>
   <input type="date" id="toDate" name="To">
         </div>
+        </div>
       </div>
-
       <div class="row">
-        <div class="column"> 
+        <div class="column">
+        <div class="formInput">  
          <input type="submit" value="Submit">
+        </div>
+        </div>
+        <div class="column"> 
+        <!-- -->
         </div>
       </div>
     </form>
