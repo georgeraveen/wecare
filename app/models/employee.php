@@ -119,17 +119,20 @@ class Employee extends Models{
         $stmt -> bindParam(':empTypeID', $this->empTypeID );
         $stmt->execute();
 
-        $last_id = $this->conn->lastInsertId();
+        $stmt1= $this->conn->prepare("delete from employee_contact where empID= $_id");
+        $stmt1->execute();
+
         foreach($this->empContactNo as $number){
-            $stmt1= $this->conn->prepare("update employee_contact set empContactNo= :empContactNo where empID = $_id ");
+            $stmt1= $this->conn->prepare("insert into employee_contact (empID,empContactNo) 
+                                                            values (:empID, :empContactNo) ");
             $n=(int)$number;
             // echo $last_id."-".$n;
-            //$stmt1 -> bindParam(':empID', $last_id );
-            $stmt1 -> bindParam(':empContactNo', $n);
-            $stmt1->execute();
+             $stmt2 -> bindParam(':empID', $_id );
+            $stmt2 -> bindParam(':empContactNo', $n);
+            $stmt2->execute();
         }
 
-   
+
     }
 }
 ?>
