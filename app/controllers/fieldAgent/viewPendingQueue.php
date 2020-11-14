@@ -31,7 +31,6 @@ class viewPendingQueue extends Controller{
         $singleCaseDetails=$caseDetails->getCaseDetailsFieldAg( $this->valValidate($_GET['id']));  
       
 
-
        
 
         if($_GET['action']=="edit"){
