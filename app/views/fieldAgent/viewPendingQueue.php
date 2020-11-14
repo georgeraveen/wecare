@@ -38,7 +38,7 @@
                 "<td  id=\"name-".$row['recordID']."\">".$row['medSrcName']."</td>".
                 "<td  id=\"name-".$row['recordID']."\">".$row['name']."</td>".
                 "<td  id=\"status-".$row['recordID']."\">".$row['caseStatus']."</td>".
-                "<td>  <a onclick=\"clickView(".$row['recordID'].")\" class=\"editBtn\" href=\"./review".$row['recordID']."\">View </a> "."</td>"."</tr>";
+                "<td>  <a class=\"editBtn\" href=\"./editCase?action=edit&id=".$row['claimID']."\">View</a> "."</td>"."</tr>";
          }
          
 

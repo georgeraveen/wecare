@@ -175,6 +175,17 @@ class ClaimCase extends Models{
         return $stmt->fetchAll();
 
 }
+public function getCaseDetailsFieldAg($claimID){
+    $stmt= $this->conn->prepare("SELECT customer.custName,claimID,admitDate,icuFromDate,dischargeDate,icuToDate,hospital.name 
+    FROM claim_case 
+    INNER JOIN hospital 
+        ON claim_case.hospitalID=hospital.hospitalID 
+    INNER JOIN customer
+        ON claim_case.custID=customer.custID 
+    WHERE claimID = $claimID");
+    $stmt->execute();
+    return $stmt->fetchAll();
+}
 
 
 }
