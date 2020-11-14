@@ -19,7 +19,7 @@
       foreach($data as $row){
         echo "<tr>"."<td>".$row['claimID']."</td>".
               "<td>".$row['dischargeDate']."</td>".
-              "<td>".$row['claimID']."</td>".
+              "<td>".$row['caseStatus']."</td>".
               "<td>".$row['name']."</td>".
               "<td>".$row['fag']."</td>".
               "<td>".$row['med']."</td>".

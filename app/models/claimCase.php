@@ -24,7 +24,7 @@ class ClaimCase extends Models{
     public function __construct(){
         $this->conn=$this->dataConnect();
     }
-    public function setValue($Pcustomer,$Phospital,$PadmitDate,$PdischargeDate,$PicuFromDate,$PicuToDate,$PmedScrut,$PfieldAg,$PhealthCondition){
+    public function setValue($Pcustomer,$Phospital,$PadmitDate,$PdischargeDate,$PicuFromDate,$PicuToDate,$PmedScrut,$PfieldAg,$PhealthCondition,$PpolicyID){
         // echo $PadmitDate;
         $this->admitDate= !empty($PadmitDate) ? $PadmitDate : null;
         $this->dischargeDate =  !empty($PdischargeDate) ? $PdischargeDate : null;
@@ -36,10 +36,11 @@ class ClaimCase extends Models{
         $this->dataEntryOfficerID = $_SESSION["user_id"];
         $this->FieldAgID=$PfieldAg;
         $this->hospital=$Phospital;
+        $this->policyID=$PpolicyID;
     }
     public function create(){
-        $stmt= $this->conn->prepare("insert into $this->table (admitDate,dischargeDate,icuFromDate,icuToDate,healthCondition,custID,medScruID,dataEntryOfficerID,FieldAgID,hospitalID) 
-                                                            values (:admitDate, :dischargeDate, :icuFromDate, :icuToDate, :healthCondition, :custID, :medScruID, :dataEntryOfficerID, :FieldAgID, :hospitalID) ");
+        $stmt= $this->conn->prepare("insert into $this->table (admitDate,dischargeDate,icuFromDate,icuToDate,healthCondition,custID,medScruID,dataEntryOfficerID,FieldAgID,hospitalID,caseStatus,policyID) 
+                                                            values (:admitDate, :dischargeDate, :icuFromDate, :icuToDate, :healthCondition, :custID, :medScruID, :dataEntryOfficerID, :FieldAgID, :hospitalID,'Initial', :policyID ) ");
         $stmt -> bindParam(':admitDate', $this->admitDate );
         $stmt -> bindParam(':dischargeDate', $this->dischargeDate); 
         $stmt -> bindParam(':icuFromDate', $this->icuFromDate );
@@ -50,13 +51,14 @@ class ClaimCase extends Models{
         $stmt -> bindParam(':dataEntryOfficerID', $this->dataEntryOfficerID );
         $stmt -> bindParam(':FieldAgID', $this->FieldAgID );
         $stmt -> bindParam(':hospitalID', $this->hospital);
+        $stmt -> bindParam(':policyID', $this->policyID);
         $stmt->execute();
 
         // echo $this->dataEntryOfficerID . $this->healthCondition;
     }
     public function getAllQueue(){
         // var_dump($this->conn);
-        $stmt= $this->conn->prepare("select claimID,dischargeDate,h.name,med.empFirstName as med, fag.empFirstName as fag, doc.empFirstName as doc  from $this->table as i 
+        $stmt= $this->conn->prepare("select claimID,dischargeDate,h.name,med.empFirstName as med, fag.empFirstName as fag, doc.empFirstName as doc, caseStatus  from $this->table as i 
                     inner join hospital as h on i.hospitalID = h.hospitalID 
                     inner join employee as med on i.medScruID = med.empID 
                     inner join employee as fag on i.FieldAgID = fag.empID
