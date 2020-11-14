@@ -102,7 +102,30 @@ class Employee extends Models{
             $stmt1 -> bindParam(':empContactNo', $n);
             $stmt1->execute();
         }
+        $email_string = 
+        '<html>
+            <head>
+                <style>
+                    body {
+                        font-family: "Roboto Slab", serif;
+                        padding-left: 4rem;
+                        padding-right: 4rem;
+                        }
+                </style>
+            </head>
+            <body>
+                <div class="container">
+                    <center>
+                        <h1>Wecare Employee Portal Registration</h1>
+                        <h4>Username: '.$this->empTypeID.$last_id.'</h4>
+                        <h4>Password: '.$passDetails[0].'</h4>
+                    </center>
+                </div>
+            </body>
+        </html>
+        ';
 
+        sendEmail($this->email, $this->empFirstName.$this->empLastName ,$email_string,"Wecare Employee Portal Registration");
     }
     public function update($_id){
         $stmt= $this->conn->prepare("update $this->table set empFirstName= :empFirstName, empLastName= :empLastName, gender= :gender, empDOB= :empDOB,

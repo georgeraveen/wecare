@@ -6,7 +6,8 @@
 
 body{
     font-family: "Trebuchet MS", Helvetica, sans-serif;
-    background-image: linear-gradient(to bottom right,#028075,  #003B36);
+    background-image: linear-gradient(to bottom right,#ffffff,  #e4e4e4);
+    /* background-image: linear-gradient(to bottom right,#028075,  #003B36); */
     background-attachment: fixed;
 }
 .login-background{
