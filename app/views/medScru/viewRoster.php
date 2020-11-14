@@ -3,6 +3,26 @@
 <link rel="stylesheet" href= "./../../css/style.css">
 <div class="containers">
   <h1>Roster for the week 2020/11/14 to 2020/11/21</h1><br>
+  <div class="form-container2">
+    <form>
+      <div class="row">
+        <div class="column">
+          <select id="custID" name="custID" required>
+            <option>2020/10/17</option>
+            <option>2020/10/24</option>
+            <option>2020/10/31</option>
+            <option>2020/11/7</option>
+            <option>2020/11/14</option>
+          </select><br>
+        </div>
+        <div class="column">
+          <div class="formInput">
+            <input type="submit" id="setCustomer" name="setCustomer" class="btn-submit" value="Select Roster"><br>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
   <div class="table-container">
     <table id="rosterTable" class="table-view">
       <thead>

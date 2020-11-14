@@ -22,7 +22,7 @@
         <td>2020/10/02</td>
         <td>Navaloka</td>
         <td>Completed</td>
-        <td>Review Case</td>
+        <td><a class="button" href="./../">Accept</a></td>
       </tr>
       <tr>
         <td>2</td>
@@ -32,7 +32,7 @@
         <td>2020/12/02</td>
         <td>Durdens</td>
         <td>Completed</td>
-        <td>Review Case</td>
+        <td><a class="button" href="./../">Accept</a></td>
       </tr>
 
  
