@@ -14,7 +14,7 @@
 
 
 
-    <form action="#">
+<form action="./updateCase" method="post">
             <div class="row">
                 <div class="column">
                     <div class="formInput">
@@ -94,7 +94,7 @@
             </div>
             <div class="row">
             <div class="formInput">
-            <input type="submit" id="submit" name="reviewCase" class="btn-submit" value= "Submit" ><br>
+            <input type="submit" id="submit" name="editSingleCaseDetails" class="btn-submit" value= "Submit" ><br>
            
           </div>
             </div>

@@ -120,26 +120,7 @@ class ClaimCase extends Models{
         return $stmt->fetchAll();
 
     }
-    //update-docteor pending queue
-    public function update2($_id){
-        $stmt= $this->conn->prepare("update $this->table set admitDate= :admitDate, dischargeDate= :dischargeDate, icuFromDate= :icuFromDate, icuToDate= :icuToDate,
-                                                            healthCondition= :healthCondition, custID= :custID, medScruID= :medScruID, dataEntryOfficerID= :dataEntryOfficerID,
-                                                            FieldAgID= :FieldAgID, hospitalID= :hospitalID where claimID = $_id ") ;
-
-        $stmt -> bindParam(':admitDate', $this->admitDate );
-        $stmt -> bindParam(':dischargeDate', $this->dischargeDate); 
-        $stmt -> bindParam(':icuFromDate', $this->icuFromDate );
-        $stmt -> bindParam(':icuToDate', $this->icuToDate );
-        $stmt -> bindParam(':healthCondition', $this->healthCondition );
-        $stmt -> bindParam(':custID', $this->custID );
-        $stmt -> bindParam(':medScruID', $this->medScruID );
-        $stmt -> bindParam(':dataEntryOfficerID', $this->dataEntryOfficerID );
-        $stmt -> bindParam(':FieldAgID', $this->FieldAgID );
-        $stmt -> bindParam(':hospitalID', $this->hospital);
-        $stmt->execute();
-
-        // echo $this->dataEntryOfficerID . $this->healthCondition;
-    }
+    
     //doctor-view from pending queue
     public function getCaseDetailsDoctor($claimID){
         $stmt= $this->conn->prepare("SELECT customer.custName,claimID,admitDate,icuFromDate,dischargeDate,icuToDate,hospital.name,healthCondition 
@@ -148,9 +129,28 @@ class ClaimCase extends Models{
             ON claim_case.hospitalID=hospital.hospitalID 
         INNER JOIN customer
             ON claim_case.custID=customer.custID 
-        WHERE claimID = $claimID");
+        WHERE claimID = $claimID;");
         $stmt->execute();
         return $stmt->fetchAll();
+    }
+    public function setValueDoc($doctorComment,$healthCondition){
+       
+        $this->healthCondition= !empty($healthCondition) ? $healthCondition : null;
+        $this->doctorComment= !empty($doctorComment) ? $doctorComment : null;
+          
+       
+    }
+    public function updateSingleCaseDoc($_id){
+        $stmt= $this->conn->prepare("update $this->table set  healthCondition= :healthCondition, doctorComment= :doctorComment,caseStatus='Doctor confirmed'
+                                                            where claimID = $_id ") ;
+    
+        
+        $stmt -> bindParam(':healthCondition', $this->healthCondition );
+        $stmt -> bindParam(':doctorComment', $this->doctorComment );
+      
+        $stmt->execute();
+    
+        // echo $this->dataEntryOfficerID . $this->healthCondition;
     }
 
 
@@ -198,12 +198,7 @@ public function setValueFag($PclaimID,$PadmitDate,$PdischargeDate,$PicuFromDate,
     $this->icuFromDate= !empty($PicuToDate) ? $PicuToDate : null;
     $this->icuToDate= !empty($PicuToDate) ? $PicuToDate : null;
       
-   // $this->healthCondition= !empty($PhealthCondition) ? $PhealthCondition : null;
-   // $this->medScruID=$PmedScrut;
-    //$this->dataEntryOfficerID = $_SESSION["user_id"];
-    //$this->FieldAgID=$PfieldAg;
    
-    //$this->policyID=$PpolicyID;
 }
 //update single case details FAG
 public function updateSingleCaseFag($_id){
@@ -215,11 +210,7 @@ public function updateSingleCaseFag($_id){
     $stmt -> bindParam(':dischargeDate', $this->dischargeDate); 
     $stmt -> bindParam(':icuFromDate', $this->icuFromDate );
     $stmt -> bindParam(':icuToDate', $this->icuToDate );
-    //$stmt -> bindParam(':custID', $this->custID );
-   // $stmt -> bindParam(':medScruID', $this->medScruID );
-   // $stmt -> bindParam(':dataEntryOfficerID', $this->dataEntryOfficerID );
-   // $stmt -> bindParam(':FieldAgID', $this->FieldAgID );
-    //$stmt -> bindParam(':hospitalID', $this->hospital);
+   
     $stmt->execute();
 
     // echo $this->dataEntryOfficerID . $this->healthCondition;
