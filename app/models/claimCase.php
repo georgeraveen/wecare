@@ -97,6 +97,11 @@ class ClaimCase extends Models{
 
         // echo $this->dataEntryOfficerID . $this->healthCondition;
     }
+
+
+
+    //**************************************** FUNCTIONS OF DOCTOR **********************************************
+
     //Docter-view pending queue
     public function getDoctorList($doctorID){
         // var_dump($this->conn);
@@ -147,5 +152,30 @@ class ClaimCase extends Models{
         $stmt->execute();
         return $stmt->fetchAll();
     }
+
+
+
+//*********************************************** FUNCTIONS OF FIELD AGENT *********************************************
+//get details for table
+
+    public function getFieldAgList($fieldAgID){
+        // var_dump($this->conn);
+        $stmt= $this->conn->prepare("SELECT claimID, customer.custName,admitDate, CONCAT(employee.empFirstName, \" \", employee.empLastName) AS medSrcName , hospital.name ,caseStatus
+        FROM claim_case 
+        INNER JOIN customer
+            ON claim_case.custID=customer.custID 
+        INNER JOIN hospital 
+             ON claim_case.hospitalID=hospital.hospitalID 
+        INNER JOIN employee 
+            ON claim_case.medScruID=employee.empID
+        WHERE claim_case.fieldAgID = $fieldAgID;
+                    ");
+        
+        $stmt->execute();
+        return $stmt->fetchAll();
+
+}
+
+
 }
 ?>
