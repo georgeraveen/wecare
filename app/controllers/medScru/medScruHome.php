@@ -1,11 +1,11 @@
 <?php
 
-class DoctorHome extends Controller{
+class medScruHome extends Controller{
 
     public function index(){
-        $this->checkPermission("DOC");
+        $this->checkPermission("MED");
         include './../app/header.php';
-        $this->view('doctor/doctorHome');
+        $this->view('medScru/medScruHome');
         include './../app/footer.php';
     }
 
