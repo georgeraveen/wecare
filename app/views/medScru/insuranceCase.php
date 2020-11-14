@@ -7,6 +7,20 @@
             <div class="row">
                 <div class="column">
                     <div class="formInput">
+                        <label for="customer">Medical Scrutinizer</label><br>
+                       <input type="text" id="medScru" name="medScruName" class="input" value="Amal" readonly><br>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="formInput">
+                        <label for="customer">Field Agent</label><br>
+                       <input type="text" id="fieldAgent" name="fieldAgentName" class="input" value="Kamal" readonly><br>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column">
+                    <div class="formInput">
                         <label for="customer">Customer</label><br>
                        <input type="text" id="customer" name="custName" class="input" value="MR.Perera" readonly><br>
                     </div>
@@ -85,8 +99,8 @@
             <div class="row">
                 <div class="column">
                     <div class="formInput">
-                    <label for="medScrut">Assign Doctor</label><br>
-                    <select id="medScrut" name="medScrut" required>
+                    <label for="medScrut">Assign Doctor</label>
+                    <select id="doc" name="doc" required>
                     <?php               
                     foreach ($data['medList'] as $medsRow){
                     echo "<option value= \"".$medsRow['empID']."\"";
@@ -95,11 +109,12 @@
                     }
                     ?>
                     <!-- options -->
-                    </select><br>
+                    </select>
                     </div>
                 </div>
-
                 <div class="column">
+                    <br>
+                    <input type="submit" id="assign" name="assignDoc" class="btn-submit" value= "Assign Doctor" >
                 </div>
 
                 <div class="column">
