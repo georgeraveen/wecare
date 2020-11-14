@@ -76,11 +76,40 @@
                 </div>
                 <div class="column">
                     <div class="formInput">
-                        <label for="doctorComment">Doctor's Comment</label><br>
+                        <label for="doctorComment">Scrutinizers' Comment</label><br>
+                        <textarea  type="text" id="scruComment" name="scruComment" class="commentBox" placeholder="comments..."></textarea><br>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="column">
+                    <div class="formInput">
+                    <label for="medScrut">Assign Doctor</label><br>
+                    <select id="medScrut" name="medScrut" required>
+                    <?php               
+                    foreach ($data['medList'] as $medsRow){
+                    echo "<option value= \"".$medsRow['empID']."\"";
+                    if($medsRow['empID']==$data['caseDetails'][0]['medScruID']) echo "selected=\"selected\"";
+                    echo "> MED".$medsRow['empID']." - ".$medsRow['empFirstName']." ".$medsRow['empLastName']."</option>";
+                    }
+                    ?>
+                    <!-- <option>User ID - Name</option> -->
+                    </select><br>
+                    </div>
+                </div>
+                
+                <div class="column">
+                </div>
+
+                <div class="column">
+                    <div class="formInput">
+                        <label for="doctorComment">Doctors' Comment</label><br>
                         <textarea  type="text" id="doctorComment" name="doctorComment" class="commentBox" placeholder="comments..."></textarea><br>
                     </div>
                 </div>
             </div>
+
             <div class="row">
                     <div class="column">
                     <div class="formInput">
