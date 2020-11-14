@@ -3,11 +3,27 @@
 <div class="containers">
   <h1>Scrutinizer Completed queue</h1>
   <h2>Please select the date range</h2>
-  <label for="birthday">From:</label>
+
+  <div class="form-container2">
+    <form>
+      <div class="row">
+        <div class="column">
+  <label for="fromDate">From:</label>
   <input type="date" id="fromDate" name="From">
-  <label for="birthday">To:</label>
+        </div>
+        <div class="column"> 
+  <label for="toDate">To:</label>
   <input type="date" id="toDate" name="To">
-  <input type="submit" value="Select">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="column"> 
+         <input type="submit" value="Submit">
+        </div>
+      </div>
+    </form>
+  </div>
 
 
 
@@ -31,7 +47,7 @@
         <td>2020/10/02</td>
         <td>Navaloka</td>
         <td>Completed</td>
-        <td>Review Case</td>
+        <td><a class="button" href="./../">Review Case</a></td>
       </tr>
       <tr>
         <td>2</td>
@@ -41,7 +57,7 @@
         <td>2020/12/02</td>
         <td>Durdens</td>
         <td>Completed</td>
-        <td>Review Case</td>
+        <td><a class="button" href="./../">Review Case</a></td>
       </tr>
 
  
