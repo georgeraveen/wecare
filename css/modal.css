@@ -18,8 +18,11 @@
     padding: 20px;
     border: 1px solid #888;
     width: 80%; 
+    color: black;
   }
-  
+  .sm{
+    width: 50%;
+  }
   .close {
     color: #aaa;
     float: right;
