@@ -123,7 +123,7 @@ class Employee extends Models{
         $stmt1->execute();
 
         foreach($this->empContactNo as $number){
-            $stmt1= $this->conn->prepare("insert into employee_contact (empID,empContactNo) 
+            $stmt2= $this->conn->prepare("insert into employee_contact (empID,empContactNo) 
                                                             values (:empID, :empContactNo) ");
             $n=(int)$number;
             // echo $last_id."-".$n;
