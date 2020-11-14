@@ -60,6 +60,7 @@
         <td>001</td>
         <td>9723797713V</td>
         <td>07355322</td>
+        <td><a class="button" href="./../manageCustMedical/viewConditions">View</a></td>
       </tr>
     </table>
   </div>
