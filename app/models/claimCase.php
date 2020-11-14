@@ -100,8 +100,8 @@ class ClaimCase extends Models{
 
 
 
-
     //**************************************** FUNCTIONS OF DOCTOR **********************************************
+
     //Docter-view pending queue
     public function getDoctorList($doctorID){
         // var_dump($this->conn);
@@ -152,6 +152,7 @@ class ClaimCase extends Models{
         $stmt->execute();
         return $stmt->fetchAll();
     }
+
 
 
 //*********************************************** FUNCTIONS OF FIELD AGENT *********************************************
