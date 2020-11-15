@@ -55,7 +55,7 @@
         <td>2020/10/02</td>
         <td>Navaloka</td>
         <td>Completed</td>
-        <td><a class="button" href="./../">Review Case</a></td>
+        <td><a class="button" href="./../viewCompletedCases/reviewCase">Review Case</a></td>
       </tr>
       <tr>
         <td>2</td>
@@ -65,7 +65,7 @@
         <td>2020/12/02</td>
         <td>Durdens</td>
         <td>Completed</td>
-        <td><a class="button" href="./../">Review Case</a></td>
+        <td><a class="button" href="./../viewCompletedCases/reviewCase">Review Case</a></td>
       </tr>
 
  
