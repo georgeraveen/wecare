@@ -35,7 +35,6 @@
         <th>Friday</th>
         <th>Saturday</th>
         <th>Sunday</th>
-        <th colspan="2" style="text-align:center">Action</th>
       </thead>
       <tbody>
         <tr id="slot1">
@@ -47,8 +46,6 @@
           <td>MED4 - Nimal Perera</td>
           <td>MED1 - Kamal Perera</td>
           <td>MED2 - Amal Perera</td>
-          <td> <a class="editBtn" href="#">Edit</a></td>
-          <td> <a class="deleteBtn" href="#">Delete</a></td>  
      <!--cmnt-->
         </tr>
         <tr id="slot2">
@@ -60,8 +57,6 @@
           <td>MED4 - Nimal Perera</td>
           <td>MED1 - Kamal Perera</td>
           <td>MED2 - Amal Perera</td>
-          <td> <a class="editBtn" href="#">Edit</a></td>
-          <td> <a class="deleteBtn" href="#">Delete</a></td>  
       <!--cmnt-->
         </tr>
         <tr id="slot3">
@@ -73,8 +68,6 @@
           <td>MED4 - Nimal Perera</td>
           <td>MED1 - Kamal Perera</td>
           <td>MED2 - Amal Perera</td>
-          <td> <a class="editBtn" href="#">Edit</a></td>
-          <td> <a class="deleteBtn" href="#">Delete</a></td> 
         <!--cmnt-->
         </tr>
       </tbody>
