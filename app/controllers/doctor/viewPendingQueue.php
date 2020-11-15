@@ -45,22 +45,22 @@ class viewPendingQueue extends Controller{
         }
     }
 
-//update single case
+
     
-    public function updateCase(){
-        $this->checkPermission("DOC");
-        if($_POST['editInsurance']){
-            $this->model('claimCase');
-            $editClaimCase = new ClaimCase();
-            $result= $editClaimCase->setValue($this->valValidate($_POST['customer']),$this->valValidate($_POST['hospital']),
-                    $this->valValidate($_POST['admitDate']),$this->valValidate($_POST['dischargeDate']),$this->valValidate($_POST['icuFromDate']),
-                    $this->valValidate($_POST['icuToDate']),$this->valValidate($_POST['medScrut']),$this->valValidate($_POST['fieldAg']),
-                    $this->valValidate($_POST['healthCondition']));
-            $result= $editClaimCase->update($this->valValidate($_POST['claimID']));
-            header("Location: ./viewCase");
-            exit;
-        }
+  //update Single case details
+  public function updateCase(){
+    $this->checkPermission("DOC");
+    if($_POST['editSingleCaseDetails']){
+        $this->model('claimCase');
+        $editClaimCase = new ClaimCase();
+        $result= $editClaimCase->setValueDoc(
+                $this->valValidate($_POST['doctorComment']),$this->valValidate($_POST['healthCondition']));
+               
+        $result= $editClaimCase->updateSingleCaseDoc($this->valValidate($_POST['claimID']));
+        header("Location: ./viewCase");
+        exit;
     }
+}
    
   
 
