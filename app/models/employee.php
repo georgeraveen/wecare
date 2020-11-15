@@ -146,13 +146,15 @@ class Employee extends Models{
         $stmt1->execute();
 
         foreach($this->empContactNo as $number){
-            $stmt2= $this->conn->prepare("insert into employee_contact (empID,empContactNo) 
+           
+            $stmt= $this->conn->prepare("insert into employee_contact (empID,empContactNo) 
                                                             values (:empID, :empContactNo) ");
+                                                            
             $n=(int)$number;
             // echo $last_id."-".$n;
-             $stmt2 -> bindParam(':empID', $_id );
-            $stmt2 -> bindParam(':empContactNo', $n);
-            $stmt2->execute();
+            $stmt -> bindParam(':empID', $_id );
+            $stmt -> bindParam(':empContactNo', $n);
+            $stmt->execute();
         }
 
 
