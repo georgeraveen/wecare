@@ -73,6 +73,8 @@
           <td>MED4 - Nimal Perera</td>
           <td>MED1 - Kamal Perera</td>
           <td>MED2 - Amal Perera</td>
+          <td> <a class="editBtn" href="#">Edit</a></td>
+          <td> <a class="deleteBtn" href="#">Delete</a></td> 
         <!--cmnt-->
         </tr>
       </tbody>
