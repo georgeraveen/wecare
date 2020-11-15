@@ -26,4 +26,27 @@
             </div>
         </form>
     </div>
+    <div style="width : 70%" class="table-container">
+    <table class="table-view">
+      <tr>
+        <th>Hospital Name</th>
+        <th>Contact Number</th>
+      </tr>
+      <tr>
+        <td>Hemas</td>
+        <td>0114356754</td>
+      </tr>
+      <tr>
+        <td>Nawaloka</td>
+        <td>0115435667</td>
+      </tr>
+      <tr>
+        <td>Asiri</td>
+        <td>0371234587</td>
+      </tr>
+      <tr>
+        <td>Lanka</td>
+        <td>0376543567</td>
+      </tr>
+    </table>
 </div>
