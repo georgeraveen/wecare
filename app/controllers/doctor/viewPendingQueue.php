@@ -45,7 +45,7 @@ class viewPendingQueue extends Controller{
         }
     }
 
-
+//update single case
     
     public function updateCase(){
         $this->checkPermission("DOC");

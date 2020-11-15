@@ -47,4 +47,20 @@ class viewPendingQueue extends Controller{
             exit;
         }
     }
+    //update Single case details
+    public function updateCase(){
+        $this->checkPermission("FAG");
+        if($_POST['editSingleCaseDetails']){
+            $this->model('claimCase');
+            $editClaimCase = new ClaimCase();
+            $result= $editClaimCase->setValueFag($this->valValidate($_POST['claimID']),
+                    $this->valValidate($_POST['admitDate']),$this->valValidate($_POST['ICUfromDate']),$this->valValidate($_POST['dischargeDate']),
+                    $this->valValidate($_POST['ICUtoDate']));
+                   
+            $result= $editClaimCase->updateSingleCaseFag($this->valValidate($_POST['claimID']));
+            header("Location: ./viewCase");
+            exit;
+        }
+    }
+   
 }

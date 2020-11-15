@@ -175,6 +175,9 @@ class ClaimCase extends Models{
         return $stmt->fetchAll();
 
 }
+
+
+
 public function getCaseDetailsFieldAg($claimID){
     $stmt= $this->conn->prepare("SELECT customer.custName,claimID,admitDate,icuFromDate,dischargeDate,icuToDate,hospital.name 
     FROM claim_case 
@@ -185,6 +188,41 @@ public function getCaseDetailsFieldAg($claimID){
     WHERE claimID = $claimID");
     $stmt->execute();
     return $stmt->fetchAll();
+}
+
+public function setValueFag($PclaimID,$PadmitDate,$PdischargeDate,$PicuFromDate,$PicuToDate){
+    // echo $PadmitDate;
+    $this->claimID=$PclaimID;
+    $this->admitDate= !empty($PadmitDate) ? $PadmitDate : null;
+    $this->dischargeDate =  !empty($PdischargeDate) ? $PdischargeDate : null;
+    $this->icuFromDate= !empty($PicuToDate) ? $PicuToDate : null;
+    $this->icuToDate= !empty($PicuToDate) ? $PicuToDate : null;
+      
+   // $this->healthCondition= !empty($PhealthCondition) ? $PhealthCondition : null;
+   // $this->medScruID=$PmedScrut;
+    //$this->dataEntryOfficerID = $_SESSION["user_id"];
+    //$this->FieldAgID=$PfieldAg;
+   
+    //$this->policyID=$PpolicyID;
+}
+//update single case details FAG
+public function updateSingleCaseFag($_id){
+    $stmt= $this->conn->prepare("update $this->table set admitDate= :admitDate, dischargeDate= :dischargeDate, icuFromDate= :icuFromDate, icuToDate= :icuToDate,
+                                                         custID= :custID,caseStatus='Processing'
+                                                        where claimID = $_id ") ;
+
+    $stmt -> bindParam(':admitDate', $this->admitDate );
+    $stmt -> bindParam(':dischargeDate', $this->dischargeDate); 
+    $stmt -> bindParam(':icuFromDate', $this->icuFromDate );
+    $stmt -> bindParam(':icuToDate', $this->icuToDate );
+    $stmt -> bindParam(':custID', $this->custID );
+   // $stmt -> bindParam(':medScruID', $this->medScruID );
+   // $stmt -> bindParam(':dataEntryOfficerID', $this->dataEntryOfficerID );
+   // $stmt -> bindParam(':FieldAgID', $this->FieldAgID );
+    //$stmt -> bindParam(':hospitalID', $this->hospital);
+    $stmt->execute();
+
+    // echo $this->dataEntryOfficerID . $this->healthCondition;
 }
 
 
