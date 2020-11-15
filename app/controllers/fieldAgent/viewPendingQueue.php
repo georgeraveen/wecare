@@ -58,31 +58,36 @@ class viewPendingQueue extends Controller{
                     $this->valValidate($_POST['ICUtoDate']));
                    
             $result= $editClaimCase->updateSingleCaseFag($this->valValidate($_POST['claimID']));
+            
+            //upload a file
+            if(! is_dir("./../documents/claimCases/".$this->valValidate($_POST['claimID']))) {
+                mkdir("./../documents/claimCases/".$this->valValidate($_POST['claimID']));
+            }
+            $errors= array();
+            $file_name = $_FILES['fileToUpload']['name'];
+            $file_size =$_FILES['fileToUpload']['size'];
+            $file_tmp =$_FILES['fileToUpload']['tmp_name'];
+            $file_type=$_FILES['fileToUpload']['type'];
+            $file_ext=strtolower(end(explode('.',$_FILES['fileToUpload']['name'])));
+            
+            $extensions= array("jpeg","jpg","png","pdf");
+            
+            if(in_array($file_ext,$extensions)=== false){
+                $errors[]="extension not allowed, please choose a JPEG or PNG file.";
+            }
+            
+            if($file_size > 2097152){
+                $errors[]='File size must be excately 2 MB';
+            }
+            
+            if(empty($errors)==true){
+                move_uploaded_file($file_tmp,"./../documents/claimCases/".$this->valValidate($_POST['claimID'])."/".$file_name);
+                echo "Success";
+            }else{
+                print_r($errors);
+            }
             header("Location: ./viewCase");
             exit;
-
-            //upload a file
-            $target_dir = "./";
-            $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-            $uploadOk = 1;
-            $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-            // Check if image file is a actual image or fake image
-            if(isset($_POST["submit"])) {
-              $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-              if($check !== false) {
-                echo "File is an image - " . $check["mime"] . ".";
-                $uploadOk = 1;
-              } else {
-                echo "File is not an image.";
-                $uploadOk = 0;
-              }
-            }
-            // Check if file already exists
-            if (file_exists($target_file)) {
-                echo "Sorry, file already exists.";
-                $uploadOk = 0;
-            }
-                    
          }
    
 }
