@@ -31,23 +31,10 @@ class viewPendingQueue extends Controller{
         $singleCaseDetails=$caseDetails->getCaseDetailsDoctor( $this->valValidate($_GET['id']));  
       
 
-        // $this->model('customer');
-        // $customerMod= new Customer();
-
-        // $this->model('hospital');
-        // $hospitalMod= new Hospital();
-
-        // $this->model('employee');
-        // $empMod= new Employee();
-
-       
+              
 
         if($_GET['action']=="edit"){
-            //$custList=$customerMod->getList();
-            //$hospList=$hospitalMod->getAll();
-           // $medList=$empMod->getEmpByTypeList("MED");
-            //$fagList=$empMod->getEmpByTypeList("FAG");
-            //$caseDetails=$editCase->getDetails($this->valValidate($_GET['id']));
+          
             include './../app/header.php';
             $this->view('doctor/reviewAndComment',['id'=>$this->valValidate($_GET['id']),'singleCaseDetails'=>$singleCaseDetails]);
             include './../app/footer.php';
@@ -57,6 +44,9 @@ class viewPendingQueue extends Controller{
             exit;
         }
     }
+
+//update single case
+    
     public function updateCase(){
         $this->checkPermission("DOC");
         if($_POST['editInsurance']){
