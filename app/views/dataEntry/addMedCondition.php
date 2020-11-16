@@ -19,10 +19,9 @@
           <div class="formInput">
             <label for="type">Type</label><br>
             <select id="type" name="type" required>
-              <option value=a>a</option>
-              <option value=b>b</option>
-              <option value=c>c</option>
-              <option value=d>d</option>
+              <option value=a>Accidental</option>
+              <option value=b>Congenital</option>
+              <option value=c>Genetical</option>
             </select><br>
           </div>
           
