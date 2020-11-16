@@ -10,7 +10,7 @@
 
 
 
-    <form action="./updateCase" method="post" enctype="multipart/form-data">
+    <form action="#" method="post" enctype="multipart/form-data">
             <div class="row">
                 <div class="column">
                     <div class="formInput">
