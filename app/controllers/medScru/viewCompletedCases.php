@@ -8,4 +8,12 @@ class viewCompletedCases extends Controller{
         $this->view('medScru/completedCases');
         include './../app/footer.php';
     }
+    public function reviewCase(){
+        $this->checkPermission("MED");
+        include './../app/header.php';
+        $this->view('medScru/reviewCase');
+        include './../app/footer.php';
+    }
+
+
 }
