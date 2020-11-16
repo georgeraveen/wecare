@@ -56,7 +56,7 @@ input, select{
     height: 100px;
 }
 .table-container{
-    background-color: #CCC96C;
+    background-color: #9D9CB5;
     border-radius: 5px;
     padding: 25px;
 }
@@ -69,10 +69,10 @@ th, td {
     padding: 18px;
 }
 tr{
-    background-color: #a09d4f;
+    background-color: whitesmoke;
 }
 tr:nth-child(even){
-    background-color: #cea36c
+    background-color: #ece5f0
 }
 
 th {

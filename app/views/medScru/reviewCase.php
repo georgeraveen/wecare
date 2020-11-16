@@ -98,24 +98,10 @@
 
             <div class="row">
                 <div class="column">
-                    <div class="formInput">
-                    <label for="medScrut">Assign Doctor</label>
-                    <select id="doc" name="doc" required>
-                    <?php               
-                    foreach ($data['medList'] as $medsRow){
-                    echo "<option value= \"".$medsRow['empID']."\"";
-                    if($medsRow['empID']==$data['caseDetails'][0]['medScruID']) echo "selected=\"selected\"";
-                    echo "> MED".$medsRow['empID']." - ".$medsRow['empFirstName']." ".$medsRow['empLastName']."</option>";
-                    }
-                    ?>
-                    <!-- options -->
-                    </select>
-                    </div>
+                    
+                <!---->
                 </div>
-                <div class="column">
-                    <br>
-                    <input type="submit" id="assign" name="assignDoc" class="btn-submit" value= "Assign Doctor" >
-                </div>
+               
 
                 <div class="column">
                     <div class="formInput">
@@ -139,7 +125,7 @@
                     </div>
                     <div class="column">
                         <div class="formInput">
-                         <input type="submit" id="submit" name="reviewCase" class="btn-submit" value= "Submit" ><br>
+                         <input type="submit" id="submit" name="reviewCase" class="btn-submit" value= "OK" ><br>
                         </div> 
                     </div>
                     
