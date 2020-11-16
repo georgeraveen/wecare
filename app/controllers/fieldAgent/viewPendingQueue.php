@@ -14,13 +14,13 @@ class viewPendingQueue extends Controller{
         // echo "asas";
     }
 
-    // public function review(){
-    //     $this->checkPermission("FAG");
-    //     include './../app/header.php';
-    //     $this->view('fieldAgent/updateCase');
-    //     include './../app/footer.php';
-    //     // echo "asas";
-    // }
+     public function review(){
+         $this->checkPermission("FAG");
+         include './../app/header.php';
+        $this->view('fieldAgent/viewCompletedQueue');
+         include './../app/footer.php';
+         // echo "asas";
+     }
 
 //single case edit
     public function editCase(){
