@@ -86,8 +86,8 @@
                         // Sort in descending order
                         //$b = scandir($dir,1);
 
-                        print_r($a);
-                        print_r($data['singleCaseDetails'][0]['claimID']);
+                        echo "<a href =\"./../documents/claimCases/". $data['singleCaseDetails'][0]['claimID'] . "/". $a[2] ."\">".$a[2]."</a>";
+                        
                         ?>
 
                         </ul>           
