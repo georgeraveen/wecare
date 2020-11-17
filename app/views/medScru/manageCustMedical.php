@@ -7,10 +7,14 @@
     <form>
       <div class="row">
         <div class="column">
-          <select id="custID" name="custID" required>
-            <option>1 - nimal</option>
-            <option>2 - wimal</option>
-          </select><br>
+        <select id="customer" name="customer" required>
+              <!-- <option>Customer ID - Customer Name</option> -->
+              <?php               
+               foreach ($data['custList'] as $customersRow){
+                echo "<option value= \"".$customersRow['custID']."\"> CUST".$customersRow['custID']." - ".$customersRow['custName']."</option>";
+                }
+              ?>  
+            </select><br>
         </div>
         <div class="column">
           <div class="formInput">
