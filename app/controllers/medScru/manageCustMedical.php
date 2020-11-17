@@ -11,6 +11,7 @@ class manageCustMedical extends Controller{
         include './../app/header.php';
         $this->view('medScru/manageCustMedical',['custList'=>$custList,'custBasicList'=>$custBasicList]);
         include './../app/footer.php';
+        //var_dump($custBasicList);
     }
 
   public function viewConditions(){

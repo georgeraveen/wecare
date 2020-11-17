@@ -60,12 +60,12 @@
         <th>Action</th>
       </tr>
       <?php
-      foreach($data as $row){
+      foreach($data['custBasicList'] as $row){
         echo "<tr>"."<td>".$row['custID']."</td>".
               "<td>".$row['custName']."</td>".
               "<td>".$row['custNIC']."</td>".
               "<td>".$row['custContact']."</td>".
-              "<td> <a class=\"deleteBtn\" href=\"./deleteCase?action=delClaimCase&id=".$row['claimID']."\">Delete</a> <a class=\"editBtn\" href=\"./editCase?action=edit&id=".$row['claimID']."\">View</a> "."</td>"."</tr>";
+              "<td><a class=\"viewBtn\" href=\"./../manageCustMedical/viewConditions\">View</a> "."</td>"."</tr>";
       }
       ?>
     </table>
