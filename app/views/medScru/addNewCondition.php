@@ -5,6 +5,16 @@
   <div class="form-container2">
     
     <form action="./back/backend.php" method="post">
+
+    <div class="row">
+        <div class="column">
+          <div class="formInput">
+            <label for="custID">Customer ID</label><br>
+            <input type="text" id="custID" name="customerID" class="input" value="Enter customer ID"><br>
+          </div>
+        </div>
+      </div> 
+
       <div class="row">
         <div class="column">
           <div class="formInput">
@@ -18,10 +28,9 @@
           <div class="formInput">
             <label for="type">Type</label><br>
             <select id="type" name="type" required>
-              <option value=a>a</option>
-              <option value=b>b</option>
-              <option value=c>c</option>
-              <option value=d>d</option>
+              <option value=a>Genetic</option>
+              <option value=b>Congenital</option>
+              <option value=c>Accidential</option>
             </select><br>
           </div>
           
