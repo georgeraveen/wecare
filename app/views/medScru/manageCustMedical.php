@@ -18,14 +18,14 @@
         </div>
         <div class="column">
           <div class="formInput">
-            <input type="submit" id="setCustomer" name="setCustomer" class="btn-submit" value="Select customer"><br>
+            <a id="a" href="./../manageCustMedical/viewConditions" class="btn-submit" >Submit</a>
           </div>
         </div>
       </div>
     </form>
   </div>
   <br><br>
-  <h1>Or search Customer Profile</h1>
+  <h1>Search Customer Profile</h1>
   <h2>Search by</h1>
   <div class="form-container2">
     <form>
