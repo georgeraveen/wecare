@@ -86,7 +86,7 @@
                         // Sort in descending order
                         //$b = scandir($dir,1);
 
-                        echo "<a href =\"./../documents/claimCases/". $data['singleCaseDetails'][0]['claimID'] . "/". $a[2] ."\">".$a[2]."</a>";
+                        echo "<a href =\"./../documents/claimCases/". "5" . "/". $a[2] ."\">".$a[2]."</a>";
                         
                         ?>
 
@@ -104,12 +104,12 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <!-- <div class="row">
             <div class="formInput">
             <input type="submit" id="submit" name="editSingleCaseDetails" class="btn-submit" value= "Submit" ><br>
            
           </div>
-            </div>
+            </div> -->
 
            
 

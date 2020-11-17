@@ -2,7 +2,7 @@
 
 
  $result = array(
-    array("claimID"=>"1","custName"=>"W.M.Jayasinghe", "admitDate"=>"2020-09-04","nameM"=>"C.M.Edirisinghe","name"=>"Lanka"),
+    array("claimID"=>"5","custName"=>"W.M.Jayasinghe", "admitDate"=>"2020-09-04","nameM"=>"C.M.Edirisinghe","name"=>"Lanka"),
     array("claimID"=>"2", "custName"=>"Daya Samarasinghe","admitDate"=>"2020-08-02","nameM"=>"Kapila perera","name"=>"Asiri"),
     array("claimID"=>"3", "custName"=>"George Fernando","admitDate"=>"2020-08-03","nameM"=>"Kapila perera","name"=>"Asiri"),
     array("claimID"=>"4","custName"=>"Thusitha Karunathilake", "admitDate"=>"2020-08-04","nameM"=>"Kapila perera","name"=>"Asiri"),
