@@ -75,15 +75,27 @@
                 <div class="column">
                     <div class="row">
                         <div class="column">
-                        <textarea readonly>DOC1</textarea>
+                        <ul>
+                        <h4>Hospital Documents</h4>
+                        <?php
+                        $dir ="./../documents/claimCases/". $data['singleCaseDetails'][0]['claimID'];
+
+                        // Sort in ascending order - this is default
+                        $a = scandir($dir);
+
+                        // Sort in descending order
+                        //$b = scandir($dir,1);
+
+                        print_r($a);
+                        print_r($data['singleCaseDetails'][0]['claimID']);
+                        ?>
+
+                        </ul>           
+                       
                         </div>
-                        <div class="column">
-                        <input type="view" id="view"  class="editBtn" value= "View File" ><br>
-                        </div>
+                        
                     </div>
-                    <div class="row">
-                        <textarea>DOC2</textarea>
-                    </div>
+                    
                 </div>
                 <div class="column">
                     <div class="formInput">
