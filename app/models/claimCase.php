@@ -58,7 +58,7 @@ class ClaimCase extends Models{
     }
     public function getAllQueue(){
         // var_dump($this->conn);
-        $stmt= $this->conn->prepare("select claimID,dischargeDate,h.name,med.empFirstName as med, fag.empFirstName as fag, doc.empFirstName as doc, caseStatus  from $this->table as i 
+        $stmt= $this->conn->prepare("select claimID,dischargeDate,h.name,med.empFirstName as med, fag.empFirstName as fag, doc.empFirstName as doc, payableAmount, caseStatus  from $this->table as i 
                     inner join hospital as h on i.hospitalID = h.hospitalID 
                     inner join employee as med on i.medScruID = med.empID 
                     inner join employee as fag on i.FieldAgID = fag.empID
