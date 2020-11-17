@@ -9,7 +9,7 @@
 <link rel="stylesheet" href= "./../../css/style.css">
 
 <div class="containers">
-    <h1>Review And Comments</h1><br>
+    <h1>Completed Case Details</h1><br>
 <div class="form-container">
 
 
@@ -19,13 +19,13 @@
                 <div class="column">
                     <div class="formInput">
                         <label for="customer">Customer</label><br>
-                       <input type="text" id="customer" name="custName" class="input" value=<?php echo $data['singleCaseDetails'][0]['custName']?> readonly><br>
+                       <input type="text" id="customer" name="custName" class="input" value="W.M.Jayasinghe" readonly><br>
                     </div>
                 </div>
                 <div class="column">
                     <div class="formInput">
                         <label for="claimID" >Claim ID</label><br>
-                        <input type="text" id="claimID" name="claimID" class="input" value=<?php echo $data['singleCaseDetails'][0]['claimID']?>  readonly><br>
+                        <input type="text" id="claimID" name="claimID" class="input" value="5"  readonly><br>
                     </div>
                 </div>
             </div>
@@ -33,13 +33,13 @@
                 <div class="column">
                     <div class="formInput">
                         <label for="admitDate">Admit Date</label><br>
-                        <input type="date" id="admitDate" name="admitDate" class="input" value=<?php echo $data['singleCaseDetails'][0]['admitDate']?>><br>
+                        <input type="date" id="admitDate" name="admitDate" class="input" value="2020-09-04" readonly><br>
                     </div>
                 </div>
                 <div class="column">
                     <div class="formInput">
                         <label for="ICUfromDate" >ICU from Date</label><br>
-                        <input type="date" id="ICUfromDate" name="ICUfromDate" class="input"  value=<?php echo $data['singleCaseDetails'][0]['icuFromDate']?> ><br>
+                        <input type="date" id="ICUfromDate" name="ICUfromDate" class="input"  value="2020-11-04" readonly><br>
                     </div>
                 </div>
             </div>
@@ -47,13 +47,13 @@
                 <div class="column">
                     <div class="formInput">
                         <label for="dischargeDate" >Discharge Date</label><br>
-                        <input type="date" id="dischargeDate" name="dischargeDate" class="input" value=<?php echo $data['singleCaseDetails'][0]['dischargeDate']?> ><br>
+                        <input type="date" id="dischargeDate" name="dischargeDate" class="input" value="2020-11-07" readonly ><br>
                     </div>
                 </div>
                 <div class="column">
                     <div class="formInput">
                         <label  for="ICUtoDate">ICU to Date</label><br>
-                        <input type="date" id="ICUtoDate" name="ICUtoDate" class="input" value=<?php echo $data['singleCaseDetails'][0]['icuToDate']?>> <br>
+                        <input type="date" id="ICUtoDate" name="ICUtoDate" class="input" value="2020-09-15" readonly> <br>
                     </div>
                 </div>
             </div>
@@ -61,13 +61,13 @@
                 <div class="column">
                     <div class="formInput">
                         <label for="hospital">Hospital</label><br>
-                        <input type="text" id="hospital" name="hospital" class="input" value=<?php echo $data['singleCaseDetails'][0]['name']?> readonly><br>
+                        <input type="text" id="hospital" name="hospital" class="input" value="Lanka" readonly><br>
                     </div>
                 </div>
                 <div class="column">
                     <div class="formInput">
                         <label for="condition" >condition</label><br>
-                        <textarea  id="healthCondition" name="healthCondition" class="commentBox" ><?php echo $data['singleCaseDetails'][0]['healthCondition']?></textarea>
+                        <textarea  id="healthCondition" name="healthCondition" class="commentBox" readonly>asjfskjgkfgj</textarea>
                     </div>
                 </div>
             </div>
@@ -100,7 +100,7 @@
                 <div class="column">
                     <div class="formInput">
                         <label for="doctorComment">Doctor's Comment</label><br>
-                        <textarea  type="text" id="doctorComment" name="doctorComment" class="commentBox" placeholder="comments..."></textarea><br>
+                        <textarea  type="text" id="doctorComment" name="doctorComment" class="commentBox" readonly >comment123</textarea><br>
                     </div>
                 </div>
             </div>
