@@ -15,6 +15,14 @@ class medicalCondition extends Models{
     public function read(){
 
     }
+    public function setValue($PcustomerID,$PmedDate,$PhealthCondition,$Ptype,$Pcomments){
+        // echo $PadmitDate;
+        $this->custID=$PcustomerID;
+        $this->healthCondition= !empty($PhealthCondition) ? $PhealthCondition : null;
+        $this->date=$PmedScrut;
+        $this->type=$Ptype;
+        $this->comments=$Pcomments;    
+    }
     public function create(){
         $stmt= $this->conn->prepare("insert into $this->table (custID,date,type,healthCondition,comments)
                                                             values (:custID, :date, :type, :healthCondition, :comments)");
