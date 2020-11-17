@@ -19,7 +19,7 @@ class medicalCondition extends Models{
         // echo $PadmitDate;
         $this->custID=$PcustomerID;
         $this->healthCondition= !empty($PhealthCondition) ? $PhealthCondition : null;
-        $this->date=$PmedScrut;
+        $this->date=$PmedDate;
         $this->type=$Ptype;
         $this->comments=$Pcomments;    
     }
@@ -29,7 +29,6 @@ class medicalCondition extends Models{
         $stmt -> bindParam(':custID', $this->custID);
         $stmt -> bindParam(':date', $this->date); 
         $stmt -> bindParam(':type', $this->type);
-        $stmt -> bindParam(':icuToDate', $this->icuToDate);
         $stmt -> bindParam(':healthCondition', $this->healthCondition);
         $stmt -> bindParam(':comments', $this->comments);
         $stmt->execute();
