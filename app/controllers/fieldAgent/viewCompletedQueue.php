@@ -15,6 +15,14 @@ class viewCompletedQueue extends Controller{
         // echo "asas";
     }
 
+    public function review(){
+        $this->checkPermission("FAG");
+        include './../app/header.php';
+       $this->view('fieldAgent/viewCompletedCase');
+        include './../app/footer.php';
+        // echo "asas";
+    }
+
    
 }
 
