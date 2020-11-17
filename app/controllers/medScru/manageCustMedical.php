@@ -34,9 +34,7 @@ class manageCustMedical extends Controller{
         if($_POST['addMedCondition']){
             $this->model('medicalCondition');
             $newMedicalCondition = new medicalCondition();
-            $result= $newMedicalCondition->setValue($this->valValidate($_POST['customerID']),$this->valValidate($_POST['medDate']),
-                        $this->valValidate($_POST['type']),$this->valValidate($_POST['healthCondition']),
-                        $this->valValidate($_POST['comments']);
+            $result= $newMedicalCondition->setValue($this->valValidate($_POST['customerID']),$this->valValidate($_POST['medDate']),$this->valValidate($_POST['type']),$this->valValidate($_POST['healthCondition']),$this->valValidate($_POST['comments']));
             $result= $newMedicalCondition->create();
             header("Location: ./index");
             exit;
