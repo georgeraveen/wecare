@@ -53,6 +53,7 @@ class Customer extends Models{
             $randPass=substr(str_shuffle($data), 0, $chars);
             return array($randPass,password_hash( $randPass, PASSWORD_DEFAULT, [ 'cost' => 11 ] ));
         }
+        
 ////////////////////remove password once email done///////////////////
         $stmt= $this->conn->prepare("insert into $this->table (custName,password,hashPass,custAddress,custNIC,custDOB,email,gender,policyID) 
                                                             values (:custName, :password, :hashPassword, :custAddress, :custNIC, :custDOB, :email, :gender, :policyID) ");
@@ -77,6 +78,30 @@ class Customer extends Models{
             $stmt1 -> bindParam(':custContactNo', $n);
             $stmt1->execute();
         }
+        $email_string = 
+                '<html>
+                    <head>
+                        <style>
+                            body {
+                                font-family: "Roboto Slab", serif;
+                                padding-left: 4rem;
+                                padding-right: 4rem;
+                                }
+                        </style>
+                    </head>
+                    <body>
+                        <div class="container">
+                            <center>
+                                <h1>Wecare Customer Portal Registration</h1>
+                                <h4>Username: CUST'.$last_id.'</h4>
+                                <h4>Password: '.$passDetails[0].'</h4>
+                            </center>
+                        </div>
+                    </body>
+                </html>
+                ';
+
+        sendEmail($this->email, $this->custName,$email_string,"Wecare Customer Portal Registration");
 
     }
 }

@@ -10,7 +10,7 @@
 
 
 
-    <form action="./updateCase" method="post">
+    <form action="./updateCase" method="post" enctype="multipart/form-data">
             <div class="row">
                 <div class="column">
                     <div class="formInput">
@@ -35,7 +35,7 @@
                 <div class="column">
                     <div class="formInput">
                         <label for="ICUfromDate" >ICU from Date</label><br>
-                        <input type="date" id="ICUfromDate" name="ICUfromDate" class="input"  value=<?php echo $data['singleCaseDetails'][0]['icuFromDate']?> ><br>
+                        <input type="date" id="ICUfromDate" name="ICUfromDate" class="input"  value="NULL" ><br>
                     </div>
                 </div>
             </div>
@@ -43,13 +43,13 @@
                 <div class="column">
                     <div class="formInput">
                         <label for="dischargeDate" >Discharge Date</label><br>
-                        <input type="date" id="dischargeDate" name="dischargeDate" class="input" value=<?php echo $data['singleCaseDetails'][0]['dischargeDate']?>  ><br>
+                        <input type="date" id="dischargeDate" name="dischargeDate" class="input" value="NULL"  ><br>
                     </div>
                 </div>
                 <div class="column">
                     <div class="formInput">
                         <label  for="ICUtoDate">ICU to Date</label><br>
-                        <input type="date" id="ICUtoDate" name="ICUtoDate" class="input" value=<?php echo $data['singleCaseDetails'][0]['icuToDate']?>  ><br>
+                        <input type="date" id="ICUtoDate" name="ICUtoDate" class="input" value="NULL"  ><br>
                     </div>
                 </div>
             </div>
@@ -63,10 +63,10 @@
             
             </div>
             <div class="row">
-                <div class="column">
+            <div class="column">
                     <div class="formInput">
-                        <label for="documentDIR">Upload Hospital Documents</label>
-                        <input type="file" id="documentDIR" name="documentDIR" multiple accept=".pdf, image/*">
+                        <label for="fileToUpload">Upload Hospital Documents</label>
+                        <input type="file" id="fileToUpload" name="fileToUpload" multiple accept=".pdf, image/*">
                     </div>
                 </div>
                 <div class="column">

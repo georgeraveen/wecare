@@ -31,7 +31,7 @@
             <div class="column">
                 <div class="formInput">
                     <!-- <input type="submit" id="viewMed" name="viewMed" class="btn-submit" value="View"><br> -->
-                    <a class="btn-submit" href="#">View/Update</a>
+                    <a class="btn-submit" href="./viewRoster">View/Update</a>
                 </div>
             </div>
         </div>
