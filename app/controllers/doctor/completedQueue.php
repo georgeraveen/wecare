@@ -13,5 +13,12 @@ class completedQueue extends Controller{
         include './../app/footer.php';
         // echo "asas";
     }
+    public function review(){
+        $this->checkPermission("DOC");
+        include './../app/header.php';
+        $this->view('doctor/viewCompletedCase');
+        include './../app/footer.php';
+        // echo "asas";
+    }
 }
 ?>
