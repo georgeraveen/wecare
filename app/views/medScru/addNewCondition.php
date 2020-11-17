@@ -4,7 +4,7 @@
   <h1>Add New Medical Condition</h1><br>
   <div class="form-container2">
     
-    <form action="./back/backend.php" method="post">
+    <form action="./createNewConditon" method="post">
 
     <div class="row">
         <div class="column">
