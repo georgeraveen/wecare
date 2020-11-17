@@ -37,6 +37,5 @@ class medicalCondition extends Models{
         // echo $this->dataEntryOfficerID . $this->healthCondition;
     }
   
-
 }
 ?>

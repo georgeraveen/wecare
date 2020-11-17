@@ -31,21 +31,18 @@ class manageCustMedical extends Controller{
         $this->checkPermission("MED");
         // echo "hi";
         var_dump($_POST);
-        if($_POST['newInsurance']){
-            $this->model('claimCase');
-            $newClaimCase = new ClaimCase();
-            $this->model('customer');
-            $customerMod= new Customer();
-            $currentPolicy=$customerMod->getPolicy($this->valValidate($_POST['customer']));
-            $result= $newClaimCase->setValue($this->valValidate($_POST['customer']),$this->valValidate($_POST['hospital']),
-                        $this->valValidate($_POST['admitDate']),$this->valValidate($_POST['dischargeDate']),
-                        $this->valValidate($_POST['icuFromDate']),$this->valValidate($_POST['icuToDate']),
-                        $this->valValidate($_POST['medScrut']),$this->valValidate($_POST['fieldAg']),$this->valValidate($_POST['healthCondition']),$currentPolicy[0]['policyID']);
-            $result= $newClaimCase->create();
+        if($_POST['addMedCondition']){
+            $this->model('medicalCondition');
+            $newMedicalCondition = new medicalCondition();
+            $result= $newMedicalCondition->setValue($this->valValidate($_POST['customerID']),$this->valValidate($_POST['medDate']),
+                        $this->valValidate($_POST['type']),$this->valValidate($_POST['healthCondition']),
+                        $this->valValidate($_POST['comments']);
+            $result= $newMedicalCondition->create();
             header("Location: ./index");
             exit;
         }
-    }   
+    }  
+
     public function addNewCondition(){
         $this->checkPermission("MED");
         include './../app/header.php';
