@@ -16,7 +16,10 @@ class medicalCondition extends Models{
     public function __construct(){
         $this->conn=$this->dataConnect();
     }
+    public function read(){
 
+    }
+  
 
 }
 ?>

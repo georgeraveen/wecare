@@ -7,10 +7,12 @@ class manageCustMedical extends Controller{
         $this->model('customer');
         $customerMod= new Customer();
         $custList=$customerMod->getList();
+        $custBasicList=$customerMod->getBasicCustList();
         include './../app/header.php';
-        $this->view('medScru/manageCustMedical',['custList'=>$custList]);
+        $this->view('medScru/manageCustMedical',['custList'=>$custList,'custBasicList'=>$custBasicList]);
         include './../app/footer.php';
     }
+
   public function viewConditions(){
         $this->checkPermission("MED");
         include './../app/header.php';

@@ -59,13 +59,15 @@
         <th>Phone Number</th>
         <th>Action</th>
       </tr>
-      <tr>
-        <td>Mr.Perera</td>
-        <td>001</td>
-        <td>9723797713V</td>
-        <td>07355322</td>
-        <td><a class="button" href="./../manageCustMedical/viewConditions">View</a></td>
-      </tr>
+      <?php
+      foreach($data as $row){
+        echo "<tr>"."<td>".$row['custID']."</td>".
+              "<td>".$row['custName']."</td>".
+              "<td>".$row['custNIC']."</td>".
+              "<td>".$row['custContact']."</td>".
+              "<td> <a class=\"deleteBtn\" href=\"./deleteCase?action=delClaimCase&id=".$row['claimID']."\">Delete</a> <a class=\"editBtn\" href=\"./editCase?action=edit&id=".$row['claimID']."\">View</a> "."</td>"."</tr>";
+      }
+      ?>
     </table>
   </div>
 
