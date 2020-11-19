@@ -86,10 +86,10 @@
                         // Sort in descending order
                         //$b = scandir($dir,1);
 
-                        echo "<a href =\"./../documents/claimCases/". "5" . "/". $a[2] ."\">".$a[2]."</a>";
+                       // echo "<a href =\"./../documents/claimCases/"."5" . "/". $a[2] ."\">".$a[2]."</a>";
                         
                         ?>
-
+<a href=medicalReports>medicalReprts</a>
                         </ul>           
                        
                         </div>
