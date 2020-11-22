@@ -16,5 +16,11 @@ class Roster extends Controller{
         include './../app/footer.php';
         // echo "asas";
     }
+    public function viewRoster(){
+        $this->checkPermission("MGR");
+        include './../app/header.php';
+        $this->view('manager/viewRoster');
+        include './../app/footer.php';
+    }
     
 }

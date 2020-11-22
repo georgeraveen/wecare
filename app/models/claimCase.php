@@ -24,7 +24,7 @@ class ClaimCase extends Models{
     public function __construct(){
         $this->conn=$this->dataConnect();
     }
-    public function setValue($Pcustomer,$Phospital,$PadmitDate,$PdischargeDate,$PicuFromDate,$PicuToDate,$PmedScrut,$PfieldAg,$PhealthCondition){
+    public function setValue($Pcustomer,$Phospital,$PadmitDate,$PdischargeDate,$PicuFromDate,$PicuToDate,$PmedScrut,$PfieldAg,$PhealthCondition,$PpolicyID){
         // echo $PadmitDate;
         $this->admitDate= !empty($PadmitDate) ? $PadmitDate : null;
         $this->dischargeDate =  !empty($PdischargeDate) ? $PdischargeDate : null;
@@ -36,10 +36,11 @@ class ClaimCase extends Models{
         $this->dataEntryOfficerID = $_SESSION["user_id"];
         $this->FieldAgID=$PfieldAg;
         $this->hospital=$Phospital;
+        $this->policyID=$PpolicyID;
     }
     public function create(){
-        $stmt= $this->conn->prepare("insert into $this->table (admitDate,dischargeDate,icuFromDate,icuToDate,healthCondition,custID,medScruID,dataEntryOfficerID,FieldAgID,hospitalID) 
-                                                            values (:admitDate, :dischargeDate, :icuFromDate, :icuToDate, :healthCondition, :custID, :medScruID, :dataEntryOfficerID, :FieldAgID, :hospitalID) ");
+        $stmt= $this->conn->prepare("insert into $this->table (admitDate,dischargeDate,icuFromDate,icuToDate,healthCondition,custID,medScruID,dataEntryOfficerID,FieldAgID,hospitalID,caseStatus,policyID) 
+                                                            values (:admitDate, :dischargeDate, :icuFromDate, :icuToDate, :healthCondition, :custID, :medScruID, :dataEntryOfficerID, :FieldAgID, :hospitalID,'Initial', :policyID ) ");
         $stmt -> bindParam(':admitDate', $this->admitDate );
         $stmt -> bindParam(':dischargeDate', $this->dischargeDate); 
         $stmt -> bindParam(':icuFromDate', $this->icuFromDate );
@@ -50,6 +51,7 @@ class ClaimCase extends Models{
         $stmt -> bindParam(':dataEntryOfficerID', $this->dataEntryOfficerID );
         $stmt -> bindParam(':FieldAgID', $this->FieldAgID );
         $stmt -> bindParam(':hospitalID', $this->hospital);
+        $stmt -> bindParam(':policyID', $this->policyID);
         $stmt->execute();
         $newCaseID=$this->conn->lastInsertID();
         mkdir("./../documents/claimCases/".$newCaseID);
@@ -57,7 +59,7 @@ class ClaimCase extends Models{
     }
     public function getAllQueue(){
         // var_dump($this->conn);
-        $stmt= $this->conn->prepare("select claimID,dischargeDate,h.name,med.empFirstName as med, fag.empFirstName as fag, doc.empFirstName as doc  from $this->table as i 
+        $stmt= $this->conn->prepare("select claimID,dischargeDate,h.name,med.empFirstName as med, fag.empFirstName as fag, doc.empFirstName as doc, payableAmount, caseStatus  from $this->table as i 
                     inner join hospital as h on i.hospitalID = h.hospitalID 
                     inner join employee as med on i.medScruID = med.empID 
                     inner join employee as fag on i.FieldAgID = fag.empID
@@ -96,5 +98,125 @@ class ClaimCase extends Models{
 
         // echo $this->dataEntryOfficerID . $this->healthCondition;
     }
+
+
+
+    //**************************************** FUNCTIONS OF DOCTOR **********************************************
+
+    //Docter-view pending queue
+    public function getDoctorList($doctorID){
+        // var_dump($this->conn);
+        $stmt= $this->conn->prepare("SELECT claimID, customer.custName,admitDate, CONCAT(employee.empFirstName, \" \", employee.empLastName) AS medSrcName , hospital.name
+        FROM claim_case
+        INNER JOIN customer
+            ON claim_case.custID=customer.custID
+        INNER JOIN hospital
+            ON claim_case.hospitalID=hospital.hospitalID
+        INNER JOIN employee
+            ON claim_case.medScruID=employee.empID
+        WHERE claim_case.doctorID = $doctorID;
+                    ");
+        
+        $stmt->execute();
+        return $stmt->fetchAll();
+
+    }
+    
+    //doctor-view from pending queue
+    public function getCaseDetailsDoctor($claimID){
+        $stmt= $this->conn->prepare("SELECT customer.custName,claimID,admitDate,icuFromDate,dischargeDate,icuToDate,hospital.name,healthCondition 
+        FROM claim_case 
+        INNER JOIN hospital 
+            ON claim_case.hospitalID=hospital.hospitalID 
+        INNER JOIN customer
+            ON claim_case.custID=customer.custID 
+        WHERE claimID = $claimID;");
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+    public function setValueDoc($doctorComment,$healthCondition){
+       
+        $this->healthCondition= !empty($healthCondition) ? $healthCondition : null;
+        $this->doctorComment= !empty($doctorComment) ? $doctorComment : null;
+          
+       
+    }
+    public function updateSingleCaseDoc($_id){
+        $stmt= $this->conn->prepare("update $this->table set  healthCondition= :healthCondition, doctorComment= :doctorComment,caseStatus='Doctor confirmed'
+                                                            where claimID = $_id ") ;
+    
+        
+        $stmt -> bindParam(':healthCondition', $this->healthCondition );
+        $stmt -> bindParam(':doctorComment', $this->doctorComment );
+      
+        $stmt->execute();
+    
+        // echo $this->dataEntryOfficerID . $this->healthCondition;
+    }
+
+
+
+//*********************************************** FUNCTIONS OF FIELD AGENT *********************************************
+//get details for table
+
+    public function getFieldAgList($fieldAgID){
+        // var_dump($this->conn);
+        $stmt= $this->conn->prepare("SELECT claimID, customer.custName,admitDate, CONCAT(employee.empFirstName, \" \", employee.empLastName) AS medSrcName , hospital.name ,caseStatus
+        FROM claim_case 
+        INNER JOIN customer
+            ON claim_case.custID=customer.custID 
+        INNER JOIN hospital 
+             ON claim_case.hospitalID=hospital.hospitalID 
+        INNER JOIN employee 
+            ON claim_case.medScruID=employee.empID
+        WHERE claim_case.fieldAgID = $fieldAgID;
+                    ");
+        
+        $stmt->execute();
+        return $stmt->fetchAll();
+
+}
+
+
+
+public function getCaseDetailsFieldAg($claimID){
+    $stmt= $this->conn->prepare("SELECT customer.custName,claimID,admitDate,icuFromDate,dischargeDate,icuToDate,hospital.name 
+    FROM claim_case 
+    INNER JOIN hospital 
+        ON claim_case.hospitalID=hospital.hospitalID 
+    INNER JOIN customer
+        ON claim_case.custID=customer.custID 
+    WHERE claimID = $claimID");
+    $stmt->execute();
+    return $stmt->fetchAll();
+}
+
+public function setValueFag($PclaimID,$PadmitDate,$PdischargeDate,$PicuFromDate,$PicuToDate){
+    // echo $PadmitDate;
+    $this->claimID=$PclaimID;
+    $this->admitDate= !empty($PadmitDate) ? $PadmitDate : null;
+    $this->dischargeDate =  !empty($PdischargeDate) ? $PdischargeDate : null;
+    $this->icuFromDate= !empty($PicuToDate) ? $PicuToDate : null;
+    $this->icuToDate= !empty($PicuToDate) ? $PicuToDate : null;
+      
+   
+}
+//update single case details FAG
+public function updateSingleCaseFag($_id){
+    $stmt= $this->conn->prepare("update $this->table set admitDate= :admitDate, dischargeDate= :dischargeDate, icuFromDate= :icuFromDate, icuToDate= :icuToDate,
+                                                        caseStatus='Processing'
+                                                        where claimID = $_id ") ;
+
+    $stmt -> bindParam(':admitDate', $this->admitDate );
+    $stmt -> bindParam(':dischargeDate', $this->dischargeDate); 
+    $stmt -> bindParam(':icuFromDate', $this->icuFromDate );
+    $stmt -> bindParam(':icuToDate', $this->icuToDate );
+   
+    $stmt->execute();
+
+    // echo $this->dataEntryOfficerID . $this->healthCondition;
+}
+
+
 }
 ?>

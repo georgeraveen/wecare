@@ -27,8 +27,8 @@ class Login extends Controller{
         }
         $mode = $_REQUEST["mode"];
         if ($mode == "login") {
-            $username1 = trim($_POST['username']);
-            $pass = trim($_POST['user_password']);
+            $username1 = trim($this->valValidate($_POST['username']));
+            $pass = trim($this->valValidate($_POST['user_password']));
             $userType = str_split($username1,4)[0];
             
             $username = str_split($username1,4)[1];
@@ -36,8 +36,15 @@ class Login extends Controller{
             if($userType != "CUST"){
                 redirect("./../../customer-portal");
             }
+            if(!is_numeric($username)){
+                $_SESSION["errorType"] = "info";
+                $_SESSION["errorMsg"] = "username or password does not exist.";
+                echo "<script>alert('".$_SESSION['errorMsg']."');</script>";
+                $_SESSION["errorMsg"] = "";
+
+            }
             // echo "here";
-            if ($username == "" || $pass == "") {
+            else if ($username == "" || $pass == "") {
 
                 $_SESSION["errorType"] = "danger";
                 $_SESSION["errorMsg"] = "Enter manadatory fields";
@@ -78,6 +85,9 @@ class Login extends Controller{
                         // echo "fail";
                         $_SESSION["errorType"] = "info";
                         $_SESSION["errorMsg"] = "username or password does not exist.";
+                        echo "<script>alert('".$_SESSION['errorMsg']."');</script>";
+                        $_SESSION["errorMsg"] = "";
+
                     }
                 } catch (Exception $ex) {
 
