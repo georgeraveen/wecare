@@ -51,6 +51,9 @@
 input, select{
     width: 100%;
 }
+.radioInput{
+    width: auto;
+}
 .commentBox{
     width: 100%;
     height: 100px;

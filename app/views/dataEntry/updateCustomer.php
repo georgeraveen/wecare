@@ -1,28 +1,32 @@
 
 <link rel="stylesheet" href= "./../../css/home.css">
 <link rel="stylesheet" href= "./../../css/style.css">
+<link rel="stylesheet" href= "./../../css/dropdown.css">
 <div class="containers">
   <h1>Update Customer Profile</h1><br>
   <div class="form-container2">
     <form >
       <div class="row">
-        <div class="column">
-          <select id="custID" name="custID" required>
-            <option>1 - nimal</option>
-            <option>2 - wimal</option>
-          </select><br>
-        </div>
-        <div class="column">
+      <div class="column">
           <div class="formInput">
-            <input type="submit" id="setCustomer" name="setCustomer" class="btn-submit" value="Select customer"><br>
+            <input class="radioInput" type="radio" id="byID" name="searchBy" value="byID">
+            <label for="byID">Search by ID</label><br>
+            <input class="radioInput" type="radio" id="byName" name="searchBy" checked value="byName">
+            <label for="byName">Search by name</label><br>
           </div>
         </div>
+        <div class="column">
+          <span>Search and select a customer</span>
+          <!-- <input type="text" id="custID" name="custID" required class="input hide" > -->
+          <input type="text" id="custName" name="custName" required class="input"  onkeyup="showResult(this.value)"><br>
+          <div id="livesearch" class="dropdown-content"></div>
+        </div>
+        
       </div>
     </form>
   </div>
   <br><br>
-
-  <div class="form-container">
+<div class="form-container" id="form-container">
     
     <form action="#" method="post">
       <div class="row">
@@ -128,3 +132,4 @@
     </form>
   </div>
 </div>
+<script src="./../../js/searchCustomer.js"></script>

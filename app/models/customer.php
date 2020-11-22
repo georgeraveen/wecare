@@ -54,7 +54,7 @@ class Customer extends Models{
             return array($randPass,password_hash( $randPass, PASSWORD_DEFAULT, [ 'cost' => 11 ] ));
         }
         
-////////////////////remove password once email done///////////////////
+ ////////////////////remove password once email done///////////////////
         $stmt= $this->conn->prepare("insert into $this->table (custName,password,hashPass,custAddress,custNIC,custDOB,email,gender,policyID) 
                                                             values (:custName, :password, :hashPassword, :custAddress, :custNIC, :custDOB, :email, :gender, :policyID) ");
         $stmt -> bindParam(':custName', $this->custName );
@@ -103,6 +103,26 @@ class Customer extends Models{
 
         sendEmail($this->email, $this->custName,$email_string,"Wecare Customer Portal Registration");
 
+    }
+    public function custFilterName($filter){
+        $stmt= $this->conn->prepare("select custID, custName from $this->table where custName
+                            like '%$filter%' ");
+        
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+    public function custFilterID($filter){
+        $stmt= $this->conn->prepare("select custID, custName from $this->table where custID
+                            like '%$filter%' ");
+        
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+    public function getCustByID($id){
+        $stmt= $this->conn->prepare("select custName, custAddress from $this->table where custID=$id");
+        
+        $stmt->execute();
+        return $stmt->fetchAll();
     }
 }
 ?>

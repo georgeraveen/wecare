@@ -28,4 +28,34 @@ class manageCustomer extends Controller{
         $this->view('dataEntry/updateCustomer');
         include './../app/footer.php';
     }
+    
+    public function getCust(){
+        // $va=$_GET["searchKey"];
+        $this->model('customer');
+        $custModal = new Customer();
+        if($this->valValidate($_GET["searchName"])){
+            $result = $custModal->custFilterName($this->valValidate($_GET["searchName"]));
+        }
+        else if($this->valValidate($_GET["searchID"])){
+            $result = $custModal->custFilterID($this->valValidate($_GET["searchID"]));
+        }
+        $output="";
+        foreach($result as $row){
+            $output = $output . "<a onclick=\"selectedCust(this)\" id=\"".$row['custID']."\" >" .$row['custID']." - ". $row['custName'] ."</a>";
+        }
+        echo $output;
+    }
+    public function getCustomer(){
+        $this->model('customer');
+        $custModal = new Customer();
+        if($this->valValidate($_GET["id"])){
+            $result = $custModal->getCustByID($this->valValidate($_GET["id"]));
+            $xml = new SimpleXMLElement('<root/>');
+            // array_walk_recursive($result[0], array ($xml, 'addChild'));
+            array_walk_recursive(array_flip($result[0]), array ($xml, 'addChild'));
+            
+            echo $xml->asXML();
+            // echo $result;
+        }
+    }
 }
