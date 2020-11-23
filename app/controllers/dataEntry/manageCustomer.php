@@ -64,13 +64,17 @@ class manageCustomer extends Controller{
                 $contactStr.=",";
             }
             $result[0]["custContact"]=$contactStr;
+            $custDetails=array_merge($result[0],$custInsure[0]);
+            // $custDetails=$result[0];
+            // var_dump($custInsure);
             $xml = new SimpleXMLElement('<root/>');
             // function intToStr($value,$key){
             //     if(is_int($value)){
             //         $result[0][$key]="aaa";
             //     }
             // }
-            array_walk_recursive(array_flip($result[0]), array ($xml, 'addChild'));
+            // echo var_dump($custDetails);
+            array_walk_recursive(array_flip($custDetails), array ($xml, 'addChild'));
             echo $xml->asXML();
         }
     }

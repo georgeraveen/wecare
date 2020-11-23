@@ -103,8 +103,8 @@
           <div class="formInput">
             <label for="custType">Customer type</label><br>
             <select id="custType" name="custType" required>
-              <option>VIP</option>
-              <option>Regular</option>
+              <option value="VIP">VIP</option>
+              <option value="Regular">Regular</option>
             </select><br>
           </div>
         </div>

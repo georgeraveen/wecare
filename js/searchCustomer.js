@@ -25,29 +25,39 @@ var email = document.getElementById("email");
 var custAddress = document.getElementById("custAddress");
 var policyID = document.getElementById("policyID");
 var custContact = document.getElementById("custContact");
-function selectedCust(custID){
-    // console.log(custID);
-    document.getElementById("custNameBox").value=custID.innerHTML;
+var paymentDate = document.getElementById("paymentDate");
+var custType = document.getElementById("custType");
+function selectedCust(custID) {
+    document.getElementById("custNameBox").value = custID.innerHTML;
 
     var xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            parser = new DOMParser();
-            var text = this.responseText.replace("<?xml version=\"1.0\"?>","");
-            xmlDoc = parser.parseFromString(text,"text/xml");
-            console.log(text);
-            custName.value = xmlDoc.getElementsByTagName("custName")[0].innerHTML;
-            custNIC.value = xmlDoc.getElementsByTagName("custNIC")[0].innerHTML;
-            dob.value = xmlDoc.getElementsByTagName("custDOB")[0].innerHTML;
-            gender.value = xmlDoc.getElementsByTagName("gender")[0].innerHTML;
-            email.value = xmlDoc.getElementsByTagName("email")[0].innerHTML;
-            custAddress.value = xmlDoc.getElementsByTagName("custAddress")[0].innerHTML;
-            policyID.value = xmlDoc.getElementsByTagName("policyID")[0].innerHTML;
-            custContact.value = xmlDoc.getElementsByTagName("custContact")[0].innerHTML;
+    try {
+        xmlhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                parser = new DOMParser();
+                var text = this.responseText.replace("<?xml version=\"1.0\"?>", "");
+                xmlDoc = parser.parseFromString(text, "text/xml");
+                // console.log(text);
+                custIDD.value = custID.id;
+                custName.value = xmlDoc.getElementsByTagName("custName")[0].innerHTML;
+                custNIC.value = xmlDoc.getElementsByTagName("custNIC")[0].innerHTML;
+                dob.value = xmlDoc.getElementsByTagName("custDOB")[0].innerHTML;
+                gender.value = xmlDoc.getElementsByTagName("gender")[0].innerHTML;
+                email.value = xmlDoc.getElementsByTagName("email")[0].innerHTML;
+                custAddress.value = xmlDoc.getElementsByTagName("custAddress")[0].innerHTML;
+                policyID.value = xmlDoc.getElementsByTagName("policyID")[0].innerHTML;
+                custContact.value = xmlDoc.getElementsByTagName("custContact")[0].innerHTML;
+                paymentDate.value = xmlDoc.getElementsByTagName("paymentDate")[0].innerHTML;
+                custType.value = xmlDoc.getElementsByTagName("type")[0].innerHTML;
+            }
         }
+
+
+        xmlhttp.open("GET", "./getCustomer?id=" + custID.id, true);
+        xmlhttp.send();
+    } catch (error) {
+        // console.log(error);
     }
-    xmlhttp.open("GET", "./getCustomer?id=" + custID.id, true);
-    xmlhttp.send();
 }
 
 var dropdowns = document.getElementById("livesearch");
