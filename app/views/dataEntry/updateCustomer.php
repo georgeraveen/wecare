@@ -27,7 +27,7 @@
   <br><br>
 <div class="form-container" id="form-container">
     
-    <form action="#" method="post">
+    <form action="./editCustomer" method="post">
       <div class="row">
         <div class="column">
           <div class="formInput">

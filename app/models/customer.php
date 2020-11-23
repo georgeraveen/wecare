@@ -40,7 +40,8 @@ class Customer extends Models{
         $stmt->execute();
         return $stmt->fetchAll();
     }
-    public function setValue($custName,$custAddress,$custNIC,$custDOB,$email,$gender,$policyID,$custContact,$type,$paymentDate){
+    public function setValue($custID,$custName,$custAddress,$custNIC,$custDOB,$email,$gender,$policyID,$custContact,$type,$paymentDate){
+        $this->custID= $custID;
         $this->custName= $custName;
         $this->custAddress =  $custAddress;
         $this->custNIC= $custNIC;
@@ -148,6 +149,37 @@ class Customer extends Models{
         
         $stmt->execute();
         return $stmt->fetchAll();
+    }
+    public function update(){
+        $stmt= $this->conn->prepare("update $this->table set custName= :custName ,custAddress= :custAddress ,custNIC= :custNIC ,custDOB= :custDOB ,email= :email ,gender= :gender ,policyID= :policyID
+                                                           where custID= :custID ");
+        $stmt -> bindParam(':custID', $this->custID );
+        $stmt -> bindParam(':custName', $this->custName );
+        $stmt -> bindParam(':custAddress', $this->custAddress );
+        $stmt -> bindParam(':custNIC', $this->custNIC );
+        $stmt -> bindParam(':custDOB', $this->custDOB );
+        $stmt -> bindParam(':email', $this->email );
+        $stmt -> bindParam(':gender', $this->gender );
+        $stmt -> bindParam(':policyID', $this->policyID );
+        $stmt->execute();
+        $stmt0= $this->conn->prepare(" DELETE FROM customer_contact WHERE custID = :custID");
+        $stmt0 -> bindParam(':custID', $this->custID );
+        $stmt0->execute();
+        foreach($this->custContact as $number){
+            $stmt1= $this->conn->prepare("insert into customer_contact (custID,custContactNo) values (:custID, :custContactNo) ");
+            $n=(int)$number;
+            // echo $last_id."-".$n;
+            $stmt1 -> bindParam(':custID', $this->custID );
+            $stmt1 -> bindParam(':custContactNo', $n);
+            $stmt1->execute();
+        }
+        $stmt2= $this->conn->prepare("UPDATE cust_insurance  set  type=:type, paymentDate= :paymentDate where custID= :custID ");
+        $stmt2 -> bindParam(':custID', $this->custID );
+        $stmt2 -> bindParam(':type', $this->type );
+        $stmt2 -> bindParam(':paymentDate', $this->paymentDate);
+        // $stmt2 -> bindParam(':status', $this->status );
+        $stmt2->execute();
+
     }
 }
 ?>

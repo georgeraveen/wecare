@@ -16,7 +16,7 @@ class manageCustomer extends Controller{
         if($_POST['newCustomer']){
             $this->model('customer');
             $newCustomer = new Customer();
-            $result= $newCustomer->setValue($this->valValidate($_POST['custName']),$this->valValidate($_POST['custAddress']),
+            $result= $newCustomer->setValue("nullID",$this->valValidate($_POST['custName']),$this->valValidate($_POST['custAddress']),
                     $this->valValidate($_POST['custNIC']),$this->valValidate($_POST['custDOB']),$this->valValidate($_POST['email']),
                     $this->valValidate($_POST['gender']),$this->valValidate($_POST['policyID']),$this->valValidate($_POST['custContact']),
                     $this->valValidate($_POST['custType']),$this->valValidate($_POST['paymentDate']));
@@ -76,6 +76,20 @@ class manageCustomer extends Controller{
             // echo var_dump($custDetails);
             array_walk_recursive(array_flip($custDetails), array ($xml, 'addChild'));
             echo $xml->asXML();
+        }
+    }
+    public function editCustomer(){
+        $this->checkPermission("DEO");
+        if($_POST['editCustomer']){
+            $this->model('customer');
+            $editCustomer = new Customer();
+            $result= $editCustomer->setValue($this->valValidate($_POST['custID']),$this->valValidate($_POST['custName']),$this->valValidate($_POST['custAddress']),
+                    $this->valValidate($_POST['custNIC']),$this->valValidate($_POST['dob']),$this->valValidate($_POST['email']),
+                    $this->valValidate($_POST['gender']),$this->valValidate($_POST['policyID']),$this->valValidate($_POST['custContact']),
+                    $this->valValidate($_POST['custType']),$this->valValidate($_POST['paymentDate']));
+            $result= $editCustomer->update();
+            header("Location: ./updateCustomer");
+            exit;
         }
     }
 }
