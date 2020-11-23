@@ -17,8 +17,7 @@
         </div>
         <div class="column">
           <span>Search and select a customer</span>
-          <!-- <input type="text" id="custID" name="custID" required class="input hide" > -->
-          <input type="text" id="custName" name="custName" required class="input"  onkeyup="showResult(this.value)"><br>
+          <input type="text" id="custNameBox" name="custName" required class="input"  onkeyup="showResult(this.value)"><br>
           <div id="livesearch" class="dropdown-content"></div>
         </div>
         
@@ -55,9 +54,9 @@
           <div class="formInput">
             <label for="gender">Gender</label><br>
             <select id="gender" name="gender" required>
-              <option>Male</option>
-              <option>Female</option>
-              <option>Other</option>
+              <option value="m">Male</option>
+              <option value="f">Female</option>
+              <option value="o">Other</option>
             </select><br>
           </div>
         </div>
@@ -80,17 +79,15 @@
             <label for="policyID">Select insurance policy</label><br>
             <select id="policyID" name="policyID" required>
               <?php               
-                // $meds=$employee->getEmpByTypeList("MED");
-                // // var_dump($meds);
-                // foreach ($meds as $medsRow){
-                //   echo "<option value= \"".$medsRow['empID']."\"> MED".$medsRow['empID']." - ".$medsRow['empFirstName']." ".$medsRow['empLastName']."</option>";
-                // }
+                foreach ($data as $row){
+                  echo "<option value= \"".$row['policyID']."\"> ID".$row['policyID']." - ".$row['date']."</option>";
+                }
               ?>
             </select><br>
           </div>
           <div class="formInput">
-            <label for="custNIC">Customer contact numbers</label><br>
-            <input type="text" id="custNIC" name="custNIC" required class="input" placeholder="Enter numbers with comma seperated"><br>
+            <label for="custContact">Customer contact numbers</label><br>
+            <input type="text" id="custContact" name="custContact" required class="input" placeholder="Enter numbers with comma seperated"><br>
           </div>
         </div>
       </div>
@@ -129,6 +126,8 @@
           </div>
         </div>
       </div>
+        <input type="text" id="custID" name="custID" required class="input hide" >
+
     </form>
   </div>
 </div>

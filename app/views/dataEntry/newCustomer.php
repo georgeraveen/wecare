@@ -56,13 +56,10 @@
           <div class="formInput">
             <label for="policyID">Select insurance policy</label><br>
             <select id="policyID" name="policyID" required>
-              <option value=1>1</option>
               <?php               
-                // $meds=$employee->getEmpByTypeList("MED");
-                // // var_dump($meds);
-                // foreach ($meds as $medsRow){
-                //   echo "<option value= \"".$medsRow['empID']."\"> MED".$medsRow['empID']." - ".$medsRow['empFirstName']." ".$medsRow['empLastName']."</option>";
-                // }
+                foreach ($data as $row){
+                  echo "<option value= \"".$row['policyID']."\"> ID".$row['policyID']." - ".$row['date']."</option>";
+                }
               ?>
             </select><br>
           </div>
@@ -77,15 +74,15 @@
         <div class="column">
           <div class="formInput">
             <label for="paymentDate">Payment date</label><br>
-            <input type="Date" id="paymentDate" name="paymentDate" class="input" value="" required><br>
+            <input type="Date" id="paymentDate" name="paymentDate" class="input" value="<?php echo date("Y-m-d"); ?>" required><br>
           </div>
         </div>
         <div class="column">
           <div class="formInput">
             <label for="custType">Customer type</label><br>
             <select id="custType" name="custType" required>
-              <option>VIP</option>
-              <option>Regular</option>
+              <option value="VIP">VIP</option>
+              <option value="Regular">Regular</option>
             </select><br>
           </div>
         </div>

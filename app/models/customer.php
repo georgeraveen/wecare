@@ -13,6 +13,9 @@ class Customer extends Models{
     private $gender;
     private $policyID;
     private $custContact;
+    private $type;
+    private $paymentDate;
+    private $status;
 
     public function __construct(){
         $this->conn=$this->dataConnect();
@@ -37,7 +40,7 @@ class Customer extends Models{
         $stmt->execute();
         return $stmt->fetchAll();
     }
-    public function setValue($custName,$custAddress,$custNIC,$custDOB,$email,$gender,$policyID,$custContact){
+    public function setValue($custName,$custAddress,$custNIC,$custDOB,$email,$gender,$policyID,$custContact,$type,$paymentDate){
         $this->custName= $custName;
         $this->custAddress =  $custAddress;
         $this->custNIC= $custNIC;
@@ -46,6 +49,9 @@ class Customer extends Models{
         $this->gender= $gender;
         $this->policyID=$policyID;
         $this->custContact= explode(',',$custContact);
+        $this->type=$type;
+        $this->paymentDate=$paymentDate;
+        $this->status="Active";
     }
     public function create(){
         function password_generate($chars){
@@ -54,7 +60,7 @@ class Customer extends Models{
             return array($randPass,password_hash( $randPass, PASSWORD_DEFAULT, [ 'cost' => 11 ] ));
         }
         
- ////////////////////remove password once email done///////////////////
+        ////////////////////remove password once email done///////////////////
         $stmt= $this->conn->prepare("insert into $this->table (custName,password,hashPass,custAddress,custNIC,custDOB,email,gender,policyID) 
                                                             values (:custName, :password, :hashPassword, :custAddress, :custNIC, :custDOB, :email, :gender, :policyID) ");
         $stmt -> bindParam(':custName', $this->custName );
@@ -70,14 +76,21 @@ class Customer extends Models{
         $stmt->execute();
         $last_id = $this->conn->lastInsertId();
         foreach($this->custContact as $number){
-            $stmt1= $this->conn->prepare("insert into customer_contact (custID,custContactNo) 
-                                                            values (:custID, :custContactNo) ");
+            $stmt1= $this->conn->prepare("insert into customer_contact (custID,custContactNo) values (:custID, :custContactNo) ");
             $n=(int)$number;
             // echo $last_id."-".$n;
             $stmt1 -> bindParam(':custID', $last_id );
             $stmt1 -> bindParam(':custContactNo', $n);
             $stmt1->execute();
         }
+        $stmt2= $this->conn->prepare("insert into cust_insurance (custID, startDate, type, paymentDate, status) values (:custID, :startDate, :type, :paymentDate, :status) ");
+        $stmt2 -> bindParam(':custID', $last_id );
+        $stmt2 -> bindParam(':startDate', date("Y-m-d"));
+        $stmt2 -> bindParam(':type', $this->type );
+        $stmt2 -> bindParam(':paymentDate', $this->paymentDate);
+        $stmt2 -> bindParam(':status', $this->status );
+        $stmt2->execute();
+
         $email_string = 
                 '<html>
                     <head>
@@ -119,7 +132,19 @@ class Customer extends Models{
         return $stmt->fetchAll();
     }
     public function getCustByID($id){
-        $stmt= $this->conn->prepare("select custName, custAddress from $this->table where custID=$id");
+        $stmt= $this->conn->prepare("select custID, custName, custAddress, custNIC, custDOB, email, gender, policyID from $this->table where custID=$id");
+        
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+    public function getCustContactByID($id){
+        $stmt= $this->conn->prepare("select *  from customer_contact where custID=$id");
+        
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+    public function getCustInsuranceByID($id){
+        $stmt= $this->conn->prepare("select * from cust_insurance where custID=$id");
         
         $stmt->execute();
         return $stmt->fetchAll();

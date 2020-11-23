@@ -4,10 +4,12 @@ class manageCustomer extends Controller{
     
     public function index(){
         $this->checkPermission("DEO");
+        $this->model('insurePolicy');
+        $insurePolicy = new InsurePolicy();
+        $policyList = $insurePolicy->getAll();
         include './../app/header.php';
-        $this->view('dataEntry/newCustomer');
+        $this->view('dataEntry/newCustomer',$policyList);
         include './../app/footer.php';
-        // echo "asas";
     }
     public function createCustomer(){
         $this->checkPermission("DEO");
@@ -16,7 +18,8 @@ class manageCustomer extends Controller{
             $newCustomer = new Customer();
             $result= $newCustomer->setValue($this->valValidate($_POST['custName']),$this->valValidate($_POST['custAddress']),
                     $this->valValidate($_POST['custNIC']),$this->valValidate($_POST['custDOB']),$this->valValidate($_POST['email']),
-                    $this->valValidate($_POST['gender']),$this->valValidate($_POST['policyID']),$this->valValidate($_POST['custContact']));
+                    $this->valValidate($_POST['gender']),$this->valValidate($_POST['policyID']),$this->valValidate($_POST['custContact']),
+                    $this->valValidate($_POST['custType']),$this->valValidate($_POST['paymentDate']));
             $result= $newCustomer->create();
             header("Location: ./index");
             exit;
@@ -24,8 +27,11 @@ class manageCustomer extends Controller{
     }
     public function updateCustomer(){
         $this->checkPermission("DEO");
+        $this->model('insurePolicy');
+        $insurePolicy = new InsurePolicy();
+        $policyList = $insurePolicy->getAll();
         include './../app/header.php';
-        $this->view('dataEntry/updateCustomer');
+        $this->view('dataEntry/updateCustomer',$policyList);
         include './../app/footer.php';
     }
     
@@ -50,12 +56,22 @@ class manageCustomer extends Controller{
         $custModal = new Customer();
         if($this->valValidate($_GET["id"])){
             $result = $custModal->getCustByID($this->valValidate($_GET["id"]));
+            $custContact = $custModal->getCustContactByID($this->valValidate($_GET["id"]));
+            $custInsure = $custModal->getCustInsuranceByID($this->valValidate($_GET["id"]));
+            $contactStr="";
+            foreach($custContact as $row){
+                $contactStr.=$row["custContactNo"];
+                $contactStr.=",";
+            }
+            $result[0]["custContact"]=$contactStr;
             $xml = new SimpleXMLElement('<root/>');
-            // array_walk_recursive($result[0], array ($xml, 'addChild'));
+            // function intToStr($value,$key){
+            //     if(is_int($value)){
+            //         $result[0][$key]="aaa";
+            //     }
+            // }
             array_walk_recursive(array_flip($result[0]), array ($xml, 'addChild'));
-            
             echo $xml->asXML();
-            // echo $result;
         }
     }
 }
