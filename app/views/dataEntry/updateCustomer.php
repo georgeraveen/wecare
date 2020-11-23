@@ -114,8 +114,14 @@
           </div>
         </div>
       </div>
+      <input type="text" id="custID" name="custID" required class="input hide" >
+
+    </form>
+    <form method="post" action="./resetPass">
+    <input type="text" id="custID1" name="custID" required class="input hide" >
+
       <div class="row">
-      <div class="column">
+        <div class="column">
           <div class="formInput">
             <input type="submit" id="resetCustomer" name="resetCustomer" class="btn-submit" value="Password Reset"><br>
           </div>
@@ -126,9 +132,7 @@
           </div>
         </div>
       </div>
-        <input type="text" id="custID" name="custID" required class="input hide" >
-
-    </form>
+    </form>    
   </div>
 </div>
 <script src="./../../js/searchCustomer.js"></script>

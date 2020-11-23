@@ -17,6 +17,7 @@ function showResult(str) {
     xmlhttp.send();
 }
 var custIDD = document.getElementById("custID");
+var custIDD1 = document.getElementById("custID1");
 var custName = document.getElementById("custName");
 var custNIC = document.getElementById("custNIC");
 var dob = document.getElementById("dob");
@@ -39,6 +40,7 @@ function selectedCust(custID) {
                 xmlDoc = parser.parseFromString(text, "text/xml");
                 // console.log(text);
                 custIDD.value = custID.id;
+                custIDD1.value = custID.id;
                 custName.value = xmlDoc.getElementsByTagName("custName")[0].innerHTML;
                 custNIC.value = xmlDoc.getElementsByTagName("custNIC")[0].innerHTML;
                 dob.value = xmlDoc.getElementsByTagName("custDOB")[0].innerHTML;

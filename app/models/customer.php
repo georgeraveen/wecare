@@ -55,17 +55,12 @@ class Customer extends Models{
         $this->status="Active";
     }
     public function create(){
-        function password_generate($chars){
-            $data = '1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcefghijklmnopqrstuvwxyz';
-            $randPass=substr(str_shuffle($data), 0, $chars);
-            return array($randPass,password_hash( $randPass, PASSWORD_DEFAULT, [ 'cost' => 11 ] ));
-        }
         
         ////////////////////remove password once email done///////////////////
         $stmt= $this->conn->prepare("insert into $this->table (custName,password,hashPass,custAddress,custNIC,custDOB,email,gender,policyID) 
                                                             values (:custName, :password, :hashPassword, :custAddress, :custNIC, :custDOB, :email, :gender, :policyID) ");
         $stmt -> bindParam(':custName', $this->custName );
-        $passDetails=password_generate(3);
+        $passDetails=$this->password_generator();
         $stmt -> bindParam(':password',  $passDetails[0]);
         $stmt -> bindParam(':hashPassword',  $passDetails[1]);
         $stmt -> bindParam(':custAddress', $this->custAddress );
@@ -179,6 +174,42 @@ class Customer extends Models{
         $stmt2 -> bindParam(':paymentDate', $this->paymentDate);
         // $stmt2 -> bindParam(':status', $this->status );
         $stmt2->execute();
+
+    }
+    public function resetPassword($custID){
+        $passDetails=$this->password_generator();
+        $stmt = $this->conn->prepare("UPDATE $this->table set password= :password ,hashPass= :hashPassword where custID= :custID ");
+        $stmt -> bindParam(':password',  $passDetails[0]);
+        $stmt -> bindParam(':hashPassword',  $passDetails[1]);
+        $stmt -> bindParam(':custID', $custID );
+        var_dump($passDetails);
+        var_dump($stmt);
+
+        $stmt->execute();
+        $email_string = 
+                '<html>
+                    <head>
+                        <style>
+                            body {
+                                font-family: "Roboto Slab", serif;
+                                padding-left: 4rem;
+                                padding-right: 4rem;
+                                }
+                        </style>
+                    </head>
+                    <body>
+                        <div class="container">
+                            <center>
+                                <h1>Wecare Customer Portal Account Recovery</h1>
+                                <h4>Username: CUST'.$custID.'</h4>
+                                <h4>Password: '.$passDetails[0].'</h4>
+                            </center>
+                        </div>
+                    </body>
+                </html>
+                ';
+
+        sendEmail($this->email, $this->custName,$email_string,"Wecare Customer Portal Account Recovery");
 
     }
 }

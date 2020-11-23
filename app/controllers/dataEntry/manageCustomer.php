@@ -92,4 +92,14 @@ class manageCustomer extends Controller{
             exit;
         }
     }
+    public function resetPass(){
+        $this->checkPermission("DEO");
+        if($_POST['resetCustomer']){
+            $this->model('customer');
+            $editCustomer = new Customer();
+            $result= $editCustomer->resetPassword($this->valValidate($_POST['custID']));
+        }
+        header("Location: ./updateCustomer");
+
+    }
 }
