@@ -35,6 +35,13 @@ class Customer extends Models{
         $stmt->execute();
         return $stmt->fetchAll();
     }
+    public function getBasicCustList(){
+        $stmt= $this->conn->prepare("select i.custID as custID, i.custName custName, i.custNIC as custNIC, c.custContactNo as custContact from $this->table as i
+                                    inner join customer_contact as c on i.custID=c.custID");
+        // var_dump($this->conn);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
     public function getPolicy($id){
         $stmt= $this->conn->prepare("select policyID from $this->table where custID = $id");
         $stmt->execute();
