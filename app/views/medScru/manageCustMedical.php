@@ -7,21 +7,25 @@
     <form>
       <div class="row">
         <div class="column">
-          <select id="custID" name="custID" required>
-            <option>1 - nimal</option>
-            <option>2 - wimal</option>
-          </select><br>
+        <select id="customer" name="customer" required>
+              <!-- <option>Customer ID - Customer Name</option> -->
+              <?php               
+               foreach ($data['custList'] as $customersRow){
+                echo "<option value= \"".$customersRow['custID']."\"> CUST".$customersRow['custID']." - ".$customersRow['custName']."</option>";
+                }
+              ?>  
+            </select><br>
         </div>
         <div class="column">
           <div class="formInput">
-            <input type="submit" id="setCustomer" name="setCustomer" class="btn-submit" value="Select customer"><br>
+            <a id="a" href="./../manageCustMedical/viewConditions" class="btn-submit" >Submit</a>
           </div>
         </div>
       </div>
     </form>
   </div>
   <br><br>
-  <h1>Or search Customer Profile</h1>
+  <h1>Search Customer Profile</h1>
   <h2>Search by</h1>
   <div class="form-container2">
     <form>
@@ -55,13 +59,15 @@
         <th>Phone Number</th>
         <th>Action</th>
       </tr>
-      <tr>
-        <td>Mr.Perera</td>
-        <td>001</td>
-        <td>9723797713V</td>
-        <td>07355322</td>
-        <td><a class="button" href="./../manageCustMedical/viewConditions">View</a></td>
-      </tr>
+      <?php
+      foreach($data['custBasicList'] as $row){
+        echo "<tr>"."<td>".$row['custID']."</td>".
+              "<td>".$row['custName']."</td>".
+              "<td>".$row['custNIC']."</td>".
+              "<td>".$row['custContact']."</td>".
+              "<td><a class=\"viewBtn\" href=\"./../manageCustMedical/viewConditions\">View</a> "."</td>"."</tr>";
+      }
+      ?>
     </table>
   </div>
 

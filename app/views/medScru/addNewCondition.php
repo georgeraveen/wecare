@@ -1,10 +1,20 @@
 <link rel="stylesheet" href= "./../../css/home.css">
 <link rel="stylesheet" href= "./../../css/style.css">
 <div class="containers">
-  <h1>Add New Medical Condition for "*cust*" </h1><br>
+  <h1>Add New Medical Condition</h1><br>
   <div class="form-container2">
     
-    <form action="./back/backend.php" method="post">
+    <form action="./createNewConditon" method="post">
+
+    <div class="row">
+        <div class="column">
+          <div class="formInput">
+            <label for="custID">Customer ID</label><br>
+            <input type="text" id="custID" name="customerID" class="input" value="Enter customer ID"><br>
+          </div>
+        </div>
+      </div> 
+
       <div class="row">
         <div class="column">
           <div class="formInput">
@@ -18,9 +28,9 @@
           <div class="formInput">
             <label for="type">Type</label><br>
             <select id="type" name="type" required>
-              <option value=a>Genetic</option>
-              <option value=b>Congenital</option>
-              <option value=c>Accidential</option>
+              <option value=Genetic>Genetic</option>
+              <option value=Congenital>Congenital</option>
+              <option value=Accidential>Accidential</option>
             </select><br>
           </div>
           
