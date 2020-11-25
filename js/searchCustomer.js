@@ -16,6 +16,7 @@ function showResult(str) {
     xmlhttp.open("GET", "./getCust?" + searchby + "=" + str, true);
     xmlhttp.send();
 }
+///////////manage customer- DEO
 var custIDD = document.getElementById("custID");
 var custIDD1 = document.getElementById("custID1");
 var custName = document.getElementById("custName");
@@ -66,5 +67,33 @@ var dropdowns = document.getElementById("livesearch");
 window.onclick = function (event) {
     if (event.target != dropdowns) {
         dropdowns.style.display = "none";
+    }
+}
+
+///////////manage med cond-DEO
+function selectedCustMed(custID) {
+    document.getElementById("custNameBox").value = custID.innerHTML;
+    document.getElementById("addMedDiv").style.display = "block";
+
+    var medDate = document.getElementById("medDate");
+    var type = document.getElementById("type");
+    var healthCondition = document.getElementById("healthCondition");
+    var comments = document.getElementById("comments");
+
+    var xmlhttp = new XMLHttpRequest();
+    try {
+        xmlhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                parser = new DOMParser();
+                var text = this.responseText.replace("<?xml version=\"1.0\"?>", "");
+                xmlDoc = parser.parseFromString(text, "text/xml");
+                console.log(xmlDoc  );
+            }
+        }
+        xmlhttp.open("GET", "./getMedCondition?id=" + custID.id, true);
+        xmlhttp.send();
+    }
+    catch (error) {
+
     }
 }

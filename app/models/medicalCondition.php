@@ -35,6 +35,11 @@ class medicalCondition extends Models{
 
         // echo $this->dataEntryOfficerID . $this->healthCondition;
     }
-  
+    public function getMedByID($id){
+        $stmt= $this->conn->prepare("select * from $this->table where custID=$id");
+        
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
 }
 ?>
