@@ -9,16 +9,21 @@ class manageMedCondition extends Controller{
         include './../app/footer.php';
         // echo "asas";
     }
-    public function addMedCond(){
-        $this->checkPermission("DEO");
-        include './../app/header.php';
-        $this->view('dataEntry/addMedCondition');
-        include './../app/footer.php';
-    }
+    // public function addMedCond(){
+    //     $this->checkPermission("DEO");
+    //     include './../app/header.php';
+    //     $this->view('dataEntry/addMedCondition');
+    //     include './../app/footer.php';
+    // }
     public function viewMedCond(){
         $this->checkPermission("DEO");
         include './../app/header.php';
-        $this->view('dataEntry/viewMedCondition');
+        $this->model('medicalCondition');
+        $medModal = new medicalCondition();
+        if($this->valValidate($_POST["custID1"])){
+            $result = $medModal->getMedByID($this->valValidate($_POST["custID1"]));
+            $this->view('dataEntry/viewMedCondition',$result);
+        }
         include './../app/footer.php';
     }
     public function getCust(){
@@ -38,7 +43,7 @@ class manageMedCondition extends Controller{
         }
         echo $output;
     }
-    public function getMedCondition(){
+    public function getMedConditionXML(){
         $this->checkPermission("DEO");
         $this->model('medicalCondition');
         $medModal = new medicalCondition();
@@ -58,6 +63,33 @@ class manageMedCondition extends Controller{
             $result= $newMedicalCondition->create();
             header("Location: ./index");
             exit;
+        }
+    }  
+    public function updateConditon(){
+        $this->checkPermission("DEO");
+        if($_POST['editMedCondition']){
+            $this->model('medicalCondition');
+            $MedicalCondition = new medicalCondition();
+            $result= $MedicalCondition->setValue($this->valValidate($_POST['custID']),$this->valValidate($_POST['medDate']),$this->valValidate($_POST['type']),$this->valValidate($_POST['healthCondition']),$this->valValidate($_POST['comments']));
+            $result= $MedicalCondition->update($this->valValidate($_POST['medID']));
+            header("Location: ./index");
+            exit;
+        }
+    }
+    public function deleteCondition(){
+        $this->checkPermission("DEO");
+        if($_GET['action']=="delMed"){
+            $this->model('medicalCondition');
+            $MedicalCondition = new medicalCondition();
+            $result= $MedicalCondition->deleteMed($this->valValidate($_GET['id']));
+            if($result){
+                echo "Delete succeeded";
+            }
+            else{
+                echo "Delete failed";
+            }
+            sleep(1);
+            header("Location: ./index") ;
         }
     }  
 }

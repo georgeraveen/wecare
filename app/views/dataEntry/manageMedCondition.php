@@ -5,7 +5,7 @@
 <div class="containers">
   <h1>Manage Medical Condition</h1><br>
   <div class="form-container2">
-    <form >
+    <form action="./viewMedCond" method="post">
       <div class="row">
         <div class="column">
           <div class="formInput">
@@ -30,9 +30,10 @@
             <a class="btn-submit" onClick="viewAdd()" >Add New</a>
           </div>
         </div>
+        <input type="text" id="custID1" name="custID1" required class="input hide" >
         <div class="column">
           <div class="formInput">
-            <a class="btn-submit" href="./viewMedCond">View/Update</a>
+            <input type="submit" id="viewMedCondition" name="viewMedCondition" class="btn-submit" value="View/Update"><br>
           </div>
         </div>
       </div>

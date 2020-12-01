@@ -41,5 +41,19 @@ class medicalCondition extends Models{
         $stmt->execute();
         return $stmt->fetchAll();
     }
+    public function update($id){
+        $stmt= $this->conn->prepare("UPDATE $this->table SET date= :date, type=  :type, 
+                        healthCondition= :healthCondition, comments= :comments WHERE recordID= $id");
+        $stmt -> bindParam(':date', $this->date); 
+        $stmt -> bindParam(':type', $this->type);
+        $stmt -> bindParam(':healthCondition', $this->healthCondition);
+        $stmt -> bindParam(':comments', $this->comments);
+        $stmt->execute();
+    }
+    public function deleteMed($_id){
+        $stmt= $this->conn->prepare("delete from $this->table where recordID= $_id");
+        return $stmt->execute();
+        
+    }
 }
 ?>

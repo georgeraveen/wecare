@@ -78,7 +78,8 @@ window.onclick = function (event) {
 function selectedCustMed(custID) {
     document.getElementById("custNameBox").value = custID.innerHTML;
     document.getElementById("custID").value=custID.id;
-
+    document.getElementById("custID1").value=custID.id;
+    //////////////////////////no need/////////////////////////////////////////////
     // var medDate = document.getElementById("medDate");
     // var type = document.getElementById("type");
     // var healthCondition = document.getElementById("healthCondition");
@@ -94,7 +95,7 @@ function selectedCustMed(custID) {
     //             console.log(xmlDoc);
     //         }
     //     }
-    //     xmlhttp.open("GET", "./getMedCondition?id=" + custID.id, true);
+    //     xmlhttp.open("GET", "./getMedConditionXML?id=" + custID.id, true);
     //     xmlhttp.send();
     // }
     // catch (error) {
