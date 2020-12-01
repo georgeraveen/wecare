@@ -15,7 +15,7 @@ class medicalCondition extends Models{
     public function read(){
 
     }
-    public function setValue($PcustomerID,$PmedDate,$PhealthCondition,$Ptype,$Pcomments){
+    public function setValue($PcustomerID,$PmedDate,$Ptype,$PhealthCondition,$Pcomments){
         // echo $PadmitDate;
         $this->custID=$PcustomerID;
         $this->healthCondition= !empty($PhealthCondition) ? $PhealthCondition : null;

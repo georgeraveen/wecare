@@ -63,6 +63,9 @@ class manageCustomer extends Controller{
                 $contactStr.=$row["custContactNo"];
                 $contactStr.=",";
             }
+            // echo var_dump($result);
+            // echo var_dump($custContact);
+            // echo var_dump($custInsure);
             $result[0]["custContact"]=$contactStr;
             $custDetails=array_merge($result[0],$custInsure[0]);
             // $custDetails=$result[0];
@@ -73,7 +76,6 @@ class manageCustomer extends Controller{
             //         $result[0][$key]="aaa";
             //     }
             // }
-            // echo var_dump($custDetails);
             array_walk_recursive(array_flip($custDetails), array ($xml, 'addChild'));
             echo $xml->asXML();
         }

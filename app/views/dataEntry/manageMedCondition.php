@@ -27,7 +27,7 @@
         </div>
         <div class="column">
           <div class="formInput">
-            <a class="btn-submit" onClick="" href="#">Add New</a>
+            <a class="btn-submit" onClick="viewAdd()" >Add New</a>
           </div>
         </div>
         <div class="column">
@@ -42,10 +42,11 @@
 </div>
 
 <div id = "addMedDiv" class="containers addMedDiv">
-  <h1>Add New Medical Condition</h1><br>
   <div class="form-container2">
+  <h1>Add New Medical Condition</h1><br>
     
-    <form action="" method="post">
+    <form action="./createNewConditon" method="post">
+    <input type="text" id="custID" name="custID" required class="input hide" >
       <div class="row">
         <div class="column">
           <div class="formInput">
@@ -59,9 +60,9 @@
           <div class="formInput">
             <label for="type">Type</label><br>
             <select id="type" name="type" required>
-              <option value=a>Accidental</option>
-              <option value=b>Congenital</option>
-              <option value=c>Genetical</option>
+              <option value="Accidental">Accidental</option>
+              <option value="Congenital">Congenital</option>
+              <option value="Genetical">Genetical</option>
             </select><br>
           </div>
           

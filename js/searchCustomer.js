@@ -17,19 +17,21 @@ function showResult(str) {
     xmlhttp.send();
 }
 ///////////manage customer- DEO
-var custIDD = document.getElementById("custID");
-var custIDD1 = document.getElementById("custID1");
-var custName = document.getElementById("custName");
-var custNIC = document.getElementById("custNIC");
-var dob = document.getElementById("dob");
-var gender = document.getElementById("gender");
-var email = document.getElementById("email");
-var custAddress = document.getElementById("custAddress");
-var policyID = document.getElementById("policyID");
-var custContact = document.getElementById("custContact");
-var paymentDate = document.getElementById("paymentDate");
-var custType = document.getElementById("custType");
+
 function selectedCust(custID) {
+    var custIDD = document.getElementById("custID");
+    var custIDD1 = document.getElementById("custID1");
+    var custName = document.getElementById("custName");
+    var custNIC = document.getElementById("custNIC");
+    var dob = document.getElementById("dob");
+    var gender = document.getElementById("gender");
+    var email = document.getElementById("email");
+    var custAddress = document.getElementById("custAddress");
+    var policyID = document.getElementById("policyID");
+    var custContact = document.getElementById("custContact");
+    var paymentDate = document.getElementById("paymentDate");
+    var custType = document.getElementById("custType");
+
     document.getElementById("custNameBox").value = custID.innerHTML;
 
     var xmlhttp = new XMLHttpRequest();
@@ -40,6 +42,8 @@ function selectedCust(custID) {
                 var text = this.responseText.replace("<?xml version=\"1.0\"?>", "");
                 xmlDoc = parser.parseFromString(text, "text/xml");
                 // console.log(text);
+                // document.getElementById("err").innerHTML = text;
+
                 custIDD.value = custID.id;
                 custIDD1.value = custID.id;
                 custName.value = xmlDoc.getElementsByTagName("custName")[0].innerHTML;
@@ -73,27 +77,30 @@ window.onclick = function (event) {
 ///////////manage med cond-DEO
 function selectedCustMed(custID) {
     document.getElementById("custNameBox").value = custID.innerHTML;
+    document.getElementById("custID").value=custID.id;
+
+    // var medDate = document.getElementById("medDate");
+    // var type = document.getElementById("type");
+    // var healthCondition = document.getElementById("healthCondition");
+    // var comments = document.getElementById("comments");
+
+    // var xmlhttp = new XMLHttpRequest();
+    // try {
+    //     xmlhttp.onreadystatechange = function () {
+    //         if (this.readyState == 4 && this.status == 200) {
+    //             parser = new DOMParser();
+    //             var text = this.responseText.replace("<?xml version=\"1.0\"?>", "");
+    //             xmlDoc = parser.parseFromString(text, "text/xml");
+    //             console.log(xmlDoc);
+    //         }
+    //     }
+    //     xmlhttp.open("GET", "./getMedCondition?id=" + custID.id, true);
+    //     xmlhttp.send();
+    // }
+    // catch (error) {
+
+    // }
+}
+function viewAdd() {
     document.getElementById("addMedDiv").style.display = "block";
-
-    var medDate = document.getElementById("medDate");
-    var type = document.getElementById("type");
-    var healthCondition = document.getElementById("healthCondition");
-    var comments = document.getElementById("comments");
-
-    var xmlhttp = new XMLHttpRequest();
-    try {
-        xmlhttp.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                parser = new DOMParser();
-                var text = this.responseText.replace("<?xml version=\"1.0\"?>", "");
-                xmlDoc = parser.parseFromString(text, "text/xml");
-                console.log(xmlDoc  );
-            }
-        }
-        xmlhttp.open("GET", "./getMedCondition?id=" + custID.id, true);
-        xmlhttp.send();
-    }
-    catch (error) {
-
-    }
 }

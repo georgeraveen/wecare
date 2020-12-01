@@ -23,6 +23,7 @@ class manageMedCondition extends Controller{
     }
     public function getCust(){
         // $va=$_GET["searchKey"];
+        $this->checkPermission("DEO");
         $this->model('customer');
         $custModal = new Customer();
         if($this->valValidate($_GET["searchName"])){
@@ -38,6 +39,7 @@ class manageMedCondition extends Controller{
         echo $output;
     }
     public function getMedCondition(){
+        $this->checkPermission("DEO");
         $this->model('medicalCondition');
         $medModal = new medicalCondition();
         if($this->valValidate($_GET["id"])){
@@ -47,4 +49,15 @@ class manageMedCondition extends Controller{
             echo $xml->asXML();
         }
     }
+    public function createNewConditon(){
+        $this->checkPermission("DEO");
+        if($_POST['addMedCondition']){
+            $this->model('medicalCondition');
+            $newMedicalCondition = new medicalCondition();
+            $result= $newMedicalCondition->setValue($this->valValidate($_POST['custID']),$this->valValidate($_POST['medDate']),$this->valValidate($_POST['type']),$this->valValidate($_POST['healthCondition']),$this->valValidate($_POST['comments']));
+            $result= $newMedicalCondition->create();
+            header("Location: ./index");
+            exit;
+        }
+    }  
 }
