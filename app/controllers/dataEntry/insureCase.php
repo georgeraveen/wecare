@@ -47,11 +47,16 @@ class insureCase extends Controller{
         $this->checkPermission("DEO");
         $this->model('claimCase');
         $claimCase= new ClaimCase();
+        if(is_int((int)$_GET['page'])){
+            $queue=$claimCase->getAllQueueLimit((int)$_GET['page']);
+    }
+        else{
+            $queue=$claimCase->getAllQueueLimit(0);
+        }
         // var_dump($claimCase);
-        $queue=$claimCase->getAllQueue();
-
+        $pagination= $claimCase->getAllCount()[0]['cnt'];
         include './../app/header.php';
-        $this->view('dataEntry/viewCases',$queue);
+        $this->view('dataEntry/viewCases',["queue"=>$queue,"pagination"=>$pagination]);
         include './../app/footer.php';
     }
     public function editCase(){

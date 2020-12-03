@@ -59,13 +59,32 @@ class ClaimCase extends Models{
     }
     public function getAllQueue(){
         // var_dump($this->conn);
-        $stmt= $this->conn->prepare("select claimID,dischargeDate,h.name,med.empFirstName as med, fag.empFirstName as fag, doc.empFirstName as doc, payableAmount, caseStatus  from $this->table as i 
+        $stmt= $this->conn->prepare("SELECT claimID,dischargeDate,h.name,med.empFirstName as med, fag.empFirstName as fag, doc.empFirstName as doc, payableAmount, caseStatus  from $this->table as i 
                     inner join hospital as h on i.hospitalID = h.hospitalID 
                     inner join employee as med on i.medScruID = med.empID 
                     inner join employee as fag on i.FieldAgID = fag.empID
                     left join employee as doc on i.doctorID = doc.empID
-                    ");
+                    order by claimID DESC");
         
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+    public function getAllQueueLimit($page){
+        $limit=3;
+        $start=$page* $limit;
+        $stmt= $this->conn->prepare("SELECT claimID,dischargeDate,h.name,med.empFirstName as med, fag.empFirstName as fag, doc.empFirstName as doc, payableAmount, caseStatus  from $this->table as i 
+                    inner join hospital as h on i.hospitalID = h.hospitalID 
+                    inner join employee as med on i.medScruID = med.empID 
+                    inner join employee as fag on i.FieldAgID = fag.empID
+                    left join employee as doc on i.doctorID = doc.empID
+                    order by claimID DESC LIMIT $start, $limit ");
+        // var_dump($stmt);
+        
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+    public function getAllCount(){
+        $stmt= $this->conn->prepare("select count(claimID) AS cnt from $this->table");
         $stmt->execute();
         return $stmt->fetchAll();
     }

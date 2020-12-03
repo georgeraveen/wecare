@@ -1,6 +1,7 @@
 
 <link rel="stylesheet" href= "./../../css/home.css">
 <link rel="stylesheet" href= "./../../css/style.css">
+<link rel="stylesheet" href= "./../../css/pagination.css">
 <div class="containers">
   <h1>View Insurance Claim Cases</h1><br>
   <div class="table-container">
@@ -16,7 +17,7 @@
         <th>Action</th>
       </tr>
       <?php
-      foreach($data as $row){
+      foreach($data['queue'] as $row){
         echo "<tr>"."<td>".$row['claimID']."</td>".
               "<td>".$row['dischargeDate']."</td>".
               "<td>".$row['caseStatus']."</td>".
@@ -29,6 +30,24 @@
 
       ?>
     </table>
-    
+    <div class="pagination">
+      <?php
+      $page= is_int((int)$_GET['page']) ? (int)$_GET['page'] :0;
+       if(($page) != 0){
+         echo "<a href=\"./viewCase?page=".($page-1)."\">&laquo;</a>";
+       }
+       
+        $pageCount= ceil((((int)$data['pagination'])/3));
+        // echo $pageCount;
+        for($i=0; $i< $pageCount; $i++){
+          $active = ($i==$page) ? "class=\"active\"":"" ;
+          // echo $i;
+          echo "<a href=\"./viewCase?page=".$i."\" ". $active. ">" . ($i+1) ."</a>";
+        }
+        if(($page+1) != $pageCount){
+          echo "<a href=\"./viewCase?page=".($page+1)."\">&raquo;</a>";
+        }
+      ?>
+    </div>
   </div>
 </div>
