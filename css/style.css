@@ -33,6 +33,10 @@
     display: flex;
     align-items: center;
 }
+.row-grid {
+    display: grid;
+    align-items: center;
+}
 
 .column {
     flex: 50%;

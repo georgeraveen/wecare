@@ -18,10 +18,26 @@ for (i = 0; i < close.length; i++) {
     setTimeout(function(){ div.style.display = "none"; }, 600);
   }
 }
-
+///////////////////////////////////////////
 var content = document.getElementById("content");
 var loader = document.getElementById("loader");
 function showLoader(){
     content.style.display ="none";
     loader.style.display = "block";
+}
+/////////////////////////////////////////
+var coll = document.getElementsByClassName("collapsible");
+var j;
+
+for (j = 0; j < coll.length; j++) {
+  coll[j].addEventListener("click", function() {
+    this.classList.toggle("active");
+    // var content = document.getElementById("icuRow");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
 }

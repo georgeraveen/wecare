@@ -53,7 +53,10 @@
           </div>
         </div>
       </div>
-      <div class="row">
+      <div class="row-grid">
+      <button type="button" class="collapsible">Toggle ICU details</button>
+        <div id="icuRow" class="content-collaps">
+      <div  class="row">
         <div class="column">
           <div class="formInput">
             <label for="icuFromDate">ICU From Date</label><br>
@@ -66,6 +69,8 @@
             <input type="Date" id="icuToDate" name="icuToDate" class="input"><br>
           </div>
         </div>
+        </div>
+      </div>
       </div>
       <div class="row">
         <div class="column">
@@ -111,3 +116,4 @@
     </form>
   </div>
 </div>
+<script src="./../../js/common.js"></script>
