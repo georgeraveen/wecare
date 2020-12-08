@@ -2,6 +2,7 @@
 <link rel="stylesheet" href= "./../../css/home.css">
 <link rel="stylesheet" href= "./../../css/style.css">
 <link rel="stylesheet" href= "./../../css/dropdown.css">
+<div id="content">
 <div class="containers">
   <h1>Manage Medical Condition</h1><br>
   <div class="form-container2">
@@ -46,7 +47,7 @@
   <div class="form-container2">
   <h1>Add New Medical Condition</h1><br>
     
-    <form action="./createNewConditon" method="post">
+    <form action="./createNewConditon" method="post"  onSubmit="showLoader()">
     <input type="text" id="custID" name="custID" required class="input hide" >
       <div class="row">
         <div class="column">
@@ -97,5 +98,8 @@
     </form>
   </div>
 </div>
-
+</div>
+<div  class="containers">
+  <div id="loader" class="loader"></div>
+</div>
 <script src="./../../js/searchCustomer.js"></script>

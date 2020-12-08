@@ -2,6 +2,7 @@
 <html>
 <head>
   <link rel="stylesheet" href= "./../../css/header.css">
+  <link rel="stylesheet" href= "./../../css/alert.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WeCare Life</title>
 </head>
@@ -57,6 +58,12 @@ else{
         </nav>
     </div>
 </div>
-    
+<?php
+if( $_SESSION["successMsg"] || $_SESSION["errorMsg"]){
+
+  include './../app/error.php';
+}
+
+?>
     
   
