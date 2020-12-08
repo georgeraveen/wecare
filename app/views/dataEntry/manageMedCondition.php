@@ -2,7 +2,7 @@
 <link rel="stylesheet" href= "./../../css/home.css">
 <link rel="stylesheet" href= "./../../css/style.css">
 <link rel="stylesheet" href= "./../../css/dropdown.css">
-<div id="content">
+
 <div class="containers">
   <h1>Manage Medical Condition</h1><br>
   <div class="form-container2">
@@ -98,8 +98,5 @@
     </form>
   </div>
 </div>
-</div>
-<div  class="containers">
-  <div id="loader" class="loader"></div>
-</div>
+
 <script src="./../../js/searchCustomer.js"></script>

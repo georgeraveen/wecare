@@ -27,7 +27,7 @@
   <br><br>
 <div class="form-container" id="form-container">
     
-    <form action="./editCustomer" method="post">
+    <form action="./editCustomer" method="post" onSubmit="showLoader()">
       <div class="row">
         <div class="column">
           <div class="formInput">

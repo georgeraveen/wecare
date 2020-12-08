@@ -5,7 +5,7 @@
   <h1>Create Customer Profile</h1><br>
   <div class="form-container">
     
-    <form action="./createCustomer" method="post">
+    <form action="./createCustomer" method="post" onSubmit="showLoader()">
       <div class="row">
         <div class="column">
           <div class="formInput">

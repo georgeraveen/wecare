@@ -9,7 +9,7 @@
   <h1>Create New Insurance Claim Case</h1><br>
   <div class="form-container">
     
-    <form action="./newcase" method="post">
+    <form action="./newcase" method="post" onSubmit="showLoader()">
       <div class="row">
         <div class="column">
           <div class="formInput">

@@ -5,7 +5,7 @@
   <h1>Update Insurance Claim Case</h1><br>
   <div class="form-container">
     
-    <form action="./updateCase" method="post">
+    <form action="./updateCase" method="post" onSubmit="showLoader()">
       <div class="row">
         <div class="column">
           <div class="formInput">

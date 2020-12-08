@@ -65,5 +65,5 @@ if( $_SESSION["successMsg"] || $_SESSION["errorMsg"]){
 }
 
 ?>
-    
+<div id="content">    <!-- start content used for loader -->
   
