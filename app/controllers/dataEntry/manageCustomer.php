@@ -12,18 +12,25 @@ class manageCustomer extends Controller{
         include './../app/footer.php';
     }
     public function createCustomer(){
-        $this->checkPermission("DEO");
-        if($_POST['newCustomer']){
-            $this->model('customer');
-            $newCustomer = new Customer();
-            $result= $newCustomer->setValue("nullID",$this->valValidate($_POST['custName']),$this->valValidate($_POST['custAddress']),
-                    $this->valValidate($_POST['custNIC']),$this->valValidate($_POST['custDOB']),$this->valValidate($_POST['email']),
-                    $this->valValidate($_POST['gender']),$this->valValidate($_POST['policyID']),$this->valValidate($_POST['custContact']),
-                    $this->valValidate($_POST['custType']),$this->valValidate($_POST['paymentDate']));
-            $result= $newCustomer->create();
+        try {
+            $this->checkPermission("DEO");
+            if($_POST['newCustomer']){
+                $this->model('customer');
+                $newCustomer = new Customer();
+                $result= $newCustomer->setValue("nullID",$this->valValidate($_POST['custName']),$this->valValidate($_POST['custAddress']),
+                        $this->valValidate($_POST['custNIC']),$this->valValidate($_POST['custDOB']),$this->valValidate($_POST['email']),
+                        $this->valValidate($_POST['gender']),$this->valValidate($_POST['policyID']),$this->valValidate($_POST['custContact']),
+                        $this->valValidate($_POST['custType']),$this->valValidate($_POST['paymentDate']));
+                $result= $newCustomer->create();
+                $_SESSION["successMsg"]="New customer added successfully";
+                header("Location: ./index");
+                exit;
+            }
+        } catch (\Throwable $th) {
+            $_SESSION["errorMsg"]="Error occured when creating a new customer.";
             header("Location: ./index");
-            exit;
         }
+        
     }
     public function updateCustomer(){
         $this->checkPermission("DEO");
@@ -81,27 +88,43 @@ class manageCustomer extends Controller{
         }
     }
     public function editCustomer(){
-        $this->checkPermission("DEO");
-        if($_POST['editCustomer']){
-            $this->model('customer');
-            $editCustomer = new Customer();
-            $result= $editCustomer->setValue($this->valValidate($_POST['custID']),$this->valValidate($_POST['custName']),$this->valValidate($_POST['custAddress']),
-                    $this->valValidate($_POST['custNIC']),$this->valValidate($_POST['dob']),$this->valValidate($_POST['email']),
-                    $this->valValidate($_POST['gender']),$this->valValidate($_POST['policyID']),$this->valValidate($_POST['custContact']),
-                    $this->valValidate($_POST['custType']),$this->valValidate($_POST['paymentDate']));
-            $result= $editCustomer->update();
+        try {
+            $this->checkPermission("DEO");
+            if($_POST['editCustomer']){
+                $this->model('customer');
+                $editCustomer = new Customer();
+                $result= $editCustomer->setValue($this->valValidate($_POST['custID']),$this->valValidate($_POST['custName']),$this->valValidate($_POST['custAddress']),
+                        $this->valValidate($_POST['custNIC']),$this->valValidate($_POST['dob']),$this->valValidate($_POST['email']),
+                        $this->valValidate($_POST['gender']),$this->valValidate($_POST['policyID']),$this->valValidate($_POST['custContact']),
+                        $this->valValidate($_POST['custType']),$this->valValidate($_POST['paymentDate']));
+                $result= $editCustomer->update();
+                $_SESSION["successMsg"]="Customer profile updated successfully";
+                
+            }
             header("Location: ./updateCustomer");
             exit;
+        } catch (\Throwable $th) {
+            $_SESSION["errorMsg"]="Error occured when updating values";
+            header("Location: ./index");
         }
+        
     }
     public function resetPass(){
-        $this->checkPermission("DEO");
-        if($_POST['resetCustomer']){
-            $this->model('customer');
-            $editCustomer = new Customer();
-            $result= $editCustomer->resetPassword($this->valValidate($_POST['custID']));
+        try {
+            $this->checkPermission("DEO");
+            if($_POST['resetCustomer']){
+                $this->model('customer');
+                $editCustomer = new Customer();
+                $result= $editCustomer->resetPassword($this->valValidate($_POST['custID']));
+                $_SESSION["successMsg"]="Password resetted successfully";
+                sleep(1);
+            }
+            header("Location: ./updateCustomer");
+        } catch (\Throwable $th) {
+            $_SESSION["errorMsg"]="Error occured during processing";
+            header("Location: ./index");
         }
-        header("Location: ./updateCustomer");
+        
 
     }
 }

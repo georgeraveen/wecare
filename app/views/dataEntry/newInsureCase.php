@@ -54,7 +54,7 @@
         </div>
       </div>
       <div class="row-grid">
-      <button type="button" class="collapsible">Toggle ICU details</button>
+      <button type="button" class="collapsible">Add ICU details</button>
         <div id="icuRow" class="content-collaps">
       <div  class="row">
         <div class="column">

@@ -79,30 +79,40 @@ class manageMedCondition extends Controller
     }
     public function updateConditon()
     {
-        $this->checkPermission("DEO");
-        if ($_POST['editMedCondition']) {
-            $this->model('medicalCondition');
-            $MedicalCondition = new medicalCondition();
-            $result= $MedicalCondition->setValue($this->valValidate($_POST['custID']), $this->valValidate($_POST['medDate']), $this->valValidate($_POST['type']), $this->valValidate($_POST['healthCondition']), $this->valValidate($_POST['comments']));
-            $result= $MedicalCondition->update($this->valValidate($_POST['medID']));
+        try {
+            $this->checkPermission("DEO");
+            if ($_POST['editMedCondition']) {
+                $this->model('medicalCondition');
+                $MedicalCondition = new medicalCondition();
+                $result= $MedicalCondition->setValue($this->valValidate($_POST['custID']), $this->valValidate($_POST['medDate']), $this->valValidate($_POST['type']), $this->valValidate($_POST['healthCondition']), $this->valValidate($_POST['comments']));
+                $result= $MedicalCondition->update($this->valValidate($_POST['medID']));
+                $_SESSION["successMsg"]="Medical condition updated successfully";
+                sleep(1);
+                header("Location: ./index");
+                exit;
+            }
+        } catch (\Throwable $th) {
+            $_SESSION["errorMsg"]="Error occured when updating values";
             header("Location: ./index");
-            exit;
         }
+        
     }
     public function deleteCondition()
     {
-        $this->checkPermission("DEO");
-        if ($_GET['action']=="delMed") {
-            $this->model('medicalCondition');
-            $MedicalCondition = new medicalCondition();
-            $result= $MedicalCondition->deleteMed($this->valValidate($_GET['id']));
-            if ($result) {
-                echo "Delete succeeded";
-            } else {
-                echo "Delete failed";
+        try {
+            $this->checkPermission("DEO");
+            if ($_GET['action']=="delMed") {
+                $this->model('medicalCondition');
+                $MedicalCondition = new medicalCondition();
+                $result= $MedicalCondition->deleteMed($this->valValidate($_GET['id']));
+                $_SESSION["successMsg"]="Medical condition deleted successfully";
+                sleep(1);
+                header("Location: ./index") ;
             }
-            sleep(1);
-            header("Location: ./index") ;
+        } catch (\Throwable $th) {
+            $_SESSION["errorMsg"]="Error occured when deleting condition";
+            header("Location: ./index");
         }
+        
     }
 }
