@@ -51,7 +51,7 @@
       </tbody>
     </table>
   <br><br>
-<form action="./createRoster" method="post">
+<form action="./createRoster" method="post" onSubmit="showLoader()">
   <div class="row">
     <div class="column">
         <div class="formInput">
