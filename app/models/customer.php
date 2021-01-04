@@ -23,6 +23,15 @@ class Customer extends Models{
     public function read(){
 
     }
+    public function startTrans(){
+        $this->conn->beginTransaction();
+    }
+    public function transCommit(){
+        $this->conn->commit();
+    }
+    public function transRollBack(){
+        $this->conn->rollBack();
+    }
     public function getAll(){
         $stmt= $this->conn->prepare("select * from $this->table");
         
