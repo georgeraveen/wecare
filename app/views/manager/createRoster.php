@@ -51,8 +51,14 @@
       </tbody>
     </table>
   <br><br>
-<form action="./create" method="post">
+<form action="./createRoster" method="post">
   <div class="row">
+    <div class="column">
+        <div class="formInput">
+            <label for="rosterDate">Date</label><br>
+            <input required type="Date" id="rosterDate" name="rosterDate" class="input" value="" placeholder="New roster date"><br>
+        </div>
+    </div>
     <div class="column">
       <div class="formInput">
         <input type="submit" id="submitRoster" name="submitRoster" class="btn-submit" value="Create Roster"><br>
