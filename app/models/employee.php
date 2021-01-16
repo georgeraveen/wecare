@@ -159,5 +159,12 @@ class Employee extends Models{
 
 
     }
+    public function delete($_id){
+        $stmt1= $this->conn->prepare("delete from employee where empID= $_id");
+        $stmt1->execute();
+
+        $stmt2= $this->conn->prepare("delete from employee_contact where empID= $_id");
+        $stmt2->execute();
+    }
 }
 ?>
