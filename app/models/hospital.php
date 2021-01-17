@@ -1,9 +1,12 @@
 
 <?php
 
-class HospitalView  extends Models{
+class Hospital  extends Models{
     private $conn;
     private $table="hospital";
+    private $name;
+    private $address;
+    private $hosContactNumbers;
 
     public function __construct(){
         $this->conn=$this->dataConnect();
@@ -22,7 +25,7 @@ class HospitalView  extends Models{
     public function setValue($name,$address,$hospitalContactNo){
         $this->name= $name;
         $this->address= $address;
-        $this->empContactNo= explode(',',$hospitalContactNo); 
+        $this->hosContactNumbers= explode(',',$hospitalContactNo); 
     } 
 
     public function create(){
@@ -32,7 +35,7 @@ class HospitalView  extends Models{
         $stmt -> bindParam(':address', $this->address );
         $stmt->execute();
         $last_id = $this->conn->lastInsertId();
-        foreach($this->hospitalContactNo as $number){
+        foreach($this->hosContactNumbers as $number){
             $stmt1= $this->conn->prepare("insert into hospital_contact (hospitalID,hospitalContactNo) 
                                                                                     values (:hospitalID, :hospitalContactNo) ");
             $n=(int)$number;

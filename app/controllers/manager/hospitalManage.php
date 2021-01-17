@@ -1,11 +1,11 @@
 <?php
 
-class hospital extends Controller{
+class hospitalManage extends Controller{
 
     public function index(){
         $this->checkPermission("MGR");
         $this->model('hospital');
-        $hostView= new HospitalView();
+        $hostView= new Hospital();
 
         $queue=$hostView->getAll();
 
@@ -19,7 +19,7 @@ class hospital extends Controller{
         $this->checkPermission("MGR");
         if($_POST['newHospital']){
             $this->model('hospital');
-            $newHospital = new HospitalView();
+            $newHospital = new Hospital();
             $result= $newHospital->setValue($this->valValidate($_POST['name']),$this->valValidate($_POST['address']),$this->valValidate($_POST['hospitalContactNo']));
             $result= $newHospital->create();
             header("Location: ./index");
