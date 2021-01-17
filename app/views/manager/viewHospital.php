@@ -32,6 +32,7 @@
             </div>
         </form>
     </div>
+    <br><br>
     <div style="width : 70%" class="table-container">
     <table class="table-view">
       <tr>
