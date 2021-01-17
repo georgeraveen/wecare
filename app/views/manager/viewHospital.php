@@ -4,24 +4,24 @@
   <h1>Hospitals</h1><br>
     <div class="form-container">
 
-        <form action="#" method="post">
+        <form action="./newHospital" method="post">
             <div class="row">
                 <div class="column">
                     <div class="formInput">
-                        <label for="empFirstName">Hospital Name</label><br>
-                        <input type="text" id="empFirstName" name="empFirstName" required class="input"><br>
+                        <label for="name">Hospital Name</label><br>
+                        <input type="text" id="name" name="name" required class="input"><br>
                     </div>
                 </div>
                 <div class="column">
                     <div class="formInput">
-                        <label for="empLastName">Contact Number</label><br>
-                        <input type="text" id="empLastName" name="empLastName" required class="input"><br>
+                        <label for="hospitalContactNo">Contact Number</label><br>
+                        <input type="text" id="hospitalContactNo" name="hospitalContactNo" required class="input"><br>
                     </div>
                 </div>
                 <div class="column">
                     <div class="formInput">
-                        <label for="empAddress">Address</label><br>
-                        <textarea id="empAddress" name="empAddress" class="commentBox"></textarea> <br>
+                        <label for="address">Address</label><br>
+                        <textarea id="address" name="address" class="commentBox"></textarea> <br>
                     </div>
                 </div>
                 <div class="column">
