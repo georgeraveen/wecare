@@ -20,6 +20,12 @@
                 </div>
                 <div class="column">
                     <div class="formInput">
+                        <label for="empAddress">Address</label><br>
+                        <textarea id="empAddress" name="empAddress" class="commentBox"></textarea> <br>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="formInput">
                         <input type="submit" id="newHospital" name="newHospital" class="btn-submit" value="Submit"><br>
                     </div>
                 </div>
@@ -31,22 +37,14 @@
       <tr>
         <th>Hospital Name</th>
         <th>Contact Number</th>
+        <th>Address</th>
       </tr>
-      <tr>
-        <td>Hemas</td>
-        <td>0114356754</td>
-      </tr>
-      <tr>
-        <td>Nawaloka</td>
-        <td>0115435667</td>
-      </tr>
-      <tr>
-        <td>Asiri</td>
-        <td>0371234587</td>
-      </tr>
-      <tr>
-        <td>Lanka</td>
-        <td>0376543567</td>
-      </tr>
+      <?php
+      foreach($data as $row){
+        echo "<tr>"."<td>".$row['name']."</td>".
+              "<td>".$row['hospitalContactNo']."</td>".
+              "<td>".$row['address']."</td>"."</tr>";
+      }
+      ?>
     </table>
 </div>

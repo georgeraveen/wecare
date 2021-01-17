@@ -1,7 +1,7 @@
 
 <?php
 
-class Hospital  extends Models{
+class HospitalView  extends Models{
     private $conn;
     private $table="hospital";
 
@@ -12,7 +12,7 @@ class Hospital  extends Models{
 
     }
     public function getAll(){
-        $stmt= $this->conn->prepare("select * from $this->table");
+        $stmt= $this->conn->prepare("select name,hospitalContactNo,address from $this->table INNER JOIN hospital_contact on $this->table.hospitalID=hospital_contact.hospitalID");
         
         $stmt->execute();
         return $stmt->fetchAll();
