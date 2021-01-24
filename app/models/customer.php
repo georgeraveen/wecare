@@ -228,5 +228,15 @@ class Customer extends Models{
         sendEmail($this->email, $this->custName,$email_string,"Wecare Customer Portal Account Recovery");
 
     }
+    
+    public function remove($id){
+        $stmt0= $this->conn->prepare(" DELETE FROM customer_contact WHERE custID = :custID");
+        $stmt0 -> bindParam(':custID', $id );
+        $stmt0->execute();
+        $stmt= $this->conn->prepare("update $this->table set custName= 'removed' ,custAddress= 'removed' ,custNIC= 'removed' ,custDOB= '2020-07-01' ,email= 'removed' ,gender= 'o',status=0 
+                                                           where custID= :custID ");
+        $stmt -> bindParam(':custID',  $id );
+        $stmt->execute();
+    }
 }
 ?>

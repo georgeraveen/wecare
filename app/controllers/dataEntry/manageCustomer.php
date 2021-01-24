@@ -135,4 +135,24 @@ class manageCustomer extends Controller{
         
 
     }
+    public function removeCustomer($id){
+        try {
+            $this->checkPermission("DEO");
+            $this->model('customer');
+            $rmCustomer = new Customer();
+            $rmCustomer->startTrans();
+            if($id){
+                $rmCustomer->remove($this->valValidate($id));
+                $_SESSION["successMsg"]="Customer removed successfully";
+                $rmCustomer->transCommit();
+                header("Location: ./../updateCustomer");
+                exit;
+            }
+            header("Location: ./updateCustomer");
+        } catch (\Throwable $th) {
+            $rmCustomer->transRollBack();
+            $_SESSION["errorMsg"]="Error occured when removing customer.";
+            header("Location: ./../updateCustomer");
+        }
+    }
 }

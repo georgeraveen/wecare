@@ -25,7 +25,7 @@
     </form>
   </div>
   <br><br>
-<div class="form-container" id="form-container">
+<div class="form-container hide" id="updateForm">
     
     <form action="./editCustomer" method="post" onSubmit="showLoader()">
       <div class="row">
@@ -128,7 +128,10 @@
         </div>
         <div class="column">
           <div class="formInput">
-            <input type="submit" id="removeCustomer" name="removeCustomer" class="btn-submit" value="Remove"><br>
+            <a href="./removeCustomer" id="removeBtnLink">
+              <button type="button" id="removeCustomer"  class="btn-submit" >Remove</button>
+            </a>
+            <br>
           </div>
         </div>
       </div>

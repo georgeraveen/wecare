@@ -21,6 +21,7 @@ function showResult(str) {
 function selectedCust(custID) {
     var custIDD = document.getElementById("custID");
     var custIDD1 = document.getElementById("custID1");
+    var removeBtnLink = document.getElementById("removeBtnLink");
     var custName = document.getElementById("custName");
     var custNIC = document.getElementById("custNIC");
     var dob = document.getElementById("dob");
@@ -31,6 +32,7 @@ function selectedCust(custID) {
     var custContact = document.getElementById("custContact");
     var paymentDate = document.getElementById("paymentDate");
     var custType = document.getElementById("custType");
+    var updateForm = document.getElementById("updateForm");
 
     document.getElementById("custNameBox").value = custID.innerHTML;
 
@@ -43,9 +45,11 @@ function selectedCust(custID) {
                 xmlDoc = parser.parseFromString(text, "text/xml");
                 // console.log(text);
                 // document.getElementById("err").innerHTML = text;
-
+                updateForm.style.display = "block";
+                updateForm.style.visibility = "visible";
                 custIDD.value = custID.id;
                 custIDD1.value = custID.id;
+                removeBtnLink.href = "./removeCustomer/" + custID.id
                 custName.value = xmlDoc.getElementsByTagName("custName")[0].innerHTML;
                 custNIC.value = xmlDoc.getElementsByTagName("custNIC")[0].innerHTML;
                 dob.value = xmlDoc.getElementsByTagName("custDOB")[0].innerHTML;
@@ -77,8 +81,8 @@ window.onclick = function (event) {
 ///////////manage med cond-DEO
 function selectedCustMed(custID) {
     document.getElementById("custNameBox").value = custID.innerHTML;
-    document.getElementById("custID").value=custID.id;
-    document.getElementById("custID1").value=custID.id;
+    document.getElementById("custID").value = custID.id;
+    document.getElementById("custID1").value = custID.id;
     //////////////////////////no need/////////////////////////////////////////////
     // var medDate = document.getElementById("medDate");
     // var type = document.getElementById("type");
