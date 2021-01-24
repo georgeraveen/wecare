@@ -33,26 +33,26 @@ class Customer extends Models{
         $this->conn->rollBack();
     }
     public function getAll(){
-        $stmt= $this->conn->prepare("select * from $this->table");
+        $stmt= $this->conn->prepare("SELECT * from $this->table where status=1");
         
         $stmt->execute();
         return $stmt->fetchAll();
     }
     public function getList(){
-        $stmt= $this->conn->prepare("select custID, custName from $this->table");
+        $stmt= $this->conn->prepare("SELECT custID, custName from $this->table where status=1");
         // var_dump($this->conn);
         $stmt->execute();
         return $stmt->fetchAll();
     }
     public function getBasicCustList(){
-        $stmt= $this->conn->prepare("select i.custID as custID, i.custName custName, i.custNIC as custNIC, c.custContactNo as custContact from $this->table as i
-                                    inner join customer_contact as c on i.custID=c.custID");
+        $stmt= $this->conn->prepare("SELECT i.custID as custID, i.custName custName, i.custNIC as custNIC, c.custContactNo as custContact from $this->table as i
+                                    inner join customer_contact as c on i.custID=c.custID where i.status=1");
         // var_dump($this->conn);
         $stmt->execute();
         return $stmt->fetchAll();
     }
     public function getPolicy($id){
-        $stmt= $this->conn->prepare("select policyID from $this->table where custID = $id");
+        $stmt= $this->conn->prepare("SELECT policyID from $this->table where custID = $id AND status=1");
         $stmt->execute();
         return $stmt->fetchAll();
     }
@@ -73,7 +73,7 @@ class Customer extends Models{
     public function create(){
         
         ////////////////////remove password once email done///////////////////
-        $stmt= $this->conn->prepare("insert into $this->table (custName,password,hashPass,custAddress,custNIC,custDOB,email,gender,policyID) 
+        $stmt= $this->conn->prepare("INSERT into $this->table (custName,password,hashPass,custAddress,custNIC,custDOB,email,gender,policyID) 
                                                             values (:custName, :password, :hashPassword, :custAddress, :custNIC, :custDOB, :email, :gender, :policyID) ");
         $stmt -> bindParam(':custName', $this->custName );
         $passDetails=$this->password_generator();
@@ -88,14 +88,14 @@ class Customer extends Models{
         $stmt->execute();
         $last_id = $this->conn->lastInsertId();
         foreach($this->custContact as $number){
-            $stmt1= $this->conn->prepare("insert into customer_contact (custID,custContactNo) values (:custID, :custContactNo) ");
+            $stmt1= $this->conn->prepare("INSERT into customer_contact (custID,custContactNo) values (:custID, :custContactNo) ");
             $n=(int)$number;
             // echo $last_id."-".$n;
             $stmt1 -> bindParam(':custID', $last_id );
             $stmt1 -> bindParam(':custContactNo', $n);
             $stmt1->execute();
         }
-        $stmt2= $this->conn->prepare("insert into cust_insurance (custID, startDate, type, paymentDate, status) values (:custID, :startDate, :type, :paymentDate, :status) ");
+        $stmt2= $this->conn->prepare("INSERT into cust_insurance (custID, startDate, type, paymentDate, status) values (:custID, :startDate, :type, :paymentDate, :status) ");
         $stmt2 -> bindParam(':custID', $last_id );
         $stmt2 -> bindParam(':startDate', date("Y-m-d"));
         $stmt2 -> bindParam(':type', $this->type );
@@ -130,39 +130,39 @@ class Customer extends Models{
 
     }
     public function custFilterName($filter){
-        $stmt= $this->conn->prepare("select custID, custName from $this->table where custName
-                            like '%$filter%' ");
+        $stmt= $this->conn->prepare("SELECT custID, custName from $this->table where custName
+                            like '%$filter%' AND status=1");
         
         $stmt->execute();
         return $stmt->fetchAll();
     }
     public function custFilterID($filter){
-        $stmt= $this->conn->prepare("select custID, custName from $this->table where custID
-                            like '%$filter%' ");
+        $stmt= $this->conn->prepare("SELECT custID, custName from $this->table where custID
+                            like '%$filter%' AND status=1");
         
         $stmt->execute();
         return $stmt->fetchAll();
     }
     public function getCustByID($id){
-        $stmt= $this->conn->prepare("select custID, custName, custAddress, custNIC, custDOB, email, gender, policyID from $this->table where custID=$id");
+        $stmt= $this->conn->prepare("SELECT custID, custName, custAddress, custNIC, custDOB, email, gender, policyID from $this->table where custID=$id AND status=1");
         
         $stmt->execute();
         return $stmt->fetchAll();
     }
     public function getCustContactByID($id){
-        $stmt= $this->conn->prepare("select *  from customer_contact where custID=$id");
+        $stmt= $this->conn->prepare("SELECT *  from customer_contact where custID=$id AND status=1");
         
         $stmt->execute();
         return $stmt->fetchAll();
     }
     public function getCustInsuranceByID($id){
-        $stmt= $this->conn->prepare("select * from cust_insurance where custID=$id");
+        $stmt= $this->conn->prepare("SELECT * from cust_insurance where custID=$id AND status=1");
         
         $stmt->execute();
         return $stmt->fetchAll();
     }
     public function update(){
-        $stmt= $this->conn->prepare("update $this->table set custName= :custName ,custAddress= :custAddress ,custNIC= :custNIC ,custDOB= :custDOB ,email= :email ,gender= :gender ,policyID= :policyID
+        $stmt= $this->conn->prepare("UPDATE $this->table set custName= :custName ,custAddress= :custAddress ,custNIC= :custNIC ,custDOB= :custDOB ,email= :email ,gender= :gender ,policyID= :policyID
                                                            where custID= :custID ");
         $stmt -> bindParam(':custID', $this->custID );
         $stmt -> bindParam(':custName', $this->custName );
@@ -177,7 +177,7 @@ class Customer extends Models{
         $stmt0 -> bindParam(':custID', $this->custID );
         $stmt0->execute();
         foreach($this->custContact as $number){
-            $stmt1= $this->conn->prepare("insert into customer_contact (custID,custContactNo) values (:custID, :custContactNo) ");
+            $stmt1= $this->conn->prepare("INSERT into customer_contact (custID,custContactNo) values (:custID, :custContactNo) ");
             $n=(int)$number;
             // echo $last_id."-".$n;
             $stmt1 -> bindParam(':custID', $this->custID );
@@ -233,7 +233,7 @@ class Customer extends Models{
         $stmt0= $this->conn->prepare(" DELETE FROM customer_contact WHERE custID = :custID");
         $stmt0 -> bindParam(':custID', $id );
         $stmt0->execute();
-        $stmt= $this->conn->prepare("update $this->table set custName= 'removed' ,custAddress= 'removed' ,custNIC= 'removed' ,custDOB= '2020-07-01' ,email= 'removed' ,gender= 'o',status=0 
+        $stmt= $this->conn->prepare("UPDATE $this->table set custName= 'removed' ,custAddress= 'removed' ,custNIC= 'removed' ,custDOB= '2020-07-01' ,email= 'removed' ,gender= 'o',status=0 
                                                            where custID= :custID ");
         $stmt -> bindParam(':custID',  $id );
         $stmt->execute();
