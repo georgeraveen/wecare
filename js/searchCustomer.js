@@ -107,5 +107,14 @@ function selectedCustMed(custID) {
     // }
 }
 function viewAdd() {
-    document.getElementById("addMedDiv").style.display = "block";
+    if (document.getElementById("custID").value) {
+        document.getElementById("addMedDiv").style.display = "block";
+    }
+    else {
+        var popup = document.getElementById("myPopup");
+        popup.classList.toggle("show");
+        setTimeout(function () {
+            popup.classList.toggle("show");
+        }, 2000)
+    }
 }
