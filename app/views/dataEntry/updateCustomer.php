@@ -3,6 +3,10 @@
 <link rel="stylesheet" href= "./../../css/style.css">
 <link rel="stylesheet" href= "./../../css/dropdown.css">
 <div class="containers">
+  <ul class="breadcrumb">
+    <li><a href="./../dataEntryHome/index">Home</a></li>
+    <li>Manage customer profiles</a></li>
+  </ul>
   <h1>Update Customer Profile</h1><br>
   <div class="form-container2">
     <form >

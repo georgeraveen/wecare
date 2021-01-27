@@ -4,6 +4,10 @@
 <link rel="stylesheet" href= "./../../css/dropdown.css">
 
 <div class="containers">
+  <ul class="breadcrumb">
+    <li><a href="./../dataEntryHome/index">Home</a></li>
+    <li>Manage Medical Condition</a></li>
+  </ul>
   <h1>Manage Medical Condition</h1><br>
   <div class="form-container2">
     <form action="./viewMedCond" method="post">
