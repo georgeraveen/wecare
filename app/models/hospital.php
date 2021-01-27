@@ -16,8 +16,19 @@ class Hospital  extends Models{
     }
 
     public function getAll(){
-        $stmt= $this->conn->prepare("select name,hospitalContactNo,address from $this->table INNER JOIN hospital_contact on $this->table.hospitalID=hospital_contact.hospitalID");
-        
+        $stmt= $this->conn->prepare("select * from $this->table INNER JOIN hospital_contact on $this->table.hospitalID=hospital_contact.hospitalID where status = 1");
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    public function getDetails($_id){
+        $stmt= $this->conn->prepare("select * from $this->table where hospitalID = $_id");
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    public function getContactDetails($_id){
+        $stmt= $this->conn->prepare("select * from hospital_contact where hospitalID = $_id");
         $stmt->execute();
         return $stmt->fetchAll();
     }
