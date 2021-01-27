@@ -5,6 +5,10 @@
 <link rel="stylesheet" href= "./../../css/style.css">
 <link rel="stylesheet" href= "./../../css/pagination.css">
 <div class="containers">
+  <ul class="breadcrumb">
+    <li><a href="./../dataEntryHome/index">Home</a></li>
+    <li>View Insurance Cases</a></li>
+  </ul>
   <h1>View Insurance Claim Cases</h1><br>
   <div class="table-container">
     <table class="table-view">

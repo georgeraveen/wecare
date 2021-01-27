@@ -2,6 +2,10 @@
 <link rel="stylesheet" href= "./../../css/home.css">
 <link rel="stylesheet" href= "./../../css/style.css">
 <div class="containers">
+  <ul class="breadcrumb">
+    <li><a href="./../dataEntryHome/index">Home</a></li>
+    <li>New Customer Profile</a></li>
+  </ul>
   <h1>Create Customer Profile</h1><br>
   <div class="form-container">
     

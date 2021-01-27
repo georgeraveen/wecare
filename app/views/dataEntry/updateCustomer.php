@@ -3,6 +3,10 @@
 <link rel="stylesheet" href= "./../../css/style.css">
 <link rel="stylesheet" href= "./../../css/dropdown.css">
 <div class="containers">
+  <ul class="breadcrumb">
+    <li><a href="./../dataEntryHome/index">Home</a></li>
+    <li>Manage customer profiles</a></li>
+  </ul>
   <h1>Update Customer Profile</h1><br>
   <div class="form-container2">
     <form >
@@ -25,7 +29,7 @@
     </form>
   </div>
   <br><br>
-<div class="form-container" id="form-container">
+<div class="form-container hide" id="updateForm">
     
     <form action="./editCustomer" method="post" onSubmit="showLoader()">
       <div class="row">
@@ -128,7 +132,10 @@
         </div>
         <div class="column">
           <div class="formInput">
-            <input type="submit" id="removeCustomer" name="removeCustomer" class="btn-submit" value="Remove"><br>
+            <a href="./removeCustomer" id="removeBtnLink">
+              <button type="button" id="removeCustomer"  class="btn-submit" >Remove</button>
+            </a>
+            <br>
           </div>
         </div>
       </div>
