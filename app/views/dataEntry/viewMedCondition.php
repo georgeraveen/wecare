@@ -14,6 +14,11 @@ $result=$data;
 <link rel="stylesheet" href= "./../../css/style.css">
 <link rel="stylesheet" href= "./../../css/modal.css">
 <div class="containers">
+  <ul class="breadcrumb">
+    <li><a href="./../dataEntryHome/index">Home</a></li>
+    <li><a href="./../manageMedCondition/index">Manage Medical Condition</a></li>
+    <li>View Condition</a></li>
+  </ul>
   <h1>View Medical Condition</h1><br>
   <div class="table-container">
     <table class="table-view">

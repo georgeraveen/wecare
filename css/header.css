@@ -1,10 +1,10 @@
-.containerHeader{
+.containerHeader {
   width: 70%;
   margin: 0 auto;
 }
-.fixed-header{
+.fixed-header {
   width: 100%;
-  position: fixed;        
+  position: fixed;
   background: #333;
   padding: 10px 0;
   color: #fff;
@@ -15,11 +15,11 @@
   display: block;
   /* z-index: 0; */
 }
-.logo{
+.logo {
   width: 50px;
   height: 50px;
 }
-.Link{
+.Link {
   color: #fff;
   font-size: 16pt;
   text-decoration: none;
@@ -27,7 +27,7 @@
   display: inline-block;
   vertical-align: middle;
 }
-.btn-Link{
+.btn-Link {
   color: #fff;
   font-size: x-large;
   text-decoration: none;
@@ -35,51 +35,82 @@
   display: inline-block;
   vertical-align: middle;
 }
-.logout{
+.logout {
   margin: 10px;
   float: right;
   background-color: #e98a15;
   border-radius: 5px;
 }
-.avatar{
+.avatar {
   margin: 10px;
   background-color: white;
   color: black;
   float: right;
   border-radius: 50%;
-  
 }
-.containerHeader p{
+.containerHeader p {
   line-height: 200px; /* Create scrollbar to test positioning */
+}
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: rgb(114, 114, 114);
+  color: white;
+  text-align: center;
+}
+ul.breadcrumb {
+  margin-top: 100px;
+  padding: 10px 10px;
+  list-style: none;
+  background-color: #eee;
+}
+ul.breadcrumb li {
+  display: inline;
+  font-size: 18px;
+}
+ul.breadcrumb li + li:before {
+  padding: 8px;
+  color: black;
+  content: "/\00a0";
+}
+ul.breadcrumb li a {
+  color: #0275d8;
+  text-decoration: none;
+}
+ul.breadcrumb li a:hover {
+  color: #01447e;
+  text-decoration: underline;
 }
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
-  .containerHeader{
+  .containerHeader {
     width: 95%;
   }
-  .Link{
+  .Link {
     padding-left: 0;
     font-size: 12pt;
   }
-  .logout{
+  .logout {
     margin: 20px 10px;
     padding: 5px;
     font-size: medium;
   }
-  .avatar{
+  .avatar {
     margin: 10px 0;
   }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
-  .containerHeader{
+  .containerHeader {
     width: 95%;
   }
-  .Link{
+  .Link {
     padding-left: 0;
   }
-  .logout{
+  .logout {
     margin: 20px 10px;
     padding: 5px;
     font-size: medium;
@@ -88,20 +119,18 @@
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
-
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
-
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1100px) {
-  .containerHeader{
+  .containerHeader {
     width: 70%;
   }
-  .Link{
+  .Link {
     padding: 7px 20px;
   }
 }

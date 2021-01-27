@@ -14,19 +14,22 @@ class manageCustomer extends Controller{
     public function createCustomer(){
         try {
             $this->checkPermission("DEO");
+            $this->model('customer');
+            $newCustomer = new Customer();
+            $newCustomer->startTrans();
             if($_POST['newCustomer']){
-                $this->model('customer');
-                $newCustomer = new Customer();
                 $result= $newCustomer->setValue("nullID",$this->valValidate($_POST['custName']),$this->valValidate($_POST['custAddress']),
                         $this->valValidate($_POST['custNIC']),$this->valValidate($_POST['custDOB']),$this->valValidate($_POST['email']),
                         $this->valValidate($_POST['gender']),$this->valValidate($_POST['policyID']),$this->valValidate($_POST['custContact']),
                         $this->valValidate($_POST['custType']),$this->valValidate($_POST['paymentDate']));
                 $result= $newCustomer->create();
                 $_SESSION["successMsg"]="New customer added successfully";
+                $newCustomer->transCommit();
                 header("Location: ./index");
                 exit;
             }
         } catch (\Throwable $th) {
+            $newCustomer->transRollBack();
             $_SESSION["errorMsg"]="Error occured when creating a new customer.";
             header("Location: ./index");
         }
@@ -90,6 +93,9 @@ class manageCustomer extends Controller{
     public function editCustomer(){
         try {
             $this->checkPermission("DEO");
+            $this->model('customer');
+            $editCustomer = new Customer();
+            $editCustomer->startTrans();
             if($_POST['editCustomer']){
                 $this->model('customer');
                 $editCustomer = new Customer();
@@ -101,9 +107,11 @@ class manageCustomer extends Controller{
                 $_SESSION["successMsg"]="Customer profile updated successfully";
                 
             }
-            header("Location: ./updateCustomer");
+                $editCustomer->transCommit();
+                header("Location: ./updateCustomer");
             exit;
         } catch (\Throwable $th) {
+            $editCustomer->transRollBack();
             $_SESSION["errorMsg"]="Error occured when updating values";
             header("Location: ./index");
         }
@@ -126,5 +134,25 @@ class manageCustomer extends Controller{
         }
         
 
+    }
+    public function removeCustomer($id){
+        try {
+            $this->checkPermission("DEO");
+            $this->model('customer');
+            $rmCustomer = new Customer();
+            $rmCustomer->startTrans();
+            if($id){
+                $rmCustomer->remove($this->valValidate($id));
+                $_SESSION["successMsg"]="Customer removed successfully";
+                $rmCustomer->transCommit();
+                header("Location: ./../updateCustomer");
+                exit;
+            }
+            header("Location: ./updateCustomer");
+        } catch (\Throwable $th) {
+            $rmCustomer->transRollBack();
+            $_SESSION["errorMsg"]="Error occured when removing customer.";
+            header("Location: ./../updateCustomer");
+        }
     }
 }

@@ -2,7 +2,12 @@
 <link rel="stylesheet" href= "./../../css/home.css">
 <link rel="stylesheet" href= "./../../css/style.css">
 <div class="containers">
-  <h1>Add New Medical Condition for "**cust**" </h1><br>
+  <ul class="breadcrumb">
+    <li><a href="./../dataEntryHome/index">Home</a></li>
+    <li><a href="./../insureCase/viewCase">Manage Medical Condition</a></li>
+    <li>Add Condition</a></li>
+  </ul>
+  <h1>Add New Medical Condition</h1><br>
   <div class="form-container2">
     
     <form action="./back/backend.php" method="post">
