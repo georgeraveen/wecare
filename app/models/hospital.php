@@ -16,6 +16,16 @@ class Hospital  extends Models{
 
     }
 
+    public function startTrans(){
+        $this->conn->beginTransaction();
+    }
+    public function transCommit(){
+        $this->conn->commit();
+    }
+    public function transRollBack(){
+        $this->conn->rollBack();
+    }
+
     public function getAll(){
         $stmt= $this->conn->prepare("select * from $this->table LEFT JOIN hospital_contact on $this->table.hospitalID=hospital_contact.hospitalID where status = 1");
         $stmt->execute();
@@ -85,8 +95,7 @@ class Hospital  extends Models{
 
         $stmt= $this->conn->prepare("update $this->table set status= 0
                                                             where hospitalID = $_id ") ;   
-                                                            
-        //$stmt -> bindParam(':status', 0);
+        $stmt->execute();                                                  
 
     }
 }

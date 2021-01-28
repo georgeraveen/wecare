@@ -9,6 +9,10 @@
 <link rel="stylesheet" href= "./../../css/home.css">
 <link rel="stylesheet" href= "./../../css/style.css">
 <div class="containers">
+<ul class="breadcrumb">
+    <li><a href="./../managerHome/index">Home</a></li>
+    <li>Manage Hospitals</a></li>
+  </ul>
   <h1>Manage Hospitals</h1><br>
     <div class="form-container">
 

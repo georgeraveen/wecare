@@ -16,15 +16,25 @@ class hospitalManage extends Controller{
     }
 
     public function newHospital(){
-        $this->checkPermission("MGR");
-        if($_POST['newHospital']){
-            $this->model('hospital');
-            $newHospital = new Hospital();
-            $result= $newHospital->setValue($this->valValidate($_POST['name']),$this->valValidate($_POST['address']),$this->valValidate($_POST['hospitalContactNo']));
-            $result= $newHospital->create();
-            header("Location: ./index");
-            exit;
+        try{
+            $this->checkPermission("MGR");
+            if($_POST['newHospital']){
+                $this->model('hospital');
+                $newHospital = new Hospital();
+                $newHospital->startTrans();
+                $result= $newHospital->setValue($this->valValidate($_POST['name']),$this->valValidate($_POST['address']),$this->valValidate($_POST['hospitalContactNo']));
+                $result= $newHospital->create();
+                $_SESSION["successMsg"]="New hospital added successfully";
+                $newHospital->transCommit();
+                header("Location: ./index");
+                exit;
         }
+    }
+    catch(\Throwable $th){
+        $newHospital->transRollBack();
+        $_SESSION["errorMsg"]="Error occured when adding a new hospital.";
+        header("Location: ./index");
+    }
     }
 
     public function editHospital(){
@@ -45,32 +55,52 @@ class hospitalManage extends Controller{
             header("Location: ./index");
             exit;
         }
-    }
+}
 
     public function deleteHospital(){
-        $this->checkPermission("MGR");
-        $this->model('hospital');
-        $editHost= new Hospital();
-        if ($this->valValidate($_GET['action'])=="delete") {
-            $result= $editHost->updateStatus($this->valValidate($_GET['id']));
-            header("Location: ./index");
-        }
-        else{
-            header("Location: ./index");
-            exit;
-        }
+        try{
+            $this->checkPermission("MGR");
+            $this->model('hospital');
+            $editHost= new Hospital();
+            $editHost->startTrans();
+            if ($this->valValidate($_GET['action'])=="delete") {
+                $result= $editHost->updateStatus($this->valValidate($_GET['id']));
+                $_SESSION["successMsg"]="Hospital deleted successfully";
+                $editHost->transCommit();
+                header("Location: ./index");
+            }
+            else{
+                header("Location: ./index");
+                exit;
+            }
+    }
+    catch(\Throwable $th){
+        $editHost->transRollBack();
+        $_SESSION["errorMsg"]="Error occured when deleting the hospital.";
+        header("Location: ./index");
+    }
     }
 
     public function updateHospital(){
-        $this->checkPermission("MGR");
-        if($_POST['newHospital']){
-            $this->model('hospital');
-            $editHospital = new Hospital();
-            $result= $editHospital->setValue($this->valValidate($_POST['name']),$this->valValidate($_POST['address']),$this->valValidate($_POST['hospitalContactNo']));
-            $result= $editHospital->update($this->valValidate($_POST['hospitalID']));
-            header("Location: ./viewHospital");
-            exit;
+        try{
+            $this->checkPermission("MGR");
+            if($_POST['newHospital']){
+                $this->model('hospital');
+                $editHospital = new Hospital();
+                $editHospital->startTrans();
+                $result= $editHospital->setValue($this->valValidate($_POST['name']),$this->valValidate($_POST['address']),$this->valValidate($_POST['hospitalContactNo']));
+                $result= $editHospital->update($this->valValidate($_POST['hospitalID']));
+                $_SESSION["successMsg"]="Successfully updated";
+                $editHospital->transCommit();
+                header("Location: ./index");
+                exit;
         }
+    }
+    catch(\Throwable $th){
+        $editHospital->transRollBack();
+        $_SESSION["errorMsg"]="Error occured when updating data.";
+        header("Location: ./index");
+    }
     }
 
 }
