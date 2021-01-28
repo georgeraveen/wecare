@@ -36,7 +36,6 @@
     <div style="width : 80%" class="table-container">
     <table class="table-view">
       <tr>
-        <th>Hospital ID</th>
         <th>Hospital Name</th>
         <th>Contact Number</th>
         <th>Address</th>
@@ -44,11 +43,10 @@
       </tr>
       <?php
       foreach($data as $row){
-        echo "<tr>"."<td>".$row['hospitalID']."</td>".
-              "<td>".$row['name']."</td>".
+        echo "<tr>"."<td>".$row['name']."</td>".
               "<td>".$row['hospitalContactNo']."</td>".
               "<td>".$row['address']."</td>".
-              "<td> <a class=\"deleteBtn\" href=\"./deleteHospital?action=delete&id=".$row['hospitalID']."\">Delete</a> "."</td>".
+              "<td> <a class=\"deleteBtn\" href=\"./editHospital?action=delete&id=".$row['hospitalID']."\">Delete</a> "."</td>".
               "<td> <a class=\"editBtn\" href=\"./editHospital?action=edit&id=".$row['hospitalID']."\">Edit</a> "."</td>"."</tr>";
       }
       ?>

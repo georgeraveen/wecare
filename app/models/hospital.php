@@ -7,6 +7,7 @@ class Hospital  extends Models{
     private $name;
     private $address;
     private $hosContactNumbers;
+    private $status;
 
     public function __construct(){
         $this->conn=$this->dataConnect();
@@ -68,17 +69,24 @@ class Hospital  extends Models{
         $stmt1= $this->conn->prepare("delete from hospital_contact where hospitalID= $_id");
         $stmt1->execute();
 
-        foreach($this->hosContactnumbers as $number){
+        foreach($this->hosContactNumbers as $number){
             
             $stmt= $this->conn->prepare("insert into hospital_contact (hospitalID,hospitalContactNo) 
-                                                            values (:hospitalID, :hospitalContactNo) ");
+                                                                                    values (:hospitalID, :hospitalContactNo) ");
             $n=(int)$number;
             // echo $last_id."-".$n;
             $stmt -> bindParam(':hospitalID', $_id );
             $stmt -> bindParam(':hospitalContactNo', $n);
             $stmt->execute();
         }
+    }
 
+    public function updateStatus($_id){
+
+        $stmt= $this->conn->prepare("update $this->table set status= 0
+                                                            where hospitalID = $_id ") ;   
+                                                            
+        //$stmt -> bindParam(':status', 0);
 
     }
 }

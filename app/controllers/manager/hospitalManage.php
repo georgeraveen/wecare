@@ -32,10 +32,23 @@ class hospitalManage extends Controller{
         $this->model('hospital');
         $editHost= new Hospital();
         if($this->valValidate($_GET['action'])=="edit"){
+
             $hostDetails=$editHost->getDetails($this->valValidate($_GET['id']));
+
             $hostContactDetails=$editHost->getContactDetails($this->valValidate($_GET['id']));
+            
             include './../app/header.php';
             $this->view('manager/editHospital',['id'=>$this->valValidate($_GET['id']),'hostDetails'=>$hostDetails,'hostContactDetails'=>$hostContactDetails]);
+            include './../app/footer.php';
+        }
+        elseif ($this->valValidate($_GET['action'])=="delete") {
+
+            $result= $editHost->updateStatus($this->valValidate($_GET['id']));
+
+            $queue=$editHost->getAll();
+
+            include './../app/header.php';
+            $this->view('manager/viewHospital',$queue);
             include './../app/footer.php';
         }
         else{
