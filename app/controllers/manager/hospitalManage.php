@@ -44,4 +44,16 @@ class hospitalManage extends Controller{
         }
     }
 
+    public function updateHospital(){
+        $this->checkPermission("MGR");
+        if($_POST['newHospital']){
+            $this->model('hospital');
+            $editHospital = new Hospital();
+            $result= $editHospital->setValue($this->valValidate($_POST['name']),$this->valValidate($_POST['address']),$this->valValidate($_POST['hospitalContactNo']));
+            $result= $editHospital->update($this->valValidate($_POST['hospitalID']));
+            header("Location: ./viewHospital");
+            exit;
+        }
+    }
+
 }

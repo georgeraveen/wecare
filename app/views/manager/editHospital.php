@@ -17,25 +17,25 @@
                 <div class="column">
                     <div class="formInput">
                         <label for="hospitalID">Hospital ID</label><br>
-                        <input type="text" id="hospitalID" name="hospitalID" class="input" readonly value=<?php echo $data['hostDetails'][0]['hospitalID']?>><br>
+                        <input type="text" id="hospitalID" name="hospitalID" class="input" readonly value="<?php echo $data['hostDetails'][0]['hospitalID']?>"><br>
                     </div>
                 </div>
                 <div class="column">
                     <div class="formInput">
                         <label for="name">Hospital Name</label><br>
-                        <input type="text" id="name" name="name" required class="input" value=<?php echo $data['hostDetails'][0]['name'];?>><br>
+                        <input type="text" id="name" name="name" required class="input" value="<?php echo $data['hostDetails'][0]['name'];?>"><br>
                     </div>
                 </div>
                 <div class="column">
                     <div class="formInput">
                         <label for="hospitalContactNo">Contact Number</label><br>
-                        <input type="text" id="hospitalContactNo" name="hospitalContactNo" class="input" value=<?php echo $contactDetails ?>><br>
+                        <input type="text" id="hospitalContactNo" name="hospitalContactNo" class="input" value="<?php echo $contactDetails ?>"><br>
                     </div>
                 </div>
                 <div class="column">
                     <div class="formInput">
                         <label for="address">Address</label><br>
-                        <textarea id="address" name="address" class="commentBox" <?php echo $data['hostDetails'][0]['address']; ?>></textarea> <br>
+                        <textarea id="address" name="address" class="commentBox" ><?php echo $data['hostDetails'][0]['address']; ?></textarea> <br>
                     </div>
                 </div>
             </div>
@@ -49,6 +49,4 @@
         </form>
     </div>
 </div>
-<?php
-echo $data['hostDetails'][0]['name'];
-?>
+

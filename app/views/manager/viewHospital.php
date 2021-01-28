@@ -33,7 +33,7 @@
         </form>
     </div>
     <br><br>
-    <div style="width : 70%" class="table-container">
+    <div style="width : 80%" class="table-container">
     <table class="table-view">
       <tr>
         <th>Hospital ID</th>

@@ -16,7 +16,7 @@ class Hospital  extends Models{
     }
 
     public function getAll(){
-        $stmt= $this->conn->prepare("select * from $this->table INNER JOIN hospital_contact on $this->table.hospitalID=hospital_contact.hospitalID where status = 1");
+        $stmt= $this->conn->prepare("select * from $this->table LEFT JOIN hospital_contact on $this->table.hospitalID=hospital_contact.hospitalID where status = 1");
         $stmt->execute();
         return $stmt->fetchAll();
     }
@@ -55,6 +55,27 @@ class Hospital  extends Models{
             $stmt1 -> bindParam(':hospitalContactNo', $n);
             $stmt1->execute();
         }
+    }
+
+    public function update($_id){
+        $stmt= $this->conn->prepare("update $this->table set name= :name, address= :address 
+                                                             where hospitalID = $_id ") ;
+
+        $stmt -> bindParam(':name', $this->name);
+        $stmt -> bindParam(':address', $this->address);
+        $stmt->execute();
+
+        foreach($this->hosContactnumber as $number){
+            
+            $stmt= $this->conn->prepare("update hospital_contact set hospitalContactNo= :number 
+                                                            where hospitalID = $_id ");
+            $n=(int)$number; 
+            // echo $last_id."-".$n;
+            $stmt -> bindParam(':hospitalContactNo', $n);
+            $stmt->execute();
+        }
+
+
     }
 }
 ?>
