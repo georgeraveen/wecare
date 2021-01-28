@@ -65,12 +65,16 @@ class Hospital  extends Models{
         $stmt -> bindParam(':address', $this->address);
         $stmt->execute();
 
+        $stmt1= $this->conn->prepare("delete from hospital_contact where hospitalID= $_id");
+        $stmt1->execute();
+
         foreach($this->hosContactnumber as $number){
             
-            $stmt= $this->conn->prepare("update hospital_contact set hospitalContactNo= :number 
-                                                            where hospitalID = $_id ");
-            $n=(int)$number; 
+            $stmt= $this->conn->prepare("insert into hospital_contact (hospitalID,hospitalContactNo) 
+                                                            values (:hospitalID, :hospitalContactnumber) ");
+            $n=(int)$number;
             // echo $last_id."-".$n;
+            $stmt -> bindParam(':hospitalID', $_id );
             $stmt -> bindParam(':hospitalContactNo', $n);
             $stmt->execute();
         }
