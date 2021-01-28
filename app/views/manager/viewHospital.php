@@ -46,7 +46,7 @@
         echo "<tr>"."<td>".$row['name']."</td>".
               "<td>".$row['hospitalContactNo']."</td>".
               "<td>".$row['address']."</td>".
-              "<td> <a class=\"deleteBtn\" href=\"./editHospital?action=delete&id=".$row['hospitalID']."\">Delete</a> "."</td>".
+              "<td> <a class=\"deleteBtn\" href=\"./deleteHospital?action=delete&id=".$row['hospitalID']."\">Delete</a> "."</td>".
               "<td> <a class=\"editBtn\" href=\"./editHospital?action=edit&id=".$row['hospitalID']."\">Edit</a> "."</td>"."</tr>";
       }
       ?>

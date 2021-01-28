@@ -36,23 +36,27 @@ class hospitalManage extends Controller{
             $hostDetails=$editHost->getDetails($this->valValidate($_GET['id']));
 
             $hostContactDetails=$editHost->getContactDetails($this->valValidate($_GET['id']));
-            
+
             include './../app/header.php';
             $this->view('manager/editHospital',['id'=>$this->valValidate($_GET['id']),'hostDetails'=>$hostDetails,'hostContactDetails'=>$hostContactDetails]);
             include './../app/footer.php';
         }
-        elseif ($this->valValidate($_GET['action'])=="delete") {
+        else{
+            header("Location: ./index");
+            exit;
+        }
+    }
 
+    public function deleteHospital(){
+        $this->checkPermission("MGR");
+        $this->model('hospital');
+        $editHost= new Hospital();
+        if ($this->valValidate($_GET['action'])=="delete") {
             $result= $editHost->updateStatus($this->valValidate($_GET['id']));
-
-            $queue=$editHost->getAll();
-
-            include './../app/header.php';
-            $this->view('manager/viewHospital',$queue);
-            include './../app/footer.php';
+            header("Location: ./index");
         }
         else{
-            header("Location: ./viewHospital");
+            header("Location: ./index");
             exit;
         }
     }
