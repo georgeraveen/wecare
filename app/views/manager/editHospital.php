@@ -5,12 +5,14 @@
     $contactDetails .= $row["hospitalContactNo"];
     $contactDetails .= ",";
 }
+$contDetails = rtrim($contactDetails, ',');
 ?>
 <link rel="stylesheet" href= "./../../css/home.css">
 <link rel="stylesheet" href= "./../../css/style.css">
 <div class="containers">
 <ul class="breadcrumb">
     <li><a href="./../managerHome/index">Home</a></li>
+    <li><a href="./index">View Hospitals</a></li>
     <li>Manage Hospitals</a></li>
   </ul>
   <h1>Manage Hospitals</h1><br>
@@ -33,7 +35,7 @@
                 <div class="column">
                     <div class="formInput">
                         <label for="hospitalContactNo">Contact Number</label><br>
-                        <input type="text" id="hospitalContactNo" name="hospitalContactNo" class="input" value="<?php echo $contactDetails ?>"><br>
+                        <input type="text" id="hospitalContactNo" name="hospitalContactNo" class="input" value="<?php echo $contDetails ?>"><br>
                     </div>
                 </div>
                 <div class="column">

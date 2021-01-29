@@ -27,7 +27,7 @@ class Hospital  extends Models{
     }
 
     public function getAll(){
-        $stmt= $this->conn->prepare("select * from $this->table LEFT JOIN hospital_contact on $this->table.hospitalID=hospital_contact.hospitalID where status = 1");
+        $stmt= $this->conn->prepare("select * from $this->table LEFT JOIN hospital_contact on $this->table.hospitalID=hospital_contact.hospitalID where (status = 1 && hospitalContactNo != 0)");
         $stmt->execute();
         return $stmt->fetchAll();
     }
