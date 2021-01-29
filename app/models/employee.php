@@ -38,8 +38,7 @@ class Employee extends Models{
         return $stmt->fetchAll();
     }
     public function getAllView(){
-        $stmt= $this->conn->prepare("select empID,empFirstName,empLastName,gender,empNIC,empAddress,email,empTypeID from $this->table
-");
+        $stmt= $this->conn->prepare("select empID,empFirstName,empLastName,gender,empNIC,empAddress,email,empTypeID from $this->table");
         
         $stmt->execute();
         return $stmt->fetchAll();
@@ -167,6 +166,13 @@ class Employee extends Models{
         }
 
 
+    }
+    public function delete($_id){
+        $stmt1= $this->conn->prepare("delete from employee where empID= $_id");
+        $stmt1->execute();
+
+        $stmt2= $this->conn->prepare("delete from employee_contact where empID= $_id");
+        $stmt2->execute();
     }
 }
 ?>

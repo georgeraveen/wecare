@@ -1,21 +1,31 @@
 <link rel="stylesheet" href= "./../../css/home.css">
 <link rel="stylesheet" href= "./../../css/style.css">
 <div class="containers">
+<ul class="breadcrumb">
+    <li><a href="./../managerHome/index">Home</a></li>
+    <li>View Hospitals</a></li>
+  </ul>
   <h1>Hospitals</h1><br>
     <div class="form-container">
 
-        <form action="#" method="post">
+        <form action="./newHospital" method="post">
             <div class="row">
                 <div class="column">
                     <div class="formInput">
-                        <label for="empFirstName">Hospital Name</label><br>
-                        <input type="text" id="empFirstName" name="empFirstName" required class="input"><br>
+                        <label for="name">Hospital Name</label><br>
+                        <input type="text" id="name" name="name" required class="input"><br>
                     </div>
                 </div>
                 <div class="column">
                     <div class="formInput">
-                        <label for="empLastName">Contact Number</label><br>
-                        <input type="text" id="empLastName" name="empLastName" required class="input"><br>
+                        <label for="hospitalContactNo">Contact Number</label><br>
+                        <input type="text" id="hospitalContactNo" name="hospitalContactNo" required class="input"><br>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="formInput">
+                        <label for="address">Address</label><br>
+                        <textarea id="address" name="address" class="commentBox"></textarea> <br>
                     </div>
                 </div>
                 <div class="column">
@@ -26,27 +36,23 @@
             </div>
         </form>
     </div>
-    <div style="width : 70%" class="table-container">
+    <br><br>
+    <div style="width : 80%" class="table-container">
     <table class="table-view">
       <tr>
         <th>Hospital Name</th>
         <th>Contact Number</th>
+        <th>Address</th>
+        <th colspan="2" style="text-align:center">Action</th>
       </tr>
-      <tr>
-        <td>Hemas</td>
-        <td>0114356754</td>
-      </tr>
-      <tr>
-        <td>Nawaloka</td>
-        <td>0115435667</td>
-      </tr>
-      <tr>
-        <td>Asiri</td>
-        <td>0371234587</td>
-      </tr>
-      <tr>
-        <td>Lanka</td>
-        <td>0376543567</td>
-      </tr>
+      <?php
+      foreach($data as $row){
+        echo "<tr>"."<td>".$row['name']."</td>".
+              "<td>".$row['hospitalContactNo']."</td>".
+              "<td>".$row['address']."</td>".
+              "<td> <a class=\"deleteBtn\" href=\"./deleteHospital?action=delete&id=".$row['hospitalID']."\">Delete</a> "."</td>".
+              "<td> <a class=\"editBtn\" href=\"./editHospital?action=edit&id=".$row['hospitalID']."\">Edit</a> "."</td>"."</tr>";
+      }
+      ?>
     </table>
 </div>

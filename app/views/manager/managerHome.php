@@ -5,5 +5,5 @@
   <a class="grid-item" href="./../roster">Update weekly roster</a>  
   <a class="grid-item" href="./../createNewEmployee">Create new employee account</a>
   <a class="grid-item" href="./../updateEmployee/viewEmployee">Manage employee accounts</a>
-  <a class="grid-item" href="./../hospital">Manage hospitals</a>
+  <a class="grid-item" href="./../hospitalManage">Manage hospitals</a>
 </div>
