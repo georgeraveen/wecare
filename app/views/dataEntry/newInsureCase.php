@@ -5,11 +5,16 @@
 
 <link rel="stylesheet" href= "./../../css/home.css">
 <link rel="stylesheet" href= "./../../css/style.css">
+
 <div class="containers">
+  <ul class="breadcrumb">
+    <li><a href="./../dataEntryHome/index">Home</a></li>
+    <li>New Insurance Claim Case</a></li>
+  </ul>
   <h1>Create New Insurance Claim Case</h1><br>
   <div class="form-container">
     
-    <form action="./newcase" method="post">
+    <form action="./newcase" method="post" onSubmit="showLoader()">
       <div class="row">
         <div class="column">
           <div class="formInput">
@@ -53,7 +58,10 @@
           </div>
         </div>
       </div>
-      <div class="row">
+      <div class="row-grid">
+      <button type="button" class="collapsible">Add ICU details</button>
+        <div id="icuRow" class="content-collaps">
+      <div  class="row">
         <div class="column">
           <div class="formInput">
             <label for="icuFromDate">ICU From Date</label><br>
@@ -66,6 +74,8 @@
             <input type="Date" id="icuToDate" name="icuToDate" class="input"><br>
           </div>
         </div>
+        </div>
+      </div>
       </div>
       <div class="row">
         <div class="column">
@@ -111,3 +121,4 @@
     </form>
   </div>
 </div>
+<script src="./../../js/common.js"></script>

@@ -1,18 +1,24 @@
 <?php
 
-$result = array (
-  array("recordID"=>"1","date"=>"2020-08-01","type"=>"Accidental","healthCondition"=>"Broken leg","comments"=>""),
-  array("recordID"=>"2","date"=>"2020-08-02","type"=>"Accidental","healthCondition"=>"Brain damage","comments"=>""),
-  array("recordID"=>"3","date"=>"2020-08-03","type"=>"Congenital","healthCondition"=>"Heart disease","comments"=>""),
-  array("recordID"=>"4","date"=>"2020-08-04","type"=>"Genetical","healthCondition"=>"High gloucose","comments"=>"")
-);
-
+// $result = array (
+//   array("recordID"=>"1","date"=>"2020-08-01","type"=>"Accidental","healthCondition"=>"Broken leg","comments"=>""),
+//   array("recordID"=>"2","date"=>"2020-08-02","type"=>"Accidental","healthCondition"=>"Brain damage","comments"=>""),
+//   array("recordID"=>"3","date"=>"2020-08-03","type"=>"Congenital","healthCondition"=>"Heart disease","comments"=>""),
+//   array("recordID"=>"4","date"=>"2020-08-04","type"=>"Genetical","healthCondition"=>"High gloucose","comments"=>"")
+// );
+$result=$data;
+// var_dump($result);
 ?>
 
 <link rel="stylesheet" href= "./../../css/home.css">
 <link rel="stylesheet" href= "./../../css/style.css">
 <link rel="stylesheet" href= "./../../css/modal.css">
 <div class="containers">
+  <ul class="breadcrumb">
+    <li><a href="./../dataEntryHome/index">Home</a></li>
+    <li><a href="./../manageMedCondition/index">Manage Medical Condition</a></li>
+    <li>View Condition</a></li>
+  </ul>
   <h1>View Medical Condition</h1><br>
   <div class="table-container">
     <table class="table-view">
@@ -29,7 +35,7 @@ $result = array (
               "<td id=\"type-".$row['recordID']."\">".$row['type']."</td>".
               "<td hidden id=\"healthCondition-".$row['recordID']."\">".$row['healthCondition']."</td>".
               "<td hidden id=\"comments-".$row['recordID']."\">".$row['comments']."</td>".
-              "<td> <a class=\"deleteBtn\" href=\"#".$row['recordID']."\">Delete</a> <a onclick=\"clickView(".$row['recordID'].")\" class=\"editBtn\" href=\"#".$row['recordID']."\">View / Edit</a> "."</td>"."</tr>";
+              "<td> <a class=\"deleteBtn\" href=\"./deleteCondition?action=delMed&id=".$row['recordID']."\">Delete</a> <a onclick=\"clickView(".$row['recordID'].")\" class=\"editBtn\" href=\"#\">View / Edit</a> "."</td>"."</tr>";
       }
 
       ?>
@@ -41,7 +47,7 @@ $result = array (
   <!-- Modal content -->
   <div class="modal-content">
     <span class="close">&times;</span>
-    <form action="#" method="post">
+    <form action="./updateConditon" method="post">
       <div class="row">
         <div class="column">
           <div class="formInput">
@@ -85,6 +91,7 @@ $result = array (
           <div class="formInput">
             <input type="submit" id="editMedCondition" name="editMedCondition" class="btn-submit" value="Update medical condition"><br>
             <input hidden type="text" id="medID" name="medID" ><br>
+            <input type="text" id="custID" name="custID" required class="input hide" value="<?php echo $result[0]["custID"]; ?> ">
           </div>
         </div>
       </div>

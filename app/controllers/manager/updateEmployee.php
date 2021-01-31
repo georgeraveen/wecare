@@ -21,7 +21,7 @@ class updateEmployee extends Controller{
         include './../app/footer.php';
     }
 
-    public function editemployee(){
+    public function editEmployee(){
         $this->checkPermission("MGR");
         $this->model('employee');
         $editEmp= new Employee();
@@ -45,6 +45,23 @@ class updateEmployee extends Controller{
             $editEmployee = new Employee();
             $result= $editEmployee->setValue($this->valValidate($_POST['empFirstName']),$this->valValidate($_POST['empLastName']),$this->valValidate($_POST['gender']),$this->valValidate($_POST['empDOB']),$this->valValidate($_POST['empNIC']),$this->valValidate($_POST['empAddress']),$this->valValidate($_POST['email']),$this->valValidate($_POST['empTypeID']),$this->valValidate($_POST['empContactNo']));
             $result= $editEmployee->update($this->valValidate($_POST['empID']));
+            header("Location: ./viewEmployee");
+            exit;
+        }
+    }
+
+    public function deleteEmployee(){
+        $this->checkPermission("MGR");
+        $this->model('employee');
+        $deleteEmp= new Employee();
+        if($this->valValidate($_GET['action'])=="delete"){
+            $result= $deleteEmp->delete($this->valValidate($_GET['id']));
+            $queue=$deleteEmp->getAllView();
+            include './../app/header.php';
+            $this->view('manager/viewEmployee',$queue);
+            include './../app/footer.php';
+        }
+        else{
             header("Location: ./viewEmployee");
             exit;
         }
