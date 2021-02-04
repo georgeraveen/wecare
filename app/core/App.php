@@ -22,7 +22,7 @@ class App{
             $this->controller = $url[0];
             // unset($url[0]);
         }
-        require_once '../app/controllers/'.$_SESSION["portal"].'/' . $this->controller . '.php';
+        require_once'../app/controllers/'.$_SESSION["portal"].'/' . $this->controller . '.php';
         // echo $this->controller;
         $this->controller=new $this->controller;
         // var_dump($this->controller);

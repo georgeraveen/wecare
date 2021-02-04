@@ -4,8 +4,12 @@ class viewPendingQueue extends Controller{
 
     public function index(){
         $this->checkPermission("DOC");
+        $this->model('claimcase');
+        $pendingQueue= new ClaimCase();
+        $doctorID=$_SESSION["user_id"];
+        $queue=$pendingQueue->getDoctorList( $doctorID);       
         include './../app/header.php';
-        $this->view('doctor/viewPendingQueue');
+        $this->view('doctor/viewPendingQueue', $queue);
         include './../app/footer.php';
         // echo "asas";
     }
@@ -17,5 +21,47 @@ class viewPendingQueue extends Controller{
         include './../app/footer.php';
         // echo "asas";
     }
+
+    //doctor-pendingQueue edit
+    public function editCase(){
+        $this->checkPermission("DOC");
+        $this->model('claimCase');
+        $caseDetails= new ClaimCase();
+        $doctorID=$_SESSION["user_id"];
+        $singleCaseDetails=$caseDetails->getCaseDetailsDoctor( $this->valValidate($_GET['id']));  
+      
+
+              
+
+        if($_GET['action']=="edit"){
+          
+            include './../app/header.php';
+            $this->view('doctor/reviewAndComment',['id'=>$this->valValidate($_GET['id']),'singleCaseDetails'=>$singleCaseDetails]);
+            include './../app/footer.php';
+        }
+        else{
+            header("Location: ./viewPendingQueue");
+            exit;
+        }
+    }
+
+
+    
+  //update Single case details
+  public function updateCase(){
+    $this->checkPermission("DOC");
+    if($_POST['editSingleCaseDetails']){
+        $this->model('claimCase');
+        $editClaimCase = new ClaimCase();
+        $result= $editClaimCase->setValueDoc(
+                $this->valValidate($_POST['doctorComment']),$this->valValidate($_POST['healthCondition']));
+               
+        $result= $editClaimCase->updateSingleCaseDoc($this->valValidate($_POST['claimID']));
+        header("Location: ./viewCase");
+        exit;
+    }
+}
+   
+  
 
 }

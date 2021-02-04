@@ -14,7 +14,17 @@ function redirect($url) {
 
     return true;
 }
+require('./../app/config/mailin.php');
 
+function sendEmail($customerEmail,$customerName,$email_string,$mail_subject){
+    $mailin = new Mailin("https://api.sendinblue.com/v2.0","Fr5bEBxPIwj3fcgQ");
+    $data = array( "to" => array($customerEmail=>$customerName),
+        "from" => array("noreply@wecare.lk", "Wecare"),
+        "subject" => $mail_subject,
+        "html" => $email_string
+    );
+    var_dump($mailin->send_email($data));
+}
 // function set_rights($menus, $menuRights, $topmenu) {
 //     // echo "\n";
 //     // print_r($menus);
