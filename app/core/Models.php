@@ -24,4 +24,9 @@ class Models{
         }
         return $DB;
     }
+    public function password_generator($chars=3){
+        $data = '1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcefghijklmnopqrstuvwxyz';
+        $randPass=substr(str_shuffle($data), 0, $chars);
+        return array($randPass,password_hash( $randPass, PASSWORD_DEFAULT, [ 'cost' => 11 ] ));
+    }
 }

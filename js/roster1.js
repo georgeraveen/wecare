@@ -19,6 +19,13 @@ window.onclick = function(event) {
 ////////////////////////////////////////////////
 var rosterTable = document.getElementById("rosterTable");
 
+function deleteMed(cellDelete,inputID,deleteID){
+    // console.log(cellDelete.value);
+    // console.log(aa);
+    var inputBox = document.getElementById("A"+inputID[1]+inputID[2]);
+    inputBox.value=inputBox.value.replace(","+deleteID,"");
+    cellDelete.parentNode.remove();
+}
 function addUser(id){
     // console.log(id);
     modal.style.display = "block";
@@ -33,10 +40,13 @@ function addToTable(){
     else if(slotNo=="3") {slotRow=slot3RowNo;slotRowEnd=rosterTable.rows.length}
     var insertRowNo=parseInt(slotRowEnd);
 
+    var newMedSel = newMedID.options[newMedID.selectedIndex];
+    var newElement= "<p id=\"as\">"+newMedSel.text+"  <button onClick=\"deleteMed(this,'A"+ slotNo+columnNo+"',"+newMedID.value +")\">X</button></p>";
+
     if(rosterTable.rows[insertRowNo-1].cells[columnNo].innerHTML==""){
         for(var i=slotRow+1;i<insertRowNo;i++){
             if(rosterTable.rows[i].cells[columnNo].innerHTML==""){
-                rosterTable.rows[i].cells[columnNo].innerHTML=newMedID.value;
+                rosterTable.rows[i].cells[columnNo].innerHTML=newElement;
                 break;
             }
         }
@@ -48,7 +58,7 @@ function addToTable(){
         for(var i=0;i<8;i++){
             newCells.push(newRow.insertCell(i));
         }
-        newCells[columnNo].innerHTML=newMedID.value;
+        newCells[columnNo].innerHTML=newElement;
 
         if (slotNo==1) {
             slot2RowNo++;

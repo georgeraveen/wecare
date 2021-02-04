@@ -1,12 +1,12 @@
 <?php
 
 
- $result = array(
-    array("claimID"=>"1","custName"=>"Mr.Perera", "admitDate"=>"2020-08-01","name"=>"MEd1","name"=>"Asiri"),
-    array("claimID"=>"2", "custName"=>"Mr.Samarasinghe","admitDate"=>"2020-08-02","name"=>"MEd1","name"=>"Asiri"),
-    array("claimID"=>"3", "custName"=>"Mr.Fernando","admitDate"=>"2020-08-03","name"=>"MEd1","name"=>"Asiri"),
-    array("claimID"=>"4","custName"=>"Mr.Karunathilake", "admitDate"=>"2020-08-04","name"=>"MEd1","name"=>"Asiri"),
-);
+ //$result = array(
+   // array("claimID"=>"1","custName"=>"Mr.Perera", "admitDate"=>"2020-08-01","name"=>"MEd1","name"=>"Asiri"),
+   // array("claimID"=>"2", "custName"=>"Mr.Samarasinghe","admitDate"=>"2020-08-02","name"=>"MEd1","name"=>"Asiri"),
+   // array("claimID"=>"3", "custName"=>"Mr.Fernando","admitDate"=>"2020-08-03","name"=>"MEd1","name"=>"Asiri"),
+   // array("claimID"=>"4","custName"=>"Mr.Karunathilake", "admitDate"=>"2020-08-04","name"=>"MEd1","name"=>"Asiri"),
+//);
 
 ?>
 
@@ -27,14 +27,14 @@
             <th>Action</th>
             </tr>
                 <?php
-        foreach($result as $row){
+        foreach($data as $row){
             echo "<tr>"."<td>".$row['claimID']."</td>".
                 
                 "<td id=\"custName-".$row['claimID']."\">".$row['custName']."</td>".
                 "<td id=\"admitDate-".$row['claimID']."\">".$row['admitDate']."</td>".
+                "<td  id=\"name-".$row['recordID']."\">".$row['medSrcName']."</td>".
                 "<td  id=\"name-".$row['recordID']."\">".$row['name']."</td>".
-                "<td  id=\"name-".$row['recordID']."\">".$row['name']."</td>".
-                "<td>  <a onclick=\"clickView(".$row['recordID'].")\" class=\"editBtn\" href=\"./review".$row['recordID']."\">View </a> "."</td>"."</tr>";
+                "<td>  <a class=\"editBtn\" href=\"./editCase?action=edit&id=".$row['claimID']."\">View/Edit</a> "."</td>"."</tr>";
          }
 
                  ?>

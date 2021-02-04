@@ -1,5 +1,6 @@
 
 <link rel="stylesheet" href= "./../../css/home.css">
+
 <div class="grid-container">
   <a class="grid-item" href="./../insureCase/index">Create new insurance claim case</a>
   <a class="grid-item" href="./../manageCustomer/index">Create new customer profile</a>

@@ -7,7 +7,6 @@ class DoctorHome extends Controller{
         include './../app/header.php';
         $this->view('doctor/doctorHome');
         include './../app/footer.php';
-        // echo "asas";
     }
 
 }

@@ -2,10 +2,15 @@
 <link rel="stylesheet" href= "./../../css/home.css">
 <link rel="stylesheet" href= "./../../css/style.css">
 <div class="containers">
+  <ul class="breadcrumb">
+    <li><a href="./../dataEntryHome/index">Home</a></li>
+    <li><a href="./../insureCase/viewCase">View Insurance Cases</a></li>
+    <li>Edit case</a></li>
+  </ul>
   <h1>Update Insurance Claim Case</h1><br>
   <div class="form-container">
     
-    <form action="./updateCase" method="post">
+    <form action="./updateCase" method="post" onSubmit="showLoader()">
       <div class="row">
         <div class="column">
           <div class="formInput">

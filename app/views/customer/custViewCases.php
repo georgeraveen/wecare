@@ -22,7 +22,7 @@
       foreach($data as $row){
         echo "<tr>"."<td>".$row['claimID']."</td>".
               "<td>".$row['dischargeDate']."</td>".
-              "<td>".$row['claimID']."</td>".
+              "<td>".$row['caseStatus']."</td>".
               "<td>".$row['name']."</td>".
               "<td>".$row['payableAmount']."</td>".
               "<td> <a class=\"editBtn\" href=\"#\" onClick=\"openFeedback(".$row['claimID'].")\">Add</a> "."</td> </tr>".
