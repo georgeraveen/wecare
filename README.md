@@ -15,3 +15,5 @@ git installed
 
 sudo mysql -u root -p
 password
+
+sudo mysql -u root -p < ./app/SQL\ Backups/127_0_0_1\ \(1\).sql
