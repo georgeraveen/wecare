@@ -5,12 +5,12 @@ class viewCompletedQueue extends Controller{
     public function index(){
 
         $this->checkPermission("FAG");
-       // $this->model('claimcase');
-        //$pendingQueue= new ClaimCase();
-        //$fieldAgID=$_SESSION["user_id"];
-        //$queue=$pendingQueue->getFieldAgList( $fieldAgID); 
+       $this->model('claimcase');
+        $pendingQueue= new ClaimCase();
+        $fieldAgID=$_SESSION["user_id"];
+        $queue=$pendingQueue->getFieldAgList($fieldAgID); 
         include './../app/header.php';
-        $this->view('fieldAgent/viewCompletedQueue');
+        $this->view('fieldAgent/viewCompletedQueue',$queue);
         include './../app/footer.php';
         // echo "asas";
     }
