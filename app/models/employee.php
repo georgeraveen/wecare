@@ -32,13 +32,13 @@ class Employee extends Models{
         $this->conn->rollBack();
     }
     public function getAll(){
-        $stmt= $this->conn->prepare("select * from $this->table");
+        $stmt= $this->conn->prepare("select * from $this->table where (status = 1)");
         
         $stmt->execute();
         return $stmt->fetchAll();
     }
     public function getAllView(){
-        $stmt= $this->conn->prepare("select empID,empFirstName,empLastName,gender,empNIC,empAddress,email,empTypeID from $this->table");
+        $stmt= $this->conn->prepare("select empID,empFirstName,empLastName,gender,empNIC,empAddress,email,empTypeID from $this->table where (status=1)");
         
         $stmt->execute();
         return $stmt->fetchAll();
@@ -167,12 +167,12 @@ class Employee extends Models{
 
 
     }
-    public function delete($_id){
-        $stmt1= $this->conn->prepare("delete from employee where empID= $_id");
-        $stmt1->execute();
+    public function updateStatus($_id){
 
-        $stmt2= $this->conn->prepare("delete from employee_contact where empID= $_id");
-        $stmt2->execute();
+        $stmt= $this->conn->prepare("update $this->table set status= 0
+                                                            where empID = $_id ") ;   
+        $stmt->execute();                                                  
+
     }
 }
 ?>
