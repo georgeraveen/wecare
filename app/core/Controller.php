@@ -22,6 +22,9 @@ class Controller{
             die("You dont have the permission to access this page");
         }
     }
+    public function permissionError(){
+        die("You dont have the permission to access this page");
+    }
     public function checkPermissionCust(){
         if (!isset($_SESSION["user_id"]) || $_SESSION["user_id"] == "") {
             // not logged in send to login page

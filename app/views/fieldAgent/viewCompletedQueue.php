@@ -35,10 +35,10 @@
             echo "<tr>"."<td>".$row['claimID']."</td>".
                  "<td id=\"custName-".$row['claimID']."\">".$row['custName']."</td>".
                 "<td id=\"admitDate-".$row['claimID']."\">".$row['admitDate']."</td>".
-                "<td  id=\"name-".$row['recordID']."\">".$row['nameM']."</td>".
-                "<td  id=\"name-".$row['recordID']."\">".$row['name']."</td>".
-                "<td  id=\"status-".$row['recordID']."\">".$row['status']."</td>".
-                "<td>  <a onclick=\"clickView(".$row['recordID'].")\" class=\"editBtn\" href=\"./review".$row['recordID']."\">View </a> "."</td>"."</tr>";
+                "<td  id=\"name-".$row['claimID']."\">".$row['nameM']."</td>".
+                "<td  id=\"name-".$row['claimID']."\">".$row['name']."</td>".
+                "<td  id=\"status-".$row['claimID']."\">".$row['status']."</td>".
+                "<td>  <a  class=\"editBtn\" href=\"./review?id=".$row['claimID']."\">View </a> "."</td>"."</tr>";
          }
          
 

@@ -63,25 +63,31 @@
             
             </div>
             <div class="row">
-            <div class="column">
+                <div class="column">
                     
-                        <h4 for="fileToUpload">Hospital Documents</h4>
-                        <ul>
-                        <?php
-                        $dir ="./../documents/claimCases/". "5";
-
+                    <h4 for="fileToUpload">Hospital Documents</h4>
+                    <ul>
+                    <?php
+                    try {
+                        $dir ="./../documents/claimCases/". $data['singleCaseDetails'][0]['claimID'];
                         // Sort in ascending order - this is default
-                        $a = scandir($dir);
+                        $ls = scandir($dir);
 
                         // Sort in descending order
                         //$b = scandir($dir,1);
-
-                        echo "<a href =\"./../documents/claimCases/". $data['singleCaseDetails'][0]['claimID'] . "/". $a[2] ."\">".$a[2]."</a>";
-
-                        ?>
-                       </ul>
-                    </div>
+                        // var_dump($ls);
+                        for($i=2;$i < count($ls);$i++){
+                            echo "<li>";
+                            echo "<a href =\"./../../documents/claimCases/". $data['singleCaseDetails'][0]['claimID'] . "/". $ls[$i] ."\">".$ls[$i]."</a>";
+                            echo "</li>";
+                        }
+                    } catch (\Throwable $th) {
+                        echo "Empty Directory";
+                    }
+                    ?>
+                    </ul>
                 </div>
+            </div>
                 <!-- <div class="column">
                     
                     <input type="submit" id="submit" name="editSingleCaseDetails" class="btn-submit" value= "Submit" ><br>
