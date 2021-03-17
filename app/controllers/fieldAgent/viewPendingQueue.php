@@ -28,7 +28,7 @@ class viewPendingQueue extends Controller{
         $this->model('claimCase');
         $caseDetails= new ClaimCase();
         $fieldAgID=$_SESSION["user_id"];
-        $singleCaseDetails=$caseDetails->getCaseDetailsFieldAg($this->valValidate($_GET['id']));  
+        $singleCaseDetails=$caseDetails->getCaseDetailsFieldAg($this->valValidate($_GET['id']),$fieldAgID);  
       
 
        
