@@ -2,13 +2,13 @@
 
 class updateEmployee extends Controller{
 
-    public function index(){
+   /* public function index(){
         $this->checkPermission("MGR");
         include './../app/header.php';
         $this->view('manager/updateEmployee');
         include './../app/footer.php';
         // echo "asas";
-    }
+    }*/
 
     public function viewEmployee(){
         $this->checkPermission("MGR");

@@ -10,6 +10,11 @@ $contDetails = rtrim($contactDetails, ',');
 <link rel="stylesheet" href= "./../../css/home.css">
 <link rel="stylesheet" href= "./../../css/style.css">
 <div class="containers">
+<ul class="breadcrumb">
+    <li><a href="./../managerHome/index">Home</a></li>
+    <li><a href="./viewEmployee">View Employees</a></li>
+    <li>Manage Employees</a></li>
+</ul>
   <h1>Update employee Profiles</h1><br>
     <div class="form-container">
 
