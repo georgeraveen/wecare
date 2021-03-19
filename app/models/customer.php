@@ -40,14 +40,14 @@ class Customer extends Models{
     }
     public function getList(){
         $stmt= $this->conn->prepare("SELECT custID, custName from $this->table where status=1");
-        // var_dump($this->conn);
+        var_dump($this->conn);
         $stmt->execute();
         return $stmt->fetchAll();
     }
     public function getBasicCustList(){
         $stmt= $this->conn->prepare("SELECT i.custID as custID, i.custName custName, i.custNIC as custNIC, c.custContactNo as custContact from $this->table as i
                                     inner join customer_contact as c on i.custID=c.custID where i.status=1");
-        // var_dump($this->conn);
+        var_dump($this->conn);
         $stmt->execute();
         return $stmt->fetchAll();
     }
