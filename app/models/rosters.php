@@ -63,5 +63,28 @@ class Rosters  extends Models{
         $stmt=$this->conn->prepare("Insert into time_slot_med (medScruID,slotID) values ".$empString);
         $stmt->execute();
     }
+    public function getRoster($rosterID){
+        var_dump($rosterID);
+        $stmt=$this->conn->prepare("SELECT * from $this->table where rosterID=$rosterID");
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+    public function getSlots($rosterID){
+        $stmt=$this->conn->prepare("SELECT * from time_slot where rosterID=$rosterID");
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+    public function getMeds($slotID){
+        $stmt=$this->conn->prepare("SELECT t.*,e.empFirstName,e.empLastName,e.empID from time_slot_med t INNER JOIN employee e ON
+                                    t.medScruID=e.empID  where t.slotID=$slotID");
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+    public function deleteRoster($rosterID){
+        $stmt=$this->conn->prepare("DELETE from roster where rosterID=:rosterID");
+        $stmt->bindParam(':rosterID',$rosterID);
+        $stmt->execute();
+        return;
+    }
 }
 ?>

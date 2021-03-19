@@ -32,37 +32,37 @@ class Employee extends Models{
         $this->conn->rollBack();
     }
     public function getAll(){
-        $stmt= $this->conn->prepare("select * from $this->table where (status = 1)");
+        $stmt= $this->conn->prepare("SELECT * from $this->table where (status = 1)");
         
         $stmt->execute();
         return $stmt->fetchAll();
     }
     public function getAllView(){
-        $stmt= $this->conn->prepare("select empID,empFirstName,empLastName,gender,empNIC,empAddress,email,empTypeID from $this->table where (status=1)");
+        $stmt= $this->conn->prepare("SELECT empID,empFirstName,empLastName,gender,empNIC,empAddress,email,empTypeID from $this->table where (status=1)");
         
         $stmt->execute();
         return $stmt->fetchAll();
     }
     public function getDetails($_id){
-        $stmt= $this->conn->prepare("select * from $this->table where empID= $_id");
+        $stmt= $this->conn->prepare("SELECT * from $this->table where empID= $_id and status=1 ");
         $stmt->execute();
         return $stmt->fetchAll();
     }
     public function getContactDetails($_id){
-        $stmt= $this->conn->prepare("select * from employee_contact where empID= $_id");
+        $stmt= $this->conn->prepare("SELECT * from employee_contact where empID= $_id ");
 
         $stmt->execute();
         return $stmt->fetchAll();
     }
     public function getEmpByType($empType){
-        $stmt= $this->conn->prepare("select * from $this->table where empTypeID = :empType ");
+        $stmt= $this->conn->prepare("SELECT * from $this->table where empTypeID = :empType and status=1 ");
         $stmt -> bindParam(':empType',$empType);
 
         $stmt->execute();
         return $stmt->fetchAll();
     }
     public function getEmpByTypeList($empType){
-        $stmt= $this->conn->prepare("select empID,empFirstName,empLastName from $this->table where empTypeID = :empType ");
+        $stmt= $this->conn->prepare("SELECT empID,empFirstName,empLastName from $this->table where empTypeID = :empType ");
         $stmt -> bindParam(':empType',$empType);
 
         $stmt->execute();
