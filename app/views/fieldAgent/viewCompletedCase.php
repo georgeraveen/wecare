@@ -1,27 +1,27 @@
 <?php
- //var_dump($data['singleCaseDetails']);
+// var_dump($data['singleCaseDetails']);
 ?> 
 <link rel="stylesheet" href= "./../../css/home.css">
 <link rel="stylesheet" href= "./../../css/style.css">
 
 <div class="containers">
-    <h1>Update Case</h1><br>
+    <h1>View Case</h1><br>
     <div class="form-container">
 
 
 
-    <form action="#" method="post" enctype="multipart/form-data">
+    <form action="./viewCompletedCase" method="post" enctype="multipart/form-data">
             <div class="row">
                 <div class="column">
                     <div class="formInput">
                         <label for="customer">Customer</label><br>
-                        <input type="text" id="customer" name="custName" class="input" value="Hasitha Edirisinghe" readonly><br>
+                        <input type="text" id="customer" name="custName" class="input" value=<?php echo $data['singleCaseDetails'][0]['custName']?> readonly><br>
                     </div>
                 </div>
                 <div class="column">
                     <div class="formInput">
                         <label for="claimID" >Claim ID</label><br>
-                        <input type="text" id="claimID" name="claimID" class="input" value="5" readonly><br>
+                        <input type="text" id="claimID" name="claimID" class="input" value=<?php echo $data['singleCaseDetails'][0]['claimID']?>  readonly><br>
                     </div>
                 </div>
             </div>
@@ -29,13 +29,13 @@
                 <div class="column">
                     <div class="formInput">
                         <label for="admitDate">Admit Date</label><br>
-                        <input type="date" id="admitDate" name="admitDate" class="input" value="2020-10-15" readonly ><br>
+                        <input type="date" id="admitDate" name="admitDate" class="input" value=<?php echo $data['singleCaseDetails'][0]['admitDate']?>  readonly ><br>
                     </div>
                 </div>
                 <div class="column">
                     <div class="formInput">
                         <label for="ICUfromDate" >ICU from Date</label><br>
-                        <input type="date" id="ICUfromDate" name="ICUfromDate" class="input"  value="2020-11-04" readonly ><br>
+                        <input type="date" id="ICUfromDate" name="ICUfromDate" class="input"  value=<?php echo $data['singleCaseDetails'][0]['icuFromDate']?> readonly ><br>
                     </div>
                 </div>
             </div>
@@ -43,13 +43,13 @@
                 <div class="column">
                     <div class="formInput">
                         <label for="dischargeDate" >Discharge Date</label><br>
-                        <input type="date" id="dischargeDate" name="dischargeDate" class="input" value="2020-11-15" readonly ><br>
+                        <input type="date" id="dischargeDate" name="dischargeDate" class="input" value=<?php echo $data['singleCaseDetails'][0]['dischargeDate']?> readonly ><br>
                     </div>
                 </div>
                 <div class="column">
                     <div class="formInput">
                         <label  for="ICUtoDate">ICU to Date</label><br>
-                        <input type="date" id="ICUtoDate" name="ICUtoDate" class="input" value="2020-11-10"  readonly><br>
+                        <input type="date" id="ICUtoDate" name="ICUtoDate" class="input" value=<?php echo $data['singleCaseDetails'][0]['icuToDate']?>  readonly><br>
                     </div>
                 </div>
             </div>
@@ -57,7 +57,7 @@
                 <div class="column">
                     <div class="formInput">
                         <label for="hospital">Hospital</label><br>
-                        <input type="text" id="hospital" name="hospital" class="input" value="lanka" readonly><br>
+                        <input type="text" id="hospital" name="hospital" class="input" value="<?php echo $data['singleCaseDetails'][0]['name']?>" readonly><br>
                     </div>
                 </div>
             

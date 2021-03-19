@@ -179,7 +179,7 @@ class ClaimCase extends Models{
 
 
 //*********************************************** FUNCTIONS OF FIELD AGENT *********************************************
-//get details for table
+//get details for table for pending queue
 
     public function getFieldAgList($fieldAgID){
         // var_dump($this->conn);
@@ -191,7 +191,7 @@ class ClaimCase extends Models{
              ON claim_case.hospitalID=hospital.hospitalID 
         INNER JOIN employee 
             ON claim_case.medScruID=employee.empID
-        WHERE claim_case.fieldAgID = $fieldAgID;
+        WHERE claim_case.caseStatus != 'Completed' and claim_case.FieldAgID=$fieldAgID;
                     ");
         
         $stmt->execute();
@@ -238,7 +238,25 @@ public function updateSingleCaseFag($_id){
 
     // echo $this->dataEntryOfficerID . $this->healthCondition;
 }
+//get details for completed queue
 
+public function getCompletedCases($fieldAgID){
+    // var_dump($this->conn);
+    $stmt= $this->conn->prepare("SELECT claimID, customer.custName,admitDate, CONCAT(employee.empFirstName, \" \", employee.empLastName) AS medSrcName , hospital.name ,caseStatus
+    FROM claim_case 
+    INNER JOIN customer
+        ON claim_case.custID=customer.custID 
+    INNER JOIN hospital 
+         ON claim_case.hospitalID=hospital.hospitalID 
+    INNER JOIN employee 
+        ON claim_case.medScruID=employee.empID
+    WHERE claim_case.caseStatus = 'Completed' and claim_case.FieldAgID=$fieldAgID;
+                ");
+    
+    $stmt->execute();
+    return $stmt->fetchAll();
+
+}
 
 }
 ?>

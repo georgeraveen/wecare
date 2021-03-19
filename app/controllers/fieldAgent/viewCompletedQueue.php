@@ -6,9 +6,9 @@ class viewCompletedQueue extends Controller{
 
         $this->checkPermission("FAG");
        $this->model('claimcase');
-        $pendingQueue= new ClaimCase();
+        $completedQueue= new ClaimCase();
         $fieldAgID=$_SESSION["user_id"];
-        $queue=$pendingQueue->getFieldAgList($fieldAgID); 
+        $queue=$completedQueue->getCompletedCases($fieldAgID); 
         include './../app/header.php';
         $this->view('fieldAgent/viewCompletedQueue',$queue);
         include './../app/footer.php';
