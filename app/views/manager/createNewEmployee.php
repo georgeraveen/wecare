@@ -1,6 +1,10 @@
 <link rel="stylesheet" href= "./../../css/home.css">
 <link rel="stylesheet" href= "./../../css/style.css">
 <div class="containers">
+<ul class="breadcrumb">
+    <li><a href="./../managerHome/index">Home</a></li>
+    <li>Create new employee Profile</a></li>
+</ul>
   <h1>Create new employee Profile</h1><br>
     <div class="form-container">
 
@@ -34,7 +38,7 @@
                 <div class="column">
                     <div class="formInput">
                         <label for="empTypeID">Role</label><br>
-                        <select id="empTypeID" name="empTypeID" required>
+                        <select id="empTypeID" name="empTypeID" required onChange="roleChange(this)">
                             <option value="DEO">DEO</option>
                             <option value="DOC">DOC</option>
                             <option value="FAG">FAG</option>
@@ -69,6 +73,12 @@
                         <input type="text" id="empContactNo" name="empContactNo" required class="input" placeholder="Enter numbers with comma seperated"><br>
                     </div>
                 </div>
+                <div class="column">
+                    <div class="formInput" hidden>
+                        <label id="empSpLabel" for="empSp">Option</label><br>
+                        <input type="text" id="empSp" name="empSp" required class="input" ><br>
+                    </div>
+                </div>
             </div>
             <div class="row">
                 <div class="column">
@@ -86,3 +96,4 @@
         </form>
     </div>
 </div>
+<script type="text/javascript" src="./../../js/manager.js"></script>

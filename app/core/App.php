@@ -15,6 +15,9 @@ class App{
         // echo $url[0]."..".$url[1]."..".$url[2]."..";
         // echo $_SESSION["portal"];
         // echo $this->controller;
+        if(!$url){
+            redirect("./login/index");
+        }
         if($_SESSION["portal"]!="customer" && $url[0]=='login'){
             $_SESSION["portal"]="employee";
         }
@@ -22,7 +25,7 @@ class App{
             $this->controller = $url[0];
             // unset($url[0]);
         }
-        require_once '../app/controllers/'.$_SESSION["portal"].'/' . $this->controller . '.php';
+        require_once'../app/controllers/'.$_SESSION["portal"].'/' . $this->controller . '.php';
         // echo $this->controller;
         $this->controller=new $this->controller;
         // var_dump($this->controller);

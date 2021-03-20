@@ -36,7 +36,6 @@ class Login extends Controller{
         $this->view('employee/index');
     }
     public function autho(){
-        // var_dump($_POST);
         // var_dump($_REQUEST["mode"]);
 
         require './../app/config/config.php';
@@ -66,17 +65,26 @@ class Login extends Controller{
             }
             
         }
+        $this->model('employee');
+        $empTable= new Employee();
+
         $mode = $_REQUEST["mode"];
         if ($mode == "login") {
-            $username1 = trim($_POST['username']);
-            $pass = trim($_POST['user_password']);
+            $username1 = trim($this->valValidate($_POST['username']));
+            $pass = trim($this->valValidate($_POST['user_password']));
             $userType = str_split($username1,3)[0];
             
             $username = str_split($username1,3)[1];
-            // echo "s".$username;
-            
+            if(!is_numeric($username)){
+                $_SESSION["errorType"] = "info";
+                $_SESSION["errorMsg"] = "username or password does not exist.";
+                echo "<script>alert('".$_SESSION['errorMsg']."');</script>";
+                $_SESSION["errorMsg"] = "";
+            }
+            // echo "s".$username." ".$userType;
+            // var_dump(str_split($username1,3));
             // echo "here";
-            if ($username == "" || $pass == "") {
+            else if ($username == "" || $pass == "") {
                 $_SESSION["errorType"] = "danger";
                 $_SESSION["errorMsg"] = "Enter manadatory fields";
             }
@@ -85,15 +93,16 @@ class Login extends Controller{
                 // $sql = "SELECT * FROM employee WHERE empID = :uname AND password = :upass ";
                 $sql2 = "SELECT empID,hashPass,empFirstName,empLastName,empTypeID FROM employee WHERE empID = :uname";
                 try {
-                    $stmt = $DB->prepare($sql2);
+                    $results= $empTable->getDetails($username);
+                    // $stmt = $DB->prepare($sql2);
         
                     // bind the values
-                    $stmt->bindValue(":uname", $username);
+                    // $stmt->bindValue(":uname", $username);
                     // $stmt->bindValue(":upass", $pass);
         
                     // execute Query
-                    $stmt->execute();
-                    $results = $stmt->fetchAll();
+                    // $stmt->execute();
+                    // $results = $stmt->fetchAll();
                     // echo $username1." ".$username;
                     // print_r($results);
                     if (password_verify($pass,$results[0]["hashPass"]) && $results[0]["empTypeID"]==$userType) {
@@ -133,6 +142,9 @@ class Login extends Controller{
                     } else {
                         $_SESSION["errorType"] = "info";
                         $_SESSION["errorMsg"] = "username or password does not exist.";
+                        echo "<script>alert('".$_SESSION['errorMsg']."');</script>";
+                        $_SESSION["errorMsg"] = "";
+
                     }
                 } catch (Exception $ex) {
         

@@ -27,8 +27,8 @@ class Login extends Controller{
         }
         $mode = $_REQUEST["mode"];
         if ($mode == "login") {
-            $username1 = trim($_POST['username']);
-            $pass = trim($_POST['user_password']);
+            $username1 = trim($this->valValidate($_POST['username']));
+            $pass = trim($this->valValidate($_POST['user_password']));
             $userType = str_split($username1,4)[0];
             
             $username = str_split($username1,4)[1];
@@ -36,8 +36,15 @@ class Login extends Controller{
             if($userType != "CUST"){
                 redirect("./../../customer-portal");
             }
+            if(!is_numeric($username)){
+                $_SESSION["errorType"] = "info";
+                $_SESSION["errorMsg"] = "username or password does not exist.";
+                echo "<script>alert('".$_SESSION['errorMsg']."');</script>";
+                $_SESSION["errorMsg"] = "";
+
+            }
             // echo "here";
-            if ($username == "" || $pass == "") {
+            else if ($username == "" || $pass == "") {
 
                 $_SESSION["errorType"] = "danger";
                 $_SESSION["errorMsg"] = "Enter manadatory fields";
@@ -45,20 +52,23 @@ class Login extends Controller{
             
             else {
                 // $sql = "SELECT * FROM customer WHERE custID = :uname AND password = :upass ";
-                $sql2 = "SELECT custID,custName,hashPass FROM customer WHERE custID = :uname";
+                // $sql2 = "SELECT custID,custName,hashPass FROM customer WHERE custID = :uname";
 
                 // echo "db";
                 // var_dump($DB);
                 try {
-                    $stmt = $DB->prepare($sql2);
+                    // $stmt = $DB->prepare($sql2);
                     // echo "s";
                     // bind the values
-                    $stmt->bindValue(":uname", $username);
+                    // $stmt->bindValue(":uname", $username);
                     // $stmt->bindValue(":upass", $pass);
 
                     // execute Query
-                    $stmt->execute();
-                    $results = $stmt->fetchAll();
+                    // $stmt->execute();
+                    // $results = $stmt->fetchAll();
+                    $this->model('customer');
+                    $custLogin = new Customer();
+                    $results= $custLogin->getDetails($username);
                     // echo $username1." ".$username;
                     // print_r($results);
                     // if (count($results) > 0) {
@@ -78,6 +88,9 @@ class Login extends Controller{
                         // echo "fail";
                         $_SESSION["errorType"] = "info";
                         $_SESSION["errorMsg"] = "username or password does not exist.";
+                        echo "<script>alert('".$_SESSION['errorMsg']."');</script>";
+                        $_SESSION["errorMsg"] = "";
+
                     }
                 } catch (Exception $ex) {
 

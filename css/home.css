@@ -1,7 +1,7 @@
 body{
     /* background-color: #ece5f0; */
     /* background-image: linear-gradient(to bottom right,#028075,  #003B36); */
-    background-image: linear-gradient(to bottom right,#ffffff,  #e4e4e4);
+    background-image: linear-gradient(to bottom right,#FFF6E9,  #FFE7C4);
     background-attachment: fixed;
   }
 
@@ -9,6 +9,15 @@ body{
     margin: 120px 100px;
     display: grid;
     grid-template-columns: auto auto auto;
+    background-image:linear-gradient(to bottom right,#f8b058,  #e07f07);
+    padding: 50px;
+    grid-gap: 50px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  .grid-container-medScru {
+    margin: 120px 100px;
+    display: grid;
+    grid-template-columns: auto auto;
     background-image:linear-gradient(to bottom right,#f8b058,  #e07f07);
     padding: 50px;
     grid-gap: 50px;
@@ -42,11 +51,23 @@ body{
     /* padding: 150px 0;
     grid-gap: 30px; */
   }
+  .grid-container-medScru{
+    margin: 150px 10px;
+    grid-template-columns: auto;
+    /* padding: 150px 0;
+    grid-gap: 30px; */
+  }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
   .grid-container{
+    margin: 150px 10px;
+    grid-template-columns: auto auto;
+    /* padding: 150px 0;
+    grid-gap: 30px; */
+  }
+  .grid-container-medScru{
     margin: 150px 10px;
     grid-template-columns: auto auto;
     /* padding: 150px 0;
@@ -62,12 +83,24 @@ body{
     /* padding: 150px 0;
     grid-gap: 30px; */
   }
+  .grid-container-medScru{
+    margin: 150px 10px;
+    grid-template-columns: auto auto;
+    /* padding: 150px 0;
+    grid-gap: 30px; */
+  }
   
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
   .grid-container{
+    margin: 150px 100px;
+    /* grid-template-columns: auto auto; */
+    /* padding: 150px 0;
+    grid-gap: 30px; */
+  }
+  .grid-container-medScru{
     margin: 150px 100px;
     /* grid-template-columns: auto auto; */
     /* padding: 150px 0;
