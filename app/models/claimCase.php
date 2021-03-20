@@ -120,7 +120,29 @@ class ClaimCase extends Models{
 
         // echo $this->dataEntryOfficerID . $this->healthCondition;
     }
-
+    public function checkCasePermission($caseID,$role,$empID){
+        $emp="";
+        switch ($role) {
+            case "FAG":
+                $emp=" FieldAgID = $empID";
+                break;
+            case "DOC":
+                $emp=" doctorID = $empID";
+                break;
+            case "DEO":
+                $emp=" dataEntryOfficerID = $empID";
+                break;
+            case "MED":
+                $emp=" medScruID = $empID";
+                break;
+            default:
+                # code...
+                break;
+        }
+        $stmt= $this->conn->prepare("SELECT * from $this->table where claimID= $caseID and $emp");
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
 
 
     //**************************************** FUNCTIONS OF DOCTOR **********************************************
