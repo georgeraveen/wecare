@@ -3,7 +3,7 @@
 <div class="containers">
   <h1>New insurance policy</h1><br>
   <div class="form-container" style="width:40%">
-    <form >
+    <form action="./addPolicy" method="post" enctype="multipart/form-data">
       <div class="row">
         <div class="column">
             <div class="formInput">
@@ -23,8 +23,8 @@
       <div class="row">
         <div class="column">
             <div class="formInput">
-                <label for="documentDIR">Upload</label>
-                <input type="file" id="documentDIR" name="documentDIR">
+                <label for="policyFile">Upload</label>
+                <input type="file" id="policyFile" name="policyFile" multiple accept=".pdf, image/*">
             </div>
         </div>
       </div>
@@ -32,7 +32,7 @@
         <div style="text-align:center" class="column">
             <div class="formInput">
             <br><br>
-                <a class="btn-submit" href="#">Submit</a>
+                <input type="submit" id="submit" name="addNew" class="btn-submit" value= "Submit" ><br>
             </div>
         </div>
       </div>
