@@ -14,7 +14,7 @@ $contDetails = rtrim($contactDetails, ',');
     <li><a href="./../managerHome/index">Home</a></li>
     <li><a href="./index">View Hospitals</a></li>
     <li>Manage Hospitals</a></li>
-  </ul>
+</ul>
   <h1>Manage Hospitals</h1><br>
     <div class="form-container">
 
