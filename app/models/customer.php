@@ -38,6 +38,11 @@ class Customer extends Models{
         $stmt->execute();
         return $stmt->fetchAll();
     }
+    public function getDetails($_id){
+        $stmt= $this->conn->prepare("select * from $this->table where custID= $_id");
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
     public function getList(){
         $stmt= $this->conn->prepare("SELECT custID, custName from $this->table where status=1");
         // var_dump($this->conn);

@@ -52,20 +52,23 @@ class Login extends Controller{
             
             else {
                 // $sql = "SELECT * FROM customer WHERE custID = :uname AND password = :upass ";
-                $sql2 = "SELECT custID,custName,hashPass FROM customer WHERE custID = :uname";
+                // $sql2 = "SELECT custID,custName,hashPass FROM customer WHERE custID = :uname";
 
                 // echo "db";
                 // var_dump($DB);
                 try {
-                    $stmt = $DB->prepare($sql2);
+                    // $stmt = $DB->prepare($sql2);
                     // echo "s";
                     // bind the values
-                    $stmt->bindValue(":uname", $username);
+                    // $stmt->bindValue(":uname", $username);
                     // $stmt->bindValue(":upass", $pass);
 
                     // execute Query
-                    $stmt->execute();
-                    $results = $stmt->fetchAll();
+                    // $stmt->execute();
+                    // $results = $stmt->fetchAll();
+                    $this->model('customer');
+                    $custLogin = new Customer();
+                    $results= $custLogin->getDetails($username);
                     // echo $username1." ".$username;
                     // print_r($results);
                     // if (count($results) > 0) {

@@ -11,6 +11,7 @@ class createNewEmployee extends Controller{
     }
 
     public function createEmployee(){
+
         try{
             $this->checkPermission("MGR");
             if($_POST['newEmployee']){
@@ -28,6 +29,7 @@ class createNewEmployee extends Controller{
         catch(\Throwable $th){
             $newEmployee->transRollBack();
             $_SESSION["errorMsg"]="Error occured when adding a new employee.";
+
             header("Location: ./index");
         }
     }
