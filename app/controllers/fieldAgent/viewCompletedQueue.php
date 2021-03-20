@@ -30,8 +30,23 @@ class viewCompletedQueue extends Controller{
         include './../app/footer.php';
         // echo "asas";
     }
-
-   
+    public function viewFil($filePath,$fileName,$type){
+        $this->checkPermission("FAG");
+        try {
+            $this->model('claimCase');
+            $caseDetails= new ClaimCase();
+            $isPermission = $caseDetails->checkCasePermission($filePath,"FAG",$_SESSION["user_id"]);
+            if(count($isPermission)){
+                $this->viewFile("claimCases/".$filePath."/".$fileName.".".$type,$type);
+            }
+            else{
+                $this->permissionError();
+            }
+        } catch (\Throwable $th) {
+            $this->permissionError();
+        }
+        
+    }  
 }
 
 

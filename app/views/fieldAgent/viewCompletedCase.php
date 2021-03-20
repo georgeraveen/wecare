@@ -77,8 +77,10 @@
                         //$b = scandir($dir,1);
                         // var_dump($ls);
                         for($i=2;$i < count($ls);$i++){
+                            $filename=pathinfo($ls[$i],PATHINFO_FILENAME);
+                            $ext=pathinfo($ls[$i],PATHINFO_EXTENSION);
                             echo "<li>";
-                            echo "<a href =\"./../../documents/claimCases/". $data['singleCaseDetails'][0]['claimID'] . "/". $ls[$i] ."\">".$ls[$i]."</a>";
+                            echo "<a href =\"./viewFil/". $data['singleCaseDetails'][0]['claimID'] . "/". $filename."/".$ext ."\">".$ls[$i]."</a>";
                             echo "</li>";
                         }
                     } catch (\Throwable $th) {

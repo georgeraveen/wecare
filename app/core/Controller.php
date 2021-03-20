@@ -13,10 +13,19 @@ class Controller{
     public function view($view, $data = []){
         require_once '../app/views/'.$view. '.php';
     }
+    public function viewFile($filePath, $ext){
+        $type = $ext=="pdf" ? "application":"image";
+        header("Content-type: ".$type."/".$ext);
+        // var_dump($filePath);
+        // var_dump($ext);
+        // echo file_get_contents( '../documents/'.$filePath);
+        require_once '../documents/'.$filePath;
+    }
     public function checkPermission($role){
         if (!isset($_SESSION["user_id"]) || $_SESSION["user_id"] == "") {
             // not logged in send to login page
-            redirect("./../../employee");
+            redirect("/wecare/employee");
+            // redirect("./../../employee");
         }
         if($_SESSION["rolecode"]!=$role){
             die("You dont have the permission to access this page");
@@ -28,7 +37,8 @@ class Controller{
     public function checkPermissionCust(){
         if (!isset($_SESSION["user_id"]) || $_SESSION["user_id"] == "") {
             // not logged in send to login page
-            redirect("./../../customer-portal");
+            // redirect("./../../customer-portal");
+            redirect("/wecare/customer-portal");
         }
         if($_SESSION["rolecode"]!="CUST"){
             die("You dont have the permission to access this page");
