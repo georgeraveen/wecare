@@ -5,10 +5,16 @@
     $contactDetails .= $row["empContactNo"];
     $contactDetails .= ",";
 }
+$contDetails = rtrim($contactDetails, ',');
 ?>
 <link rel="stylesheet" href= "./../../css/home.css">
 <link rel="stylesheet" href= "./../../css/style.css">
 <div class="containers">
+<ul class="breadcrumb">
+    <li><a href="./../managerHome/index">Home</a></li>
+    <li><a href="./viewEmployee">View Employees</a></li>
+    <li>Manage Employees</a></li>
+</ul>
   <h1>Update employee Profiles</h1><br>
     <div class="form-container">
 
@@ -79,7 +85,7 @@
                 <div class="column">
                     <div class="formInput">
                         <label for="empContactNo">Contact numbers</label><br>
-                        <input type="text" id="empContactNo" name="empContactNo" class="input" placeholder="Enter numbers with comma seperated" value=<?php echo $contactDetails ?>><br>
+                        <input type="text" id="empContactNo" name="empContactNo" class="input" placeholder="Enter numbers with comma seperated" value=<?php echo $contDetails ?>><br>
                     </div>
                 </div>
                 <div class="column">

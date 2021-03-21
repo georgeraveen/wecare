@@ -65,6 +65,9 @@ class Login extends Controller{
             }
             
         }
+        $this->model('employee');
+        $empTable= new Employee();
+
         $mode = $_REQUEST["mode"];
         if ($mode == "login") {
             $username1 = trim($this->valValidate($_POST['username']));
@@ -90,15 +93,16 @@ class Login extends Controller{
                 // $sql = "SELECT * FROM employee WHERE empID = :uname AND password = :upass ";
                 $sql2 = "SELECT empID,hashPass,empFirstName,empLastName,empTypeID FROM employee WHERE empID = :uname";
                 try {
-                    $stmt = $DB->prepare($sql2);
+                    $results= $empTable->getDetails($username);
+                    // $stmt = $DB->prepare($sql2);
         
                     // bind the values
-                    $stmt->bindValue(":uname", $username);
+                    // $stmt->bindValue(":uname", $username);
                     // $stmt->bindValue(":upass", $pass);
         
                     // execute Query
-                    $stmt->execute();
-                    $results = $stmt->fetchAll();
+                    // $stmt->execute();
+                    // $results = $stmt->fetchAll();
                     // echo $username1." ".$username;
                     // print_r($results);
                     if (password_verify($pass,$results[0]["hashPass"]) && $results[0]["empTypeID"]==$userType) {

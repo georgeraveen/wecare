@@ -4,7 +4,7 @@
 <div class="containers">
   <h1>Manage weekly roster</h1><br>
   <div class="form-container2">
-    <form >
+    <form action="./viewRoster" >
         <div class="row">
             <div class="column">
                 <div class="formInput">
@@ -14,9 +14,12 @@
             </div>
            
             <div class="column">
-                <select id="custID" name="custID" required>
-                    <option>1 - nimal</option>
-                    <option>2 - wimal</option>
+                <select id="rostID" name="rostID" required>
+                    <?php
+                        foreach ($data as $value) {
+                        echo "<option value=\"".$value["rosterID"]."\">".$value["rosterID"]. " - ".$value["date"]." - MGR".$value["managerID"] ."</option>";
+                        }
+                    ?>
                 </select><br>
             </div>
            
@@ -30,8 +33,8 @@
             </div>
             <div class="column">
                 <div class="formInput">
-                    <!-- <input type="submit" id="viewMed" name="viewMed" class="btn-submit" value="View"><br> -->
-                    <a class="btn-submit" href="./viewRoster">View/Update</a>
+                    <input type="submit" id="viewRoster" name="viewRoster" class="btn-submit" value="View/Update"><br>
+                    <!-- <a class="btn-submit" href="./viewRoster">View/Update</a> -->
                 </div>
             </div>
         </div>
