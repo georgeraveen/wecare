@@ -29,6 +29,20 @@
         </div>
       </div>
       <div class="row">
+        <div class="column">
+            <div class="formInput">
+                <label for="vPremium">vPremium</label><br>
+                <input type="text" id="vPremium" name="vPremium" class="input" value=""><br>
+            </div>
+        </div>
+        <div class="column">
+            <div class="formInput">
+                <label for="rPremium">rPremium</label><br>
+                <input type="text" id="rPremium" name="rPremium" class="input" value=""><br>
+            </div>
+        </div>
+      </div>
+      <div class="row">
         <div style="text-align:center" class="column">
             <div class="formInput">
             <br><br>

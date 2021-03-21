@@ -17,5 +17,22 @@ class InsurePolicy  extends Models{
         $stmt->execute();
         return $stmt->fetchAll();
     }
+    public function setValue($date,$remarks,$vPremium,$rPremium){
+        $this->date= $date;
+        $this->remarks= $remarks;
+        $this->vPremium= $vPremium;
+        $this->rPremium= $rPremium;
+    }
+    public function create(){
+        $stmt= $this->conn->prepare("insert into $this->table (date,remarks,vPremium,rPremium) 
+                                                            values (:date, :remarks, :vPremium, :rPremium");
+        $stmt-> bindParam(':date', $this->date );
+        $stmt-> bindParam(':remarks', $this->remarks );
+        $stmt-> bindParam(':vPremium', $this->vPremium );
+        $stmt-> bindParam(':rPremium', $this->rPremium );
+        
+        return $this->conn->lastInsertId();
+        $stmt->execute();
+    }
 }
 ?>

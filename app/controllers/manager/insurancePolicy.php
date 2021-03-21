@@ -19,7 +19,14 @@ class insurancePolicy extends Controller{
     }
 
     public function addPolicy(){
-        
+        $this->checkPermission("MGR");
+        if($_POST['addNew']){
+            $this->model('insurePolicy');
+            $newPolicy = new insurePolicy();
+            $result= $newPolicy->setValue($this->valValidate($_POST['date']), $this->valValidate($_POST['remarks']), $this->valValidate($_POST['vPremium']),
+                                                                $this->valValidate($_POST['rPremium']));
+            $last_id= $newPolicy->create();
+        }
     }
 
 }
