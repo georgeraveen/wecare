@@ -120,7 +120,29 @@ class ClaimCase extends Models{
 
         // echo $this->dataEntryOfficerID . $this->healthCondition;
     }
-
+    public function checkCasePermission($caseID,$role,$empID){
+        $emp="";
+        switch ($role) {
+            case "FAG":
+                $emp=" FieldAgID = $empID";
+                break;
+            case "DOC":
+                $emp=" doctorID = $empID";
+                break;
+            case "DEO":
+                $emp=" dataEntryOfficerID = $empID";
+                break;
+            case "MED":
+                $emp=" medScruID = $empID";
+                break;
+            default:
+                # code...
+                break;
+        }
+        $stmt= $this->conn->prepare("SELECT * from $this->table where claimID= $caseID and $emp");
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
 
 
     //**************************************** FUNCTIONS OF DOCTOR **********************************************
@@ -179,7 +201,7 @@ class ClaimCase extends Models{
 
 
 //*********************************************** FUNCTIONS OF FIELD AGENT *********************************************
-//get details for table
+//get details for table for pending queue
 
     public function getFieldAgList($fieldAgID){
         // var_dump($this->conn);
@@ -191,7 +213,7 @@ class ClaimCase extends Models{
              ON claim_case.hospitalID=hospital.hospitalID 
         INNER JOIN employee 
             ON claim_case.medScruID=employee.empID
-        WHERE claim_case.fieldAgID = $fieldAgID;
+        WHERE claim_case.caseStatus != 'Completed' and claim_case.FieldAgID=$fieldAgID;
                     ");
         
         $stmt->execute();
@@ -201,14 +223,14 @@ class ClaimCase extends Models{
 
 
 
-public function getCaseDetailsFieldAg($claimID){
+public function getCaseDetailsFieldAg($claimID,$fagID){
     $stmt= $this->conn->prepare("SELECT customer.custName,claimID,admitDate,icuFromDate,dischargeDate,icuToDate,hospital.name 
     FROM claim_case 
     INNER JOIN hospital 
         ON claim_case.hospitalID=hospital.hospitalID 
     INNER JOIN customer
         ON claim_case.custID=customer.custID 
-    WHERE claimID = $claimID");
+    WHERE claimID = $claimID AND FieldAgID=$fagID");
     $stmt->execute();
     return $stmt->fetchAll();
 }
@@ -226,7 +248,7 @@ public function setValueFag($PclaimID,$PadmitDate,$PdischargeDate,$PicuFromDate,
 //update single case details FAG
 public function updateSingleCaseFag($_id){
     $stmt= $this->conn->prepare("update $this->table set admitDate= :admitDate, dischargeDate= :dischargeDate, icuFromDate= :icuFromDate, icuToDate= :icuToDate,
-                                                        caseStatus='Processing'
+                                                        caseStatus!='Completed'
                                                         where claimID = $_id ") ;
 
     $stmt -> bindParam(':admitDate', $this->admitDate );
@@ -238,7 +260,25 @@ public function updateSingleCaseFag($_id){
 
     // echo $this->dataEntryOfficerID . $this->healthCondition;
 }
+//get details for completed queue
 
+public function getCompletedCases($fieldAgID){
+    // var_dump($this->conn);
+    $stmt= $this->conn->prepare("SELECT claimID, customer.custName,admitDate, CONCAT(employee.empFirstName, \" \", employee.empLastName) AS medSrcName , hospital.name ,caseStatus
+    FROM claim_case 
+    INNER JOIN customer
+        ON claim_case.custID=customer.custID 
+    INNER JOIN hospital 
+         ON claim_case.hospitalID=hospital.hospitalID 
+    INNER JOIN employee 
+        ON claim_case.medScruID=employee.empID
+    WHERE claim_case.caseStatus = 'Completed' and claim_case.FieldAgID=$fieldAgID;
+                ");
+    
+    $stmt->execute();
+    return $stmt->fetchAll();
+
+}
 
 }
 ?>
