@@ -18,7 +18,7 @@ class insurancePolicy extends Controller{
         // echo "asas";
     }
 
-    public function addPolicy|(){
+    public function addPolicy(){
         
     }
 
