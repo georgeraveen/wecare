@@ -248,7 +248,7 @@ public function setValueFag($PclaimID,$PadmitDate,$PdischargeDate,$PicuFromDate,
 //update single case details FAG
 public function updateSingleCaseFag($_id){
     $stmt= $this->conn->prepare("update $this->table set admitDate= :admitDate, dischargeDate= :dischargeDate, icuFromDate= :icuFromDate, icuToDate= :icuToDate,
-                                                        caseStatus='Processing'
+                                                        caseStatus!='Completed'
                                                         where claimID = $_id ") ;
 
     $stmt -> bindParam(':admitDate', $this->admitDate );

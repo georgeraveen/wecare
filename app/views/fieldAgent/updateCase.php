@@ -63,18 +63,47 @@
             
             </div>
             <div class="row">
-            <div class="column">
+                <div class="column">
                     <div class="formInput">
                         <label for="fileToUpload">Upload Hospital Documents</label>
                         <input type="file" id="fileToUpload" name="fileToUpload" multiple accept=".pdf, image/*">
                     </div>
                 </div>
                 <div class="column">
+                    
+                    <h4 for="fileToUpload">Hospital Documents</h4>
+                    <table>
+                    <?php
+                    try {
+                        $dir ="./../documents/claimCases/". $data['singleCaseDetails'][0]['claimID'];
+                        // Sort in ascending order - this is default
+                        $ls = scandir($dir);
+
+                        // Sort in descending order
+                        //$b = scandir($dir,1);
+                        // var_dump($ls);
+                        for($i=2;$i < count($ls);$i++){
+                            $filename=pathinfo($ls[$i],PATHINFO_FILENAME);
+                            $ext=pathinfo($ls[$i],PATHINFO_EXTENSION);
+                            echo "<tr>";
+                            echo "<td><a href =\"./viewFil/". $data['singleCaseDetails'][0]['claimID'] . "/". $filename."/".$ext ."\">".$ls[$i]."</a></td>";
+                            echo  "<td>  <button class=\"btn-delete\" \">X </a> "."</button>";
+                            echo "</tr>";
+                        }
+                    } catch (\Throwable $th) {
+                        echo "Empty Directory";
+                    }
+                    ?>
+                    </table>
+                </div>
+                </div>
+            <div class= "roe">
+                <div class="column">
                     <div class="formInput">
                     <input type="submit" id="submit" name="editSingleCaseDetails" class="btn-submit" value= "Submit" ><br>
                 
                 </div>
-            </div>
+          </div>
         </form>
     </div>
 
