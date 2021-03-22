@@ -275,8 +275,7 @@ public function getCompletedCases($fieldAgID){
          ON claim_case.hospitalID=hospital.hospitalID 
     INNER JOIN employee 
         ON claim_case.medScruID=employee.empID
-    WHERE claim_case.caseStatus = 'Completed' and claim_case.FieldAgID=$fieldAgID;
-                ");
+    WHERE claim_case.caseStatus = 'Completed' and claim_case.FieldAgID=$fieldAgID;");
     
     $stmt->execute();
     return $stmt->fetchAll();
