@@ -66,11 +66,12 @@
                 <div class="column">
                     <div class="formInput">
                         <label for="fileToUpload">Upload Hospital Documents</label>
-                        <input type="file" id="fileToUpload" name="fileToUpload" multiple accept=".pdf, image/*">
+                        <input type="file" id="fileToUpload" name="fileToUpload[]" multiple accept=".pdf, image/*">
                     </div>
                 </div>
                 <div class="column">
                     
+                    <input type="text" id="deleteFile" name="deleteFile" class="input hide" hidden>
                     <h4 for="fileToUpload">Hospital Documents</h4>
                     <table>
                     <?php
@@ -85,9 +86,9 @@
                         for($i=2;$i < count($ls);$i++){
                             $filename=pathinfo($ls[$i],PATHINFO_FILENAME);
                             $ext=pathinfo($ls[$i],PATHINFO_EXTENSION);
-                            echo "<tr>";
-                            echo "<td><a href =\"./viewFil/". $data['singleCaseDetails'][0]['claimID'] . "/". $filename."/".$ext ."\">".$ls[$i]."</a></td>";
-                            echo  "<td>  <button class=\"btn-delete\" \">X </a> "."</button>";
+                            echo "<tr id=\"file$i\">";
+                            echo "<td><a id=\"txt-$i\" href =\"./viewFil/". $data['singleCaseDetails'][0]['claimID'] . "/". $filename."/".$ext ."\">".$ls[$i]."</a></td>";
+                            echo  "<td>  <div id=\"btn-$i\" class=\"btn-delete\" onClick=\"sendDelete($i)\"> X </div></td>";
                             echo "</tr>";
                         }
                     } catch (\Throwable $th) {
@@ -107,3 +108,4 @@
         </form>
     </div>
 
+    <script type="text/javascript" src="./../../js/files.js"></script>
