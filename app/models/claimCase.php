@@ -198,7 +198,7 @@ class ClaimCase extends Models{
       
         $stmt->execute();
     
-        // echo $this->dataEntryOfficerID . $this->healthCondition;
+        //    echo $this->dataEntryOfficerID . $this->healthCondition;
     }
 
 
