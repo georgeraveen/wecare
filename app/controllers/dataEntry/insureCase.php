@@ -96,7 +96,7 @@ class insureCase extends Controller{
         if($filter!=""){
             $filter= " where ".$filter;
         }
-        var_dump($filter);
+        // var_dump($filter);
 
         if(is_int((int)$_GET['page'])){
             $queue=$claimCase->getAllQueueLimit((int)$_GET['page'],$filter);
@@ -143,12 +143,15 @@ class insureCase extends Controller{
         try {
             $this->checkPermission("DEO");
             if($_POST['editInsurance']){
+                $this->model('customer');
+                $customerMod= new Customer();
+                $currentPolicy=$customerMod->getPolicy($this->valValidate($_POST['customer']));
                 $this->model('claimCase');
                 $editClaimCase = new ClaimCase();
                 $result= $editClaimCase->setValue($this->valValidate($_POST['customer']),$this->valValidate($_POST['hospital']),
                         $this->valValidate($_POST['admitDate']),$this->valValidate($_POST['dischargeDate']),$this->valValidate($_POST['icuFromDate']),
                         $this->valValidate($_POST['icuToDate']),$this->valValidate($_POST['medScrut']),$this->valValidate($_POST['fieldAg']),
-                        $this->valValidate($_POST['healthCondition']));
+                        $this->valValidate($_POST['healthCondition']),$currentPolicy[0]['policyID']);
                 $result= $editClaimCase->update($this->valValidate($_POST['claimID']));
                 $_SESSION["successMsg"]="Case details updated successfully";
                 sleep(1);
@@ -157,7 +160,8 @@ class insureCase extends Controller{
             }
         } catch (\Throwable $th) {
             $_SESSION["errorMsg"]="Error occured when updating values";
-            header("Location: ./index");
+            throw $th;
+            header("Location: ./viewCase");
         }
         
     }
