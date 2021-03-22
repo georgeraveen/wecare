@@ -1,57 +1,76 @@
-body{
-    /* background-color: #ece5f0; */
-    /* background-image: linear-gradient(to bottom right,#028075,  #003B36); */
-    background-image: linear-gradient(to bottom right,#FFF6E9,  #FFE7C4);
-    background-attachment: fixed;
-  }
+body {
+  /* background-color: #ece5f0; */
+  /* background-image: linear-gradient(to bottom right,#028075,  #003B36); */
+  background-image: linear-gradient(
+    to right bottom,
+    #ededed,
+    #eae8ea,
+    #e9e2e3,
+    #e7ddda,
+    #e0dad1
+  );
+  background-attachment: fixed;
+}
 
 .grid-container {
-    margin: 120px 100px;
-    display: grid;
-    grid-template-columns: auto auto auto;
-    background-image:linear-gradient(to bottom right,#f8b058,  #e07f07);
-    padding: 50px;
-    grid-gap: 50px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  }
-  .grid-container-medScru {
-    margin: 120px 100px;
-    display: grid;
-    grid-template-columns: auto auto;
-    background-image:linear-gradient(to bottom right,#f8b058,  #e07f07);
-    padding: 50px;
-    grid-gap: 50px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  }
-  .grid-item {
-    background-color: #ffe281;
-    padding: 20px;
-    font-size: 30px;
-    text-align: center;
-    height: 100px;
-    font-style: normal;
-    text-decoration: none;
-    color: rgb(0, 0, 0);
-    font-size: large;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    border-radius: 10px;
-  }
-  .grid-item:hover{
-    background-color: #fcd75d;
-  }
-  html, body, h1, h2, h3, h4, h5, h6 {
-    font-family: "Verdana", cursive, sans-serif;
-    color: rgb(0, 0, 0);
-  }
-  /* Extra small devices (phones, 600px and down) */
+  margin: 120px 100px;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  background-color: white;
+  /* background-image: linear-gradient(to bottom right, #325d79, #44708d); */
+  padding: 50px;
+  grid-gap: 50px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.grid-container-medScru {
+  margin: 120px 100px;
+  display: grid;
+  grid-template-columns: auto auto;
+  background-image: linear-gradient(to bottom right, #f58828, #e07f07);
+  padding: 50px;
+  grid-gap: 50px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.grid-item {
+  background-color: white;
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+  height: 100px;
+  font-style: normal;
+  text-decoration: none;
+  color: #ee5e1b;
+  font-size: large;
+  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+  border-radius: 10px;
+  border-color: #ee5e1b;
+  border-width: 5px;
+  border-style: solid;
+  font-weight: bold;
+}
+.grid-item:hover {
+  background-color: #ffddcd;
+}
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Verdana", cursive, sans-serif;
+  color: rgb(0, 0, 0);
+}
+/* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
-  .grid-container{
+  .grid-container {
     margin: 150px 10px;
-    grid-template-columns: auto ;
+    grid-template-columns: auto;
     /* padding: 150px 0;
     grid-gap: 30px; */
   }
-  .grid-container-medScru{
+  .grid-container-medScru {
     margin: 150px 10px;
     grid-template-columns: auto;
     /* padding: 150px 0;
@@ -61,13 +80,13 @@ body{
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
-  .grid-container{
+  .grid-container {
     margin: 150px 10px;
     grid-template-columns: auto auto;
     /* padding: 150px 0;
     grid-gap: 30px; */
   }
-  .grid-container-medScru{
+  .grid-container-medScru {
     margin: 150px 10px;
     grid-template-columns: auto auto;
     /* padding: 150px 0;
@@ -77,30 +96,29 @@ body{
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
-  .grid-container{
+  .grid-container {
     margin: 150px 10px;
     grid-template-columns: auto auto auto;
     /* padding: 150px 0;
     grid-gap: 30px; */
   }
-  .grid-container-medScru{
+  .grid-container-medScru {
     margin: 150px 10px;
     grid-template-columns: auto auto;
     /* padding: 150px 0;
     grid-gap: 30px; */
   }
-  
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
-  .grid-container{
+  .grid-container {
     margin: 150px 100px;
     /* grid-template-columns: auto auto; */
     /* padding: 150px 0;
     grid-gap: 30px; */
   }
-  .grid-container-medScru{
+  .grid-container-medScru {
     margin: 150px 100px;
     /* grid-template-columns: auto auto; */
     /* padding: 150px 0;
@@ -110,5 +128,4 @@ body{
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
-
 }
