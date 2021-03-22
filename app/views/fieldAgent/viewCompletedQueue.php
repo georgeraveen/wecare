@@ -25,7 +25,7 @@ $result=$data;
             <th>Claim ID</th>
             <th>Customer Name</th>
             <th>Date</th>
-            <th>Med.Scrutinizer</th>
+            <th>Med. Scrutinizer</th>
             <th>Hospital</th>
             <th>Status</th>
             <th>Action</th>
