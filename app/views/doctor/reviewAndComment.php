@@ -61,7 +61,7 @@
                 <div class="column">
                     <div class="formInput">
                         <label for="hospital">Hospital</label><br>
-                        <input type="text" id="hospital" name="hospital" class="input" value=<?php echo $data['singleCaseDetails'][0]['name']?> readonly><br>
+                        <input type="text" id="hospital" name="hospital" class="input" value="<?php echo $data['singleCaseDetails'][0]['name']?>" readonly><br>
                     </div>
                 </div>
                 <div class="column">

@@ -20,5 +20,7 @@ class completedQueue extends Controller{
         include './../app/footer.php';
         // echo "asas";
     }
+
+   
 }
 ?>

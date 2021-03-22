@@ -61,6 +61,23 @@ class viewPendingQueue extends Controller{
         exit;
     }
 }
+public function viewFil($filePath,$fileName,$type){
+    $this->checkPermission("DOC");
+    try {
+        $this->model('claimCase');
+        $caseDetails= new ClaimCase();
+        $isPermission = $caseDetails->checkCasePermission($filePath,"DOC",$_SESSION["user_id"]);
+        if(count($isPermission)){
+            $this->viewFile("claimCases/".$filePath."/".$fileName.".".$type,$type);
+        }
+        else{
+            $this->permissionError();
+        }
+    } catch (\Throwable $th) {
+        $this->permissionError();
+    }
+    
+}  
    
   
 
