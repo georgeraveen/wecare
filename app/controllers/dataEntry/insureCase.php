@@ -10,7 +10,7 @@ class insureCase extends Controller{
 
         $this->model('hospital');
         $hospitalMod= new Hospital();
-        $hospList=$hospitalMod->getAll();
+        $hospList=$hospitalMod->getAllNames();
 
         $this->model('employee');
         $empMod= new Employee();
@@ -59,7 +59,7 @@ class insureCase extends Controller{
         //////for filters
         $this->model('hospital');
         $hospitalMod= new Hospital();
-        $hospList=$hospitalMod->getAll();
+        $hospList=$hospitalMod->getAllNames();
 
         $this->model('employee');
         $empMod= new Employee();
@@ -126,7 +126,7 @@ class insureCase extends Controller{
 
         if($_GET['action']=="edit"){
             $custList=$customerMod->getList();
-            $hospList=$hospitalMod->getAll();
+            $hospList=$hospitalMod->getAllNames();
             $medList=$empMod->getEmpByTypeList("MED");
             $fagList=$empMod->getEmpByTypeList("FAG");
             $caseDetails=$editCase->getDetails($this->valValidate($_GET['id']));
