@@ -49,16 +49,17 @@ textarea {
   cursor: pointer;
   text-decoration: none;
   color: white;
-  
 }
 
 .btn-submit:hover {
   background-color: #742767;
-  
 }
-.btn-delete{
-  background-color:red;
-  border-radius: 2px;
+.btn-delete {
+  background-color: red;
+  color: wheat;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
 }
 input,
 select {

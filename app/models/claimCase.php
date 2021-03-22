@@ -213,8 +213,7 @@ class ClaimCase extends Models{
              ON claim_case.hospitalID=hospital.hospitalID 
         INNER JOIN employee 
             ON claim_case.medScruID=employee.empID
-        WHERE claim_case.caseStatus != 'Completed' and claim_case.FieldAgID=$fieldAgID;
-                    ");
+        WHERE claim_case.caseStatus != 'Completed' and claim_case.FieldAgID=$fieldAgID ORDER BY claimID DESC;");
         
         $stmt->execute();
         return $stmt->fetchAll();
@@ -247,9 +246,7 @@ public function setValueFag($PclaimID,$PadmitDate,$PdischargeDate,$PicuFromDate,
 }
 //update single case details FAG
 public function updateSingleCaseFag($_id){
-    $stmt= $this->conn->prepare("update $this->table set admitDate= :admitDate, dischargeDate= :dischargeDate, icuFromDate= :icuFromDate, icuToDate= :icuToDate,
-                                                        caseStatus!='Completed'
-                                                        where claimID = $_id ") ;
+    $stmt= $this->conn->prepare("update $this->table set admitDate= :admitDate, dischargeDate= :dischargeDate, icuFromDate= :icuFromDate, icuToDate= :icuToDate where claimID = $_id ") ;
 
     $stmt -> bindParam(':admitDate', $this->admitDate );
     $stmt -> bindParam(':dischargeDate', $this->dischargeDate); 
