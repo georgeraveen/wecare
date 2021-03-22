@@ -74,7 +74,9 @@
   }
   ?>
 </form>
-  
+  <?php
+  // var_dump($data);
+  ?>
 </div>
 </div>
 <div id="Modal" class="modal">
@@ -88,10 +90,11 @@
           <div class="formInput">
             <label for="newMedID">Select medical scrutinizer</label><br>
             <select id="newMedID" name="newMedID">
-              <option value="1">MED1 - Kamal Perera</option>
-              <option value="2">MED2 - Amal Perera</option>
-              <option value="3">MED3 - Sunil Perera</option>
-              <option value="4">MED4 - Nimal Perera</option>
+              <?php
+                foreach ($data[0] as $value) {
+                  echo "<option value=\"".$value["empID"]."\">".$value["empID"]. " - ".$value["empFirstName"]." ".$value["empLastName"] ."</option>";
+                }
+              ?>
             </select><br>
           </div>
           

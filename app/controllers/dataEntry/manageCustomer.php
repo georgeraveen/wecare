@@ -97,8 +97,6 @@ class manageCustomer extends Controller{
             $editCustomer = new Customer();
             $editCustomer->startTrans();
             if($_POST['editCustomer']){
-                $this->model('customer');
-                $editCustomer = new Customer();
                 $result= $editCustomer->setValue($this->valValidate($_POST['custID']),$this->valValidate($_POST['custName']),$this->valValidate($_POST['custAddress']),
                         $this->valValidate($_POST['custNIC']),$this->valValidate($_POST['dob']),$this->valValidate($_POST['email']),
                         $this->valValidate($_POST['gender']),$this->valValidate($_POST['policyID']),$this->valValidate($_POST['custContact']),
@@ -113,7 +111,7 @@ class manageCustomer extends Controller{
         } catch (\Throwable $th) {
             $editCustomer->transRollBack();
             $_SESSION["errorMsg"]="Error occured when updating values";
-            header("Location: ./index");
+            header("Location: ./updateCustomer");
         }
         
     }
@@ -130,7 +128,7 @@ class manageCustomer extends Controller{
             header("Location: ./updateCustomer");
         } catch (\Throwable $th) {
             $_SESSION["errorMsg"]="Error occured during processing";
-            header("Location: ./index");
+            header("Location: ./updateCustomer");
         }
         
 

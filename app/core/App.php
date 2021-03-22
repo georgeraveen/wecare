@@ -15,6 +15,9 @@ class App{
         // echo $url[0]."..".$url[1]."..".$url[2]."..";
         // echo $_SESSION["portal"];
         // echo $this->controller;
+        if(!$url){
+            redirect("./login/index");
+        }
         if($_SESSION["portal"]!="customer" && $url[0]=='login'){
             $_SESSION["portal"]="employee";
         }

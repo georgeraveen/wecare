@@ -38,6 +38,11 @@ class Customer extends Models{
         $stmt->execute();
         return $stmt->fetchAll();
     }
+    public function getDetails($_id){
+        $stmt= $this->conn->prepare("select * from $this->table where custID= $_id");
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
     public function getList(){
         $stmt= $this->conn->prepare("SELECT custID, custName from $this->table where status=1");
         // var_dump($this->conn);
@@ -131,14 +136,14 @@ class Customer extends Models{
     }
     public function custFilterName($filter){
         $stmt= $this->conn->prepare("SELECT custID, custName from $this->table where custName
-                            like '%$filter%' AND status=1");
+                            like '%$filter%' AND status=1 limit 10");
         
         $stmt->execute();
         return $stmt->fetchAll();
     }
     public function custFilterID($filter){
         $stmt= $this->conn->prepare("SELECT custID, custName from $this->table where custID
-                            like '%$filter%' AND status=1");
+                            like '%$filter%' AND status=1 limit 10");
         
         $stmt->execute();
         return $stmt->fetchAll();
@@ -150,13 +155,13 @@ class Customer extends Models{
         return $stmt->fetchAll();
     }
     public function getCustContactByID($id){
-        $stmt= $this->conn->prepare("SELECT *  from customer_contact where custID=$id AND status=1");
+        $stmt= $this->conn->prepare("SELECT *  from customer_contact where custID=$id");
         
         $stmt->execute();
         return $stmt->fetchAll();
     }
     public function getCustInsuranceByID($id){
-        $stmt= $this->conn->prepare("SELECT * from cust_insurance where custID=$id AND status=1");
+        $stmt= $this->conn->prepare("SELECT * from cust_insurance where custID=$id");
         
         $stmt->execute();
         return $stmt->fetchAll();

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Feb 04, 2021 at 05:35 AM
+-- Generation Time: Mar 19, 2021 at 04:44 AM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.14
 
@@ -21,8 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `wecare`
 --
-CREATE DATABASE IF NOT EXISTS `wecare` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `wecare`;
 
 -- --------------------------------------------------------
 
@@ -120,29 +118,37 @@ CREATE TABLE IF NOT EXISTS `customer` (
   `status` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`custID`),
   KEY `policyID` (`policyID`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `customer`
 --
 
 INSERT INTO `customer` (`custID`, `custName`, `password`, `hashPass`, `custAddress`, `custNIC`, `custDOB`, `email`, `gender`, `policyID`, `status`) VALUES
-(1, 'Sunil', 'asdf', '$2y$11$39NlAEz4tbGMuzJOkuvdKeg0R4yeOnLf6Qb2sscczQsMm/AyIsAvK', 'Negombo', '123123999V', '2020-08-04', 'sdc@d.com', 'm', 1, 1),
-(7, 'Anil', 'zOa', '$2y$11$UXVr3HDDMBgzO4IGEepeXusYnl0/JNQLlFEk8T6mtRgbF08Dma3aW', 'Colombo', '123123993V', '2020-09-27', 'as@m.c', 'm', 1, 1),
-(8, 'Janani', 'auh', '$2y$11$42zyFxjTR7E3BDgDeh80M.TKZoR6QpA5DXhqVTgFVxcYY4futZQQ2', 'Galle', '123143999V', '2020-10-14', 'as@s.co', 'f', 1, 1),
-(9, 'Amara', NULL, '$2y$11$OG94VSbypFZDjz3vHnpXtOr9WLIvJAZmoUjx9s11OV6EIKz3sq1tS', 'Kandy', '123125999V', '2020-10-18', 's@s.com', 'm', 1, 1),
-(10, 'Nimal', 'jYW', '$2y$11$DBD6y7./d4B9Nlay/M.toOf9Q.Z2d/sy.BwMLGIvY7RTFkNnkCmYe', 'Colombo', '123123949V', '2020-10-18', 'z@z.z', 'm', 1, 1),
-(11, 'Kasun', '4z6', '$2y$11$F/8XJP.si.s5Qpf5n4gFEeZfAghS9N75cVTu2Vwnxycu3P2mcPAtG', 'Jaffna', '123123919V', '2020-10-18', 'z@z.z', 'm', 1, 1),
-(12, 'Raveen', 'SB5', '$2y$11$9RGX8oqMj0GL00.IPBXOVuLva1GuuWiDYkXhvLS4ZNdJTXcIOrFau', 'New street', '123122999V', '2020-11-11', 'georgeraveen@gmail.co', 'm', 1, 1),
-(14, 'Nimaya', '5Tx', '$2y$11$G.Tvi/hfjILjIhQEpCijl.dCFBBKCISHn/pXlxCsi.z0tL5dIeT5i', 'Matara', '123121999V', '2014-03-05', 'janani96wasana@gmail.com', 'f', 1, 1),
-(15, 'Colombage George Raveen Fernando', '0RD', '$2y$11$59WkSdoNF11Y1KPkJSoO7OLhBxja8BqpM8ICCOc.xfj.BKv5t7vWC', '162/3, sea-street', '788786', '2020-11-06', 'georgeraveen@gmail.com', 'm', 1, 1),
-(16, 'Raveen George', 'Way', '$2y$11$bMQGxIOP66yvVdScD4ivVuWmysg6/9nT.xuMytRM.y1TVtfHXjScW', 'dhhfgf', '444444', '2020-11-05', 'georgeraveen@hotmail.com', 'm', 1, 1),
-(17, 'Raveen George', 'srK', '$2y$11$rW/wAwGE09vc4DNGFP/WQ.ax3MrJR8I9h7n5yh/ZrgHwtkmdq4Qte', 'xxxxxxxxxx', '33332221', '2020-11-11', 'georgeraveen@hotmail.com', 'm', 1, 1),
-(18, 'aaaaaaaaaaaaaaa', '5h2', '$2y$11$nKRb6ysoglnQfitQdvsJyObKsMhQLh/3ajndMiafmMGnx7YyrR.iS', '162/3, St.Sebastian Lane,Sea-street\r\n162/3, Sea-street', '123333311', '2020-11-11', 'asdd@gmail.com', 'o', 2, 1),
-(19, 'bbbbbbbbbb', '57X', '$2y$11$1RcjBoZ0wIwlg3Q8bzp6E.Rfm18i86sZuFyvsu.xXDCcrnHQndBJq', '162/3, St.Sebastian Lane,Sea-street\r\n162/3, Sea-street', '123333311', '2020-11-11', 'asdd@gmail.com', 'o', 2, 1),
-(20, 'ccccccccccc', 'u5C', '$2y$11$BrhLrvO0sSJr3qjoK5uM9elFQn0QNBXLm/3LQkkyAu9IrawnO6ab2', '162/3, St.Sebastian Lane,Sea-street\r\n162/3, Sea-street', '12333369', '2020-11-05', 'asdqd@gmail.com', 'o', 2, 1),
-(21, 'removed', '8QH', '$2y$11$lBvjMEyLxeFrSKi5by.dJ.qbswRVkrtRjULzwpD5k8laqbUnJDP7W', 'removed', 'removed', '2020-07-01', 'removed', 'o', 2, 0),
-(22, 'Sahan Dissanayake', '2rE', '$2y$11$F.dSXjynlQ9jD9DgdXHG5OC0nUhbRQgysRTUp.jB6CUL6yktMuJ3O', '162/3, St.Sebastian Lane,Sea-street\r\n162/3, Sea-street', '222442222', '2021-01-05', 'georgeraveen@hotmail.com', 'm', 1, 1);
+(1, 'Cadman Holland', 'asdf', '$2y$11$39NlAEz4tbGMuzJOkuvdKeg0R4yeOnLf6Qb2sscczQsMm/AyIsAvK', 'P.O. Box 227, 8732 Augue Avenue', '123123999V', '1972-04-24', 'Cras.interdum@estac.org', 'm', 1, 1),
+(7, 'Hamish Bauer', 'zOa', '$2y$11$UXVr3HDDMBgzO4IGEepeXusYnl0/JNQLlFEk8T6mtRgbF08Dma3aW', 'Ap #696-5435 Sagittis Rd.', '123123993V', '1974-10-04', 'Vestibulum@eunulla.ca', 'm', 1, 1),
+(8, 'Alden Bentley', 'auh', '$2y$11$42zyFxjTR7E3BDgDeh80M.TKZoR6QpA5DXhqVTgFVxcYY4futZQQ2', 'P.O. Box 420, 3790 Purus. Ave', '123143999V', '1968-05-14', 'Duis@Quisqueac.ca', 'f', 1, 1),
+(9, 'Holmes Kent', 'jYW', '$2y$11$DBD6y7./d4B9Nlay/M.toOf9Q.Z2d/sy.BwMLGIvY7RTFkNnkCmYe', 'Ap #450-2461 Mus. Rd.', '123125999V', '1988-06-06', 'tellus@nuncinterdum.com', 'm', 1, 1),
+(10, 'Perry Robinson', 'jYW', '$2y$11$DBD6y7./d4B9Nlay/M.toOf9Q.Z2d/sy.BwMLGIvY7RTFkNnkCmYe', 'P.O. Box 913, 7516 Aliquam Ave', '123123949V', '1975-09-29', 'mi@nunc.co.uk', 'm', 1, 1),
+(11, 'Steel Carter', '4z6', '$2y$11$F/8XJP.si.s5Qpf5n4gFEeZfAghS9N75cVTu2Vwnxycu3P2mcPAtG', 'Ap #996-9701 Quis Ave', '123123919V', '1988-04-01', 'sem@acnullaIn.edu', 'm', 1, 1),
+(12, 'Ferdinand Bright', 'SB5', '$2y$11$9RGX8oqMj0GL00.IPBXOVuLva1GuuWiDYkXhvLS4ZNdJTXcIOrFau', '4957 Egestas Rd.', '123122999V', '1973-06-27', 'risus.Nulla@ut.edu', 'm', 1, 1),
+(14, 'Jameson Farley', '5Tx', '$2y$11$G.Tvi/hfjILjIhQEpCijl.dCFBBKCISHn/pXlxCsi.z0tL5dIeT5i', '3422 Morbi St.', '123121999V', '1985-12-20', 'vel@sagittis.ca', 'f', 1, 1),
+(15, 'Philip Rutledge', '0RD', '$2y$11$59WkSdoNF11Y1KPkJSoO7OLhBxja8BqpM8ICCOc.xfj.BKv5t7vWC', '8084 Sed St.', '788784446V', '1988-12-24', 'justo.Praesent@interdum.com', 'm', 1, 1),
+(16, 'Stephen Allen', 'Way', '$2y$11$bMQGxIOP66yvVdScD4ivVuWmysg6/9nT.xuMytRM.y1TVtfHXjScW', '908-4129 Tristique Street', '123125990V', '1970-04-22', 'malesuada.fames.ac@ww.co.uk', 'm', 1, 1),
+(17, 'Vernon Trevino', 'srK', '$2y$11$rW/wAwGE09vc4DNGFP/WQ.ax3MrJR8I9h7n5yh/ZrgHwtkmdq4Qte', 'P.O. Box 730, 981 Massa. Avenue', '788784006V', '1975-04-22', 'quis@interdumCurabitur.edu', 'm', 1, 1),
+(18, 'Fulton Noble', '5h2', '$2y$11$nKRb6ysoglnQfitQdvsJyObKsMhQLh/3ajndMiafmMGnx7YyrR.iS', '7457 Mi Rd.', '123219119V', '1978-04-09', 'eu.elit.Nulla@dddd.co.uk', 'o', 2, 1),
+(19, 'Darius Roy', '57X', '$2y$11$1RcjBoZ0wIwlg3Q8bzp6E.Rfm18i86sZuFyvsu.xXDCcrnHQndBJq', '997-6815 Et Av.', '788784326V', '1991-12-30', 'rutrum@et.ca', 'o', 2, 1),
+(20, 'Griffin Houston', 'u5C', '$2y$11$BrhLrvO0sSJr3qjoK5uM9elFQn0QNBXLm/3LQkkyAu9IrawnO6ab2', '111-6854 Ut St.', '123191999V', '1970-11-20', 'Vivamus.rhoncus@we.com', 'o', 2, 1),
+(21, 'Connor Lowery', '8QH', '$2y$11$lBvjMEyLxeFrSKi5by.dJ.qbswRVkrtRjULzwpD5k8laqbUnJDP7W', '112-294 Urna, Street', '788784676V', '1976-11-30', 'vitae@aptenttaciti.org', 'o', 2, 1),
+(22, 'Lee Garcia', '2rE', '$2y$11$F.dSXjynlQ9jD9DgdXHG5OC0nUhbRQgysRTUp.jB6CUL6yktMuJ3O', 'Ap #646-2951 Pharetra Rd.', '121021999V', '1969-09-14', 'Donec.egestas@dolorFusce.ca', 'm', 1, 1),
+(23, 'Hiram Salas', '57X', '$2y$11$1RcjBoZ0wIwlg3Q8bzp6E.Rfm18i86sZuFyvsu.xXDCcrnHQndBJq', '399-2598 Torquent Rd.', '121024499V', '1986-02-11', 'arcu.Nunc@magna.com', 'f', 2, 1),
+(24, 'Eaton Reilly', 'u5C', '$2y$11$BrhLrvO0sSJr3qjoK5uM9elFQn0QNBXLm/3LQkkyAu9IrawnO6ab2', 'P.O. Box 849, 1464 Magna. Street', '451021999V', '1969-11-09', 'blandit@nisl.co.uk', 'f', 2, 1),
+(25, 'Tucker Cherry', '8QH', '$2y$11$lBvjMEyLxeFrSKi5by.dJ.qbswRVkrtRjULzwpD5k8laqbUnJDP7W', 'Ap #222-1474 Amet, Road', '341021999V', '1975-07-02', 'amet.ante@sitametlorem.edu', 'm', 2, 1),
+(26, 'Hyatt Hurst', '2rE', '$2y$11$F.dSXjynlQ9jD9DgdXHG5OC0nUhbRQgysRTUp.jB6CUL6yktMuJ3O', 'P.O. Box 426, 6843 Vivamus Av.', '651021999V', '1976-07-29', 'eu@fames.ca', 'm', 2, 1),
+(27, 'removed', 'fUx', '$2y$11$iiu7OYxKvUuSC05Jpm8efucVOuzwk6VhaD8NxaypkFmT8j2hb3F4y', 'removed', 'removed', '2020-07-01', 'removed', 'o', 1, 0),
+(28, 'removed', 'ALn', '$2y$11$VO..kxx2qjrFDH5uEqe/0.OJpOWALB1R0yAghqoXmQBxWs0SiNDEm', 'removed', 'removed', '2020-07-01', 'removed', 'o', 1, 0),
+(29, 'removed', 'TfX', '$2y$11$CXVC.oaxKIS77G5vLraDVu7K4/h0qAglLB4jO3GWdkzW//LQfGJqK', 'removed', 'removed', '2020-07-01', 'removed', 'o', 1, 0),
+(30, 'removed', 'sRj', '$2y$11$Xq6MZChd66EPy1JTn4PqueDNtbN0HHFDgF3/iW/6dDUYlOcXiFh/C', 'removed', 'removed', '2020-07-01', 'removed', 'o', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -153,7 +159,7 @@ INSERT INTO `customer` (`custID`, `custName`, `password`, `hashPass`, `custAddre
 DROP TABLE IF EXISTS `customer_contact`;
 CREATE TABLE IF NOT EXISTS `customer_contact` (
   `custID` int(6) NOT NULL,
-  `custContactNo` int(10) NOT NULL,
+  `custContactNo` bigint(10) NOT NULL,
   PRIMARY KEY (`custID`,`custContactNo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -162,24 +168,38 @@ CREATE TABLE IF NOT EXISTS `customer_contact` (
 --
 
 INSERT INTO `customer_contact` (`custID`, `custContactNo`) VALUES
-(7, 123),
-(7, 345),
-(8, 111111),
-(9, 2222222),
-(9, 3333333),
-(14, 2222885),
-(14, 11119992),
-(16, 4566),
-(16, 444499),
-(17, 2223311),
-(18, 94771414),
-(18, 99622222),
-(19, 992222),
-(19, 9471414),
-(20, 947141),
-(20, 4992222),
-(22, 9622222),
-(22, 47714149);
+(1, 6711433182),
+(7, 8383752739),
+(7, 8577813914),
+(8, 2618426675),
+(9, 8796009975),
+(9, 9367932753),
+(10, 6680462305),
+(10, 7888944976),
+(11, 4327490557),
+(11, 7753597210),
+(12, 6966766809),
+(12, 6966766855),
+(14, 2732020606),
+(14, 9413569311),
+(15, 1166649415),
+(15, 6493111747),
+(16, 3417666213),
+(17, 2327110114),
+(18, 4864028348),
+(19, 1513825809),
+(19, 1947039929),
+(19, 4490139456),
+(20, 8981142534),
+(21, 6551751805),
+(21, 7974197068),
+(22, 2593352569),
+(22, 3328777239),
+(23, 3784150274),
+(23, 6555538124),
+(24, 2797190899),
+(25, 8664374079),
+(26, 3476685229);
 
 -- --------------------------------------------------------
 
@@ -202,9 +222,30 @@ CREATE TABLE IF NOT EXISTS `cust_insurance` (
 --
 
 INSERT INTO `cust_insurance` (`custID`, `startDate`, `type`, `paymentDate`, `status`) VALUES
-(7, '2021-01-03', 'VIP', '2021-01-05', 'Active'),
-(21, '2020-11-23', 'VIP', '2020-11-16', 'Active'),
-(22, '2021-01-04', 'VIP', '2021-01-04', 'Active');
+(1, '1993-01-30', 'VIP', '1993-01-30', 'Active'),
+(7, '1992-12-07', 'Regular', '1992-12-07', 'Active'),
+(8, '1992-05-04', 'Regular', '1992-05-04', 'Active'),
+(9, '1992-02-23', 'VIP', '1992-02-23', 'Active'),
+(10, '1991-12-30', 'Regular', '1991-12-30', 'Active'),
+(11, '1991-07-21', 'Regular', '1991-07-21', 'Active'),
+(12, '1991-06-01', 'Regular', '1991-06-01', 'Active'),
+(14, '1991-01-31', 'Regular', '1991-01-31', 'Active'),
+(15, '1990-09-01', 'VIP', '1990-09-01', 'Active'),
+(16, '1990-08-31', 'Regular', '1990-08-31', 'Active'),
+(17, '1990-06-19', 'Regular', '1990-06-19', 'Active'),
+(18, '1990-03-29', 'Regular', '1990-03-29', 'Active'),
+(19, '1990-03-04', 'VIP', '1990-03-04', 'Active'),
+(20, '1989-10-10', 'Regular', '1989-10-10', 'Active'),
+(21, '1989-04-02', 'Regular', '1989-04-02', 'Active'),
+(22, '1989-03-30', 'Regular', '1989-03-30', 'Active'),
+(23, '1988-12-24', 'VIP', '1988-12-24', 'Active'),
+(24, '1988-12-15', 'Regular', '1988-12-15', 'Active'),
+(25, '1988-06-06', 'Regular', '1988-06-06', 'Active'),
+(26, '1988-04-01', 'VIP', '1988-04-01', 'Active'),
+(27, '2021-03-13', 'VIP', '2021-03-13', 'Active'),
+(28, '2021-03-13', 'Regular', '2021-03-13', 'Active'),
+(29, '2021-03-13', 'VIP', '2021-03-13', 'Active'),
+(30, '2021-03-13', 'VIP', '2021-03-13', 'Active');
 
 -- --------------------------------------------------------
 
@@ -461,7 +502,7 @@ INSERT INTO `med_record` (`recordID`, `custID`, `date`, `type`, `healthCondition
 (4, 21, '2020-12-14', 'Congenital', 'mmmmccc', 'nnccc'),
 (5, 20, '2020-12-11', 'Accidental', 'qqqqqqqqq', 'qqqqqqqqqq'),
 (6, 7, '2020-12-08', 'Accidental', 'aaa', 'zzzzz'),
-(7, 12, '2020-12-08', 'Accidental', 'aaa', 'aa'),
+(7, 12, '2020-12-08', 'Accidental', 'bbb', 'aa'),
 (8, 9, '2020-12-08', 'Accidental', 'wwww', 'w'),
 (9, 9, '2020-12-08', 'Accidental', 'a', 'a'),
 (10, 8, '2020-12-08', 'Accidental', 'q', 'q'),
