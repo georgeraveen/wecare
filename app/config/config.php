@@ -25,6 +25,7 @@ session_start();
 //   die;
 // }
 // var_dump($DB);
+//hello
 require_once 'functions.php';
   
 //get error/success messages

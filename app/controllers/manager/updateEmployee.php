@@ -2,13 +2,13 @@
 
 class updateEmployee extends Controller{
 
-    public function index(){
+   /* public function index(){
         $this->checkPermission("MGR");
         include './../app/header.php';
         $this->view('manager/updateEmployee');
         include './../app/footer.php';
         // echo "asas";
-    }
+    }*/
 
     public function viewEmployee(){
         $this->checkPermission("MGR");
@@ -39,31 +39,48 @@ class updateEmployee extends Controller{
     }
 
     public function updateEmployee(){
-        $this->checkPermission("MGR");
-        if($_POST['editEmployee']){
-            $this->model('employee');
-            $editEmployee = new Employee();
-            $result= $editEmployee->setValue($this->valValidate($_POST['empFirstName']),$this->valValidate($_POST['empLastName']),$this->valValidate($_POST['gender']),$this->valValidate($_POST['empDOB']),$this->valValidate($_POST['empNIC']),$this->valValidate($_POST['empAddress']),$this->valValidate($_POST['email']),$this->valValidate($_POST['empTypeID']),$this->valValidate($_POST['empContactNo']));
-            $result= $editEmployee->update($this->valValidate($_POST['empID']));
+        try{
+            $this->checkPermission("MGR");
+            if($_POST['editEmployee']){
+                $this->model('employee');
+                $editEmployee = new Employee();
+                $editEmployee->startTrans();
+                $result= $editEmployee->setValue($this->valValidate($_POST['empFirstName']),$this->valValidate($_POST['empLastName']),$this->valValidate($_POST['gender']),$this->valValidate($_POST['empDOB']),$this->valValidate($_POST['empNIC']),$this->valValidate($_POST['empAddress']),$this->valValidate($_POST['email']),$this->valValidate($_POST['empTypeID']),$this->valValidate($_POST['empContactNo']));
+                $result= $editEmployee->update($this->valValidate($_POST['empID']));
+                $_SESSION["successMsg"]="Successfully Updated";
+                $editEmployee->transCommit();
+                header("Location: ./viewEmployee");
+                exit;
+            }
+        }
+        catch(\Throwable $th){
+            $editEmployee->transRollBack();
+            $_SESSION["errorMsg"]="Error occured when updating the profile.";
             header("Location: ./viewEmployee");
-            exit;
         }
     }
 
     public function deleteEmployee(){
-        $this->checkPermission("MGR");
-        $this->model('employee');
-        $deleteEmp= new Employee();
-        if($this->valValidate($_GET['action'])=="delete"){
-            $result= $deleteEmp->delete($this->valValidate($_GET['id']));
-            $queue=$deleteEmp->getAllView();
-            include './../app/header.php';
-            $this->view('manager/viewEmployee',$queue);
-            include './../app/footer.php';
+        try{
+            $this->checkPermission("MGR");
+            $this->model('employee');
+            $deleteEmp= new Employee();
+            $deleteEmp->startTrans();
+            if($this->valValidate($_GET['action'])=="delete"){
+                $result= $deleteEmp->updateStatus($this->valValidate($_GET['id']));
+                $_SESSION["successMsg"]="Successfully Deleted";
+                $deleteEmp->transCommit();
+                header("Location: ./viewEmployee");
+            }
+            else{
+                header("Location: ./viewEmployee");
+                exit;
+            }
         }
-        else{
+        catch(\Throwable $th){
+            $deleteEmp->transRollBack();
+            $_SESSION["errorMsg"]="Error occured when deleting the profile.";
             header("Location: ./viewEmployee");
-            exit;
         }
     }
 
