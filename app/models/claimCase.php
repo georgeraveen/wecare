@@ -72,7 +72,7 @@ class ClaimCase extends Models{
     public function getAllQueueLimit($page,$filter){
         
         
-        $limit=3;
+        $limit=10;
         $start=$page* $limit;
         $stmt= $this->conn->prepare("SELECT claimID,dischargeDate,h.name,med.empFirstName as med, fag.empFirstName as fag, doc.empFirstName as doc, payableAmount, caseStatus  from $this->table as i 
                     inner join hospital as h on i.hospitalID = h.hospitalID 

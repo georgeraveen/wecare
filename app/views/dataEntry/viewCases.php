@@ -109,7 +109,7 @@
               "page=".($page-1)."\">&laquo;</a>";
        }
        
-        $pageCount= ceil((((int)$data['pagination'])/3));
+        $pageCount= ceil((((int)$data['pagination'])/10));
         // echo $pageCount;
         for($i=0; $i< $pageCount; $i++){
           $active = ($i==$page) ? "class=\"active\"":"" ;
