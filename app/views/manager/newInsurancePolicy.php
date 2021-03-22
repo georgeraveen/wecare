@@ -24,7 +24,7 @@
         <div class="column">
             <div class="formInput">
                 <label for="policyFile">Upload</label>
-                <input type="file" id="policyFile" name="policyFile" multiple accept=".pdf, image/*">
+                <input type="file" id="policyFile" name="policyFile[]" multiple accept=".pdf, image/*">
             </div>
         </div>
       </div>

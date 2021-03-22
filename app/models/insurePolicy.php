@@ -4,6 +4,10 @@
 class InsurePolicy  extends Models{
     private $conn;
     private $table="insurance_policy";
+    private $date;
+    private $remarks;
+    private $vPremium;
+    private $rPremium;
 
     public function __construct(){
         $this->conn=$this->dataConnect();
@@ -25,14 +29,14 @@ class InsurePolicy  extends Models{
     }
     public function create(){
         $stmt= $this->conn->prepare("insert into $this->table (date,remarks,vPremium,rPremium) 
-                                                            values (:date, :remarks, :vPremium, :rPremium");
+                                                            values (:date, :remarks, :vPremium, :rPremium);");
         $stmt-> bindParam(':date', $this->date );
         $stmt-> bindParam(':remarks', $this->remarks );
         $stmt-> bindParam(':vPremium', $this->vPremium );
         $stmt-> bindParam(':rPremium', $this->rPremium );
         
-        return $this->conn->lastInsertId();
         $stmt->execute();
+        return $this->conn->lastInsertId();
     }
 }
 ?>

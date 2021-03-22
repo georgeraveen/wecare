@@ -9,6 +9,8 @@
         <th>Date</th>
         <th>Documents</th>
         <th>Remarks</th>
+        <th>vPremium</th>
+        <th>rPremium</th>
       </tr>
       <tr>
         <td>1</td>
