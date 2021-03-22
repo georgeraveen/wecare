@@ -48,7 +48,7 @@ else{
             <a class="avatar btn-Link" href="#">
             <?php 
             if($_SESSION["rolecode"] =='CUST'){
-              echo $_SESSION["custName"];
+              echo explode(" ",$_SESSION["custName"])[0];
             }
             else{
               echo $_SESSION["fName"][0].$_SESSION["lName"][0];
