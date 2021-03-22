@@ -49,6 +49,9 @@ class viewPendingQueue extends Controller{
     
   //update Single case details
   public function updateCase(){
+      try{
+
+      
     $this->checkPermission("DOC");
     if($_POST['editSingleCaseDetails']){
         $this->model('claimCase');
@@ -57,9 +60,16 @@ class viewPendingQueue extends Controller{
                 $this->valValidate($_POST['doctorComment']),$this->valValidate($_POST['healthCondition']));
                
         $result= $editClaimCase->updateSingleCaseDoc($this->valValidate($_POST['claimID']));
+        $_SESSION["successMsg"]="Case Updated Successfully!";
         header("Location: ./viewCase");
         exit;
     }
+}catch(\Throwable $th) {
+        $newCustomer->transRollBack();
+        $_SESSION["errorMsg"]="Error occured when creating a new customer.";
+        header("Location: ./index");
+    }
+
 }
 public function viewFil($filePath,$fileName,$type){
     $this->checkPermission("DOC");
