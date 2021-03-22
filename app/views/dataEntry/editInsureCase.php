@@ -1,6 +1,7 @@
 
 <link rel="stylesheet" href= "./../../css/home.css">
 <link rel="stylesheet" href= "./../../css/style.css">
+<link rel="stylesheet" href= "./../../css/dropdown.css">
 <div class="containers">
   <ul class="breadcrumb">
     <li><a href="./../dataEntryHome/index">Home</a></li>
@@ -9,22 +10,20 @@
   </ul>
   <h1>Update Insurance Claim Case</h1><br>
   <div class="form-container">
-    
     <form action="./updateCase" method="post" onSubmit="showLoader()">
       <div class="row">
         <div class="column">
           <div class="formInput">
             <label for="customer">Customer</label><br>
-            <select id="customer" name="customer" required>
-              <!-- <option>Customer ID - Customer Name</option> -->
-              <?php               
-                foreach ($data['custList'] as $customersRow){
-                  echo "<option value= \"".$customersRow['custID']."\"";
-                  if($customersRow['custID']==$data['caseDetails'][0]['custID']) echo "selected=\"selected\"";
-                  echo "> CUST".$customersRow['custID']." - ".$customersRow['custName']."</option>";
-                }
-              ?>
-            </select><br>
+            <div class="row">
+              <div class="column" style="flex:25%">
+                <input type="number" id="customer" name="customer" class="input" value=<?php echo $data['caseDetails'][0]['custID']?> required readonly>
+              </div>
+              <div class="column" style="flex:75%">
+                <input type="text" id="custNameBox" name="custName" required class="input"  onkeyup="showResult(this.value)" placeholder="Search by customer ID"><br>
+                <div id="livesearch" class="dropdown-content"></div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="column">
@@ -131,3 +130,4 @@
     </form>
   </div>
 </div>
+<script src="./../../js/searchCustomerList.js"></script>

@@ -5,6 +5,7 @@
 
 <link rel="stylesheet" href= "./../../css/home.css">
 <link rel="stylesheet" href= "./../../css/style.css">
+<link rel="stylesheet" href= "./../../css/dropdown.css">
 
 <div class="containers">
   <ul class="breadcrumb">
@@ -19,14 +20,15 @@
         <div class="column">
           <div class="formInput">
             <label for="customer">Customer</label><br>
-            <select id="customer" name="customer" required>
-              <!-- <option>Customer ID - Customer Name</option> -->
-              <?php               
-                foreach ($data['custList'] as $customersRow){
-                  echo "<option value= \"".$customersRow['custID']."\"> CUST".$customersRow['custID']." - ".$customersRow['custName']."</option>";
-                }
-              ?>
-            </select><br>
+            <div class="row">
+              <div class="column" style="flex:25%">
+                <input type="number" id="customer" name="customer" class="input" value="" required readonly>
+              </div>
+              <div class="column" style="flex:75%">
+                <input type="text" id="custNameBox" name="custName" required class="input"  onkeyup="showResult(this.value)" placeholder="Search by customer ID"><br>
+                <div id="livesearch" class="dropdown-content"></div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="column">
@@ -122,3 +124,4 @@
   </div>
 </div>
 <script src="./../../js/common.js"></script>
+<script src="./../../js/searchCustomerList.js"></script>
