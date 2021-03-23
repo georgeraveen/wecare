@@ -44,5 +44,16 @@ class InsurePolicy  extends Models{
         $stmt->execute();
         return $stmt->fetchAll();
     }
+    public function update($_id){
+        $stmt= $this->conn->prepare("update $this->table set date= :date, remarks= :remarks, vPremium= :vPremium, rPremium= :rPremium
+                                                             where policyID = $_id ") ;
+
+        $stmt -> bindParam(':date', $this->date );
+        $stmt -> bindParam(':remarks', $this->remarks );
+        $stmt -> bindParam(':vPremium', $this->vPremium );
+        $stmt -> bindParam(':rPremium', $this->rPremium );
+        $stmt->execute();
+
+    }
 }
 ?>

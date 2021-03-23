@@ -89,5 +89,65 @@ class insurancePolicy extends Controller{
             exit;
         }
     }
+    public function updatePolicy(){
+        $this->checkPermission("MGR");
+        try { 
+            if($_POST['update']){
+                $this->model('insurePolicy');
+                $editClaimCase = new InsurePolicy();
+                $result= $editClaimCase->setValue($this->valValidate($_POST['date']),$this->valValidate($_POST['remarks']),$this->valValidate($_POST['vPremium']),
+                        $this->valValidate($_POST['rPremium']));
+                    
+                $result= $editClaimCase->update($this->valValidate($_POST['policyID']));
+                
+                //upload a file
+                if(! is_dir("./../documents/policy/".$this->valValidate($_POST['policyID']))) {
+                    mkdir("./../documents/policy/".$this->valValidate($_POST['policyID']));
+                }
+                $filesToDelete=explode(',',$_POST['deleteFile']);
+                if(count($filesToDelete)>1){
+                    var_dump($filesToDelete);
+                    $dir ="./../documents/policy/". $this->valValidate(($_POST['policyID']));
+                        $ls = scandir($dir);
+                        var_dump($ls);
+                    for ($i=1; $i <count($filesToDelete) ; $i++) { 
+                        unlink($dir."/".$ls[$filesToDelete[$i]]);
+                    }
+                }
+                $errors= array();
+                for ($i=0; $i < count($_FILES['policyFile']['name']) ; $i++) { 
+                    $file_name = $_FILES['policyFile']['name'][$i];
+                    $file_size =$_FILES['policyFile']['size'][$i];
+                    $file_tmp =$_FILES['policyFile']['tmp_name'][$i];
+                    $file_type=$_FILES['policyFile']['type'][$i];
+                    $file_ext=strtolower(end(explode('.',$_FILES['policyFile']['name'][$i])));
+                    
+                    $extensions= array("jpeg","jpg","png","pdf");
+                    
+                    if(in_array($file_ext,$extensions)=== false){
+                        $errors[]="extension not allowed, please choose a JPEG or PNG file.";
+                    }
+                    
+                    if($file_size > 2097152){
+                        $errors[]='File size must be excately 2 MB';
+                    }
+                    
+                    if(empty($errors)==true){
+                        move_uploaded_file($file_tmp,"./../documents/policy/".$this->valValidate($_POST['policyID'])."/".$file_name);
+                        echo "Success";
+                    }else{
+                        print_r($errors);
+                    }
+                }
+                $_SESSION["successMsg"]="policy updated successfully";
+                header("Location: ./index");
+                exit;
+            }
+        } 
+        catch (\Throwable $th) {
+            $_SESSION["errorMsg"]="Error occured when updating";
+            header("Location: ./viewCase");
+        }
+    }
 
 }
