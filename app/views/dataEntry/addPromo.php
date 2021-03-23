@@ -3,7 +3,8 @@
 <div class="containers">
 <ul class="breadcrumb">
     <li><a href="./../dataEntryHome/index">Home</a></li>
-    <li><a href="./../promotions/addNew">Add new promotion</a></li>
+    <li><a href="./../promotions/index">Manage Promotions</a></li>
+    <li><a href="./../promotions/addPromo">Add new promotion</a></li>
   </ul>
   <h1>Add new promotion</h1><br>
     <div class="form-container">
