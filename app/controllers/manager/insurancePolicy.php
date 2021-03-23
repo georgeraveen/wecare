@@ -70,5 +70,9 @@ class insurancePolicy extends Controller{
                 header("Location: ./index");
             }
     }
+    public function viewFil($filePath,$fileName,$type){
+        $this->checkPermission("MGR");
+        $this->viewFile("policy/".$filePath."/".$fileName.".".$type,$type);
+    }
 
 }

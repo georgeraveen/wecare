@@ -21,7 +21,19 @@
         //echo $row['policyID'];
         echo "<tr>"."<td>".$row['policyID']."</td>".
               "<td>".$row['date']."</td>".
-              "<td>".NULL."</td>".
+              "<td>";
+                  $dir ="./../documents/policy/". $row['policyID'];
+                  $ls = scandir($dir);
+                  if(count($ls)>2){
+                  for($i=2;$i < count($ls);$i++){
+                      $filename=pathinfo($ls[$i],PATHINFO_FILENAME);
+                      $ext=pathinfo($ls[$i],PATHINFO_EXTENSION);
+                      echo "<a id=\"txt-$i\" href =\"./viewFil/". $row['policyID'] . "/". $filename."/".$ext ."\">".$ls[$i]."</a><br>";
+                  }
+              } else{
+                  echo "Empty Directory";
+              }
+              echo"</td>".
               "<td>".$row['remarks']."</td>".
               "<td>".$row['vPremium']."</td>".
               "<td>".$row['rPremium']."</td>"."</tr>";
