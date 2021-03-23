@@ -268,7 +268,7 @@ public function getCaseDetailsFieldAg($claimID,$fagID){
     return $stmt->fetchAll();
 }
 
-public function setValueFag($PclaimID,$PadmitDate,$PdischargeDate,$PicuFromDate,$PicuToDate){
+public function setValueFag($PclaimID,$PadmitDate,$PdischargeDate,$PicuFromDate,$PicuToDate,$P){
     // echo $PadmitDate;
     $this->claimID=$PclaimID;
     $this->admitDate= !empty($PadmitDate) ? $PadmitDate : null;
