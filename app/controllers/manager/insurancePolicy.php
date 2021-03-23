@@ -115,6 +115,8 @@ class insurancePolicy extends Controller{
                     }
                 }
                 $errors= array();
+                var_dump(($_FILES['policyFile']["name"]));
+                if($_FILES['policyFile']["name"][0]!=""){
                 for ($i=0; $i < count($_FILES['policyFile']['name']) ; $i++) { 
                     $file_name = $_FILES['policyFile']['name'][$i];
                     $file_size =$_FILES['policyFile']['size'][$i];
@@ -126,10 +128,13 @@ class insurancePolicy extends Controller{
                     
                     if(in_array($file_ext,$extensions)=== false){
                         $errors[]="extension not allowed, please choose a JPEG or PNG file.";
+                        throw new Exception("Error Processing Request", 1);
+                        
                     }
                     
                     if($file_size > 2097152){
                         $errors[]='File size must be excately 2 MB';
+                        throw new Exception("Error Processing Request", 1);
                     }
                     
                     if(empty($errors)==true){
@@ -139,12 +144,14 @@ class insurancePolicy extends Controller{
                         print_r($errors);
                     }
                 }
+                }
                 $_SESSION["successMsg"]="Insurance policy updated successfully";
                 header("Location: ./index");
                 exit;
             }
         } 
         catch (\Throwable $th) {
+            echo $th;
             $_SESSION["errorMsg"]="Error occured when updating insurance policy";
             header("Location: ./index");
         }
