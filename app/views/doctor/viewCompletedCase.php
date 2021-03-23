@@ -1,7 +1,7 @@
 
 <?php
-var_dump($data);
-var_dump($data['singleCaseDetails'][0]['custName']);
+//var_dump($data);
+//var_dump($data['singleCaseDetails'][0]['custName']);
 
 
  ?>
