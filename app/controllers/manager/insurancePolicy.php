@@ -74,5 +74,20 @@ class insurancePolicy extends Controller{
         $this->checkPermission("MGR");
         $this->viewFile("policy/".$filePath."/".$fileName.".".$type,$type);
     }
+    public function editPolicy(){
+        $this->checkPermission("MGR");
+        $this->model('insurePolicy');
+        $editPolicy= new InsurePolicy();
+        if($this->valValidate($_GET['action'])=="edit"){
+            $policyDetails=$editPolicy->getDetails($this->valValidate($_GET['id']));
+            include './../app/header.php';
+            $this->view('manager/editPolicy',['id'=>$this->valValidate($_GET['id']),'policyDetails'=>$policyDetails]);
+            include './../app/footer.php';
+        }
+        else{
+            header("Location: ./index");
+            exit;
+        }
+    }
 
 }

@@ -1,6 +1,11 @@
 <link rel="stylesheet" href= "./../../css/home.css">
 <link rel="stylesheet" href= "./../../css/style.css">
 <div class="containers">
+<?php
+//var_dump($data);
+echo "<br>";
+var_dump($data['policyDetails'][0]['date']);
+?>
 <ul class="breadcrumb">
     <li><a href="./../managerHome/index">Home</a></li>
     <li><a href="./index">View Policy List</a></li>

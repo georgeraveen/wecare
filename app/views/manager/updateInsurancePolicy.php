@@ -1,6 +1,10 @@
 <link rel="stylesheet" href= "./../../css/home.css">
 <link rel="stylesheet" href= "./../../css/style.css">
 <div class="containers">
+<ul class="breadcrumb">
+    <li><a href="./../managerHome/index">Home</a></li>
+    <li>View Policy List</a></li>
+</ul>
   <h1>Insurance policies list</h1><br>
   <div class="table-container">
     <table class="table-view">
@@ -11,6 +15,7 @@
         <th>Remarks</th>
         <th>vPremium</th>
         <th>rPremium</th>
+        <th>Action</th>
       </tr>
       <tr>
       <?php
@@ -36,7 +41,8 @@
               echo"</td>".
               "<td>".$row['remarks']."</td>".
               "<td>".$row['vPremium']."</td>".
-              "<td>".$row['rPremium']."</td>"."</tr>";
+              "<td>".$row['rPremium']."</td>".
+              "<td> <a class=\"editBtn\" href=\"./editPolicy?action=edit&id=".$row['policyID']."\">Edit</a> "."</td>"."</tr>";
       }
 
       ?>

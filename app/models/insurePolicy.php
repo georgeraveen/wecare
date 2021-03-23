@@ -4,6 +4,7 @@
 class InsurePolicy  extends Models{
     private $conn;
     private $table="insurance_policy";
+    private $policyID;
     private $date;
     private $remarks;
     private $vPremium;
@@ -37,6 +38,11 @@ class InsurePolicy  extends Models{
         
         $stmt->execute();
         return $this->conn->lastInsertId();
+    }
+    public function getDetails($_id){
+        $stmt= $this->conn->prepare("SELECT * from $this->table where policyID= $_id");
+        $stmt->execute();
+        return $stmt->fetchAll();
     }
 }
 ?>
