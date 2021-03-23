@@ -4,10 +4,13 @@ class insurancePolicy extends Controller{
 
     public function index(){
         $this->checkPermission("MGR");
+        $this->model('insurePolicy');
+        $policyView= new InsurePolicy();
+        $queue=$policyView->getAll();
         include './../app/header.php';
-        $this->view('manager/updateInsurancePolicy');
+        $this->view('manager/updateInsurancePolicy',$queue);
         include './../app/footer.php';
-        // echo "asas";
+        //var_dump($queue);
     }
 
     public function newInsurancepolicy(){
