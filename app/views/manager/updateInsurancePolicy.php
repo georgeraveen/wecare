@@ -15,7 +15,7 @@
         <th>Remarks</th>
         <th>vPremium</th>
         <th>rPremium</th>
-        <th>Action</th>
+        <th colspan="2" style="text-align:center">Action</th>
       </tr>
       <tr>
       <?php
@@ -42,6 +42,7 @@
               "<td>".$row['remarks']."</td>".
               "<td>".$row['vPremium']."</td>".
               "<td>".$row['rPremium']."</td>".
+              "<td> <a class=\"deleteBtn\" href=\"./deletePolicy?action=delete&id=".$row['policyID']."\">Delete</a> "."</td>".
               "<td> <a class=\"editBtn\" href=\"./editPolicy?action=edit&id=".$row['policyID']."\">Edit</a> "."</td>"."</tr>";
       }
 

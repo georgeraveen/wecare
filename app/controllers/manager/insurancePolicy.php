@@ -139,14 +139,34 @@ class insurancePolicy extends Controller{
                         print_r($errors);
                     }
                 }
-                $_SESSION["successMsg"]="policy updated successfully";
+                $_SESSION["successMsg"]="Insurance policy updated successfully";
                 header("Location: ./index");
                 exit;
             }
         } 
         catch (\Throwable $th) {
-            $_SESSION["errorMsg"]="Error occured when updating";
-            header("Location: ./viewCase");
+            $_SESSION["errorMsg"]="Error occured when updating insurance policy";
+            header("Location: ./index");
+        }
+    }
+    public function deletePolicy(){
+        try{
+            $this->checkPermission("MGR");
+            $this->model('insurePolicy');
+            $deletePolicy= new InsurePolicy();
+            if($this->valValidate($_GET['action'])=="delete"){
+                $result= $deletePolicy->updateStatus($this->valValidate($_GET['id']));
+                $_SESSION["successMsg"]="Successfully Deleted";
+                header("Location: ./index");
+            }
+            else{
+                header("Location: ./index");
+                exit;
+            }
+        }
+        catch(\Throwable $th){
+            $_SESSION["errorMsg"]="Error occured when deleting the insurance policy.";
+            header("Location: ./index");
         }
     }
 

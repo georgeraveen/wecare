@@ -16,8 +16,18 @@ class InsurePolicy  extends Models{
     public function read(){
 
     }
+    public function startTrans(){
+        $this->conn->beginTransaction();
+    }
+    public function transCommit(){
+        $this->conn->commit();
+    }
+    public function transRollBack(){
+        $this->conn->rollBack();
+    }
+
     public function getAll(){
-        $stmt= $this->conn->prepare("select * from $this->table");
+        $stmt= $this->conn->prepare("select * from $this->table where status=1");
         
         $stmt->execute();
         return $stmt->fetchAll();
@@ -54,6 +64,11 @@ class InsurePolicy  extends Models{
         $stmt -> bindParam(':rPremium', $this->rPremium );
         $stmt->execute();
 
+    }
+    public function updateStatus($_id){
+        $stmt= $this->conn->prepare("update $this->table set status= 0
+                                                            where policyID = $_id ") ;   
+        $stmt->execute();
     }
 }
 ?>
