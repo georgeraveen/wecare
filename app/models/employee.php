@@ -195,5 +195,10 @@ class Employee extends Models{
         $stmt -> bindParam(':specialization', $this->specialization );
         $stmt->execute();       
     }
+    public function fagDetails($_id){
+        $stmt= $this->conn->prepare("SELECT * from field_agt where empID= $_id ");
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
 }
 ?>

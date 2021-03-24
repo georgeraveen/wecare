@@ -6,6 +6,11 @@
     $contactDetails .= ",";
 }
 $contDetails = rtrim($contactDetails, ',');
+if ($data['empDetails'][0]['empTypeID']==="FAG"){
+    empSp.value="";
+    empSp.parentElement.removeAttribute("hidden");
+    empSp.labels[0].textContent="Speciality";
+}
 ?>
 <link rel="stylesheet" href= "./../../css/home.css">
 <link rel="stylesheet" href= "./../../css/style.css">
@@ -15,6 +20,12 @@ $contDetails = rtrim($contactDetails, ',');
     <li><a href="./viewEmployee">View Employees</a></li>
     <li>Manage Employees</a></li>
 </ul>
+<?php
+    var_dump($data['fagDetails'][0]['area']);
+    if ($data['empDetails'][0]['empTypeID']==="FAG"){
+        echo "jgjhg";
+    }
+?>
   <h1>Update employee Profiles</h1><br>
     <div class="form-container">
 
@@ -29,17 +40,30 @@ $contDetails = rtrim($contactDetails, ',');
                     <div class="formInput">
                         <label for="empFirstName">First Name</label><br>
                         <input type="text" id="empFirstName" name="empFirstName" class="input" value=<?php echo $data['empDetails'][0]['empFirstName']?>><br>
-                    </div>
-                
-                    <div class="formInput">
-                        <label for="empLastName">Last Name</label><br>
-                        <input type="text" id="empLastName" name="empLastName" class="input" value=<?php echo $data['empDetails'][0]['empLastName']?>><br>
-                    </div>
+                    </div>    
                 </div>
                 <div class="column">
                     <div class="formInput">
                         <label for="empAddress">Address</label><br>
                         <textarea id="empAddress" name="empAddress" class="commentBox"><?php echo $data['empDetails'][0]['empAddress']; ?></textarea> <br>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column">
+                    <div class="formInput">
+                            <label for="empLastName">Last Name</label><br>
+                            <input type="text" id="empLastName" name="empLastName" class="input" value=<?php echo $data['empDetails'][0]['empLastName']?>><br>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="formInput">
+                        <label for="gender">Gender</label><br>
+                        <select id="gender" name="gender">
+                            <option value="m" <?php echo ($data['empDetails'][0]['gender'] =="m" ? ("selected") : (""))?>>Male</option>
+                            <option value="f" <?php echo ($data['empDetails'][0]['gender'] =="f" ? ("selected") : (""))?>>Female</option>
+                            <option value="o" <?php echo ($data['empDetails'][0]['gender'] =="o" ? ("selected") : (""))?>>Other</option>
+                        </select><br>
                     </div>
                 </div>
             </div>
@@ -71,13 +95,9 @@ $contDetails = rtrim($contactDetails, ',');
                     </div>
                 </div>
                 <div class="column">
-                    <div class="formInput">
-                        <label for="gender">Gender</label><br>
-                        <select id="gender" name="gender">
-                            <option value="m" <?php echo ($data['empDetails'][0]['gender'] =="m" ? ("selected") : (""))?>>Male</option>
-                            <option value="f" <?php echo ($data['empDetails'][0]['gender'] =="f" ? ("selected") : (""))?>>Female</option>
-                            <option value="o" <?php echo ($data['empDetails'][0]['gender'] =="o" ? ("selected") : (""))?>>Other</option>
-                        </select><br>
+                    <div class="formInput" hidden>
+                        <label id="empSpLabel" for="empSp">Option</label><br>
+                        <input type="text" id="empSp" name="empSp" required class="input" ><br>
                     </div>
                 </div>
             </div>

@@ -28,9 +28,15 @@ class updateEmployee extends Controller{
         if($this->valValidate($_GET['action'])=="edit"){
             $empDetails=$editEmp->getDetails($this->valValidate($_GET['id']));
             $empContactDetails=$editEmp->getContactDetails($this->valValidate($_GET['id']));
-            include './../app/header.php';
-            $this->view('manager/editEmployee',['id'=>$this->valValidate($_GET['id']),'empDetails'=>$empDetails,'empContactDetails'=>$empContactDetails]);
-            include './../app/footer.php';
+            if(($_GET['type'])==="FAG"){
+                $fagDetails=$editEmp->fagDetails($this->valValidate($_GET['id']));
+                include './../app/header.php';
+                $this->view('manager/editEmployee',['id'=>$this->valValidate($_GET['id']),'empDetails'=>$empDetails,'empContactDetails'=>$empContactDetails,'fagDetails'=>$fagDetails]);
+                include './../app/footer.php';
+            }
+            //include './../app/header.php';
+            //$this->view('manager/editEmployee',['id'=>$this->valValidate($_GET['id']),'empDetails'=>$empDetails,'empContactDetails'=>$empContactDetails]);
+            //include './../app/footer.php';
         }
         else{
             header("Location: ./viewEmployee");
