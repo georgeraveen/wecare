@@ -29,10 +29,10 @@ session_start();
 require_once 'functions.php';
   
 //get error/success messages
-if ($_SESSION["errorType"] != "" && $_SESSION["errorMsg"] != "" ) {
-    $ERROR_TYPE = $_SESSION["errorType"];
-    $ERROR_MSG = $_SESSION["errorMsg"];
-    $_SESSION["errorType"] = "";
-    $_SESSION["errorMsg"] = "";
-}
+// if ($_SESSION["errorType"] != "" && $_SESSION["errorMsg"] != "" ) {
+//     $ERROR_TYPE = $_SESSION["errorType"];
+//     $ERROR_MSG = $_SESSION["errorMsg"];
+//     $_SESSION["errorType"] = "";
+//     $_SESSION["errorMsg"] = "";
+// }
 ?>
