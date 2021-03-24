@@ -72,7 +72,7 @@ class ClaimCase extends Models{
     public function getAllQueueLimit($page,$filter){
         
         
-        $limit=3;
+        $limit=10;
         $start=$page* $limit;
         $stmt= $this->conn->prepare("SELECT claimID,dischargeDate,h.name,med.empFirstName as med, fag.empFirstName as fag, doc.empFirstName as doc, payableAmount, caseStatus  from $this->table as i 
                     inner join hospital as h on i.hospitalID = h.hospitalID 
@@ -157,8 +157,10 @@ class ClaimCase extends Models{
         INNER JOIN hospital
             ON claim_case.hospitalID=hospital.hospitalID
         INNER JOIN employee
-            ON claim_case.medScruID=employee.empID
-        WHERE claim_case.doctorID = $doctorID;
+            ON claim_case.medScruID=employee.empID 
+        WHERE claim_case.doctorID = $doctorID AND claim_case.caseStatus = \"Doctor pending\"
+        
+        ORDER BY claimID DESC;
                     ");
         
         $stmt->execute();
@@ -168,13 +170,14 @@ class ClaimCase extends Models{
     
     //doctor-view from pending queue
     public function getCaseDetailsDoctor($claimID){
-        $stmt= $this->conn->prepare("SELECT customer.custName,claimID,admitDate,icuFromDate,dischargeDate,icuToDate,hospital.name,healthCondition 
-        FROM claim_case 
+        $stmt= $this->conn->prepare("SELECT customer.custName,claimID ,admitDate,icuFromDate,dischargeDate,icuToDate,hospital.name,healthCondition 
+        FROM claim_case  
         INNER JOIN hospital 
             ON claim_case.hospitalID=hospital.hospitalID 
         INNER JOIN customer
             ON claim_case.custID=customer.custID 
-        WHERE claimID = $claimID;");
+           
+        WHERE claimID = $claimID");
         $stmt->execute();
         return $stmt->fetchAll();
     }
@@ -195,8 +198,39 @@ class ClaimCase extends Models{
       
         $stmt->execute();
     
-        // echo $this->dataEntryOfficerID . $this->healthCondition;
+        //    echo $this->dataEntryOfficerID . $this->healthCondition;
     }
+    //get details for completed queue
+
+public function getCompletedCasesDoc($doctorID){
+    // var_dump($this->conn);
+    $stmt= $this->conn->prepare("SELECT claimID, customer.custName,admitDate, CONCAT(employee.empFirstName, \" \", employee.empLastName) AS medSrcName , hospital.name
+    FROM claim_case 
+    INNER JOIN customer
+        ON claim_case.custID=customer.custID 
+    INNER JOIN hospital 
+         ON claim_case.hospitalID=hospital.hospitalID 
+    INNER JOIN employee 
+        ON claim_case.medScruID=employee.empID
+    WHERE claim_case.caseStatus = 'Doctor confirmed' and claim_case.doctorID=$doctorID
+    ORDER By claimID DESC;");
+    
+    $stmt->execute();
+    return $stmt->fetchAll();
+
+}
+// get details for completed single case
+public function getCaseDetailsDoc($claimID,$doctorID){
+    $stmt= $this->conn->prepare("SELECT customer.custName,claimID,admitDate,icuFromDate,dischargeDate,icuToDate,hospital.name,doctorComment,healthCondition 
+    FROM claim_case 
+    INNER JOIN hospital 
+        ON claim_case.hospitalID=hospital.hospitalID 
+    INNER JOIN customer
+        ON claim_case.custID=customer.custID 
+    WHERE claimID = $claimID AND doctorID=$doctorID");
+    $stmt->execute();
+    return $stmt->fetchAll();
+}
 
 
 

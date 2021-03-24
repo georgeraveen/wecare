@@ -15,7 +15,7 @@
 <link rel="stylesheet" href= "./../../css/style.css">
 
 <div class="containers">
-    <h1>My pending queue</h1><br>
+    <h1>My Pending Queue</h1><br>
     <div class="table-container">
         <table class="table-view">
             <tr>

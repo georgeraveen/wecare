@@ -27,7 +27,7 @@ textarea {
   border-radius: 4px;
   box-sizing: border-box;
   margin: 4px;
-  background-color: #ece5f0;
+  background-color: #fff6f0;
   border: 1px solid #ccc;
 }
 .row {
@@ -44,7 +44,7 @@ textarea {
 }
 .btn-submit {
   padding: 10px 30px;
-  background-color: #59114d;
+  background-color: #325d79;
   border: none;
   cursor: pointer;
   text-decoration: none;
@@ -52,7 +52,7 @@ textarea {
 }
 
 .btn-submit:hover {
-  background-color: #742767;
+  background-color: #1f394b;
 }
 .btn-delete {
   background-color: red;
@@ -136,7 +136,9 @@ th {
 .addMedDiv {
   display: none;
 }
-
+.thumb {
+  height: 100px;
+}
 @media only screen and (max-width: 600px) {
   .containers {
     margin: 120px 10px;
