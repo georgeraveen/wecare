@@ -13,7 +13,8 @@ class Employee extends Models{
     private $empAddress;
     private $email;
     private $empTypeID;
-    private $empContactNo;
+    private $area;
+
 
 
     public function __construct(){
@@ -135,6 +136,7 @@ class Employee extends Models{
         ';
 
         sendEmail($this->email, $this->empFirstName.$this->empLastName ,$email_string,"Wecare Employee Portal Registration");
+        return $this->conn->lastInsertId();
     }
     public function update($_id){
         $stmt= $this->conn->prepare("update $this->table set empFirstName= :empFirstName, empLastName= :empLastName, gender= :gender, empDOB= :empDOB,
@@ -174,6 +176,14 @@ class Employee extends Models{
                                                             where empID = $_id ") ;   
         $stmt->execute();                                                  
 
+    }
+    public function setValueFAG($empSp){
+        $this->area= $empSp;
+    }
+    public function createFAG($_id){
+        $stmt= $this->conn->prepare("insert into field_agt (empID,area) 
+                                                            values (:$_id,:area)");
+        
     }
 }
 ?>
