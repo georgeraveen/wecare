@@ -125,6 +125,7 @@ class Employee extends Models{
                 <div class="container">
                     <center>
                         <h1>Wecare Employee Portal Registration</h1>
+                        <p>We warmly welcome you to wecare family. Please find the below credentials to access the employee web portal at <a href="https://websolutionz.tech/wecare/employee">https://websolutionz.tech/wecare/employee</a></p>
                         <h4>Username: '.$this->empTypeID.$last_id.'</h4>
                         <h4>Password: '.$passDetails[0].'</h4>
                     </center>
