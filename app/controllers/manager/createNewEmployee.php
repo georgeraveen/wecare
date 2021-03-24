@@ -25,7 +25,8 @@ class createNewEmployee extends Controller{
                     $result= $newEmployee->createFAG($last_id);
                 }
                 elseif ($_POST['empTypeID']==="DOC") {
-                    echo "Thusitha";
+                    $reslut= $newEmployee->setValueDOC($this->valValidate($_POST['empSp']));
+                    $result= $newEmployee->createDOC($last_id);
                 }
                 $_SESSION["successMsg"]="New employee added successfully";
                 $newEmployee->transCommit();

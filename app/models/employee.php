@@ -14,7 +14,7 @@ class Employee extends Models{
     private $email;
     private $empTypeID;
     private $area;
-
+    private $specialization;
 
 
     public function __construct(){
@@ -184,6 +184,15 @@ class Employee extends Models{
         $stmt= $this->conn->prepare("insert into field_agt (empID,area) 
                                                             values ($_id,:area)");
         $stmt -> bindParam(':area', $this->area );
+        $stmt->execute();       
+    }
+    public function setValueDOC($empSp){
+        $this->specialization= $empSp;
+    }
+    public function createDOC($_id){
+        $stmt= $this->conn->prepare("insert into doctor (empID,specialization) 
+                                                            values ($_id,:specialization)");
+        $stmt -> bindParam(':specialization', $this->specialization );
         $stmt->execute();       
     }
 }
