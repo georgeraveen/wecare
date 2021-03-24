@@ -136,7 +136,7 @@ class Employee extends Models{
         ';
 
         sendEmail($this->email, $this->empFirstName.$this->empLastName ,$email_string,"Wecare Employee Portal Registration");
-        return $this->conn->lastInsertId();
+        return $last_id;
     }
     public function update($_id){
         $stmt= $this->conn->prepare("update $this->table set empFirstName= :empFirstName, empLastName= :empLastName, gender= :gender, empDOB= :empDOB,
@@ -182,8 +182,9 @@ class Employee extends Models{
     }
     public function createFAG($_id){
         $stmt= $this->conn->prepare("insert into field_agt (empID,area) 
-                                                            values (:$_id,:area)");
-        
+                                                            values ($_id,:area)");
+        $stmt -> bindParam(':area', $this->area );
+        $stmt->execute();       
     }
 }
 ?>
