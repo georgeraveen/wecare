@@ -6,11 +6,6 @@
     $contactDetails .= ",";
 }
 $contDetails = rtrim($contactDetails, ',');
-if ($data['empDetails'][0]['empTypeID']==="FAG"){
-    empSp.value="";
-    empSp.parentElement.removeAttribute("hidden");
-    empSp.labels[0].textContent="Speciality";
-}
 ?>
 <link rel="stylesheet" href= "./../../css/home.css">
 <link rel="stylesheet" href= "./../../css/style.css">
@@ -20,15 +15,8 @@ if ($data['empDetails'][0]['empTypeID']==="FAG"){
     <li><a href="./viewEmployee">View Employees</a></li>
     <li>Manage Employees</a></li>
 </ul>
-<?php
-    var_dump($data['fagDetails'][0]['area']);
-    if ($data['empDetails'][0]['empTypeID']==="FAG"){
-        echo "jgjhg";
-    }
-?>
   <h1>Update employee Profiles</h1><br>
     <div class="form-container">
-
         <form action="./updateEmployee" method="post">
             <div class="row">
                 <div class="column">
@@ -77,7 +65,7 @@ if ($data['empDetails'][0]['empTypeID']==="FAG"){
                 <div class="column">
                     <div class="formInput">
                         <label for="empTypeID">Role</label><br>
-                        <select id="empTypeID" name="empTypeID"> 
+                        <select id="empTypeID" name="empTypeID" onChange="roleChange(this)"> 
                             <option value="DEO" <?php echo ($data['empDetails'][0]['empTypeID'] =="DEO" ? ("selected") : (""))?>>DEO</option>
                             <option value="DOC" <?php echo ($data['empDetails'][0]['empTypeID'] =="DOC" ? ("selected") : (""))?>>DOC</option>
                             <option value="FAG" <?php echo ($data['empDetails'][0]['empTypeID'] =="FAG" ? ("selected") : (""))?>>FAG</option>
@@ -95,9 +83,9 @@ if ($data['empDetails'][0]['empTypeID']==="FAG"){
                     </div>
                 </div>
                 <div class="column">
-                    <div class="formInput" hidden>
-                        <label id="empSpLabel" for="empSp">Option</label><br>
-                        <input type="text" id="empSp" name="empSp" required class="input" ><br>
+                    <div class="formInput" <?php echo (($data['empDetails'][0]['empTypeID'] =="DEO") || ($data['empDetails'][0]['empTypeID'] =="MED") || ($data['empDetails'][0]['empTypeID'] =="MGR") ? ("hidden") : (""))?>>
+                        <label id="empSpLabel" for="empSp"><?php echo ($data['empDetails'][0]['empTypeID'] =="FAG" ? ("Allocated Area") : ("Speciality"))?></label><br>
+                        <input type="text" id="empSp" name="empSp" class="input" value=""><br>
                     </div>
                 </div>
             </div>
@@ -140,3 +128,4 @@ if ($data['empDetails'][0]['empTypeID']==="FAG"){
         </form>
     </div>
 </div>
+<script type="text/javascript" src="./../../js/manager.js"></script>

@@ -30,13 +30,17 @@ class updateEmployee extends Controller{
             $empContactDetails=$editEmp->getContactDetails($this->valValidate($_GET['id']));
             if(($_GET['type'])==="FAG"){
                 $fagDetails=$editEmp->fagDetails($this->valValidate($_GET['id']));
-                include './../app/header.php';
-                $this->view('manager/editEmployee',['id'=>$this->valValidate($_GET['id']),'empDetails'=>$empDetails,'empContactDetails'=>$empContactDetails,'fagDetails'=>$fagDetails]);
-                include './../app/footer.php';
             }
-            //include './../app/header.php';
-            //$this->view('manager/editEmployee',['id'=>$this->valValidate($_GET['id']),'empDetails'=>$empDetails,'empContactDetails'=>$empContactDetails]);
-            //include './../app/footer.php';
+            elseif (($_GET['type'])==="DOC") {
+                $docDetails=$editEmp->docDetails($this->valValidate($_GET['id']));
+            }
+            else{
+                $fagDetails="";
+                $docDetails="";
+            }
+            include './../app/header.php';
+            $this->view('manager/editEmployee',['id'=>$this->valValidate($_GET['id']),'empDetails'=>$empDetails,'empContactDetails'=>$empContactDetails,'fagDetails'=>$fagDetails,'docDetails'=>$docDetails]);
+            include './../app/footer.php';
         }
         else{
             header("Location: ./viewEmployee");

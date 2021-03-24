@@ -200,5 +200,10 @@ class Employee extends Models{
         $stmt->execute();
         return $stmt->fetchAll();
     }
+    public function docDetails($_id){
+        $stmt= $this->conn->prepare("SELECT * from doctor where empID= $_id ");
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
 }
 ?>
