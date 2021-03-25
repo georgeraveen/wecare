@@ -44,16 +44,41 @@ else{
                 }
               ?>
             </div></a>
+            <div class="dropdown-header avatar">
+              <a class="btn-Link" href="#" style="color:black">
+              <?php 
+              if($_SESSION["rolecode"] =='CUST'){
+                echo explode(" ",$_SESSION["custName"])[0];
+              }
+              else{
+                echo $_SESSION["fName"][0].$_SESSION["lName"][0];
+              }
+              ?>
+              </a>
+              <div class="dropdown-content-header">
+                <span>
+                <?php 
+                if($_SESSION["rolecode"] =='CUST'){
+                  echo $_SESSION["custName"];
+                }
+                else{
+                  echo $_SESSION["fName"]." ".$_SESSION["lName"];
+                }
+                echo "</span><br><span>";
+                if($_SESSION["rolecode"] =='DEO'){
+                  echo " Type : ".$_SESSION["deoType"];
+                }
+                else if($_SESSION["rolecode"] =='FAG'){
+                  echo " Area : ".$_SESSION["area"];
+                }
+                else if($_SESSION["rolecode"] =='DOC'){
+                  echo " Specialization : ".$_SESSION["specialization"];
+                }
+                ?> 
+                </span>
+              </div>
+            </div>
             
-            <a class="avatar btn-Link" href="#">
-            <?php 
-            if($_SESSION["rolecode"] =='CUST'){
-              echo explode(" ",$_SESSION["custName"])[0];
-            }
-            else{
-              echo $_SESSION["fName"][0].$_SESSION["lName"][0];
-            }
-             ?></a>
             <a class="logout btn-Link" href="./../login/logout">Logout</a>
         </nav>
     </div>
