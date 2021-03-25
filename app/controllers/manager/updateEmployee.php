@@ -30,15 +30,15 @@ class updateEmployee extends Controller{
             $empContactDetails=$editEmp->getContactDetails($this->valValidate($_GET['id']));
             if(($_GET['type'])==="FAG"){
                 $fagDetails=$editEmp->fagDetails($this->valValidate($_GET['id']));
-                $result= $editEmp->deleteFAG($_GET['id']);
+                
             }
             elseif (($_GET['type'])==="DOC") {
                 $docDetails=$editEmp->docDetails($this->valValidate($_GET['id']));
-                $result= $editEmp->deleteDOC($_GET['id']);
+                
             }
             elseif (($_GET['type'])==="DEO") {
                 $deoDetails=$editEmp->deoDetails($this->valValidate($_GET['id']));
-                $result= $editEmp->deleteDEO($_GET['id']);
+                
             }
             else{
                 $fagDetails="";
