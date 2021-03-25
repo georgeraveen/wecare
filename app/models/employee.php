@@ -271,7 +271,7 @@ class Employee extends Models{
                 </html>
                 ';
 
-        sendEmail($result[0]["email"],$result[0]["empFirstName"],$result[0]["empLastName"],$email_string,"Wecare Customer Portal Account Recovery");
+        sendEmail($result[0]["email"],$result[0]["empFirstName"]." ".$result[0]["empLastName"],$email_string,"Wecare Customer Portal Account Recovery");
 
     }
 }
