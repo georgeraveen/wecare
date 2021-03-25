@@ -237,15 +237,17 @@ class Employee extends Models{
         $stmt = $this->conn->prepare("UPDATE $this->table set password= :password ,hashPass= :hashPassword where empID= :empID ");
         $stmt -> bindParam(':password',  $passDetails[0]);
         $stmt -> bindParam(':hashPassword',  $passDetails[1]);
-        $stmt -> bindParam(':custID', $custID );
-        // var_dump($passDetails);
-        // var_dump($stmt);
+        $stmt -> bindParam(':empID', $empID );
+        //var_dump($passDetails);
+        //var_dump($stmt);
 
         $stmt->execute();
-        $stmt = $this->conn->prepare("SELECT email,custName from $this->table  where custID= :custID ");
-        $stmt -> bindParam(':custID', $custID );
+        $stmt = $this->conn->prepare("SELECT email,empFirstName,empLastName,empTypeID from $this->table  where empID= :empID ");
+        $stmt -> bindParam(':empID', $empID );
         $stmt->execute();
         $result=$stmt->fetchAll();
+        //var_dump($result);
+        //var_dump($result[0]['email']);
         $email_string = 
                 '<html>
                     <head>
@@ -261,7 +263,7 @@ class Employee extends Models{
                         <div class="container">
                             <center>
                                 <h1>Wecare Customer Portal Account Recovery</h1>
-                                <h4>Username: CUST'.$custID.'</h4>
+                                <h4>Username:'.$result[0]['empTypeID'].$empID.'</h4>
                                 <h4>Password: '.$passDetails[0].'</h4>
                             </center>
                         </div>
@@ -269,7 +271,7 @@ class Employee extends Models{
                 </html>
                 ';
 
-        sendEmail($result[0]["email"], $result[0]["custName"],$email_string,"Wecare Customer Portal Account Recovery");
+        sendEmail($result[0]["email"],$result[0]["empFirstName"],$result[0]["empLastName"],$email_string,"Wecare Customer Portal Account Recovery");
 
     }
 }
