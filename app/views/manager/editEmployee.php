@@ -85,7 +85,7 @@ $contDetails = rtrim($contactDetails, ',');
                 <div class="column">
                     <div class="formInput" <?php echo (($data['empDetails'][0]['empTypeID'] =="DEO") || ($data['empDetails'][0]['empTypeID'] =="MED") || ($data['empDetails'][0]['empTypeID'] =="MGR") ? ("hidden") : (""))?>>
                         <label id="empSpLabel" for="empSp"><?php echo ($data['empDetails'][0]['empTypeID'] =="FAG" ? ("Allocated Area") : ("Speciality"))?></label><br>
-                        <input type="text" id="empSp" name="empSp" class="input" value=""><br>
+                        <input type="text" id="empSp" name="empSp" class="input" value=<?php echo ($data['empDetails'][0]['empTypeID'] =="FAG" ? ($data['fagDetails'][0]['area']) : ($data['empDetails'][0]['empTypeID'] =="DOC" ? ($data['docDetails'][0]['specialization']) : ""))?>><br>
                     </div>
                 </div>
             </div>
