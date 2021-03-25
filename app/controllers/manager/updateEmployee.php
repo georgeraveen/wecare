@@ -116,4 +116,8 @@ class updateEmployee extends Controller{
         }
     }
 
+    public function resetPass(){
+        
+    }
+
 }
