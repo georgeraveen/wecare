@@ -4,7 +4,7 @@
 <ul class="breadcrumb">
     <li><a href="./../managerHome/index">Home</a></li>
     <li>View Hospitals</a></li>
-  </ul>
+</ul>
   <h1>Hospitals</h1><br>
     <div class="form-container">
 

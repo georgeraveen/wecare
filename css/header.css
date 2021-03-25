@@ -64,7 +64,7 @@ ul.breadcrumb {
   margin-top: 100px;
   padding: 10px 10px;
   list-style: none;
-  background-color: #eee;
+  /* background-color: #eee; */
 }
 ul.breadcrumb li {
   display: inline;

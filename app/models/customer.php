@@ -38,6 +38,11 @@ class Customer extends Models{
         $stmt->execute();
         return $stmt->fetchAll();
     }
+    public function getDetails($_id){
+        $stmt= $this->conn->prepare("select * from $this->table where custID= $_id");
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
     public function getList(){
         $stmt= $this->conn->prepare("SELECT custID, custName from $this->table where status=1");
         var_dump($this->conn);
@@ -118,6 +123,7 @@ class Customer extends Models{
                         <div class="container">
                             <center>
                                 <h1>Wecare Customer Portal Registration</h1>
+                                <p>We warmly welcome you to wecare family. Please find the below credentials to access the customer web portal at <a href="https://websolutionz.tech/wecare">https://websolutionz.tech/wecare</a></p>
                                 <h4>Username: CUST'.$last_id.'</h4>
                                 <h4>Password: '.$passDetails[0].'</h4>
                             </center>
@@ -131,14 +137,14 @@ class Customer extends Models{
     }
     public function custFilterName($filter){
         $stmt= $this->conn->prepare("SELECT custID, custName from $this->table where custName
-                            like '%$filter%' AND status=1");
+                            like '%$filter%' AND status=1 limit 10");
         
         $stmt->execute();
         return $stmt->fetchAll();
     }
     public function custFilterID($filter){
         $stmt= $this->conn->prepare("SELECT custID, custName from $this->table where custID
-                            like '%$filter%' AND status=1");
+                            like '%$filter%' AND status=1 limit 10");
         
         $stmt->execute();
         return $stmt->fetchAll();
@@ -150,13 +156,13 @@ class Customer extends Models{
         return $stmt->fetchAll();
     }
     public function getCustContactByID($id){
-        $stmt= $this->conn->prepare("SELECT *  from customer_contact where custID=$id AND status=1");
+        $stmt= $this->conn->prepare("SELECT *  from customer_contact where custID=$id");
         
         $stmt->execute();
         return $stmt->fetchAll();
     }
     public function getCustInsuranceByID($id){
-        $stmt= $this->conn->prepare("SELECT * from cust_insurance where custID=$id AND status=1");
+        $stmt= $this->conn->prepare("SELECT * from cust_insurance where custID=$id");
         
         $stmt->execute();
         return $stmt->fetchAll();
@@ -198,10 +204,14 @@ class Customer extends Models{
         $stmt -> bindParam(':password',  $passDetails[0]);
         $stmt -> bindParam(':hashPassword',  $passDetails[1]);
         $stmt -> bindParam(':custID', $custID );
-        var_dump($passDetails);
-        var_dump($stmt);
+        // var_dump($passDetails);
+        // var_dump($stmt);
 
         $stmt->execute();
+        $stmt = $this->conn->prepare("SELECT email,custName from $this->table  where custID= :custID ");
+        $stmt -> bindParam(':custID', $custID );
+        $stmt->execute();
+        $result=$stmt->fetchAll();
         $email_string = 
                 '<html>
                     <head>
@@ -225,7 +235,7 @@ class Customer extends Models{
                 </html>
                 ';
 
-        sendEmail($this->email, $this->custName,$email_string,"Wecare Customer Portal Account Recovery");
+        sendEmail($result[0]["email"], $result[0]["custName"],$email_string,"Wecare Customer Portal Account Recovery");
 
     }
     

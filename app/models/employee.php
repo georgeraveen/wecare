@@ -32,37 +32,37 @@ class Employee extends Models{
         $this->conn->rollBack();
     }
     public function getAll(){
-        $stmt= $this->conn->prepare("select * from $this->table");
+        $stmt= $this->conn->prepare("SELECT * from $this->table where (status = 1)");
         
         $stmt->execute();
         return $stmt->fetchAll();
     }
     public function getAllView(){
-        $stmt= $this->conn->prepare("select empID,empFirstName,empLastName,gender,empNIC,empAddress,email,empTypeID from $this->table");
+        $stmt= $this->conn->prepare("SELECT empID,empFirstName,empLastName,gender,empNIC,empAddress,email,empTypeID from $this->table where (status=1)");
         
         $stmt->execute();
         return $stmt->fetchAll();
     }
     public function getDetails($_id){
-        $stmt= $this->conn->prepare("select * from $this->table where empID= $_id");
+        $stmt= $this->conn->prepare("SELECT * from $this->table where empID= $_id and status=1 ");
         $stmt->execute();
         return $stmt->fetchAll();
     }
     public function getContactDetails($_id){
-        $stmt= $this->conn->prepare("select * from employee_contact where empID= $_id");
+        $stmt= $this->conn->prepare("SELECT * from employee_contact where empID= $_id ");
 
         $stmt->execute();
         return $stmt->fetchAll();
     }
     public function getEmpByType($empType){
-        $stmt= $this->conn->prepare("select * from $this->table where empTypeID = :empType ");
+        $stmt= $this->conn->prepare("SELECT * from $this->table where empTypeID = :empType and status=1 ");
         $stmt -> bindParam(':empType',$empType);
 
         $stmt->execute();
         return $stmt->fetchAll();
     }
     public function getEmpByTypeList($empType){
-        $stmt= $this->conn->prepare("select empID,empFirstName,empLastName from $this->table where empTypeID = :empType ");
+        $stmt= $this->conn->prepare("SELECT empID,empFirstName,empLastName from $this->table where empTypeID = :empType ");
         $stmt -> bindParam(':empType',$empType);
 
         $stmt->execute();
@@ -125,6 +125,7 @@ class Employee extends Models{
                 <div class="container">
                     <center>
                         <h1>Wecare Employee Portal Registration</h1>
+                        <p>We warmly welcome you to wecare family. Please find the below credentials to access the employee web portal at <a href="https://websolutionz.tech/wecare/employee">https://websolutionz.tech/wecare/employee</a></p>
                         <h4>Username: '.$this->empTypeID.$last_id.'</h4>
                         <h4>Password: '.$passDetails[0].'</h4>
                     </center>
@@ -167,12 +168,12 @@ class Employee extends Models{
 
 
     }
-    public function delete($_id){
-        $stmt1= $this->conn->prepare("delete from employee where empID= $_id");
-        $stmt1->execute();
+    public function updateStatus($_id){
 
-        $stmt2= $this->conn->prepare("delete from employee_contact where empID= $_id");
-        $stmt2->execute();
+        $stmt= $this->conn->prepare("update $this->table set status= 0,hashPass=NULL
+                                                            where empID = $_id ") ;   
+        $stmt->execute();                                                  
+
     }
 }
 ?>
