@@ -15,6 +15,7 @@ class Employee extends Models{
     private $empTypeID;
     private $area;
     private $specialization;
+    private $type;
 
 
     public function __construct(){
@@ -211,6 +212,24 @@ class Employee extends Models{
     }
     public function deleteDOC($_id){
         $stmt= $this->conn->prepare("delete from doctor where empID= $_id");
+        $stmt->execute();
+    }
+    public function setValueDEO($empSp){
+        $this->type= $empSp;
+    }
+    public function createDEO($_id){
+        $stmt= $this->conn->prepare("insert into data_entry (empID,type) 
+                                                            values ($_id,:type)");
+        $stmt -> bindParam(':type', $this->type );
+        $stmt->execute();       
+    }
+    public function deoDetails($_id){
+        $stmt= $this->conn->prepare("SELECT * from data_entry where empID= $_id ");
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+    public function deleteDEO($_id){
+        $stmt= $this->conn->prepare("delete from data_entry where empID= $_id");
         $stmt->execute();
     }
 }

@@ -36,12 +36,17 @@ class updateEmployee extends Controller{
                 $docDetails=$editEmp->docDetails($this->valValidate($_GET['id']));
                 $result= $editEmp->deleteDOC($_GET['id']);
             }
+            elseif (($_GET['type'])==="DEO") {
+                $deoDetails=$editEmp->deoDetails($this->valValidate($_GET['id']));
+                $result= $editEmp->deleteDEO($_GET['id']);
+            }
             else{
                 $fagDetails="";
                 $docDetails="";
+                $deoDetails="";
             }
             include './../app/header.php';
-            $this->view('manager/editEmployee',['id'=>$this->valValidate($_GET['id']),'empDetails'=>$empDetails,'empContactDetails'=>$empContactDetails,'fagDetails'=>$fagDetails,'docDetails'=>$docDetails]);
+            $this->view('manager/editEmployee',['id'=>$this->valValidate($_GET['id']),'empDetails'=>$empDetails,'empContactDetails'=>$empContactDetails,'fagDetails'=>$fagDetails,'docDetails'=>$docDetails,'deoDetails'=>$deoDetails]);
             include './../app/footer.php';
         }
         else{
@@ -68,6 +73,11 @@ class updateEmployee extends Controller{
                     $result= $editEmployee->deleteDOC($_POST['empID']);
                     $reslut= $editEmployee->setValueDOC($this->valValidate($_POST['empSp']));
                     $result= $editEmployee->createDOC($_POST['empID']);
+                }
+                elseif ($_POST['empTypeID']==="DEO"){
+                    $result= $editEmployee->deleteDEO($_POST['empID']);
+                    $reslut= $editEmployee->setValueDEO($this->valValidate($_POST['empSp']));
+                    $result= $editEmployee->createDEO($_POST['empID']);
                 }
                 $_SESSION["successMsg"]="Successfully Updated";
                 $editEmployee->transCommit();

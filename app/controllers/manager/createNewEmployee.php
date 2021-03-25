@@ -28,6 +28,10 @@ class createNewEmployee extends Controller{
                     $reslut= $newEmployee->setValueDOC($this->valValidate($_POST['empSp']));
                     $result= $newEmployee->createDOC($last_id);
                 }
+                elseif ($_POST['empTypeID']==="DEO") {
+                    $reslut= $newEmployee->setValueDEO($this->valValidate($_POST['empSp']));
+                    $result= $newEmployee->createDEO($last_id);
+                }
                 $_SESSION["successMsg"]="New employee added successfully";
                 $newEmployee->transCommit();
                 header("Location: ./index");

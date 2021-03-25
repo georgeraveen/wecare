@@ -83,9 +83,11 @@ $contDetails = rtrim($contactDetails, ',');
                     </div>
                 </div>
                 <div class="column">
-                    <div class="formInput" <?php echo (($data['empDetails'][0]['empTypeID'] =="DEO") || ($data['empDetails'][0]['empTypeID'] =="MED") || ($data['empDetails'][0]['empTypeID'] =="MGR") ? ("hidden") : (""))?>>
-                        <label id="empSpLabel" for="empSp"><?php echo ($data['empDetails'][0]['empTypeID'] =="FAG" ? ("Allocated Area") : ("Speciality"))?></label><br>
-                        <input type="text" id="empSp" name="empSp" class="input" value=<?php echo ($data['empDetails'][0]['empTypeID'] =="FAG" ? ($data['fagDetails'][0]['area']) : ($data['empDetails'][0]['empTypeID'] =="DOC" ? ($data['docDetails'][0]['specialization']) : ""))?>><br>
+                    <div class="formInput" <?php echo (($data['empDetails'][0]['empTypeID'] =="MED") || ($data['empDetails'][0]['empTypeID'] =="MGR") ? ("hidden") : (""))?>>
+                        <label id="empSpLabel" for="empSp"><?php echo ($data['empDetails'][0]['empTypeID'] =="FAG" ? ("Allocated Area") : ($data['empDetails'][0]['empTypeID'] =="DOC" ? ("Speciality") : ("Data Entry Officer Type")))?></label><br>
+                        <input type="text" id="empSp" name="empSp" class="input" value=<?php echo ($data['empDetails'][0]['empTypeID'] =="FAG" ? ($data['fagDetails'][0]['area']) : 
+                                                                                    ($data['empDetails'][0]['empTypeID'] =="DOC" ? ($data['docDetails'][0]['specialization']) : 
+                                                                                    ($data['empDetails'][0]['empTypeID'] =="DEO" ? ($data['deoDetails'][0]['type']) : "")))?>><br>
                     </div>
                 </div>
             </div>
