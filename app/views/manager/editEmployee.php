@@ -100,34 +100,48 @@ $contDetails = rtrim($contactDetails, ',');
                 </div>
                 <div class="column">
                     <div class="formInput">
-                        <input type="hidden" id="hide" name="hide" class="input" value="hide"><br>
-                    </div>
-                </div>
-                <div class="column">
-                    <div class="formInput">
-                        <input type="submit" id="resetPassword" name="resetPassword" class="btn-submit" value="Password Reset"><br>
+                        <label for="empDOB">Date of birth</label><br>
+                        <input type="Date" id="empDOB" name="empDOB" class="input" value=<?php echo $data['empDetails'][0]['empDOB']?>><br>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="column">
-                    <div class="formInput">
-                        <label for="empDOB">Date of birth</label><br>
-                        <input type="Date" id="empDOB" name="empDOB" class="input" value=<?php echo $data['empDetails'][0]['empDOB']?>><br>
-                    </div>
+                        <input type="hidden" id="hide" name="hide" class="input" value="hide"><br>
                 </div>
                 <div class="column">
-                    <div class="formInput">
                         <input type="hidden" id="hide" name="hide" class="input" value="hide"><br>
-                    </div>
+                </div>
+                <div class="column">
+                        <input type="hidden" id="hide" name="hide" class="input" value="hide"><br>
                 </div>
                 <div class="column">
                     <div class="formInput">
                         <input type="submit" id="update" name="editEmployee" class="btn-submit" value="Update"><br>
                     </div>
                 </div>
+                
             </div>
         </form>
+        </form>
+    <form method="post" action="./resetPass">
+      <div class="row">
+        <div class="column">
+                <input type="hidden" id="hide" name="hide" class="input" value="hide"><br>
+        </div>
+        <div class="column">
+                <input type="hidden" id="hide" name="hide" class="input" value="hide"><br>
+        </div>
+        <div class="column">
+                <input type="hidden" id="hide" name="hide" class="input" value="hide"><br>
+        </div>
+        <div class="column">
+            <div class="formInput">
+                <input type="submit" id="resetPassword" name="resetPassword" class="btn-submit" value="Password Reset"><br>
+            </div>
+        </div>
+      </div>
+    </form>
     </div>
 </div>
 <script type="text/javascript" src="./../../js/manager.js"></script>
