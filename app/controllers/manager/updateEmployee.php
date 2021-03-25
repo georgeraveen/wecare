@@ -117,7 +117,7 @@ class updateEmployee extends Controller{
     }
 
     public function resetPass(){
-        
+        var_dump($_POST);
     }
 
 }

@@ -127,7 +127,9 @@ $contDetails = rtrim($contactDetails, ',');
     <form method="post" action="./resetPass">
       <div class="row">
         <div class="column">
-                <input type="hidden" id="hide" name="hide" class="input" value="hide"><br>
+            <div class="formInput">
+                    <input type="hidden" id="empID" name="empID" class="hidden" readonly value=<?php echo $data['empDetails'][0]['empID']?>><br>
+            </div>
         </div>
         <div class="column">
                 <input type="hidden" id="hide" name="hide" class="input" value="hide"><br>
