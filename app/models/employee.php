@@ -232,5 +232,45 @@ class Employee extends Models{
         $stmt= $this->conn->prepare("delete from data_entry where empID= $_id");
         $stmt->execute();
     }
+    public function resetPassword($empID){
+        $passDetails=$this->password_generator();
+        $stmt = $this->conn->prepare("UPDATE $this->table set password= :password ,hashPass= :hashPassword where empID= :empID ");
+        $stmt -> bindParam(':password',  $passDetails[0]);
+        $stmt -> bindParam(':hashPassword',  $passDetails[1]);
+        $stmt -> bindParam(':custID', $custID );
+        // var_dump($passDetails);
+        // var_dump($stmt);
+
+        $stmt->execute();
+        $stmt = $this->conn->prepare("SELECT email,custName from $this->table  where custID= :custID ");
+        $stmt -> bindParam(':custID', $custID );
+        $stmt->execute();
+        $result=$stmt->fetchAll();
+        $email_string = 
+                '<html>
+                    <head>
+                        <style>
+                            body {
+                                font-family: "Roboto Slab", serif;
+                                padding-left: 4rem;
+                                padding-right: 4rem;
+                                }
+                        </style>
+                    </head>
+                    <body>
+                        <div class="container">
+                            <center>
+                                <h1>Wecare Customer Portal Account Recovery</h1>
+                                <h4>Username: CUST'.$custID.'</h4>
+                                <h4>Password: '.$passDetails[0].'</h4>
+                            </center>
+                        </div>
+                    </body>
+                </html>
+                ';
+
+        sendEmail($result[0]["email"], $result[0]["custName"],$email_string,"Wecare Customer Portal Account Recovery");
+
+    }
 }
 ?>

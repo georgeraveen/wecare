@@ -117,7 +117,20 @@ class updateEmployee extends Controller{
     }
 
     public function resetPass(){
-        var_dump($_POST);
+        try {
+            $this->checkPermission("MGR");
+            if($_POST['resetPassword']){
+                $this->model('employee');
+                $editEmp = new Employee();
+                $result= $editEmp->resetPassword($this->valValidate($_POST['empID']));
+                $_SESSION["successMsg"]="Password resetted successfully";
+                sleep(1);
+            }
+            header("Location: ./viewEmployee");
+        } catch (\Throwable $th) {
+            $_SESSION["errorMsg"]="Error occured during processing";
+            header("Location: ./viewEmployee");
+        }
     }
 
 }
