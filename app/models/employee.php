@@ -205,5 +205,13 @@ class Employee extends Models{
         $stmt->execute();
         return $stmt->fetchAll();
     }
+    public function deleteFAG($_id){
+        $stmt= $this->conn->prepare("delete from field_agt where empID= $_id");
+        $stmt->execute();
+    }
+    public function deleteDOC($_id){
+        $stmt= $this->conn->prepare("delete from doctor where empID= $_id");
+        $stmt->execute();
+    }
 }
 ?>

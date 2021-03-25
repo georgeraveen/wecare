@@ -30,9 +30,11 @@ class updateEmployee extends Controller{
             $empContactDetails=$editEmp->getContactDetails($this->valValidate($_GET['id']));
             if(($_GET['type'])==="FAG"){
                 $fagDetails=$editEmp->fagDetails($this->valValidate($_GET['id']));
+                $result= $editEmp->deleteFAG($_GET['id']);
             }
             elseif (($_GET['type'])==="DOC") {
                 $docDetails=$editEmp->docDetails($this->valValidate($_GET['id']));
+                $result= $editEmp->deleteDOC($_GET['id']);
             }
             else{
                 $fagDetails="";
@@ -57,6 +59,16 @@ class updateEmployee extends Controller{
                 $editEmployee->startTrans();
                 $result= $editEmployee->setValue($this->valValidate($_POST['empFirstName']),$this->valValidate($_POST['empLastName']),$this->valValidate($_POST['gender']),$this->valValidate($_POST['empDOB']),$this->valValidate($_POST['empNIC']),$this->valValidate($_POST['empAddress']),$this->valValidate($_POST['email']),$this->valValidate($_POST['empTypeID']),$this->valValidate($_POST['empContactNo']));
                 $result= $editEmployee->update($this->valValidate($_POST['empID']));
+                if ($_POST['empTypeID']==="FAG"){
+                    $result= $editEmployee->deleteFAG($_POST['empID']);
+                    $reslut= $editEmployee->setValueFAG($this->valValidate($_POST['empSp']));
+                    $result= $editEmployee->createFAG($_POST['empID']);
+                }
+                elseif ($_POST['empTypeID']==="DOC"){
+                    $result= $editEmployee->deleteDOC($_POST['empID']);
+                    $reslut= $editEmployee->setValueDOC($this->valValidate($_POST['empSp']));
+                    $result= $editEmployee->createDOC($_POST['empID']);
+                }
                 $_SESSION["successMsg"]="Successfully Updated";
                 $editEmployee->transCommit();
                 header("Location: ./viewEmployee");
