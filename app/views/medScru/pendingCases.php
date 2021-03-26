@@ -12,7 +12,6 @@
   <h1>Scrutinizer Pending cases queue</h1>
   <div class="table-container">
     <table class="table-view">
-    
     <tr>
         <th>ID</th>
         <th>Discharge Date</th>
@@ -23,7 +22,7 @@
         <th>Doctor</th>
         <th>Action</th>
       </tr>
-
+      
       <tr class="filter-row" id="filter-row">
         <form action="./viewCase" method="get">
           <th id="filter-row">Filter >></th>

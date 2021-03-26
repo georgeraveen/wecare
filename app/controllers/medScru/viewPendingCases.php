@@ -1,7 +1,6 @@
 <?php
 
-class viewPendingCases extends Controller{
-    
+class viewPendingCases extends Controller{ 
     public function index(){
         $this->checkPermission("MED");
         include './../app/header.php';
@@ -58,7 +57,7 @@ class viewPendingCases extends Controller{
         }
         $pagination= $claimCase->getAllCount($filter)[0]['cnt'];
         include './../app/header.php';
-        $this->view('dataEntry/viewCases',["queue"=>$queue,"pagination"=>$pagination,'hospList'=>$hospList,'medList'=>$medList,'fagList'=>$fagList,'docList'=>$docList,'filter'=>$filter]);
+        $this->view('medScru/pendingCases',["queue"=>$queue,"pagination"=>$pagination,'hospList'=>$hospList,'medList'=>$medList,'fagList'=>$fagList,'docList'=>$docList,'filter'=>$filter]);
         include './../app/footer.php';
 
     }
