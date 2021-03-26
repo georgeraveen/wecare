@@ -148,6 +148,13 @@ class insureCase extends Controller{
                 $currentPolicy=$customerMod->getPolicy($this->valValidate($_POST['customer']));
                 $this->model('claimCase');
                 $editClaimCase = new ClaimCase();
+                if($_SESSION["deoType"]=="Trainee"){
+                    $casePermission=$editClaimCase->checkCasePermission($this->valValidate($_POST['claimID']),"DEO",$_SESSION["user_id"]);
+                    if(count($casePermission)==0){
+                        throw new Exception("Trainee is not allowed to update this case", 1);
+                        
+                    }
+                }
                 $result= $editClaimCase->setValue($this->valValidate($_POST['customer']),$this->valValidate($_POST['hospital']),
                         $this->valValidate($_POST['admitDate']),$this->valValidate($_POST['dischargeDate']),$this->valValidate($_POST['icuFromDate']),
                         $this->valValidate($_POST['icuToDate']),$this->valValidate($_POST['medScrut']),$this->valValidate($_POST['fieldAg']),
@@ -159,8 +166,9 @@ class insureCase extends Controller{
                 exit;
             }
         } catch (\Throwable $th) {
-            $_SESSION["errorMsg"]="Error occured when updating values";
-            throw $th;
+            $_SESSION["errorMsg"]=$th->getMessage();
+            // var_dump($th->getMessage());
+            // throw $th;
             header("Location: ./viewCase");
         }
         

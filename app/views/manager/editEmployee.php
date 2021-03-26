@@ -17,7 +17,6 @@ $contDetails = rtrim($contactDetails, ',');
 </ul>
   <h1>Update employee Profiles</h1><br>
     <div class="form-container">
-
         <form action="./updateEmployee" method="post">
             <div class="row">
                 <div class="column">
@@ -29,17 +28,30 @@ $contDetails = rtrim($contactDetails, ',');
                     <div class="formInput">
                         <label for="empFirstName">First Name</label><br>
                         <input type="text" id="empFirstName" name="empFirstName" class="input" value=<?php echo $data['empDetails'][0]['empFirstName']?>><br>
-                    </div>
-                
-                    <div class="formInput">
-                        <label for="empLastName">Last Name</label><br>
-                        <input type="text" id="empLastName" name="empLastName" class="input" value=<?php echo $data['empDetails'][0]['empLastName']?>><br>
-                    </div>
+                    </div>    
                 </div>
                 <div class="column">
                     <div class="formInput">
                         <label for="empAddress">Address</label><br>
                         <textarea id="empAddress" name="empAddress" class="commentBox"><?php echo $data['empDetails'][0]['empAddress']; ?></textarea> <br>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column">
+                    <div class="formInput">
+                            <label for="empLastName">Last Name</label><br>
+                            <input type="text" id="empLastName" name="empLastName" class="input" value=<?php echo $data['empDetails'][0]['empLastName']?>><br>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="formInput">
+                        <label for="gender">Gender</label><br>
+                        <select id="gender" name="gender">
+                            <option value="m" <?php echo ($data['empDetails'][0]['gender'] =="m" ? ("selected") : (""))?>>Male</option>
+                            <option value="f" <?php echo ($data['empDetails'][0]['gender'] =="f" ? ("selected") : (""))?>>Female</option>
+                            <option value="o" <?php echo ($data['empDetails'][0]['gender'] =="o" ? ("selected") : (""))?>>Other</option>
+                        </select><br>
                     </div>
                 </div>
             </div>
@@ -53,7 +65,7 @@ $contDetails = rtrim($contactDetails, ',');
                 <div class="column">
                     <div class="formInput">
                         <label for="empTypeID">Role</label><br>
-                        <select id="empTypeID" name="empTypeID"> 
+                        <select id="empTypeID" name="empTypeID" onChange="roleChange(this)"> 
                             <option value="DEO" <?php echo ($data['empDetails'][0]['empTypeID'] =="DEO" ? ("selected") : (""))?>>DEO</option>
                             <option value="DOC" <?php echo ($data['empDetails'][0]['empTypeID'] =="DOC" ? ("selected") : (""))?>>DOC</option>
                             <option value="FAG" <?php echo ($data['empDetails'][0]['empTypeID'] =="FAG" ? ("selected") : (""))?>>FAG</option>
@@ -71,13 +83,11 @@ $contDetails = rtrim($contactDetails, ',');
                     </div>
                 </div>
                 <div class="column">
-                    <div class="formInput">
-                        <label for="gender">Gender</label><br>
-                        <select id="gender" name="gender">
-                            <option value="m" <?php echo ($data['empDetails'][0]['gender'] =="m" ? ("selected") : (""))?>>Male</option>
-                            <option value="f" <?php echo ($data['empDetails'][0]['gender'] =="f" ? ("selected") : (""))?>>Female</option>
-                            <option value="o" <?php echo ($data['empDetails'][0]['gender'] =="o" ? ("selected") : (""))?>>Other</option>
-                        </select><br>
+                    <div class="formInput" <?php echo (($data['empDetails'][0]['empTypeID'] =="MED") || ($data['empDetails'][0]['empTypeID'] =="MGR") ? ("hidden") : (""))?>>
+                        <label id="empSpLabel" for="empSp"><?php echo ($data['empDetails'][0]['empTypeID'] =="FAG" ? ("Allocated Area") : ($data['empDetails'][0]['empTypeID'] =="DOC" ? ("Speciality") : ("Data Entry Officer Type")))?></label><br>
+                        <input type="text" id="empSp" name="empSp" class="input" value=<?php echo ($data['empDetails'][0]['empTypeID'] =="FAG" ? ($data['fagDetails'][0]['area']) : 
+                                                                                    ($data['empDetails'][0]['empTypeID'] =="DOC" ? ($data['docDetails'][0]['specialization']) : 
+                                                                                    ($data['empDetails'][0]['empTypeID'] =="DEO" ? ($data['deoDetails'][0]['type']) : "")))?>><br>
                     </div>
                 </div>
             </div>
@@ -90,33 +100,50 @@ $contDetails = rtrim($contactDetails, ',');
                 </div>
                 <div class="column">
                     <div class="formInput">
-                        <input type="hidden" id="hide" name="hide" class="input" value="hide"><br>
-                    </div>
-                </div>
-                <div class="column">
-                    <div class="formInput">
-                        <input type="submit" id="resetPassword" name="resetPassword" class="btn-submit" value="Password Reset"><br>
+                        <label for="empDOB">Date of birth</label><br>
+                        <input type="Date" id="empDOB" name="empDOB" class="input" value=<?php echo $data['empDetails'][0]['empDOB']?>><br>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="column">
-                    <div class="formInput">
-                        <label for="empDOB">Date of birth</label><br>
-                        <input type="Date" id="empDOB" name="empDOB" class="input" value=<?php echo $data['empDetails'][0]['empDOB']?>><br>
-                    </div>
+                        <input type="hidden" id="hide" name="hide" class="input" value="hide"><br>
                 </div>
                 <div class="column">
-                    <div class="formInput">
                         <input type="hidden" id="hide" name="hide" class="input" value="hide"><br>
-                    </div>
+                </div>
+                <div class="column">
+                        <input type="hidden" id="hide" name="hide" class="input" value="hide"><br>
                 </div>
                 <div class="column">
                     <div class="formInput">
                         <input type="submit" id="update" name="editEmployee" class="btn-submit" value="Update"><br>
                     </div>
                 </div>
+                
             </div>
         </form>
+        </form>
+    <form method="post" action="./resetPass">
+      <div class="row">
+        <div class="column">
+            <div class="formInput">
+                    <input type="hidden" id="empID" name="empID" class="hidden" readonly value=<?php echo $data['empDetails'][0]['empID']?>><br>
+            </div>
+        </div>
+        <div class="column">
+                <input type="hidden" id="hide" name="hide" class="input" value="hide"><br>
+        </div>
+        <div class="column">
+                <input type="hidden" id="hide" name="hide" class="input" value="hide"><br>
+        </div>
+        <div class="column">
+            <div class="formInput">
+                <input type="submit" id="resetPassword" name="resetPassword" class="btn-submit" value="Password Reset"><br>
+            </div>
+        </div>
+      </div>
+    </form>
     </div>
 </div>
+<script type="text/javascript" src="./../../js/manager.js"></script>
