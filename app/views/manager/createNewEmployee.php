@@ -39,11 +39,11 @@
                     <div class="formInput">
                         <label for="empTypeID">Role</label><br>
                         <select id="empTypeID" name="empTypeID" required onChange="roleChange(this)">
-                            <option value="DEO">DEO</option>
+                            <option value="MGR">MGR</option>
                             <option value="DOC">DOC</option>
                             <option value="FAG">FAG</option>
                             <option value="MED">MED</option>
-                            <option value="MGR">MGR</option>
+                            <option value="DEO">DEO</option>
                         </select><br>
                     </div>
                 </div>

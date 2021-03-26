@@ -28,7 +28,7 @@
               "<td>".$row['email']."</td>".
               "<td>".$row['empTypeID']."</td>".
               "<td> <a class=\"deleteBtn\" href=\"./deleteEmployee?action=delete&id=".$row['empID']."\">Delete</a> "."</td>".
-              "<td> <a class=\"editBtn\" href=\"./editEmployee?action=edit&id=".$row['empID']."\">Edit</a> "."</td>"."</tr>";
+              "<td> <a class=\"editBtn\" href=\"./editEmployee?action=edit&id=".$row['empID']."&type=".$row['empTypeID']."\">Edit</a> "."</td>"."</tr>";
       }
 
       ?>

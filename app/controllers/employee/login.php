@@ -117,16 +117,21 @@ class Login extends Controller{
                         // echo "s";
                         if($_SESSION["rolecode"] =='DEO'){
                             $_SESSION["portal"]="dataEntry";
-
+                            $deoType=$empTable->deoDetails($username);
+                            $_SESSION["deoType"]=$deoType[0]["type"];
                             redirect("./../../dataEntry/dataEntryHome");
 
                         }
                         else if($_SESSION["rolecode"] =='FAG'){
                             $_SESSION["portal"]="fieldAgent";
+                            $area=$empTable->fagDetails($username);
+                            $_SESSION["area"]=$area[0]["area"];
                             redirect("./../../fieldAgent/fieldAgHome");
                         }
                         else if($_SESSION["rolecode"] =='DOC'){
                             $_SESSION["portal"]="doctor";
+                            $special=$empTable->docDetails($username);
+                            $_SESSION["specialization"]=$special[0]["specialization"];
                             redirect("./../../doctor/doctorHome");
                         }
                         else if($_SESSION["rolecode"] =='MGR'){
