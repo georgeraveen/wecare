@@ -32,21 +32,19 @@
       </div>
     </form>
   </div>
-
-
-
   <div class="table-container">
     <table class="table-view">
-      <tr>
-        <th>Claim ID</th>
-        <th>Customer Name</th>
-        <th>Mobile No.</th>
-        <th>Type</th>
-        <th>Date of admission</th>
-        <th>Hospital</th>
+    <tr>
+        <th>ID</th>
+        <th>Discharge Date</th>
         <th>Status</th>
+        <th>Hospital</th>
+        <th>Field Agent</th>
+        <th>Med Scrutinizer</th>
+        <th>Doctor</th>
         <th>Action</th>
-      </tr>
+      </tr> 
+      
       <tr>
         <td>1</td>
         <td>Buddhi Wickramasinghe</td>
