@@ -8,6 +8,7 @@ class viewPendingCases extends Controller{
         include './../app/footer.php';
     }
     public function viewCase(){
+        //var_dump("Hereitis");
         $this->checkPermission("MED");
         $this->model('claimCase');
         $claimCase= new ClaimCase();
@@ -50,12 +51,12 @@ class viewPendingCases extends Controller{
             $filter= " where ".$filter;
         }
         if(is_int((int)$_GET['page'])){
-            $queue=$claimCase->getAllQueueLimit((int)$_GET['page'],$filter);
+            $queue=$claimCase->getAllQueueLimitPending((int)$_GET['page'],$filter);
         }
         else{
-            $queue=$claimCase->getAllQueueLimit(0,$filter);
+            $queue=$claimCase->getAllQueueLimitPending(0,$filter);
         }
-        $pagination= $claimCase->getAllCount($filter)[0]['cnt'];
+        $pagination= $claimCase->getAllCountPending($filter)[0]['cnt'];
         include './../app/header.php';
         $this->view('medScru/pendingCases',["queue"=>$queue,"pagination"=>$pagination,'hospList'=>$hospList,'medList'=>$medList,'fagList'=>$fagList,'docList'=>$docList,'filter'=>$filter]);
         include './../app/footer.php';
