@@ -241,9 +241,11 @@ public function getCaseDetailsDoc($claimID,$doctorID){
         // var_dump($this->conn);
         $limit=10;
         $start=$page* $limit;
-        $stmt= $this->conn->prepare("SELECT claimID, custID ,admitDate, h.name, CONCAT(med.empFirstName, \" \", med.empLastName) AS medSrcName, caseStatus  from $this->table as i 
+        $stmt= $this->conn->prepare("SELECT claimID, i.custID ,customer.custName, admitDate, h.name, CONCAT(med.empFirstName, \" \", med.empLastName) AS medSrcName, caseStatus  from $this->table as i 
                     inner join hospital as h on i.hospitalID = h.hospitalID 
-                    inner join employee as med on i.medScruID = med.empID".
+                    inner join employee as med on i.medScruID = med.empID
+                    INNER JOIN customer
+                        ON i.custID=customer.custID ".
                     $filter." and i.caseStatus != 'Completed'
                     order by claimID DESC LIMIT $start, $limit ");
         // var_dump($filter);

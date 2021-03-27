@@ -56,7 +56,7 @@
  <?php
         foreach($data['queue'] as $row){
             echo "<tr>"."<td>".$row['claimID']."</td>".
-                "<td id=\"custID-".$row['claimID']."\">".$row['custID']."</td>".
+                "<td id=\"custID-".$row['claimID']."\">".$row['custID']." - ".$row['custName']."</td>".
                 "<td id=\"admitDate-".$row['claimID']."\">".$row['admitDate']."</td>".
                 "<td  id=\"name-".$row['claimID']."\">".$row['medSrcName']."</td>".
                 "<td  id=\"name-".$row['claimID']."\">".$row['name']."</td>".
