@@ -248,5 +248,37 @@ class Customer extends Models{
         $stmt -> bindParam(':custID',  $id );
         $stmt->execute();
     }
+    //get customer details for view(customer profile)
+public function getCustDeatail($custID){
+    //var_dump($this->conn);
+    $stmt=$this->conn->prepare("SELECT email,custAddress,custDOB,gender,custName,custContactNo,paymentDate,type
+    FROM customer
+    INNER JOIN customer_contact
+    ON customer.custID=customer_contact.custID
+    INNER JOIN cust_insurance
+    ON customer.custID=cust_insurance.custID
+    WHERE customer.custID = $custID");
+
+    $stmt->execute();
+    return $stmt->fetchAll();
 }
+//set valuie for update customer details
+public function setValueUpdateCust($PclaimID){
+   
+    $this->claimID=$PclaimID;
+    $this->custAddress= !empty($PcustAddress) ? $PcustAddress : null;
+    $this->email =  !empty($Pemail) ? $Pemail : null;
+   
+      
+}
+//updatecustomer details
+public function updatecustomerDetails($_id){
+    $stmt= $this->conn->prepare("update $this->table set custAddress= :custAddress, email= :email  where claimID = $_id ");
+    $stmt -> bindParam(':custAddress', $this->custAddress );
+    $stmt -> bindParam(':email', $this->email );
+    $stmt->execute();
+ }
+}
+
 ?>
+ 

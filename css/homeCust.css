@@ -1,6 +1,8 @@
 body{
     /* background-color: #ffd149; */
-    background-image: linear-gradient(to bottom right,#cabbc8,  #ddbbd7);
+   /* background-image: linear-gradient(to bottom right,#cabbc8,  #ddbbd7);*/
+    background-image: linear-gradient(to bottom right,#cabbc8);
+    background-attachment: fixed;
     background-attachment: fixed;
 }
 
@@ -16,17 +18,20 @@ body{
   }
   .grid-item {
     /* background-color: #c67100; */
-    background-color: #003b36;
+    background-color: #157474;
     padding: 20px;
-    font-size: 30px;
+    font-size: 50px;
     text-align: center;
     height: auto;
     font-style: normal;
     text-decoration: none;
     color: white;
-    font-size: large;
+    font-size:x-large;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    border-radius: 10px;
+    border-radius: 30px;
+    border-color:black;
+  
+
   }
   .grid-item:hover{
     background-color: #0f534e;
