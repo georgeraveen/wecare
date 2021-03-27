@@ -237,23 +237,36 @@ public function getCaseDetailsDoc($claimID,$doctorID){
 //*********************************************** FUNCTIONS OF FIELD AGENT *********************************************
 //get details for table for pending queue
 
-    public function getFieldAgList($fieldAgID){
+    public function getFieldAgListLimit($page,$filter){
         // var_dump($this->conn);
-        $stmt= $this->conn->prepare("SELECT claimID, customer.custName,admitDate, CONCAT(employee.empFirstName, \" \", employee.empLastName) AS medSrcName , hospital.name ,caseStatus
-        FROM claim_case 
-        INNER JOIN customer
-            ON claim_case.custID=customer.custID 
-        INNER JOIN hospital 
-             ON claim_case.hospitalID=hospital.hospitalID 
-        INNER JOIN employee 
-            ON claim_case.medScruID=employee.empID
-        WHERE claim_case.caseStatus != 'Completed' and claim_case.FieldAgID=$fieldAgID ORDER BY claimID DESC;");
+        $limit=10;
+        $start=$page* $limit;
+        $stmt= $this->conn->prepare("SELECT claimID, custID ,admitDate, h.name, CONCAT(med.empFirstName, \" \", med.empLastName) AS medSrcName, caseStatus  from $this->table as i 
+                    inner join hospital as h on i.hospitalID = h.hospitalID 
+                    inner join employee as med on i.medScruID = med.empID".
+                    $filter." and i.caseStatus != 'Completed'
+                    order by claimID DESC LIMIT $start, $limit ");
+        // var_dump($filter);
+
+        // $stmt= $this->conn->prepare("SELECT claimID, customer.custName,admitDate, CONCAT(employee.empFirstName, \" \", employee.empLastName) AS medSrcName , hospital.name ,caseStatus
+        // FROM claim_case 
+        // INNER JOIN customer
+        //     ON claim_case.custID=customer.custID 
+        // INNER JOIN hospital 
+        //      ON claim_case.hospitalID=hospital.hospitalID 
+        // INNER JOIN employee 
+        //     ON claim_case.medScruID=employee.empID
+        // WHERE claim_case.caseStatus != 'Completed' and claim_case.FieldAgID=$fieldAgID ORDER BY claimID DESC;");
         
         $stmt->execute();
         return $stmt->fetchAll();
 
 }
-
+public function getAllCountFag($filter){
+    $stmt= $this->conn->prepare("SELECT count(claimID) AS cnt from $this->table as i".$filter ." and i.caseStatus != 'Completed'");
+    $stmt->execute();
+    return $stmt->fetchAll();
+}
 
 
 public function getCaseDetailsFieldAg($claimID,$fagID){

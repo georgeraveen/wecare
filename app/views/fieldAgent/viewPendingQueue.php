@@ -1,20 +1,12 @@
- <?php
-//var_dump($data);
 
-
-//  $result = array(
-//     array("claimID"=>"1","custName"=>"Mr.Perera", "admitDate"=>"2020-08-01","name"=>"MEd1","name"=>"Asiri","status"=>"Need a doctor"),
-//     array("claimID"=>"2", "custName"=>"Mr.Samarasinghe","admitDate"=>"2020-08-02","name"=>"MEd1","name"=>"Asiri","status"=>"complete"),
-//     array("claimID"=>"3", "custName"=>"Mr.Fernando","admitDate"=>"2020-08-03","name"=>"MEd1","name"=>"Asiri","status"=>"complete"),
-//     array("claimID"=>"4","custName"=>"Mr.Karunathilake", "admitDate"=>"2020-08-04","name"=>"MEd1","name"=>"Asiri","status"=>"Need a doctor"),
-// );
-
-?> 
-
+<?php
+  $status=['Initial','Processed','Processing','Rejected','Doctor confirmed'];
+?>
 
 
 <link rel="stylesheet" href= "./../../css/home.css">
 <link rel="stylesheet" href= "./../../css/style.css">
+<link rel="stylesheet" href= "./../../css/pagination.css">
 
 
 <div class="containers">
@@ -23,26 +15,91 @@
         <table class="table-view">
         <tr>
             <th>Claim ID</th>
-            <th>Customer Name</th>
+            <th>Customer ID</th>
             <th>Date</th>
             <th>Med. Scrutinizer</th>
             <th>Hospital</th>
             <th>Status</th>
             <th>Action</th>
             </tr>
+            <tr class="filter-row" id="filter-row">
+                <form action="./index" method="get">
+                <th id="filter-row">Filter >></th>
+                <th id="filter-row" ><input name="custID" type="number" value=<?php echo $_GET['custID'];?>></th>
+                <th id="filter-row" ><input name="admitDate" type="date" value=<?php echo $_GET['admitDate'];?>></th>
+                <th id="filter-row" >
+                    <select name="med">
+                    <option value="">All</option>
+                    <?php
+                        foreach ($data['medList'] as $med) {
+                        echo "<option ".($_GET['med']==$med['empID'] ? "selected":"")." value=\"".$med['empID']."\">". $med['empFirstName']." ". $med['empLastName'] ."</option>";
+                        }
+                    ?>
+                    </select>
+                </th>
+                <th id="filter-row" >
+                    <select name="hospital">
+                    <option value="">All</option>
+                    <?php
+                        foreach ($data['hospList'] as $hospital) {
+                        echo "<option ".($_GET['hospital']==$hospital['hospitalID'] ? "selected":"")." value=\"".$hospital['hospitalID']."\">". $hospital['name'] ."</option>";
+                        }
+                    ?>
+                    </select>
+                </th>
+                <th id="filter-row"></th>
+                <th id="filter-row" >
+                    <input type="submit" class="btn-submit-filter" name="filter" value="Filter">
+                </th>
+                </form>
+            </tr>
  <?php
-        foreach($data as $row){
+        foreach($data['queue'] as $row){
             echo "<tr>"."<td>".$row['claimID']."</td>".
-                 "<td id=\"custName-".$row['claimID']."\">".$row['custName']."</td>".
+                "<td id=\"custID-".$row['claimID']."\">".$row['custID']."</td>".
                 "<td id=\"admitDate-".$row['claimID']."\">".$row['admitDate']."</td>".
-                "<td  id=\"name-".$row['recordID']."\">".$row['medSrcName']."</td>".
-                "<td  id=\"name-".$row['recordID']."\">".$row['name']."</td>".
-                "<td  id=\"status-".$row['recordID']."\">".$row['caseStatus']."</td>".
+                "<td  id=\"name-".$row['claimID']."\">".$row['medSrcName']."</td>".
+                "<td  id=\"name-".$row['claimID']."\">".$row['name']."</td>".
+                "<td  id=\"status-".$row['claimID']."\">".$row['caseStatus']."</td>".
                 "<td>  <a class=\"editBtn\" href=\"./editCase?action=edit&id=".$row['claimID']."\">View</a> "."</td>"."</tr>";
          }
          
 
 ?>
         </table>
+        <div class="pagination">
+            <?php
+            $page= is_int((int)$_GET['page']) ? (int)$_GET['page'] :0;
+            if(($page) != 0){
+                echo "<a href=\"./index?".
+                    "custID=".$_GET['custID']."&".
+                    "admitDate=".$_GET['admitDate']."&".
+                    "med=".$_GET['med']."&".
+                    "hospital=".$_GET['hospital']."&".
+                    "page=".($page-1)."\">&laquo;</a>";
+            }
+            
+                $pageCount= ceil((((int)$data['pagination'])/10));
+                // echo $pageCount;
+                for($i=0; $i< $pageCount; $i++){
+                $active = ($i==$page) ? "class=\"active\"":"" ;
+                // echo $i;
+                echo "<a href=\"./index?".
+                        "custID=".$_GET['custID']."&".
+                        "admitDate=".$_GET['admitDate']."&".
+                        "med=".$_GET['med']."&".
+                        "hospital=".$_GET['hospital']."&".
+                        "page=".$i."\" ". $active. ">" . ($i+1) ."</a>";
+                }
+                if(($page+1) != $pageCount){
+                echo "<a href=\"./index?".
+                        "custID=".$_GET['custID']."&".
+                        "admitDate=".$_GET['admitDate']."&".
+                        "med=".$_GET['med']."&".
+                        "hospital=".$_GET['hospital']."&".
+                        "page=".($page+1)."\">&raquo;</a>";
+                }
+            ?>
+        </div>
     </div>
 </div>

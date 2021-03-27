@@ -7,9 +7,50 @@ class viewPendingQueue extends Controller{
         $this->model('claimcase');
         $pendingQueue= new ClaimCase();
         $fieldAgID=$_SESSION["user_id"];
-        $queue=$pendingQueue->getFieldAgList( $fieldAgID); 
+        //////for filters
+        $this->model('hospital');
+        $hospitalMod= new Hospital();
+        $hospList=$hospitalMod->getAll();
+
+        $this->model('employee');
+        $empMod= new Employee();
+        $medList=$empMod->getEmpByTypeList("MED");
+        /////////////////
+        $filterParams=['custID'=>$this->valValidate($_GET['custID']),
+                        'admitDate'=>$this->valValidate($_GET['admitDate']),
+                        'med'=>$this->valValidate($_GET['med']),
+                        'hospital'=>$this->valValidate($_GET['hospital'])];
+        ////////////////
+        $filter="i.FieldAgID='".$fieldAgID."'";
+        if($filterParams['custID']!=""){
+            $filter.=" and i.custID='".$filterParams['custID']."'";
+        }
+        if($filterParams['admitDate']!=""){
+            $filter= $filter.($filter=="" ? "":" and "). "i.admitDate='". $filterParams['admitDate']."'";
+        }
+        if($filterParams['med']!=""){
+            $filter= $filter.($filter=="" ? "":" and "). "i.medScruID='".$filterParams['med']."'";
+        }
+        if($filterParams['hospital']!=""){
+            $filter= $filter.($filter=="" ? "":" and "). "i.hospitalID='".$filterParams['hospital']."'";
+        }
+        if($filter!=""){
+            $filter= " where ".$filter;
+        }
+        // var_dump($filter);
+
+        if(is_int((int)$_GET['page'])){
+            $queue=$pendingQueue->getFieldAgListLimit((int)$_GET['page'],$filter);
+        }
+        else{
+            $queue=$pendingQueue->getFieldAgListLimit(0,$filter);
+        }
+        // var_dump($pendingQueue);
+        $pagination= $pendingQueue->getAllCountFag($filter)[0]['cnt'];
+
+        // $queue=$pendingQueue->getFieldAgListLimit( $fieldAgID); 
         include './../app/header.php';
-        $this->view('fieldAgent/viewPendingQueue' ,$queue);
+        $this->view('fieldAgent/viewPendingQueue' ,["queue"=>$queue,"pagination"=>$pagination,'hospList'=>$hospList,'medList'=>$medList,'filter'=>$filter]);
         include './../app/footer.php';
         // echo "asas";
     }
