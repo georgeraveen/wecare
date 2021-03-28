@@ -51,7 +51,7 @@
         <div class="column">
           <div class="formInput">
             <label for="medDate">Date</label><br>
-            <input type="Date" id="medDate" name="medDate" class="input" value="2020-08-01" required><br>
+            <input type="Date" id="medDate" name="medDate" class="input"  required readonly><br>
           </div>
         </div>
       </div>
@@ -59,11 +59,7 @@
         <div class="column">
           <div class="formInput">
             <label for="type">Type</label><br>
-            <select id="type" name="type" required>
-             <option value="Accidental">Accidental</option>
-              <option value="Congenital">Congenital</option>
-              <option value="Genetical">Genetical</option>
-            </select><br>
+            <input type="text" id="type" name="type" class="input"  required readonly><br>
           </div>
           
         </div>
@@ -73,7 +69,7 @@
         <div class="column">
           <div class="formInput">
             <label for="healthCondition">Health Condition</label><br>
-            <textarea id="healthCondition" name="healthCondition" class="commentBox"></textarea> <br>
+            <textarea id="healthCondition" name="healthCondition" class="commentBox" readonly></textarea> <br>
           </div>
         </div>
       </div> 

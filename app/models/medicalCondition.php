@@ -59,7 +59,7 @@ class medicalCondition extends Models{
     public function getCustMedicalHistory($custID){
         $stmt=$this->conn->prepare("SELECT recordID,date,type,healthCondition
         FROM med_record 
-        WHERE custID=$custID");
+        WHERE custID=$custID ORDER BY recordID DESC");
         $stmt->execute();
         return $stmt->fetchAll();
 
