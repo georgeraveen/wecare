@@ -1,13 +1,14 @@
 <?php
+//var_dump($data);
+//$result = array (
 
-$result = array (
+  //array("recordID"=>"1","date"=>"2020-08-01","type"=>"Accidental","healthCondition"=>"Broken leg","comments"=>""),
+ // array("recordID"=>"2","date"=>"2020-08-02","type"=>"Accidental","healthCondition"=>"Brain damage","comments"=>""),
+ // array("recordID"=>"3","date"=>"2020-08-03","type"=>"Congenital","healthCondition"=>"Heart disease","comments"=>""),
+ // array("recordID"=>"4","date"=>"2020-08-04","type"=>"Genetical","healthCondition"=>"High gloucose","comments"=>"")
 
-  array("recordID"=>"1","date"=>"2020-08-01","type"=>"Accidental","healthCondition"=>"Broken leg","comments"=>""),
-  array("recordID"=>"2","date"=>"2020-08-02","type"=>"Accidental","healthCondition"=>"Brain damage","comments"=>""),
-  array("recordID"=>"3","date"=>"2020-08-03","type"=>"Congenital","healthCondition"=>"Heart disease","comments"=>""),
-  array("recordID"=>"4","date"=>"2020-08-04","type"=>"Genetical","healthCondition"=>"High gloucose","comments"=>"")
+//);
 
-);
 
 ?>
 
@@ -17,7 +18,7 @@ $result = array (
 <link rel="stylesheet" href= "./../../css/modal.css">
 <img src="./../../images/undraw_medical_research_qg4d.svg" class="img-background img-left">
 <div class="containersMed">
-  <h1>View Medical Condition</h1><br>
+  <h1>View Medical History</h1><br>
   <div class="table-container">
     <table class="table-view">
       <tr>
@@ -27,7 +28,7 @@ $result = array (
         <th colspan="1">Action</th>
       </tr>
       <?php
-      foreach($result as $row){
+      foreach($data as $row){
         echo "<tr>"."<td>".$row['recordID']."</td>".
               "<td id=\"date-".$row['recordID']."\">".$row['date']."</td>".
               "<td id=\"type-".$row['recordID']."\">".$row['type']."</td>".
