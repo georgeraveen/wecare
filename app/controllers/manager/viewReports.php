@@ -42,9 +42,25 @@ class viewReports extends Controller{
 
     public function viewCases(){
         $this->checkPermission("MGR");
-        include './../app/header.php';
-        $this->view('manager/viewCases');
-        include './../app/footer.php';
+        $this->model('claimCase');
+        $caseView= new ClaimCase();
+        if($this->valValidate($_GET['action'])=="edit"){
+            $caseDetails=$caseView->viewCases($this->valValidate($_GET['id']));
+            //var_dump($caseDetails);
+            include './../app/header.php';
+            $this->view('manager/viewCases',['id'=>$this->valValidate($_GET['id']),'caseDetails'=>$caseDetails]);
+            include './../app/footer.php';
+        }
+
+    }
+
+    public function overPaidCase(){
+        $this->checkPermission("MGR");
+        $this->model('claimCase');
+        $caseView= new ClaimCase();
+        if($this->valValidate($_GET['action'])=="edit"){
+
+        }
     }
 
 }

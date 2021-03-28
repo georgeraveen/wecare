@@ -337,10 +337,18 @@ public function getCompletedCases($fieldAgID){
 public function getAllReview($fromdate,$todate,$type){
     // var_dump($this->conn);
     //echo $type;
-    $stmt= $this->conn->prepare("SELECT claimID,dischargeDate,c.custName,ins.type, custFeedback, caseStatus  from $this->table as i 
+    $stmt= $this->conn->prepare("SELECT claimID,dischargeDate,c.custName,ins.type, i.policyID, caseStatus  from $this->table as i 
                 inner join customer as c on i.custID = c.custID 
                 inner join cust_insurance as ins on i.custID = ins.custID
-                WHERE (dischargeDate BETWEEN '$fromdate' AND '$todate') AND (ins.type='$type') AND (caseStatus='Completed' OR caseStatus='Rejected')");
+                WHERE (dischargeDate BETWEEN '$fromdate' AND '$todate') AND (ins.type='$type') AND i.overPaid=0 AND (caseStatus='Completed' OR caseStatus='Rejected')");
+    
+    $stmt->execute();
+    return $stmt->fetchAll();
+}
+public function viewCases($_id){
+    $stmt= $this->conn->prepare("SELECT claimID,dischargeDate,payableAmount,h.name, policyID,custFeedback, caseStatus  from $this->table as i 
+                inner join hospital as h on i.hospitalID = h.hospitalID
+                WHERE claimID=$_id");
     
     $stmt->execute();
     return $stmt->fetchAll();
