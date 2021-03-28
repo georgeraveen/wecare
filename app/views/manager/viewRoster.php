@@ -35,7 +35,7 @@
                 if(count($data[2][$j.$i]["meds"])>$r){
                   $rowExist=true;
                   $medName=($data[2][$j.$i]["meds"][$r]["empID"]." - ".$data[2][$j.$i]["meds"][$r]["empFirstName"]." ".$data[2][$j.$i]["meds"][$r]["empLastName"]);
-                  $newRow .= "<td><p id=\"as\">".$medName."  <button onClick=\"deleteMed(this,'A". $j.$i."',".$data[2][$j.$i]["meds"][$r]["empID"] .")\">X</button></p></td>";  
+                  $newRow .= "<td><p id=\"as\">".$medName."  <button class=\"btn-delete\" onClick=\"deleteMed(this,'A". $j.$i."',".$data[2][$j.$i]["meds"][$r]["empID"] .")\">X</button></p></td>";  
                 }
               }
               else{
@@ -72,7 +72,7 @@
               if(count($data[2][$j.$i]["meds"])>$r){
                 $rowExist=true;
                 $medName=($data[2][$j.$i]["meds"][$r]["empID"]." - ".$data[2][$j.$i]["meds"][$r]["empFirstName"]." ".$data[2][$j.$i]["meds"][$r]["empLastName"]);
-                $newRow .= "<td><p id=\"as\">".$medName."  <button onClick=\"deleteMed(this,'A". $j.$i."',".$data[2][$j.$i]["meds"][$r]["empID"] .")\">X</button></p></td>";  
+                $newRow .= "<td><p id=\"as\">".$medName."  <button class=\"btn-delete\" onClick=\"deleteMed(this,'A". $j.$i."',".$data[2][$j.$i]["meds"][$r]["empID"] .")\">X</button></p></td>";  
               }
             }
             else{
@@ -106,7 +106,7 @@
                 if(count($data[2][$j.$i]["meds"])>$r){
                   $rowExist=true;
                   $medName=($data[2][$j.$i]["meds"][$r]["empID"]." - ".$data[2][$j.$i]["meds"][$r]["empFirstName"]." ".$data[2][$j.$i]["meds"][$r]["empLastName"]);
-                  $newRow .= "<td><p id=\"as\">".$medName."  <button onClick=\"deleteMed(this,'A". $j.$i."',".$data[2][$j.$i]["meds"][$r]["empID"] .")\">X</button></p></td>";  
+                  $newRow .= "<td><p id=\"as\">".$medName."  <button class=\"btn-delete\" onClick=\"deleteMed(this,'A". $j.$i."',".$data[2][$j.$i]["meds"][$r]["empID"] .")\">X</button></p></td>";  
                 }
               }
               else{
@@ -146,7 +146,7 @@
     </div>
     <div class="column">
       <div class="formInput">
-        <input type="submit" id="submitRoster" name="submitRoster" class="btn-submit" value="Create Roster"><br>
+        <input type="submit" id="submitRoster" name="submitRoster" class="btn-submit" value="Update Roster"><br>
       </div>
     </div>
   </div>
