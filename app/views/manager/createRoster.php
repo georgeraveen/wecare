@@ -2,9 +2,14 @@
 <link rel="stylesheet" href= "./../../css/modal.css">
 <link rel="stylesheet" href= "./../../css/style.css">
 <div class="containers">
+  <ul class="breadcrumb">
+    <li><a href="./../managerHome/index">Home</a></li>
+    <li><a href="./../roster/index">Manage weekly roster</a></li>
+    <li>Create New Roster</li>
+  </ul>
   <h1>Create New Roster</h1><br>
   <div class="table-container">
-    <table id="rosterTable" class="table-view">
+    <table id="rosterTable" class="table-view rosterTable">
       <thead>
         <th>Time Slot</th>
         <th>Monday</th>

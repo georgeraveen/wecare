@@ -2,9 +2,14 @@
 <link rel="stylesheet" href= "./../../css/modal.css">
 <link rel="stylesheet" href= "./../../css/style.css">
 <div class="containers">
+  <ul class="breadcrumb">
+    <li><a href="./../managerHome/index">Home</a></li>
+    <li><a href="./../roster/index">Manage weekly roster</a></li>
+    <li>View weekly roster</li>
+  </ul>
   <h1>View Roster - <?php echo $data[1][0]["date"]." by MGR".$data[1][0]["managerID"];  ?></h1><br>
   <div class="table-container">
-    <table id="rosterTable" class="table-view">
+    <table id="rosterTable" class="table-view rosterTable">
       <thead>
         <th>Time Slot</th>
         <th>Monday</th>
