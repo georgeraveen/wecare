@@ -20,7 +20,7 @@
                 <input type="number" id="customer" name="customer" class="input" value=<?php echo $data['caseDetails'][0]['custID']?> required readonly>
               </div>
               <div class="column" style="flex:75%">
-                <input type="text" id="custNameBox" name="custName" required class="input"  onkeyup="showResult(this.value)" placeholder="Search by customer ID"><br>
+                <input type="text" id="custNameBox" name="custName" required class="input" value=<?php echo $data['caseDetails'][0]['custID']?>  onkeyup="showResult(this.value)" placeholder="Search by customer ID"><br>
                 <div id="livesearch" class="dropdown-content"></div>
               </div>
             </div>
