@@ -64,7 +64,12 @@ class Employee extends Models{
         return $stmt->fetchAll();
     }
     public function getEmpByTypeList($empType){
-        $stmt= $this->conn->prepare("SELECT empID,empFirstName,empLastName from $this->table where empTypeID = :empType ");
+        if($empType=="FAG"){
+            $stmt= $this->conn->prepare("SELECT emp.empID,empFirstName,empLastName,area from $this->table as emp inner join field_agt as fag on emp.empID=fag.empID where empTypeID = :empType ");
+        }
+        else{
+            $stmt= $this->conn->prepare("SELECT empID,empFirstName,empLastName from $this->table where empTypeID = :empType ");
+        }
         $stmt -> bindParam(':empType',$empType);
 
         $stmt->execute();

@@ -17,7 +17,6 @@ class insureCase extends Controller{
         $medList=$empMod->getEmpByTypeList("MED");
 
         $fagList=$empMod->getEmpByTypeList("FAG");
-        // var_dump($hospList);
 
         include './../app/header.php';
         $this->view('dataEntry/newInsureCase',['custList'=>$custList,'hospList'=>$hospList,'medList'=>$medList,'fagList'=>$fagList]);

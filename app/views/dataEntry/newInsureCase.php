@@ -100,7 +100,7 @@
               <!-- <option>User ID - Name</option> -->
               <?php               
                 foreach ($data['fagList'] as $fagsRow){
-                  echo "<option value= \"".$fagsRow['empID']."\"> FAG".$fagsRow['empID']." - ".$fagsRow['empFirstName']." ".$fagsRow['empLastName']."</option>";
+                  echo "<option value= \"".$fagsRow['empID']."\"> FAG".$fagsRow['empID']." - ".$fagsRow['empFirstName']." ".$fagsRow['empLastName']." - ".$fagsRow['area']."</option>";
                 }
               ?>
             </select><br>

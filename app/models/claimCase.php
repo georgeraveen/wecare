@@ -104,7 +104,7 @@ class ClaimCase extends Models{
     public function update($_id){
         $stmt= $this->conn->prepare("update $this->table set admitDate= :admitDate, dischargeDate= :dischargeDate, icuFromDate= :icuFromDate, icuToDate= :icuToDate,
                                                             healthCondition= :healthCondition, custID= :custID, medScruID= :medScruID, dataEntryOfficerID= :dataEntryOfficerID,
-                                                            FieldAgID= :FieldAgID, hospitalID= :hospitalID where claimID = $_id ") ;
+                                                            FieldAgID= :FieldAgID, hospitalID= :hospitalID, caseStatus='Initial' where claimID = $_id ") ;
 
         $stmt -> bindParam(':admitDate', $this->admitDate );
         $stmt -> bindParam(':dischargeDate', $this->dischargeDate); 
