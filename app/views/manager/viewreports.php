@@ -10,13 +10,13 @@
           <div class="column">
               <div class="formInput">
                 <label for="fromDate">From date</label><br>
-                <input type="Date" id="fromDate" name="fromDate" class="input" value=""><br>
+                <input type="Date" id="fromDate" name="fromDate" class="input" required value=""><br>
               </div>
           </div>
           <div class="column">
               <div class="formInput">
                 <label for="toDate">To date</label><br>
-                <input type="Date" id="toDate" name="toDate" class="input" value=""><br>
+                <input type="Date" id="toDate" name="toDate" class="input" required value=""><br>
               </div>
           </div>
           <div class="column">
