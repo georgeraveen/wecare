@@ -13,6 +13,19 @@
         <th>Customer feedback</th>
         <th>View</th>
       </tr>
+      <?php
+      foreach($data as $row){
+        //echo "gyff";
+        echo "<tr>"."<td>".$row['claimID']."</td>".
+              "<td>".$row['custName']."</td>".
+              "<td>".$row['dischargeDate']."</td>".
+              "<td>".$row['type']."</td>".
+              "<td>".$row['caseStatus']."</td>".
+              "<td>".$row['custFeedback']."</td>".
+              "<td> <a class=\"editBtn\" href=\"./viewCases?action=edit&id=".$row['claimID']."\">View</a> "."</td>"."</tr>";
+      }
+
+      ?>
     </table>
     
   </div>

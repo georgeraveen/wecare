@@ -19,18 +19,31 @@ class viewReports extends Controller{
 
     public function reviewCasesFeedback(){
         $this->checkPermission("MGR");
-       // include './../app/header.php';
+       
         if($_POST['reviewCases']){
-            echo "jhgfhfg";
+            $this->checkPermission("MGR");
+            $this->model('claimCase');
+            $caseView= new ClaimCase();
+            $queue=$caseView->getAllReview($this->valValidate($_POST['fromDate']),$this->valValidate($_POST['toDate']),$this->valValidate($_POST['type']));
+            var_dump($queue);
+            include './../app/header.php';
+            $this->view('manager/reviewCasesFeedback',$queue);
+            include './../app/footer.php';
         }
-        $this->view('manager/reviewCasesFeedback');
-       // include './../app/footer.php';
+        
     }
 
     public function employeePerformanceReport(){
         $this->checkPermission("MGR");
         include './../app/header.php';
         $this->view('manager/employeePerformanceReport');
+        include './../app/footer.php';
+    }
+
+    public function viewCases(){
+        $this->checkPermission("MGR");
+        include './../app/header.php';
+        $this->view('manager/viewCases');
         include './../app/footer.php';
     }
 
