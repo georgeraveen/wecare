@@ -14,7 +14,7 @@
         <div class="column">
           <div class="row">
             <div class="column" style="flex:25%">
-              <button type="button" onClick="location.href='./index'" class="btn-submit">Add New Customer</button>
+              <button type="button" onClick="location.href='./index'" class="editBtn">Add New Customer</button>
             </div>
             <div class="column">
               <div class="formInput">
