@@ -22,7 +22,7 @@
         <th>Doctor</th>
         <th>Action</th>
       </tr>
-      
+
       <tr class="filter-row" id="filter-row">
         <form action="./viewCase" method="get">
           <th id="filter-row">Filter >></th>
@@ -91,7 +91,7 @@
               "<td>".$row['fag']."</td>".
               "<td>".$row['med']."</td>".
               "<td>".$row['doc']."</td>".
-              "<td> <a class=\"deleteBtn\" href=\"./deleteCase?action=delClaimCase&id=".$row['claimID']."\">Delete</a> <a class=\"editBtn\" href=\"./editCase?action=edit&id=".$row['claimID']."\">View/Edit</a> "."</td>"."</tr>";
+              "<td><a class=\"editBtn\" href=\"./editCase?action=edit&id=".$row['claimID']."\">View/Edit</a> "."</td>"."</tr>";
       }
 
       ?>
