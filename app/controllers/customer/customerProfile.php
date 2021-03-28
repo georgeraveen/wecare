@@ -23,7 +23,7 @@ class CustomerProfile extends Controller{
                         $this->valValidate($_POST['custAddress']));
                         
                     
-                $result= $updateCust->updateCustomerDetails($this->valValidate($_POST['custID']));
+                $result= $updateCust->updateCustomerDetails($this->valValidate($_SESSION["user_id"]));
             
            $_SESSION["successMsg"]="updated successfully";
             header("Location: ./index");

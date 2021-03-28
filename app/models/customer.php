@@ -266,8 +266,8 @@ public function getCustDeatail($custID){
 public function setValueUpdateCust($PcustID,$Pemail,$PcustAddress){
    
     $this->custID=$PcustID;
-    $this->custAddress= !empty($PcustAddress) ? $PcustAddress : null;
-    $this->email =  !empty($Pemail) ? $Pemail : null;
+   $this->email =  !empty($Pemail) ? $Pemail : null;
+   $this->custAddress= !empty($PcustAddress) ? $PcustAddress : null;
    
       
 }
