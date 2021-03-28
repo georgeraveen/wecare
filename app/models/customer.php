@@ -263,7 +263,7 @@ public function getCustDeatail($custID){
     return $stmt->fetchAll();
 }
 //set valuie for update customer details
-public function setValueUpdateCust($custID,$custAddress,$email){
+public function setValueUpdateCust($PcustID,$Pemail,$PcustAddress){
    
     $this->custID=$PcustID;
     $this->custAddress= !empty($PcustAddress) ? $PcustAddress : null;

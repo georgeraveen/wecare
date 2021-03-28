@@ -18,7 +18,7 @@ class CustomerProfile extends Controller{
             if($_POST['updateDetails']){
                 $this->model('customer');
                 $updateCust = new customer();
-                $result= $updateCust->setValueUpdateCust($this->valValidate($_POST['custID']),
+                $result= $updateCust->setValueUpdateCust($this->valValidate($_SESSION["user_id"]),
                         $this->valValidate($_POST['email']),
                         $this->valValidate($_POST['custAddress']));
                         
