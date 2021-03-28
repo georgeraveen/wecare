@@ -19,9 +19,12 @@ class viewReports extends Controller{
 
     public function reviewCasesFeedback(){
         $this->checkPermission("MGR");
-        include './../app/header.php';
+       // include './../app/header.php';
+        if($_POST['reviewCases']){
+            echo "jhgfhfg";
+        }
         $this->view('manager/reviewCasesFeedback');
-        include './../app/footer.php';
+       // include './../app/footer.php';
     }
 
     public function employeePerformanceReport(){

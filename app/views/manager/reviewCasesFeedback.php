@@ -11,7 +11,7 @@
         <th>Type</th>
         <th>Claim status</th>
         <th>Customer feedback</th>
-        <th>Remark</th>
+        <th>View</th>
       </tr>
     </table>
     
