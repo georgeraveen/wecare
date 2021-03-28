@@ -34,19 +34,22 @@ body {
 .grid-item {
   background-color: white;
   padding: 20px;
-  font-size: 30px;
+  font-size: 22px;
   text-align: center;
   height: 100px;
   font-style: normal;
   text-decoration: none;
   color: #ee5e1b;
-  font-size: large;
+  /* font-size: large; */
   /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
   border-radius: 10px;
   border-color: #ee5e1b;
   border-width: 5px;
   border-style: solid;
   font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .grid-item:hover {
   background-color: #ffddcd;

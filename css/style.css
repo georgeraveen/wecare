@@ -82,6 +82,13 @@ select {
   border-collapse: collapse;
   width: 100%;
 }
+.rosterTable {
+  border-collapse: separate;
+}
+.colspanTD {
+  text-align: center;
+  background-color: burlywood;
+}
 th,
 td {
   text-align: left;
