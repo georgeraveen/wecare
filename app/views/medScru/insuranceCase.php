@@ -1,149 +1,133 @@
+
 <link rel="stylesheet" href= "./../../css/home.css">
 <link rel="stylesheet" href= "./../../css/style.css">
+<link rel="stylesheet" href= "./../../css/dropdown.css">
 <div class="containers">
-    <h1>Insurance claim case</h1><br>
-<div class="form-container">
-    <form action="#">
+  <ul class="breadcrumb">
+    <li><a href="./../medScruHome/index">Home</a></li>
+    <li><a href="./../viewPendingCases/viewCase">View Insurance Cases</a></li>
+    <li>Edit case</a></li>
+  </ul>
+  <h1>Update Insurance Claim Case</h1><br>
+  <div class="form-container">
+    <form action="./updateCase" method="post" onSubmit="showLoader()">
+      <div class="row">
+        <div class="column">
+          <div class="formInput">
+            <label for="customer">Customer</label><br>
             <div class="row">
-                <div class="column">
-                    <div class="formInput">
-                        <label for="customer">Medical Scrutinizer</label><br>
-                       <input type="text" id="medScru" name="medScruName" class="input" value="Amal" readonly><br>
-                    </div>
-                </div>
-                <div class="column">
-                    <div class="formInput">
-                        <label for="customer">Field Agent</label><br>
-                       <input type="text" id="fieldAgent" name="fieldAgentName" class="input" value="Kamal" readonly><br>
-                    </div>
-                </div>
+              <div class="column" style="flex:25%">
+                <input type="number" id="customer" name="customer" class="input" value=<?php echo $data['caseDetails'][0]['custID']?> required readonly>
+              </div>
+              <div class="column" style="flex:75%">
+                <input type="text" id="custNameBox" name="custName" required class="input"  onkeyup="showResult(this.value)" placeholder="Search by customer ID"><br>
+                <div id="livesearch" class="dropdown-content"></div>
+              </div>
             </div>
-            <div class="row">
-                <div class="column">
-                    <div class="formInput">
-                        <label for="customer">Customer</label><br>
-                       <input type="text" id="customer" name="custName" class="input" value="MR.Perera" readonly><br>
-                    </div>
-                </div>
-                <div class="column">
-                    <div class="formInput">
-                        <label for="claimID" >Claim ID</label><br>
-                        <input type="text" id="claimID" name="claimID" class="input" value="005" readonly><br>
-                    </div>
-                </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="formInput">
+            <label for="hospital">Hospital</label><br>
+            <select id="hospital" name="hospital" required>
+              <!-- <option>Hospital Name</option> -->
+              <?php               
+                foreach ($data['hospList'] as $hospitalsRow){
+                  echo "<option value= \"".$hospitalsRow['hospitalID']."\"";
+                  if($hospitalsRow['hospitalID']==$data['caseDetails'][0]['hospitalID']) echo "selected=\"selected\"";
+                  echo ">(".$hospitalsRow['hospitalID'].") - ".$hospitalsRow['name']."</option>";
+                }
+              ?>
+            </select><br>
+          </div>
+          
+        </div>
+      </div>
+      <div class="row">
+        <div class="column">
+          <div class="formInput">
+            <label for="admitDate">Admit Date</label><br>
+            <input type="Date" id="admitDate" name="admitDate" class="input" value=<?php echo $data['caseDetails'][0]['admitDate']?>><br>
+          </div>
+        </div>
+        <div class="column">
+          <div class="formInput">
+            <label for="dischargeDate">Discharge Date</label><br>
+            <input type="Date" id="dischargeDate" name="dischargeDate" class="input" value=<?php echo $data['caseDetails'][0]['dischargeDate']?>><br>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="column">
+          <div class="formInput">
+            <label for="icuFromDate">ICU From Date</label><br>
+            <input type="Date" id="icuFromDate" name="icuFromDate" class="input" value=<?php echo $data['caseDetails'][0]['icuFromDate']?>><br>
+          </div>
+        </div>
+        <div class="column">
+          <div class="formInput">
+            <label for="icuToDate">ICU To Date</label><br>
+            <input type="Date" id="icuToDate" name="icuToDate" class="input" value=<?php echo $data['caseDetails'][0]['icuToDate']?>><br>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="column">
+          <div class="formInput">
+            <label for="medScrut">Medical Scrutinizer</label><br>
+            <select id="medScrut" name="medScrut" required>
+              <?php               
+                foreach ($data['medList'] as $medsRow){
+                  echo "<option value= \"".$medsRow['empID']."\"";
+                  if($medsRow['empID']==$data['caseDetails'][0]['medScruID']) echo "selected=\"selected\"";
+                  echo "> MED".$medsRow['empID']." - ".$medsRow['empFirstName']." ".$medsRow['empLastName']."</option>";
+                }
+              ?>
+              <!-- <option>User ID - Name</option> -->
+            </select><br>
+          </div>
+        </div>
+        <div class="column">
+          <div class="formInput">
+            <label for="fieldAg">Field Agent</label><br>
+            <select id="fieldAg" name="fieldAg" required>
+              <!-- <option>User ID - Name</option> -->
+              <?php               
+                foreach ($data['fagList'] as $fagsRow){
+                  echo "<option value= \"".$fagsRow['empID']."\"";
+                  if($fagsRow['empID']==$data['caseDetails'][0]['FieldAgID']) echo "selected=\"selected\"";
+                  echo "> FAG".$fagsRow['empID']." - ".$fagsRow['empFirstName']." ".$fagsRow['empLastName']."</option>";
+                }
+              ?>
+            </select><br>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="column">
+          <div class="formInput">
+            <label for="healthCondition">Health Condition / Comments</label><br>
+            <textarea id="healthCondition" name="healthCondition" class="commentBox"><?php echo $data['caseDetails'][0]['healthCondition']; ?></textarea> <br>
+          </div>
+        </div>
+        <div class="column">
+          <div class="row">
+            <div class="column">
+              <div class="formInput">
+                <input type="submit" id="submit" name="editInsurance" class="btn-submit" value= "Submit" ><br>
+                <input type="hidden" id="submit" name="claimID" value= <?php echo $data['id'];?> >
+              </div>
             </div>
-            <div class="row">
-                <div class="column">
-                    <div class="formInput">
-                        <label for="admitDate">Admit Date</label><br>
-                        <input type="date" id="admitDate" name="admitDate" class="input" value="2019-08-08" ><br>
-                    </div>
-                </div>
-                <div class="column">
-                    <div class="formInput">
-                        <label for="ICUfromDate" >ICU from Date</label><br>
-                        <input type="date" id="ICUfromDate" name="ICUfromDate" class="input"  value="2019-08-10" ><br>
-                    </div>
-                </div>
+            <div class="column">
+              <div class="formInput">
+                <a id="a" href="./viewCase" class="btn-submit" >Cancel</a><br>
+              </div>
             </div>
-            <div class="row">
-                <div class="column">
-                    <div class="formInput">
-                        <label for="dischargeDate" >Discharge Date</label><br>
-                        <input type="date" id="dischargeDate" name="dischargeDate" class="input" value="2019-08-15"  ><br>
-                    </div>
-                </div>
-                <div class="column">
-                    <div class="formInput">
-                        <label  for="ICUtoDate">ICU to Date</label><br>
-                        <input type="date" id="ICUtoDate" name="ICUtoDate" class="input" value="2019-08-12"  ><br>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="column">
-                    <div class="formInput">
-                        <label for="hospital">Hospital</label><br>
-                        <input type="text" id="hospital" name="hospital" class="input" value="Asiri" readonly><br>
-                    </div>
-                </div>
-                <div class="column">
-                    <div class="formInput">
-                        <label for="condition" >condition</label><br>
-                        <textarea type="text" id="condition" name="condition" class="commentBox" value="Conditions..."></textarea>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="column">
-                    <div class="row">
-                        <div class="column">
-                        <textarea readonly>DOC1</textarea>
-                        </div>
-                        <div class="column">
-                        <input type="view" id="view"  class="editBtn" value= "View File" ><br>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <textarea>DOC2</textarea>
-                    </div>
-                </div>
-                <div class="column">
-                    <div class="formInput">
-                        <label for="doctorComment">Scrutinizers' Comment</label><br>
-                        <textarea  type="text" id="scruComment" name="scruComment" class="commentBox" placeholder="comments..."></textarea><br>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="column">
-                    <div class="formInput">
-                    <label for="medScrut">Assign Doctor</label>
-                    <select id="doc" name="doc" required>
-                    <?php               
-                    foreach ($data['medList'] as $medsRow){
-                    echo "<option value= \"".$medsRow['empID']."\"";
-                    if($medsRow['empID']==$data['caseDetails'][0]['medScruID']) echo "selected=\"selected\"";
-                    echo "> MED".$medsRow['empID']." - ".$medsRow['empFirstName']." ".$medsRow['empLastName']."</option>";
-                    }
-                    ?>
-                    <!-- options -->
-                    </select>
-                    </div>
-                </div>
-                <div class="column">
-                    <br>
-                    <input type="submit" id="assign" name="assignDoc" class="btn-submit" value= "Assign Doctor" >
-                </div>
-
-                <div class="column">
-                    <div class="formInput">
-                        <label for="doctorComment">Doctors' Comment</label><br>
-                        <textarea  type="text" id="doctorComment" name="doctorComment" class="commentBox" placeholder="comments..."></textarea><br>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                    <div class="column">
-                    <div class="formInput">
-                        <a id="a" href="./../viewPendingCases/index" class="btn-submit" >Cancel</a>
-                        </div>   
-                    </div>
-                    <div class="column">
-                        <!--cmnt-->
-                    </div>
-                    <div class="column">
-                        <!--cmnt-->
-                    </div>
-                    <div class="column">
-                        <div class="formInput">
-                         <input type="submit" id="submit" name="reviewCase" class="btn-submit" value= "Submit" ><br>
-                        </div> 
-                    </div>
-                    
-            </div>
+          </div>
+        </div>
+       
+      </div>
     </form>
+  </div>
 </div>
-</div>
+<script src="./../../js/searchCustomerList.js"></script>

@@ -1,7 +1,4 @@
 <?php
-
-
-
 function redirect($url) {
 
     echo "<script language=\"JavaScript\">\n";
