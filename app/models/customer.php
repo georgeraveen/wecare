@@ -263,9 +263,9 @@ public function getCustDeatail($custID){
     return $stmt->fetchAll();
 }
 //set valuie for update customer details
-public function setValueUpdateCust($PclaimID){
+public function setValueUpdateCust($custID,$custAddress,$email){
    
-    $this->claimID=$PclaimID;
+    $this->custID=$PcustID;
     $this->custAddress= !empty($PcustAddress) ? $PcustAddress : null;
     $this->email =  !empty($Pemail) ? $Pemail : null;
    
