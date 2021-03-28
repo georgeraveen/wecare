@@ -247,7 +247,7 @@ public function getCaseDetailsDoc($claimID,$doctorID){
              ON claim_case.hospitalID=hospital.hospitalID 
         INNER JOIN employee 
             ON claim_case.medScruID=employee.empID
-        WHERE claim_case.caseStatus != 'Documents updated' and claim_case.FieldAgID=$fieldAgID ORDER BY claimID DESC;");
+        WHERE claim_case.caseStatus = 'Initial' and claim_case.FieldAgID=$fieldAgID ORDER BY claimID DESC;");
         
         $stmt->execute();
         return $stmt->fetchAll();
