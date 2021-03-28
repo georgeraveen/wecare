@@ -353,6 +353,15 @@ public function viewCases($_id){
     $stmt->execute();
     return $stmt->fetchAll();
 }
+public function overPayments($_id,$value,$remark){
+    $stmt= $this->conn->prepare("insert into over_paid (claimID,overPaidAmount,remark) 
+                                                            values ($_id,$value,'$remark')");
+    $stmt->execute();
+    $stmt= $this->conn->prepare("update $this->table set overPaid= 1
+                                                            where claimID = $_id ") ;   
+    $stmt->execute();   
+
+}
 
 }
 ?>

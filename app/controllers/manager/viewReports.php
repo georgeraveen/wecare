@@ -55,11 +55,14 @@ class viewReports extends Controller{
     }
 
     public function overPaidCase(){
-        $this->checkPermission("MGR");
-        $this->model('claimCase');
-        $caseView= new ClaimCase();
-        if($this->valValidate($_GET['action'])=="edit"){
-
+        
+            $this->checkPermission("MGR");
+            $this->model('claimCase');
+            $overPaid= new ClaimCase();
+            if($_POST['overPayment']){
+                $reslut=$overPaid->overPayments($this->valValidate($_POST['claimID']),$this->valValidate($_POST['overPaidValue']),$this->valValidate($_POST['remark']));
+                header("Location: ./index");
+                exit;
         }
     }
 
