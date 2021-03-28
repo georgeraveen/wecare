@@ -8,7 +8,7 @@ class CustomerProfile extends Controller{
         $custDetails = new customer();
         $custID = $_SESSION["user_id"];
         $details = $custDetails->getCustDeatail( $custID);
-        //include './../app/header.php';
+        include './../app/header.php';
         $this->view('customer/customerProfile', $details);
         include './../app/footer.php';
     }
