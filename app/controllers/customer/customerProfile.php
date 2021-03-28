@@ -3,7 +3,7 @@
 class CustomerProfile extends Controller{
 
     public function index(){
-        $this->checkPermissionCust();
+        $this->checkPermissionCust("CUST");
         $this->model('customer');
         $custDetails = new customer();
         $custID = $_SESSION["user_id"];
@@ -13,12 +13,12 @@ class CustomerProfile extends Controller{
         include './../app/footer.php';
     }
     public function updateCustDeatails(){
-        $this->checkPermission();
+        $this->checkPermissionCust("CUST");
        // try { 
             if($_POST['updateDetails']){
                 $this->model('customer');
                 $updateCust = new customer();
-                $result= $updateCust->setValueFag($this->valValidate($_POST['claimID']),
+                $result= $updateCust->setValueUpdateCust($this->valValidate($_POST['claimID']),
                         $this->valValidate($_POST['email']),
                         $this->valValidate($_POST['custAddress']));
                         

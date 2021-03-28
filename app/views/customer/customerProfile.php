@@ -6,7 +6,7 @@ var_dump($data);
 <img src="./../../images/undraw_personal_site_xyd1.svg" class="img-background">
 
 <div class="profile-container">
-  <form method="post">
+  <form method="post" action="./updateCustDeatails">
     <div class="boxCard">
       <h2>View My Profile</h2>
       <h3><?php echo $data[0]["custName"]?></h3>

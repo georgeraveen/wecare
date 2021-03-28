@@ -273,7 +273,7 @@ public function setValueUpdateCust($PclaimID){
 }
 //updatecustomer details
 public function updatecustomerDetails($_id){
-    $stmt= $this->conn->prepare("update $this->table set custAddress= :custAddress, email= :email  where claimID = $_id ");
+    $stmt= $this->conn->prepare("UPDATE $this->table set custAddress= :custAddress, email= :email  WHERE custID = $_id ");
     $stmt -> bindParam(':custAddress', $this->custAddress );
     $stmt -> bindParam(':email', $this->email );
     $stmt->execute();
