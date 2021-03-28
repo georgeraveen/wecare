@@ -7,24 +7,31 @@
     <li><a href="./../dataEntryHome/index">Home</a></li>
     <li>Manage customer profiles</a></li>
   </ul>
-  <h1>Update Customer Profile</h1><br>
+  <h1>Manage Customer Profile</h1><br>
   <div class="form-container2">
     <form >
       <div class="row">
-      <div class="column">
-          <div class="formInput">
-            <input class="radioInput" type="radio" id="byID" name="searchBy" value="byID">
-            <label for="byID">Search by ID</label><br>
-            <input class="radioInput" type="radio" id="byName" name="searchBy" checked value="byName">
-            <label for="byName">Search by name</label><br>
+        <div class="column">
+          <div class="row">
+            <div class="column" style="flex:25%">
+              <button type="button" onClick="location.href='./index'" class="btn-submit">Add New Customer</button>
+            </div>
+            <div class="column">
+              <div class="formInput">
+                <input class="radioInput" type="radio" id="byID" name="searchBy" value="byID">
+                <label for="byID">Search by ID</label><br>
+                <input class="radioInput" type="radio" id="byName" name="searchBy" checked value="byName">
+                <label for="byName">Search by name</label><br>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="column">
-          <span>Search and select a customer</span>
-          <input type="text" id="custNameBox" name="custName" required class="input"  onkeyup="showResult(this.value)"><br>
-          <div id="livesearch" class="dropdown-content"></div>
+          <div class="column">
+            <span>Search and select a customer</span>
+            <input type="text" id="custNameBox" name="custName" required class="input"  onkeyup="showResult(this.value)"><br>
+            <div id="livesearch" class="dropdown-content"></div>
+          </div>
         </div>
-        
       </div>
     </form>
   </div>
