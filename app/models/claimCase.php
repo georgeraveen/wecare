@@ -84,6 +84,22 @@ class ClaimCase extends Models{
         $stmt->execute();
         return $stmt->fetchAll();
     }
+    public function getAllQueueLimitCompleted($page,$filter){
+        $limit=10;
+        $start=$page* $limit;
+        $stmt= $this->conn->prepare("SELECT claimID,dischargeDate,h.name,med.empFirstName as med, fag.empFirstName as fag, doc.empFirstName as doc, payableAmount, caseStatus  from $this->table as i 
+                    inner join hospital as h on i.hospitalID = h.hospitalID 
+                    inner join employee as med on i.medScruID = med.empID 
+                    inner join employee as fag on i.FieldAgID = fag.empID
+                    left join employee as doc on i.doctorID = doc.empID 
+                    where i.medScruID=".$_SESSION["user_id"].";
+                    ".$filter."
+                    order by claimID DESC LIMIT $start, $limit ");
+        // var_dump($filterParams);
+        
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
     
     public function getAllQueueLimitPending($page,$filter){
         //echo $_SESSION["user_id"];
@@ -108,6 +124,11 @@ class ClaimCase extends Models{
         $stmt->execute();
         return $stmt->fetchAll();
     }
+    // public function getAllCountCompleted($filter){
+    //     $stmt= $this->conn->prepare("SELECT count(claimID) AS cnt from $this->table as i where caseStatus IN ('Completed','Rejected');".$filter);
+    //     $stmt->execute();
+    //     return $stmt->fetchAll();
+    // }
 
     public function getAllCount($filter){
         $stmt= $this->conn->prepare("SELECT count(claimID) AS cnt from $this->table as i".$filter);

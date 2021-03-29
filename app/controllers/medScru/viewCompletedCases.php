@@ -17,7 +17,7 @@ class viewCompletedCases extends Controller{
         //filters
         $this->model('hospital');
         $hospitalMod= new Hospital();
-        $hospList=$hospitalMod->getAll();
+        $hospList=$hospitalMod->getAllNames();
 
         $this->model('employee');
         $empMod= new Employee();
@@ -36,6 +36,9 @@ class viewCompletedCases extends Controller{
         }
         if($filterParams['status']!=""){
             $filter= $filter.($filter=="" ? "":" and "). "i.caseStatus='". $filterParams['status']."'";
+        }
+        else{
+            $filter= $filter.($filter=="" ? "":" and "). "(i.caseStatus='Completed' OR i.caseStatus='Rejected')";
         }
         if($filterParams['hospital']!=""){
             $filter= $filter.($filter=="" ? "":" and "). "i.hospitalID='".$filterParams['hospital']."'";
