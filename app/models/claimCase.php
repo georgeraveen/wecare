@@ -321,8 +321,8 @@ public function getCompletedCases($fieldAgID){
 }
 //update customer feedback
 public function addFeedback(){
-   // var_dump($this->claimID);
-    $stmt= $this->conn->prepare("UPDATE $this->table set custFeedback= :custFeedback where claimID =  $this->claimID and id=") ;
+   // var_dump($_SESSION["user_id"]);
+    $stmt= $this->conn->prepare("UPDATE $this->table set custFeedback= :custFeedback WHERE claimID =  $this->claimID AND custID=".$_SESSION['user_id']);
 
     $stmt -> bindParam(':custFeedback', $this->custFeedback );
     

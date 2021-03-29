@@ -20,7 +20,7 @@ class CustViewCases extends Controller{
                 $this->model('claimCase');
                 $addFeedback = new ClaimCase();
                //$addFeedback->startTrans();
-//var_dump($_POST['claimID']);
+            //var_dump($_POST['claimID']);
                 $result= $addFeedback->setFeedbackValue($this->valValidate($_POST['claimID']),
                         $this->valValidate($_POST['custFeedback']));
                        
@@ -34,7 +34,7 @@ class CustViewCases extends Controller{
        }
     
         catch (\Throwable $th) {
-           $_SESSION["errorMsg"]="Error occured when updating";
+          $_SESSION["errorMsg"]="Error occured when updating";
             //$updateCust->transRollBack();
             header("Location: ./index");
        }
