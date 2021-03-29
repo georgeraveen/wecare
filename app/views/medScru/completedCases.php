@@ -1,5 +1,5 @@
 <?php
-  $status=['Initial','Processed','Processing','Rejected','Doctor confirmed'];
+  $status=['Completed','Rejected'];
 ?>
 <link rel="stylesheet" href= "./../../css/home.css">
 <link rel="stylesheet" href= "./../../css/style.css">
