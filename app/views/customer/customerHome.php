@@ -1,4 +1,7 @@
-
+<?php
+var_dump($data);
+$result=$data;
+?>
 <link rel="stylesheet" href= "./../../css/homeCust.css">
 <link rel="stylesheet" href= "./../../css/modal.css">
 
@@ -44,7 +47,19 @@
   <div class="modal-content">
     <span class="close">&times;</span>
     <div>
- Promotions
+        
+               <table>
+               <?php
+              
+                foreach($result as $row){
+                  echo "<tr>".
+                        "<td id=\"image-".$row['id']."\"><img class=\"thumb-promo\" src=\"./../../documents/promo/".$row['image']."\"/></td>".
+                        "</tr>";
+                }
+              
+
+                ?>
+                </table>
     </div>
   </div>
 

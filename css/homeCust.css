@@ -5,6 +5,10 @@ body{
     background-attachment: fixed;
     background-attachment: fixed;
 }
+.thumb-promo{
+  height: 100px;
+  width: 100%;
+}
 
 .grid-container {
     margin: 120px 100px;
