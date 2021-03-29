@@ -20,24 +20,24 @@ class CustViewCases extends Controller{
                 $this->model('claimCase');
                 $addFeedback = new ClaimCase();
                //$addFeedback->startTrans();
-
-                $result= $addFeedback->setFeedbackValue($this->valValidate($_SESSION["user_id"]),
+//var_dump($_POST['claimID']);
+                $result= $addFeedback->setFeedbackValue($this->valValidate($_POST['claimID']),
                         $this->valValidate($_POST['custFeedback']));
                        
-                $result= $addFeedback->addFeedback($this->valValidate($_SESSION["user_id"]));
+                $result= $addFeedback->addFeedback();
             
                 $_SESSION["successMsg"]="updated successfully";
-               //$addFeedback->transCommit();
+              //$addFeedback->transCommit();
                 header("Location: ./index");
             exit;
             }
-        }
+       }
     
         catch (\Throwable $th) {
            $_SESSION["errorMsg"]="Error occured when updating";
-            $updateCust->transRollBack();
+            //$updateCust->transRollBack();
             header("Location: ./index");
        }
     }
 
-}
+    }

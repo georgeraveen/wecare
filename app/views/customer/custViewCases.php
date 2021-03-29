@@ -39,7 +39,7 @@
   <!-- Modal content -->
   <div class="modal-content">
     <span class="close">&times;</span>
-    <form action="./addFeedback" method="get">
+    <form action="./addFeedback" method="post">
       
       <div class="row">
         <div class="column">

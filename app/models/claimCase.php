@@ -314,17 +314,19 @@ public function getCompletedCases($fieldAgID){
 //set value for feedback
     
     public function setFeedbackValue($PclaimID,$PcustFeedback){
+       // var_dump($PclaimID);
         $this->claimID= !empty($PclaimID) ? $PclaimID : null;
         $this->custFeedback =  !empty($PcustFeedback) ? $PcustFeedback : null;
-
+       
 }
 //update customer feedback
-public function addFeedback($_id){
-    $stmt= $this->conn->prepare("update $this->table set custFeedback= :custFeedback where claimID = $_id ") ;
+public function addFeedback(){
+   // var_dump($this->claimID);
+    $stmt= $this->conn->prepare("UPDATE $this->table set custFeedback= :custFeedback where claimID =  $this->claimID and id=") ;
 
-    $stmt -> bindParam(':admitcustFeedbackDate', $this->custFeedback );
+    $stmt -> bindParam(':custFeedback', $this->custFeedback );
     
-   
+  // var_dump($stmt);
     $stmt->execute();
 }
 
