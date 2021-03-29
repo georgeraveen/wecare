@@ -376,6 +376,30 @@ public function getOverPaid($fromdate,$todate){
     $stmt->execute();
     return $stmt->fetchAll();
 }
+public function getOverPaidView($_id){
+    $stmt= $this->conn->prepare("SELECT o.claimID,dischargeDate,concat(e.empFirstName,' ',e.emplastName) as empName, o.overPaidAmount, o.remark  from $this->table as i 
+                inner join employee as e on e.empID = i.medScruID 
+                inner join over_paid as o on i.claimID = o.claimID
+                WHERE o.claimID=$_id");
+//var_dump($stmt);
+$stmt->execute();
+return $stmt->fetchAll();
+}
+public function editOverPayments($_id,$value,$remark){
+
+    $stmt= $this->conn->prepare("update over_paid set overPaidAmount=:overPaidAmount ,remark=:remark
+                                                            where claimID = $_id ") ; 
+    $stmt -> bindParam(':overPaidAmount', $value );
+    $stmt -> bindParam(':remark', $remark ); 
+    $stmt->execute();   
+}
+public function deleteOverPayments($_id){
+    $stmt= $this->conn->prepare("delete from over_paid where claimID= $_id");
+    $stmt->execute();
+    $stmt1= $this->conn->prepare("update $this->table set overPaid= 0
+                                                            where claimID = $_id ") ;   
+    $stmt1->execute();   
+}
 
 }
 ?>

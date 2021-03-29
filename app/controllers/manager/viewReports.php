@@ -79,10 +79,49 @@ class viewReports extends Controller{
     }
     }
     public function viewOverPaid(){
-        
+        $this->checkPermission("MGR");
+        $this->model('claimCase');
+        $caseView= new ClaimCase();
+        if($this->valValidate($_GET['action'])=="edit"){
+            $caseDetails=$caseView->getOverPaidView($this->valValidate($_GET['id']));
+            //var_dump($caseDetails);
+            include './../app/header.php';
+            $this->view('manager/viewOverPaid',['id'=>$this->valValidate($_GET['id']),'caseDetails'=>$caseDetails]);
+            include './../app/footer.php';
+        }
     }
     public function deleteOverPaid(){
-        
+        $this->checkPermission("MGR");
+    try{
+        $this->model('claimCase');
+        $overPaid= new ClaimCase();
+        if($this->valValidate($_GET['action'])=="delete"){
+            $reslut=$overPaid->deleteOverPayments($this->valValidate($_GET['id']));
+            $_SESSION["successMsg"]="Over payment deleted successfully.";
+            header("Location: ./index");
+            exit;
+            }
+        }catch(\Throwable $th){
+            $_SESSION["errorMsg"]="Error occured when deleting over payment.";
+            header("Location: ./index");
+        }
+    }
+    public function updateOvePaid(){
+
+        $this->checkPermission("MGR");
+    try{
+        $this->model('claimCase');
+        $overPaid= new ClaimCase();
+        if($_POST['editOverPaid']){
+            $reslut=$overPaid->editOverPayments($this->valValidate($_POST['claimID']),$this->valValidate($_POST['overPaidValue']),$this->valValidate($_POST['remark']));
+            $_SESSION["successMsg"]="Over payment updated successfully.";
+            header("Location: ./index");
+            exit;
+            }
+        }catch(\Throwable $th){
+            $_SESSION["errorMsg"]="Error occured when updating over payment.";
+            header("Location: ./index");
+        }
     }
 
 }
