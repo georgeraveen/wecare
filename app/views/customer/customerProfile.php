@@ -1,5 +1,5 @@
 <?php
- var_dump($data);
+// var_dump($data);
 // var_dump($data['singleCaseDetails']);
 ?>
 <link rel="stylesheet" href= "./../../css/custStyle.css">
@@ -34,7 +34,7 @@
                     <table>
                     <?php
                     try {
-                        $dir ="./../documents/policy/". $data[0]['policyID'];
+                        $dir ="./../documents/policy/". $data[0][0]['policyID'];
                         // Sort in ascending order - this is default
                         $ls = scandir($dir);
 
@@ -45,8 +45,8 @@
                             $filename=pathinfo($ls[$i],PATHINFO_FILENAME);
                             $ext=pathinfo($ls[$i],PATHINFO_EXTENSION);
                             echo "<tr id=\"file$i\">";
-                            echo "<td><a id=\"txt-$i\" href =\"./viewFil/". $data[0]['policyID'] . "/". $filename."/".$ext ."\">".$ls[$i]."</a></td>";
-                            echo  "<td>  <div id=\"btn-$i\" class=\"btn-delete\" onClick=\"sendDelete($i)\"> X </div></td>";
+                            echo "<td><a id=\"txt-$i\" href =\"./viewFil/". $data[0][0]['policyID'] . "/". $filename."/".$ext ."\">".$ls[$i]."</a></td>";
+                           // echo  "<td>  <div id=\"btn-$i\" class=\"btn-delete\" onClick=\"sendDelete($i)\"> X </div></td>";
                             echo "</tr>";
                         }
                     } catch (\Throwable $th) {
