@@ -332,7 +332,7 @@ public function addFeedback(){
 }
 //get customer claim history
 public function getAllCustCases($custID){
-    $stmt= $this->conn->prepare("SELECT claimID,dischargeDate,caseStatus,hospital.name,payableAmount
+    $stmt= $this->conn->prepare("SELECT claimID,dischargeDate,caseStatus,hospital.name,payableAmount,custFeedback
     FROM claim_case
     INNER JOIN hospital ON claim_case.hospitalID=hospital.hospitalID
     WHERE custID = $custID ORDER BY claimID DESC");

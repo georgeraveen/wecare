@@ -28,7 +28,7 @@
               "<td>".$row['name']."</td>".
               "<td>".$row['payableAmount']."</td>".
               "<td> <a class=\"editBtn\" href=\"#\" onClick=\"openFeedback(".$row['claimID'].")\">Add</a> "."</td> </tr>".
-              " <textarea id=\"custFeedbackBox-".$row['claimID']."\" name=\"custFeedback\" hidden class=\"commentBox hide\">dadsadsa</textarea>"." ";
+              " <textarea id=\"custFeedbackBox-".$row['claimID']."\" name=\"custFeedback\" hidden class=\"commentBox hide\">".$row['custFeedback']."</textarea>"." ";
       }
 
       ?>
