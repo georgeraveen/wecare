@@ -93,8 +93,8 @@ class ClaimCase extends Models{
                     inner join employee as med on i.medScruID = med.empID 
                     inner join employee as fag on i.FieldAgID = fag.empID
                     left join employee as doc on i.doctorID = doc.empID 
-                    ".$filter." AND (i.medScruID=".$_SESSION["user_id"].");
-                    order by claimID DESC LIMIT $start, $limit ");
+                    ".$filter." AND (i.medScruID=".$_SESSION["user_id"].")
+                    order by claimID DESC LIMIT $start, $limit;");
         // var_dump($filterParams);  
         $stmt->execute();
         return $stmt->fetchAll();
@@ -113,6 +113,7 @@ class ClaimCase extends Models{
                     where caseStatus NOT IN ('Completed','Rejected') and i.medScruID=".$_SESSION["user_id"].";
                     ".$filter."
                     order by claimID DESC LIMIT $start, $limit");
+                    //please look at here later need fix
         // var_dump($filterParams);
         
         $stmt->execute();
@@ -122,9 +123,11 @@ class ClaimCase extends Models{
         $stmt= $this->conn->prepare("SELECT count(claimID) AS cnt from $this->table as i where caseStatus NOT IN ('Completed','Rejected');".$filter);
         $stmt->execute();
         return $stmt->fetchAll();
+        //again look here later need fix
     }
     public function getAllCountCompleted($filter){
-        $stmt= $this->conn->prepare("SELECT count(claimID) AS cnt from $this->table as i where caseStatus IN ('Completed','Rejected');".$filter);
+        var_dump($filter);
+        $stmt= $this->conn->prepare("SELECT count(claimID) AS cnt from $this->table as i ".$filter." AND (i.medScruID=".$_SESSION["user_id"].");");
         $stmt->execute();
         return $stmt->fetchAll();
     }
