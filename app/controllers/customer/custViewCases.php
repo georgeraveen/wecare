@@ -13,5 +13,31 @@ class CustViewCases extends Controller{
         $this->view('customer/custViewCases',$queue);
         include './../app/footer.php';
     }
+    public function addFeedback(){
+        $this->checkPermissionCust();
+        try { 
+            if($_POST['addFeedback']){
+                $this->model('claimCase');
+                $addFeedback = new ClaimCase();
+               //$addFeedback->startTrans();
+
+                $result= $addFeedback->setFeedbackValue($this->valValidate($_SESSION["user_id"]),
+                        $this->valValidate($_POST['custFeedback']));
+                       
+                $result= $addFeedback->addFeedback($this->valValidate($_SESSION["user_id"]));
+            
+                $_SESSION["successMsg"]="updated successfully";
+               //$addFeedback->transCommit();
+                header("Location: ./index");
+            exit;
+            }
+        }
+    
+        catch (\Throwable $th) {
+           $_SESSION["errorMsg"]="Error occured when updating";
+            $updateCust->transRollBack();
+            header("Location: ./index");
+       }
+    }
 
 }
