@@ -101,25 +101,12 @@ class viewPendingCases extends Controller{
     public function editCase(){
         $this->checkPermission("MED");
         $this->model('claimCase');
-        $editCase= new ClaimCase();
-
-        // $this->model('customer');
-        // $customerMod= new Customer();
-
-        $this->model('hospital');
-        $hospitalMod= new Hospital();
-
-        $this->model('employee');
-        $empMod= new Employee();
-
+        $caseDetails= new ClaimCase();
+        $doctorID=$_SESSION["user_id"];
+        $singleCaseDetails=$caseDetails->getCaseDetailsDoctor( $this->valValidate($_GET['id']));  
         if($_GET['action']=="edit"){
-            // $custList=$customerMod->getList();
-            $hospList=$hospitalMod->getAllNames();
-            $medList=$empMod->getEmpByTypeList("MED");
-            $fagList=$empMod->getEmpByTypeList("FAG");
-            $caseDetails=$editCase->getDetails($this->valValidate($_GET['id']));
             include './../app/header.php';
-            $this->view('medScru/insuranceCase',['id'=>$this->valValidate($_GET['id']),'caseDetails'=>$caseDetails,'hospList'=>$hospList,'medList'=>$medList,'fagList'=>$fagList]);
+            $this->view('medScru/insuranceCase',['id'=>$this->valValidate($_GET['id']),'singleCaseDetails'=>$singleCaseDetails]);
             include './../app/footer.php';
         }
         else{

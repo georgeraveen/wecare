@@ -29,10 +29,6 @@ class viewPendingQueue extends Controller{
         $caseDetails= new ClaimCase();
         $doctorID=$_SESSION["user_id"];
         $singleCaseDetails=$caseDetails->getCaseDetailsDoctor( $this->valValidate($_GET['id']));  
-      
-
-              
-
         if($_GET['action']=="edit"){
           
             include './../app/header.php';
@@ -49,9 +45,7 @@ class viewPendingQueue extends Controller{
     
   //update Single case details
   public function updateCase(){
-      try{
-
-      
+      try{     
     $this->checkPermission("DOC");
     if($_POST['editSingleCaseDetails']){
         $this->model('claimCase');
