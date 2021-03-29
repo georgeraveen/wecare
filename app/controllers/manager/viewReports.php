@@ -131,8 +131,5 @@ class viewReports extends Controller{
             header("Location: ./index");
         }
     }
-    public function performanceChart(){
-        echo "Chart";
-    }
 
 }
