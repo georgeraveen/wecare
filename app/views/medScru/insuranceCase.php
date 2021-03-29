@@ -1,18 +1,14 @@
-
-<?php
-//var_dump($data);
-//var_dump($data['singleCaseDetails'][0]['custName']);
-?>
 <link rel="stylesheet" href= "./../../css/home.css">
 <link rel="stylesheet" href= "./../../css/style.css">
-
-<div class="containers">
-    <h1>Process insurance Claim Case</h1><br>
-<div class="form-container">
-
-
-
-<form action="./updateCase" method="post">
+<div class="containers">  
+<ul class="breadcrumb">
+    <li><a href="./../medScruHome/index">Home</a></li>
+    <li><a href="./../viewPendingCases/viewCase">Scrutinizer Pending cases queue</a></li>
+    <li>Process case</a></li>
+  </ul>
+  <h1>Process insurance Claim Case</h1><br>
+  <div class="form-container">
+  <form action="./updateCase" method="post">
             <div class="row">
                 <div class="column">
                     <div class="formInput">
@@ -31,13 +27,13 @@
                 <div class="column">
                     <div class="formInput">
                         <label for="admitDate">Admit Date</label><br>
-                        <input type="date" id="admitDate" name="admitDate" class="input" value=<?php echo $data['singleCaseDetails'][0]['admitDate']?>><br>
+                        <input type="date" id="admitDate" name="admitDate" class="input" value=<?php echo $data['singleCaseDetails'][0]['admitDate']?> readonly><br>
                     </div>
                 </div>
                 <div class="column">
                     <div class="formInput">
                         <label for="ICUfromDate" >ICU from Date</label><br>
-                        <input type="date" id="ICUfromDate" name="ICUfromDate" class="input"  value=<?php echo $data['singleCaseDetails'][0]['icuFromDate']?> ><br>
+                        <input type="date" id="ICUfromDate" name="ICUfromDate" class="input"  value=<?php echo $data['singleCaseDetails'][0]['icuFromDate']?> readonly><br>
                     </div>
                 </div>
             </div>
@@ -45,13 +41,13 @@
                 <div class="column">
                     <div class="formInput">
                         <label for="dischargeDate" >Discharge Date</label><br>
-                        <input type="date" id="dischargeDate" name="dischargeDate" class="input" value=<?php echo $data['singleCaseDetails'][0]['dischargeDate']?> ><br>
+                        <input type="date" id="dischargeDate" name="dischargeDate" class="input" value=<?php echo $data['singleCaseDetails'][0]['dischargeDate']?> readonly><br>
                     </div>
                 </div>
                 <div class="column">
                     <div class="formInput">
                         <label  for="ICUtoDate">ICU to Date</label><br>
-                        <input type="date" id="ICUtoDate" name="ICUtoDate" class="input" value=<?php echo $data['singleCaseDetails'][0]['icuToDate']?> > <br>
+                        <input type="date" id="ICUtoDate" name="ICUtoDate" class="input" value=<?php echo $data['singleCaseDetails'][0]['icuToDate']?> readonly><br>
                     </div>
                 </div>
             </div>
@@ -65,7 +61,7 @@
                 <div class="column">
                     <div class="formInput">
                         <label for="condition" >condition</label><br>
-                        <textarea  id="healthCondition" name="healthCondition" class="commentBox" ><?php echo $data['singleCaseDetails'][0]['healthCondition']?></textarea>
+                        <textarea readonly  id="healthCondition" name="healthCondition" class="commentBox" ><?php echo $data['singleCaseDetails'][0]['healthCondition']?></textarea>
                     </div>
                 </div>
             </div>
@@ -105,7 +101,7 @@
                 <div class="column">
                     <div class="formInput">
                         <label for="doctorComment">Doctor's Comment</label><br>
-                        <textarea  type="text" id="doctorComment" name="doctorComment" class="commentBox" placeholder="comments..."></textarea><br>
+                        <textarea  type="text" id="doctorComment" name="doctorComment" class="commentBox" readonly ><?php echo $data['singleCaseDetails'][0]['doctorComment']?></textarea><br>
                     </div>
                 </div>
             </div>
@@ -116,5 +112,5 @@
           </div>
             </div>
     </form>
-</div>
+  </div>
 </div>
