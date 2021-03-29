@@ -263,13 +263,12 @@ public function getCustDeatail($custID){
     return $stmt->fetchAll();
 }
 //set valuie for update customer details
-public function setValueUpdateCust($PcustID,$Pemail,$PcustAddress){
+public function setValueUpdateCust($PcustID,$Pemail,$PcustAddress,$custContacts){
    
     $this->custID=$PcustID;
    $this->email =  !empty($Pemail) ? $Pemail : null;
    $this->custAddress= !empty($PcustAddress) ? $PcustAddress : null;
-   
-      
+   $this->custContact= explode(',',$custContacts);
 }
 //updatecustomer details
 public function updateCustomerDetails($_id){
@@ -277,6 +276,21 @@ public function updateCustomerDetails($_id){
     $stmt -> bindParam(':custAddress', $this->custAddress );
     $stmt -> bindParam(':email', $this->email );
     $stmt->execute();
+    // echo $this->custContact;
+    $stmt0= $this->conn->prepare(" DELETE FROM customer_contact WHERE custID = :custID");
+    $stmt0 -> bindParam(':custID', $_id );
+    $stmt0->execute();
+    foreach($this->custContact as $number){
+        $stmt1= $this->conn->prepare("INSERT into customer_contact (custID,custContactNo) values (:custID, :custContactNo) ");
+        $n=(int)$number;
+        // echo $n;
+        if($n!=0){
+            $stmt1 -> bindParam(':custID', $_id );
+            $stmt1 -> bindParam(':custContactNo', $n);
+            $stmt1->execute();
+                
+        }
+    }
  }
 }
 
