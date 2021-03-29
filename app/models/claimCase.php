@@ -400,6 +400,16 @@ public function deleteOverPayments($_id){
                                                             where claimID = $_id ") ;   
     $stmt1->execute();   
 }
+public function performanceView($fromdate,$todate){
+    $stmt= $this->conn->prepare("SELECT medScruID,COUNT(claimID) as num,concat(e.empFirstName,' ',e.emplastName) as empName from $this->table as i 
+    inner join employee as e on e.empID = i.medScruID
+    WHERE (dischargeDate BETWEEN '$fromdate' AND '$todate')
+    GROUP BY medScruID ");
+
+//var_dump($stmt);
+$stmt->execute();
+return $stmt->fetchAll();
+}
 
 }
 ?>

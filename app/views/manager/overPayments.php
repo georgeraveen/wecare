@@ -26,7 +26,7 @@
               "<td>".$row['overPaidAmount']."</td>".
               "<td>".$row['remark']."</td>".
               "<td> <a class=\"deleteBtn\" href=\"./deleteOverPaid?action=delete&id=".$row['claimID']."\">Delete</a> "."</td>".
-              "<td> <a class=\"editBtn\" href=\"./viewOverPaid?action=edit&id=".$row['claimID']."\">View</a> "."</td>"."</tr>";
+              "<td> <a class=\"editBtn\" href=\"./viewOverPaid?action=edit&id=".$row['claimID']."\">Edit</a> "."</td>"."</tr>";
               
       }
 

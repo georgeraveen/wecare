@@ -21,7 +21,7 @@ class viewReports extends Controller{
             include './../app/header.php';
             $this->view('manager/overPayments',$queue);
             include './../app/footer.php';
-        };
+        }
     }
 
     public function reviewCasesFeedback(){
@@ -41,10 +41,18 @@ class viewReports extends Controller{
     }
 
     public function employeePerformanceReport(){
+
         $this->checkPermission("MGR");
-        include './../app/header.php';
-        $this->view('manager/employeePerformanceReport');
-        include './../app/footer.php';
+        if($_POST['performance']){
+           //echo "gfhf";
+            $this->model('claimCase');
+            $caseView= new ClaimCase();
+            $queue=$caseView->performanceView($this->valValidate($_POST['fromDate']),$this->valValidate($_POST['toDate']));
+            //var_dump($queue);
+            include './../app/header.php';
+            $this->view('manager/employeePerformanceReport',$queue);
+            include './../app/footer.php';
+        }
     }
 
     public function viewCases(){
@@ -122,6 +130,9 @@ class viewReports extends Controller{
             $_SESSION["errorMsg"]="Error occured when updating over payment.";
             header("Location: ./index");
         }
+    }
+    public function performanceChart(){
+        echo "Chart";
     }
 
 }
