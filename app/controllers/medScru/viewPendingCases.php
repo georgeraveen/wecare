@@ -64,46 +64,35 @@ class viewPendingCases extends Controller{
 
     }
     public function updateCase(){
-        try {
-            $this->checkPermission("MED");
-            if($_POST['editInsurance']){
-                $this->model('customer');
-                $customerMod= new Customer();
-                $currentPolicy=$customerMod->getPolicy($this->valValidate($_POST['customer']));
+        try{     
+            $this->checkPermission("DEO");
+                //if($_POST['editSingleCaseDetails']){
                 $this->model('claimCase');
                 $editClaimCase = new ClaimCase();
-                if($_SESSION["deoType"]=="Trainee"){
-                    $casePermission=$editClaimCase->checkCasePermission($this->valValidate($_POST['claimID']),"DEO",$_SESSION["user_id"]);
-                    if(count($casePermission)==0){
-                        throw new Exception("Trainee is not allowed to update this case", 1);
-                        
-                    }
-                }
-                $result= $editClaimCase->setValue($this->valValidate($_POST['customer']),$this->valValidate($_POST['hospital']),
-                        $this->valValidate($_POST['admitDate']),$this->valValidate($_POST['dischargeDate']),$this->valValidate($_POST['icuFromDate']),
-                        $this->valValidate($_POST['icuToDate']),$this->valValidate($_POST['medScrut']),$this->valValidate($_POST['fieldAg']),
-                        $this->valValidate($_POST['healthCondition']),$currentPolicy[0]['policyID']);
-                $result= $editClaimCase->update($this->valValidate($_POST['claimID']));
-                $_SESSION["successMsg"]="Case details updated successfully";
-                sleep(1);
+                $result= $editClaimCase->setValueDoc(
+                        $this->valValidate($_POST['doctorComment']),$this->valValidate($_POST['healthCondition']));
+                       
+                $result= $editClaimCase->updateSingleCaseDoc($this->valValidate($_POST['claimID']));
+                $_SESSION["successMsg"]="Case Updated Successfully!";
                 header("Location: ./viewCase");
                 exit;
+                //}
             }
-        } catch (\Throwable $th) {
-            $_SESSION["errorMsg"]=$th->getMessage();
-            // var_dump($th->getMessage());
-            // throw $th;
-            header("Location: ./viewCase");
+        catch(\Throwable $th) {
+                $newCustomer->transRollBack();
+                $_SESSION["errorMsg"]="Error occured when creating a new customer.";
+                header("Location: ./index");
         }
     }
-
-
+    
     public function editCase(){
         $this->checkPermission("MED");
+        //var_dump($_GET['id']);
+        //var_dump("oogabooga");
         $this->model('claimCase');
         $caseDetails= new ClaimCase();
-        $doctorID=$_SESSION["user_id"];
-        $singleCaseDetails=$caseDetails->getCaseDetailsDoctor( $this->valValidate($_GET['id']));  
+        //$doctorID=$_SESSION["user_id"];
+        $singleCaseDetails=$caseDetails->getCaseDetailsMed( $this->valValidate($_GET['id']));  
         if($_GET['action']=="edit"){
             include './../app/header.php';
             $this->view('medScru/insuranceCase',['id'=>$this->valValidate($_GET['id']),'singleCaseDetails'=>$singleCaseDetails]);
@@ -114,6 +103,24 @@ class viewPendingCases extends Controller{
             exit;
         }
     }
+
+    public function viewFil($filePath,$fileName,$type){
+        $this->checkPermission("MED");
+        try {
+            $this->model('claimCase');
+            $caseDetails= new ClaimCase();
+            $isPermission = $caseDetails->checkCasePermission($filePath,"MED",$_SESSION["user_id"]);
+            if(count($isPermission)){
+                $this->viewFile("claimCases/".$filePath."/".$fileName.".".$type,$type);
+            }
+            else{
+                $this->permissionError();
+            }
+        } catch (\Throwable $th) {
+            $this->permissionError();
+        }
+        
+    }  
 
 
 }

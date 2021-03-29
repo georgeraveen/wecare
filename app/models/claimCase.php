@@ -189,7 +189,18 @@ class ClaimCase extends Models{
         $stmt->execute();
         return $stmt->fetchAll();
     }
-
+    public function getCaseDetailsMed($claimID){
+        $stmt= $this->conn->prepare("SELECT customer.custName,claimID ,admitDate,icuFromDate,dischargeDate,icuToDate,hospital.name,doctorComment,healthCondition 
+        FROM claim_case  
+        INNER JOIN hospital 
+            ON claim_case.hospitalID=hospital.hospitalID 
+        INNER JOIN customer
+            ON claim_case.custID=customer.custID 
+           
+        WHERE claimID = $claimID");
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
 
     //**************************************** FUNCTIONS OF DOCTOR **********************************************
 
@@ -227,6 +238,7 @@ class ClaimCase extends Models{
         $stmt->execute();
         return $stmt->fetchAll();
     }
+
     public function setValueDoc($doctorComment,$healthCondition){
        
         $this->healthCondition= !empty($healthCondition) ? $healthCondition : null;
