@@ -12,9 +12,16 @@ class viewReports extends Controller{
 
     public function overPayments(){
         $this->checkPermission("MGR");
-        include './../app/header.php';
-        $this->view('manager/overPayments');
-        include './../app/footer.php';
+        if($_POST['overPaid']){
+           //echo "gfhf";
+            $this->model('claimCase');
+            $caseView= new ClaimCase();
+            $queue=$caseView->getOverPaid($this->valValidate($_POST['fromDate']),$this->valValidate($_POST['toDate']));
+            //var_dump($queue);
+            include './../app/header.php';
+            $this->view('manager/overPayments',$queue);
+            include './../app/footer.php';
+        };
     }
 
     public function reviewCasesFeedback(){
@@ -25,7 +32,7 @@ class viewReports extends Controller{
             $this->model('claimCase');
             $caseView= new ClaimCase();
             $queue=$caseView->getAllReview($this->valValidate($_POST['fromDate']),$this->valValidate($_POST['toDate']),$this->valValidate($_POST['type']));
-            var_dump($queue);
+            //var_dump($queue);
             include './../app/header.php';
             $this->view('manager/reviewCasesFeedback',$queue);
             include './../app/footer.php';
@@ -70,6 +77,12 @@ class viewReports extends Controller{
         $_SESSION["errorMsg"]="Error occured when adding case";
         header("Location: ./index");
     }
+    }
+    public function viewOverPaid(){
+        
+    }
+    public function deleteOverPaid(){
+        
     }
 
 }

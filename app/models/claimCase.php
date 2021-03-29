@@ -366,6 +366,16 @@ public function overPayments($_id,$value,$remark){
     $stmt1->execute();   
 
 }
+public function getOverPaid($fromdate,$todate){
+
+    $stmt= $this->conn->prepare("SELECT o.claimID,dischargeDate,concat(e.empFirstName,' ',e.emplastName) as empName, o.overPaidAmount, o.remark  from $this->table as i 
+                inner join employee as e on e.empID = i.medScruID 
+                inner join over_paid as o on i.claimID = o.claimID
+                WHERE (dischargeDate BETWEEN '$fromdate' AND '$todate')");
+    //var_dump($stmt);
+    $stmt->execute();
+    return $stmt->fetchAll();
+}
 
 }
 ?>
