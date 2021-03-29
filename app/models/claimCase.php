@@ -355,14 +355,15 @@ public function viewCases($_id){
 }
 public function overPayments($_id,$value,$remark){
     $stmt= $this->conn->prepare("insert into over_paid (claimID,overPaidAmount,remark) 
-                                                            values ($_id,$value,'$remark')");
+                                                            values (:claimID,:overPaidAmount,:remark)");
     $stmt -> bindParam(':claimID', $_id );
     $stmt -> bindParam(':overPaidAmount', $value );
     $stmt -> bindParam(':remark', $remark );
+   // var_dump()
     $stmt->execute();
-    $stmt= $this->conn->prepare("update $this->table set overPaid= 1
+    $stmt1= $this->conn->prepare("update $this->table set overPaid= 1
                                                             where claimID = $_id ") ;   
-    $stmt->execute();   
+    $stmt1->execute();   
 
 }
 
