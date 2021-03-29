@@ -18,7 +18,6 @@
         <th>Status</th>
         <th>Hospital</th>
         <th>Field Agent</th>
-        <th>Med Scrutinizer</th>
         <th>Doctor</th>
         <th>Action</th>
       </tr>
@@ -58,16 +57,6 @@
             </select>  
           </th>
           <th id="filter-row" >
-            <select name="med">
-              <option value="">All</option>
-              <?php
-                foreach ($data['medList'] as $med) {
-                  echo "<option ".($_GET['med']==$med['empID'] ? "selected":"")." value=\"".$med['empID']."\">". $med['empFirstName']." ". $med['empLastName'] ."</option>";
-                }
-              ?>
-            </select>
-          </th>
-          <th id="filter-row" >
             <select name="doc">
               <option value="">All</option>
               <?php
@@ -89,7 +78,6 @@
               "<td>".$row['caseStatus']."</td>".
               "<td>".$row['name']."</td>".
               "<td>".$row['fag']."</td>".
-              "<td>".$row['med']."</td>".
               "<td>".$row['doc']."</td>".
               "<td><a class=\"editBtn\" href=\"./editCase?action=edit&id=".$row['claimID']."\">View/Edit</a> "."</td>"."</tr>";
       }
@@ -107,7 +95,6 @@
               "status=".$_GET['status']."&".
               "hospital=".$_GET['hospital']."&".
               "fag=".$_GET['fag']."&".
-              "med=".$_GET['med']."&".
               "doc=".$_GET['doc']."&".
               "page=".($page-1)."\">&laquo;</a>";
        }
@@ -122,7 +109,6 @@
                 "status=".$_GET['status']."&".
                 "hospital=".$_GET['hospital']."&".
                 "fag=".$_GET['fag']."&".
-                "med=".$_GET['med']."&".
                 "doc=".$_GET['doc']."&".
                 "page=".$i."\" ". $active. ">" . ($i+1) ."</a>";
         }
@@ -132,7 +118,6 @@
                 "status=".$_GET['status']."&".
                 "hospital=".$_GET['hospital']."&".
                 "fag=".$_GET['fag']."&".
-                "med=".$_GET['med']."&".
                 "doc=".$_GET['doc']."&".
                 "page=".($page+1)."\">&raquo;</a>";
         }
