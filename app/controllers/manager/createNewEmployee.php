@@ -40,7 +40,7 @@ class createNewEmployee extends Controller{
         }
         catch(\Throwable $th){
             $newEmployee->transRollBack();
-            $_SESSION["errorMsg"]="Error occured when adding a new employee.";
+            $_SESSION["errorMsg"]="Error occured when adding a new employee. ".$th->getMessage();
 
             header("Location: ./index");
         }
