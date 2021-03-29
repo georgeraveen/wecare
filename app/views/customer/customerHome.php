@@ -6,13 +6,7 @@ $result=$data;
 <link rel="stylesheet" href= "./../../css/modal.css">
 
 <img src="./../../images/undraw_medical_care_movn.svg" class="img-background">
-<a href="#">
-<div class="container-notifi">
-    <div class="notification-item" >
-        <img src="./../../images/icons8-notification-100.png" class="notiIcon">
-    </div>
-</div>
-</a>
+
 <div class="grid-container">
   <a class="grid-item hide" href="#">
   
@@ -53,7 +47,7 @@ $result=$data;
               
                 foreach($result as $row){
                   echo "<tr>".
-                        "<td id=\"image-".$row['id']."\"><img class=\"thumb-promo\" src=\"./../../documents/promo/".$row['image']."\"/></td>".
+                        "<td id=\"image-".$row['id']."\"><img class=\"promoImg\" src=\"./../../documents/promo/".$row['image']."\"/></td>".
                         "</tr>";
                 }
               
