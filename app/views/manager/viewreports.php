@@ -1,6 +1,10 @@
 <link rel="stylesheet" href= "./../../css/home.css">
 <link rel="stylesheet" href= "./../../css/style.css">
 <div class="containers">
+<ul class="breadcrumb">
+    <li><a href="./../managerHome/index">Home</a></li>
+    <li>View Reports</a></li>
+</ul>
   <h1>View Reports</h1><br>
     <div class="form-container">
       <h2>Review cases and feedback</h2>

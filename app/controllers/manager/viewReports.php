@@ -57,13 +57,19 @@ class viewReports extends Controller{
     public function overPaidCase(){
         
             $this->checkPermission("MGR");
+            try{
             $this->model('claimCase');
             $overPaid= new ClaimCase();
             if($_POST['overPayment']){
                 $reslut=$overPaid->overPayments($this->valValidate($_POST['claimID']),$this->valValidate($_POST['overPaidValue']),$this->valValidate($_POST['remark']));
+                $_SESSION["successMsg"]="Case added to the over payments";
                 header("Location: ./index");
                 exit;
         }
+    }catch(\Throwable $th){
+        $_SESSION["errorMsg"]="Error occured when adding case";
+        header("Location: ./index");
+    }
     }
 
 }
