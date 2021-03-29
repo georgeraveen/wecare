@@ -311,6 +311,7 @@ public function getCompletedCases($fieldAgID){
     return $stmt->fetchAll();
 
 }
+//**************************** Functions for customer***********************
 //set value for feedback
     
     public function setFeedbackValue($PclaimID,$PcustFeedback){
@@ -328,6 +329,15 @@ public function addFeedback(){
     
   // var_dump($stmt);
     $stmt->execute();
+}
+//get customer claim history
+public function getAllCustCases($custID){
+    $stmt= $this->conn->prepare("SELECT claimID,dischargeDate,caseStatus,hospital.name,payableAmount
+    FROM claim_case
+    INNER JOIN hospital ON claim_case.hospitalID=hospital.hospitalID
+    WHERE custID = $custID ORDER BY claimID DESC");
+    $stmt->execute();
+    return $stmt->fetchAll();
 }
 
 }

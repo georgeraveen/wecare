@@ -1,5 +1,6 @@
 <?php
     include './../app/config/config.php';
+    
 class CustViewCases extends Controller{
     
     public function index(){
@@ -7,7 +8,7 @@ class CustViewCases extends Controller{
         $this->model('claimCase');
         $claimCase= new ClaimCase();
         // var_dump($claimCase);
-        $queue=$claimCase->getAllQueue();
+        $queue=$claimCase->getAllCustCases($_SESSION['user_id']);
 
         include './../app/header.php';
         $this->view('customer/custViewCases',$queue);

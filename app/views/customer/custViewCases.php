@@ -1,4 +1,6 @@
-
+<?php
+//var_dump($data);
+?>
 <!-- <link rel="stylesheet" href= "./../css/home.css">   -->
 <link rel="stylesheet" href= "./../../css/custStyle.css">
 <link rel="stylesheet" href= "./../../css/custStyle2.css">
