@@ -178,7 +178,7 @@ class Employee extends Models{
     }
     public function updateStatus($_id){
 
-        $stmt= $this->conn->prepare("update $this->table set status= 0,hashPass=NULL
+        $stmt= $this->conn->prepare("update $this->table set status= 0,hashPass=NULL,empFirstName='removed',empLastName='removed',empDOB='removed',empNIC='removed',empAddress='removed',email='removed'
                                                             where empID = $_id ") ;   
         $stmt->execute();                                                  
 
