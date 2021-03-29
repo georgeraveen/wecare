@@ -80,7 +80,7 @@ class Roster extends Controller{
         } catch (\Throwable $th) {
             $newRoster->transRollBack();
             $_SESSION["errorMsg"]="Error occured when inserting values";
-            throw $th;
+            // throw $th;
         }
         header("Location: ./index");
     }
@@ -109,7 +109,7 @@ class Roster extends Controller{
         } catch (\Throwable $th) {
             $newRoster->transRollBack();
             $_SESSION["errorMsg"]="Error occured when updating values";
-            throw $th;
+            // throw $th;
         }
         header("Location: ./index");
     }
