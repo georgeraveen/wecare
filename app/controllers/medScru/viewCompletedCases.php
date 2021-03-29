@@ -10,6 +10,8 @@ class viewCompletedCases extends Controller{
     }
     public function viewCase(){
         $this->checkPermission("MED");
+        //echo $_SESSION["user_id"];
+        
         $this->model('claimCase');
         $claimCase= new ClaimCase();
         //filters
@@ -60,6 +62,7 @@ class viewCompletedCases extends Controller{
         include './../app/header.php';
         $this->view('medScru/completedCases',["queue"=>$queue,"pagination"=>$pagination,'hospList'=>$hospList,'medList'=>$medList,'fagList'=>$fagList,'docList'=>$docList,'filter'=>$filter]);
         include './../app/footer.php';
+
     }
 
 
