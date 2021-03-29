@@ -1,11 +1,11 @@
-<link rel="stylesheet" href= "./../../css/home.css">
-<link rel="stylesheet" href= "./../../css/style.css">
+<link rel="stylesheet" href="./../../css/home.css">
+<link rel="stylesheet" href="./../../css/style.css">
 <div class="containers">
-<ul class="breadcrumb">
-    <li><a href="./../managerHome/index">Home</a></li>
-    <li>Create new employee Profile</a></li>
-</ul>
-  <h1>Create new employee Profile</h1><br>
+    <ul class="breadcrumb">
+        <li><a href="./../managerHome/index">Home</a></li>
+        <li>Create new employee Profile</a></li>
+    </ul>
+    <h1>Create new employee Profile</h1><br>
     <div class="form-container">
 
         <form action="./createEmployee" method="post">
@@ -15,7 +15,7 @@
                         <label for="empFirstName">First Name</label><br>
                         <input type="text" id="empFirstName" name="empFirstName" required class="input"><br>
                     </div>
-                
+
                     <div class="formInput">
                         <label for="empLastName">Last Name</label><br>
                         <input type="text" id="empLastName" name="empLastName" required class="input"><br>
@@ -76,7 +76,7 @@
                 <div class="column">
                     <div class="formInput" hidden>
                         <label id="empSpLabel" for="empSp">Option</label><br>
-                        <input type="text" id="empSp" name="empSp" required class="input" ><br>
+                        <input type="text" id="empSp" name="empSp" required class="input"><br>
                     </div>
                 </div>
             </div>

@@ -1,11 +1,11 @@
-<link rel="stylesheet" href= "./../../css/home.css">
-<link rel="stylesheet" href= "./../../css/style.css">
+<link rel="stylesheet" href="./../../css/home.css">
+<link rel="stylesheet" href="./../../css/style.css">
 <div class="containers">
-<ul class="breadcrumb">
-    <li><a href="./../managerHome/index">Home</a></li>
-    <li>View Hospitals</a></li>
-</ul>
-  <h1>Hospitals</h1><br>
+    <ul class="breadcrumb">
+        <li><a href="./../managerHome/index">Home</a></li>
+        <li>View Hospitals</a></li>
+    </ul>
+    <h1>Hospitals</h1><br>
     <div class="form-container">
 
         <form action="./newHospital" method="post">
@@ -38,21 +38,21 @@
     </div>
     <br><br>
     <div style="width : 80%" class="table-container">
-    <table class="table-view">
-      <tr>
-        <th>Hospital Name</th>
-        <th>Contact Number</th>
-        <th>Address</th>
-        <th colspan="2" style="text-align:center">Action</th>
-      </tr>
-      <?php
-      foreach($data as $row){
-        echo "<tr>"."<td>".$row['name']."</td>".
-              "<td>".$row['hospitalContactNo']."</td>".
-              "<td>".$row['address']."</td>".
-              "<td> <a class=\"deleteBtn\" href=\"./deleteHospital?action=delete&id=".$row['hospitalID']."\">Delete</a> "."</td>".
-              "<td> <a class=\"editBtn\" href=\"./editHospital?action=edit&id=".$row['hospitalID']."\">Edit</a> "."</td>"."</tr>";
-      }
-      ?>
-    </table>
-</div>
+        <table class="table-view">
+            <tr>
+                <th>Hospital Name</th>
+                <th>Contact Number</th>
+                <th>Address</th>
+                <th colspan="2" style="text-align:center">Action</th>
+            </tr>
+            <?php
+            foreach ($data as $row) {
+                echo "<tr>" . "<td>" . $row['name'] . "</td>" .
+                    "<td>" . $row['hospitalContactNo'] . "</td>" .
+                    "<td>" . $row['address'] . "</td>" .
+                    "<td> <a class=\"deleteBtn\" href=\"./deleteHospital?action=delete&id=" . $row['hospitalID'] . "\">Delete</a> " . "</td>" .
+                    "<td> <a class=\"editBtn\" href=\"./editHospital?action=edit&id=" . $row['hospitalID'] . "\">Edit</a> " . "</td>" . "</tr>";
+            }
+            ?>
+        </table>
+    </div>

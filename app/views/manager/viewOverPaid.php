@@ -1,24 +1,24 @@
 <?php
-    //var_dump($data);
-    echo $data['caseDetails'][0]['empName'];
+//var_dump($data);
+echo $data['caseDetails'][0]['empName'];
 ?>
 
-<link rel="stylesheet" href= "./../../css/home.css">
-<link rel="stylesheet" href= "./../../css/style.css">
+<link rel="stylesheet" href="./../../css/home.css">
+<link rel="stylesheet" href="./../../css/style.css">
 <div class="containers">
-<ul class="breadcrumb">
-    <li><a href="./../managerHome/index">Home</a></li>
-    <li><a href="./index">View Reports</a></li>
-    <li>Manage over payment case</a></li>
-</ul>
-  <h1>Review Cases</h1><br>
+    <ul class="breadcrumb">
+        <li><a href="./../managerHome/index">Home</a></li>
+        <li><a href="./index">View Reports</a></li>
+        <li>Manage over payment case</a></li>
+    </ul>
+    <h1>Review Cases</h1><br>
     <div class="form-container">
         <form action="./updateOvePaid" method="post">
             <div class="row">
                 <div class="column">
                     <div class="formInput">
                         <label for="claimID">Claim ID</label><br>
-                        <input type="text" id="claimID" name="claimID" class="input" readonly value=<?php echo $data['caseDetails'][0]['claimID']?>><br>
+                        <input type="text" id="claimID" name="claimID" class="input" readonly value=<?php echo $data['caseDetails'][0]['claimID'] ?>><br>
                     </div>
                 </div>
                 <div class="column">
@@ -50,7 +50,7 @@
             </div>
             <div class="row">
                 <div class="column">
-                        <a class="deleteBtn" href="./index">Cancel</a>
+                    <a class="deleteBtn" href="./index">Cancel</a>
                 </div>
                 <div class="column">
                     <input type="hidden" id="hide" name="hide" class="input" value="hide"><br>
