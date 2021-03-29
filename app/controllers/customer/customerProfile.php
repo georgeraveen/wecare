@@ -10,7 +10,7 @@ class CustomerProfile extends Controller{
         $details = $custDetails->getCustByID( $custID);
         $contact= $custDetails->getCustContactByID($custID);
         $policy=$custDetails->getCustInsuranceByID($custID);
-        include './../app/header.php';
+       // include './../app/header.php';
         $this->view('customer/customerProfile', [$details,$contact,$policy]);
         include './../app/footer.php';
     }
@@ -43,6 +43,23 @@ class CustomerProfile extends Controller{
             header("Location: ./index");
        }
     }
+   /*/ public function viewFil($filePath,$fileName,$type){
+        $this->checkPermission("CUST");
+    //    try {
+    //        $this->model('customer');
+     //       $viewPolicyDocument= new Customer();
+           // $isPermission = $viewPolicyDocument->checkPermissionCust();
+           // if(count($isPermission)){
+                $this->viewFile("policy/".$filePath."/".$fileName.".".$type,$type);
+           // }
+            ///else{
+             //   $this->permissionError();
+           // }
+        } catch (\Throwable $th) {
+          //  $this->permissionError();
+        }
+        
+    }  */
 }
 
   

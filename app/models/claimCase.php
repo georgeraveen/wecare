@@ -126,6 +126,7 @@ class ClaimCase extends Models{
             case "FAG":
                 $emp=" FieldAgID = $empID";
                 break;
+            
             case "DOC":
                 $emp=" doctorID = $empID";
                 break;

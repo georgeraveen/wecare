@@ -1,5 +1,5 @@
 <?php
-var_dump($data);
+//var_dump($data);
 $result=$data;
 ?>
 <link rel="stylesheet" href= "./../../css/homeCust.css">
