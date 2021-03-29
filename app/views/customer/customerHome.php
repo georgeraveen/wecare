@@ -46,9 +46,7 @@ $result=$data;
                <?php
               
                 foreach($result as $row){
-                  echo "<tr>".
-                        "<td id=\"image-".$row['id']."\"><img class=\"promoImg\" src=\"./../../documents/promo/".$row['image']."\"/></td>".
-                        "</tr>";
+                  echo  "<img class=\"promoImg\" src=\"./../../documents/promo/".$row['image']."\"/>";
                 }
               
 

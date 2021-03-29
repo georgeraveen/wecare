@@ -55,7 +55,7 @@
                     ?>
                     </table>
                 </div>
-          <div class="column">
+          <div class="column"><br><br>
                 <input type="submit" id="updateDetails" name="updateDetails" class="btn-submit" value="Update Details"><br>
           </div>
 
