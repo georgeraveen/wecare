@@ -16,7 +16,7 @@
 
 
 
-    <form action="./updateCase" method="post" enctype="multipart/form-data">
+    <form action="./updateCase" method="post" enctype="multipart/form-data" onSubmit="showLoader()">
             <div class="row">
                 <div class="column">
                     <div class="formInput">
