@@ -112,7 +112,7 @@
                 <div class="column">
                     <div class="formInput">
                         <label for="payAmount">Payable Amount</label><br>
-                        <input type="number" id="payAmount" name="payAmount" class="input" value="<?php echo $data['singleCaseDetails'][0]['claimID']?>" readonly><br>
+                        <input type="number" id="payAmount" name="payAmount" class="input" value="<?php echo $data['singleCaseDetails'][0]['payableAmount']?>" readonly><br>
                     </div>
                 </div>
                 

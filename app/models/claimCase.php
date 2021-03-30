@@ -190,7 +190,7 @@ class ClaimCase extends Models{
         return $stmt->fetchAll();
     }
     public function getCaseDetailsMed($claimID){
-        $stmt= $this->conn->prepare("SELECT customer.custName,claimID ,admitDate,icuFromDate,dischargeDate,icuToDate,hospital.name,doctorComment,healthCondition 
+        $stmt= $this->conn->prepare("SELECT customer.custName,claimID ,admitDate,icuFromDate,dischargeDate,icuToDate,hospital.name,doctorComment,healthCondition,payableAmount 
         FROM claim_case  
         INNER JOIN hospital 
             ON claim_case.hospitalID=hospital.hospitalID 
