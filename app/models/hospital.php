@@ -31,7 +31,11 @@ class Hospital  extends Models{
         $stmt->execute();
         return $stmt->fetchAll();
     }
-
+    public function getAllNames(){
+        $stmt= $this->conn->prepare("select * from $this->table where status = 1");
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
     public function getDetails($_id){
         $stmt= $this->conn->prepare("select * from $this->table where hospitalID = $_id");
         $stmt->execute();

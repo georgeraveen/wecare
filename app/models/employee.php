@@ -13,7 +13,9 @@ class Employee extends Models{
     private $empAddress;
     private $email;
     private $empTypeID;
-    private $empContactNo;
+    private $area;
+    private $specialization;
+    private $type;
 
 
     public function __construct(){
@@ -62,7 +64,12 @@ class Employee extends Models{
         return $stmt->fetchAll();
     }
     public function getEmpByTypeList($empType){
-        $stmt= $this->conn->prepare("SELECT empID,empFirstName,empLastName from $this->table where empTypeID = :empType ");
+        if($empType=="FAG"){
+            $stmt= $this->conn->prepare("SELECT emp.empID,empFirstName,empLastName,area from $this->table as emp inner join field_agt as fag on emp.empID=fag.empID where empTypeID = :empType ");
+        }
+        else{
+            $stmt= $this->conn->prepare("SELECT empID,empFirstName,empLastName from $this->table where empTypeID = :empType ");
+        }
         $stmt -> bindParam(':empType',$empType);
 
         $stmt->execute();
@@ -125,6 +132,7 @@ class Employee extends Models{
                 <div class="container">
                     <center>
                         <h1>Wecare Employee Portal Registration</h1>
+                        <p>We warmly welcome you to wecare family. Please find the below credentials to access the employee web portal at <a href="https://websolutionz.tech/wecare/employee">https://websolutionz.tech/wecare/employee</a></p>
                         <h4>Username: '.$this->empTypeID.$last_id.'</h4>
                         <h4>Password: '.$passDetails[0].'</h4>
                     </center>
@@ -134,6 +142,7 @@ class Employee extends Models{
         ';
 
         sendEmail($this->email, $this->empFirstName.$this->empLastName ,$email_string,"Wecare Employee Portal Registration");
+        return $last_id;
     }
     public function update($_id){
         $stmt= $this->conn->prepare("update $this->table set empFirstName= :empFirstName, empLastName= :empLastName, gender= :gender, empDOB= :empDOB,
@@ -169,9 +178,105 @@ class Employee extends Models{
     }
     public function updateStatus($_id){
 
-        $stmt= $this->conn->prepare("update $this->table set status= 0
+        $stmt= $this->conn->prepare("update $this->table set status= 0,hashPass=NULL,empFirstName='removed',empLastName='removed',empDOB='removed',empNIC='removed',empAddress='removed',email='removed'
                                                             where empID = $_id ") ;   
         $stmt->execute();                                                  
+
+    }
+    public function setValueFAG($empSp){
+        $this->area= $empSp;
+    }
+    public function createFAG($_id){
+        $stmt= $this->conn->prepare("insert into field_agt (empID,area) 
+                                                            values ($_id,:area)");
+        $stmt -> bindParam(':area', $this->area );
+        $stmt->execute();       
+    }
+    public function setValueDOC($empSp){
+        $this->specialization= $empSp;
+    }
+    public function createDOC($_id){
+        $stmt= $this->conn->prepare("insert into doctor (empID,specialization) 
+                                                            values ($_id,:specialization)");
+        $stmt -> bindParam(':specialization', $this->specialization );
+        $stmt->execute();       
+    }
+    public function fagDetails($_id){
+        $stmt= $this->conn->prepare("SELECT * from field_agt where empID= $_id ");
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+    public function docDetails($_id){
+        $stmt= $this->conn->prepare("SELECT * from doctor where empID= $_id ");
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+    public function deleteFAG($_id){
+        $stmt= $this->conn->prepare("delete from field_agt where empID= $_id");
+        $stmt->execute();
+    }
+    public function deleteDOC($_id){
+        $stmt= $this->conn->prepare("delete from doctor where empID= $_id");
+        $stmt->execute();
+    }
+    public function setValueDEO($empSp){
+        $this->type= $empSp;
+    }
+    public function createDEO($_id){
+        $stmt= $this->conn->prepare("insert into data_entry (empID,type) 
+                                                            values ($_id,:type)");
+        $stmt -> bindParam(':type', $this->type );
+        $stmt->execute();       
+    }
+    public function deoDetails($_id){
+        $stmt= $this->conn->prepare("SELECT * from data_entry where empID= $_id ");
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+    public function deleteDEO($_id){
+        $stmt= $this->conn->prepare("delete from data_entry where empID= $_id");
+        $stmt->execute();
+    }
+    public function resetPassword($empID){
+        $passDetails=$this->password_generator();
+        $stmt = $this->conn->prepare("UPDATE $this->table set password= :password ,hashPass= :hashPassword where empID= :empID ");
+        $stmt -> bindParam(':password',  $passDetails[0]);
+        $stmt -> bindParam(':hashPassword',  $passDetails[1]);
+        $stmt -> bindParam(':empID', $empID );
+        //var_dump($passDetails);
+        //var_dump($stmt);
+
+        $stmt->execute();
+        $stmt = $this->conn->prepare("SELECT email,empFirstName,empLastName,empTypeID from $this->table  where empID= :empID ");
+        $stmt -> bindParam(':empID', $empID );
+        $stmt->execute();
+        $result=$stmt->fetchAll();
+        //var_dump($result);
+        //var_dump($result[0]['email']);
+        $email_string = 
+                '<html>
+                    <head>
+                        <style>
+                            body {
+                                font-family: "Roboto Slab", serif;
+                                padding-left: 4rem;
+                                padding-right: 4rem;
+                                }
+                        </style>
+                    </head>
+                    <body>
+                        <div class="container">
+                            <center>
+                                <h1>Wecare Customer Portal Account Recovery</h1>
+                                <h4>Username:'.$result[0]['empTypeID'].$empID.'</h4>
+                                <h4>Password: '.$passDetails[0].'</h4>
+                            </center>
+                        </div>
+                    </body>
+                </html>
+                ';
+
+        sendEmail($result[0]["email"],$result[0]["empFirstName"]." ".$result[0]["empLastName"],$email_string,"Wecare Customer Portal Account Recovery");
 
     }
 }

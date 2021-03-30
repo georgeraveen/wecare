@@ -50,4 +50,19 @@ class Controller{
         $data = htmlspecialchars($data);
         return $data;
     }
+    public function isEmail($email){
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            throw new Exception('invalid Email');
+        }
+    }
+    public function isNumber($number){
+        if (!is_numeric($number)) {
+            throw new Exception('invalid number');
+        }
+    }
+    public function isName($name){
+        if (!preg_match("/^[a-zA-Z-' ]*$/",$name)) {
+            throw new Exception("Only letters and white space allowed");
+        }
+    }
 }

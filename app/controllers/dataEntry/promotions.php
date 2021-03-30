@@ -66,7 +66,7 @@ class Promotions extends Controller
         } catch (\Throwable $th) {
             $_SESSION["errorMsg"]="Error occured when inserting values";
             header("Location: ./index");
-            throw $th;
+            // throw $th;
         }
     }
     public function deletePromo()

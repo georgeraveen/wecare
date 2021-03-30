@@ -45,14 +45,14 @@ class Customer extends Models{
     }
     public function getList(){
         $stmt= $this->conn->prepare("SELECT custID, custName from $this->table where status=1");
-        // var_dump($this->conn);
+        var_dump($this->conn);
         $stmt->execute();
         return $stmt->fetchAll();
     }
     public function getBasicCustList(){
         $stmt= $this->conn->prepare("SELECT i.custID as custID, i.custName custName, i.custNIC as custNIC, c.custContactNo as custContact from $this->table as i
                                     inner join customer_contact as c on i.custID=c.custID where i.status=1");
-        // var_dump($this->conn);
+        var_dump($this->conn);
         $stmt->execute();
         return $stmt->fetchAll();
     }
@@ -123,6 +123,7 @@ class Customer extends Models{
                         <div class="container">
                             <center>
                                 <h1>Wecare Customer Portal Registration</h1>
+                                <p>We warmly welcome you to wecare family. Please find the below credentials to access the customer web portal at <a href="https://websolutionz.tech/wecare">https://websolutionz.tech/wecare</a></p>
                                 <h4>Username: CUST'.$last_id.'</h4>
                                 <h4>Password: '.$passDetails[0].'</h4>
                             </center>
@@ -203,10 +204,14 @@ class Customer extends Models{
         $stmt -> bindParam(':password',  $passDetails[0]);
         $stmt -> bindParam(':hashPassword',  $passDetails[1]);
         $stmt -> bindParam(':custID', $custID );
-        var_dump($passDetails);
-        var_dump($stmt);
+        // var_dump($passDetails);
+        // var_dump($stmt);
 
         $stmt->execute();
+        $stmt = $this->conn->prepare("SELECT email,custName from $this->table  where custID= :custID ");
+        $stmt -> bindParam(':custID', $custID );
+        $stmt->execute();
+        $result=$stmt->fetchAll();
         $email_string = 
                 '<html>
                     <head>
@@ -230,7 +235,7 @@ class Customer extends Models{
                 </html>
                 ';
 
-        sendEmail($this->email, $this->custName,$email_string,"Wecare Customer Portal Account Recovery");
+        sendEmail($result[0]["email"], $result[0]["custName"],$email_string,"Wecare Customer Portal Account Recovery");
 
     }
     
@@ -243,5 +248,51 @@ class Customer extends Models{
         $stmt -> bindParam(':custID',  $id );
         $stmt->execute();
     }
+    //get customer details for view(customer profile)
+public function getCustDeatail($custID){
+    //var_dump($this->conn);
+    $stmt=$this->conn->prepare("SELECT email,custAddress,custDOB,gender,custName,custContactNo,paymentDate,type
+    FROM customer
+    INNER JOIN customer_contact
+    ON customer.custID=customer_contact.custID
+    INNER JOIN cust_insurance
+    ON customer.custID=cust_insurance.custID
+    WHERE customer.custID = $custID");
+
+    $stmt->execute();
+    return $stmt->fetchAll();
 }
+//set valuie for update customer details
+public function setValueUpdateCust($PcustID,$Pemail,$PcustAddress,$custContacts){
+   
+    $this->custID=$PcustID;
+   $this->email =  !empty($Pemail) ? $Pemail : null;
+   $this->custAddress= !empty($PcustAddress) ? $PcustAddress : null;
+   $this->custContact= explode(',',$custContacts);
+}
+//updatecustomer details
+public function updateCustomerDetails($_id){
+    $stmt= $this->conn->prepare("UPDATE $this->table SET custAddress= :custAddress, email= :email  WHERE custID = $_id ");
+    $stmt -> bindParam(':custAddress', $this->custAddress );
+    $stmt -> bindParam(':email', $this->email );
+    $stmt->execute();
+    // echo $this->custContact;
+    $stmt0= $this->conn->prepare(" DELETE FROM customer_contact WHERE custID = :custID");
+    $stmt0 -> bindParam(':custID', $_id );
+    $stmt0->execute();
+    foreach($this->custContact as $number){
+        $stmt1= $this->conn->prepare("INSERT into customer_contact (custID,custContactNo) values (:custID, :custContactNo) ");
+        $n=(int)$number;
+        // echo $n;
+        if($n!=0){
+            $stmt1 -> bindParam(':custID', $_id );
+            $stmt1 -> bindParam(':custContactNo', $n);
+            $stmt1->execute();
+                
+        }
+    }
+ }
+}
+
 ?>
+ 

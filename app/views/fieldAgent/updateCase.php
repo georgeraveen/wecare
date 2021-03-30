@@ -5,12 +5,18 @@
 <link rel="stylesheet" href= "./../../css/style.css">
 
 <div class="containers">
+<ul class="breadcrumb">
+    <li><a href="./../fieldAgHome/index">Home</a></li>
+    <li><a href="./../viewPendingQueue/index">My Pending Queue</a></li>
+    <li>Update Case</a></li>
+  </ul>
+
     <h1>Update Case</h1><br>
     <div class="form-container">
 
 
 
-    <form action="./updateCase" method="post" enctype="multipart/form-data">
+    <form action="./updateCase" method="post" enctype="multipart/form-data" onSubmit="showLoader()">
             <div class="row">
                 <div class="column">
                     <div class="formInput">

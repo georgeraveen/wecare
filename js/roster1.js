@@ -41,7 +41,7 @@ function addToTable() {
     var insertRowNo = parseInt(slotRowEnd);
 
     var newMedSel = newMedID.options[newMedID.selectedIndex];
-    var newElement = "<p id=\"as\">" + newMedSel.text + "  <button onClick=\"deleteMed(this,'A" + slotNo + columnNo + "'," + newMedID.value + ")\">X</button></p>";
+    var newElement = "<p id=\"as\">" + newMedSel.text + "  <button class=\"btn-delete\" onClick=\"deleteMed(this,'A" + slotNo + columnNo + "'," + newMedID.value + ")\">X</button></p>";
 
     if (rosterTable.rows[insertRowNo - 1].cells[columnNo].innerHTML == "") {
         for (var i = slotRow + 1; i < insertRowNo; i++) {

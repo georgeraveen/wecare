@@ -1,5 +1,6 @@
 <?php
-error_reporting( E_ALL & ~E_DEPRECATED & ~E_NOTICE );
+//error_reporting(E_ALL & ~E_DEPRECATED & ~E_NOTICE);
+error_reporting(E_COMPILE_ERROR|E_RECOVERABLE_ERROR|E_ERROR|E_CORE_ERROR);
 ob_start();
 session_start();
 
@@ -29,10 +30,10 @@ session_start();
 require_once 'functions.php';
   
 //get error/success messages
-if ($_SESSION["errorType"] != "" && $_SESSION["errorMsg"] != "" ) {
-    $ERROR_TYPE = $_SESSION["errorType"];
-    $ERROR_MSG = $_SESSION["errorMsg"];
-    $_SESSION["errorType"] = "";
-    $_SESSION["errorMsg"] = "";
-}
+// if ($_SESSION["errorType"] != "" && $_SESSION["errorMsg"] != "" ) {
+//     $ERROR_TYPE = $_SESSION["errorType"];
+//     $ERROR_MSG = $_SESSION["errorMsg"];
+//     $_SESSION["errorType"] = "";
+//     $_SESSION["errorMsg"] = "";
+// }
 ?>
