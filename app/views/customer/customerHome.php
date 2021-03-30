@@ -1,15 +1,12 @@
-
+<?php
+//var_dump($data);
+$result=$data;
+?>
 <link rel="stylesheet" href= "./../../css/homeCust.css">
 <link rel="stylesheet" href= "./../../css/modal.css">
 
 <img src="./../../images/undraw_medical_care_movn.svg" class="img-background">
-<a href="#">
-<div class="container-notifi">
-    <div class="notification-item" >
-        <img src="./../../images/icons8-notification-100.png" class="notiIcon">
-    </div>
-</div>
-</a>
+
 <div class="grid-container">
   <a class="grid-item hide" href="#">
   
@@ -44,7 +41,17 @@
   <div class="modal-content">
     <span class="close">&times;</span>
     <div>
- Promotions
+        
+               <table>
+               <?php
+              
+                foreach($result as $row){
+                  echo  "<img class=\"promoImg\" src=\"./../../documents/promo/".$row['image']."\"/>";
+                }
+              
+
+                ?>
+                </table>
     </div>
   </div>
 
