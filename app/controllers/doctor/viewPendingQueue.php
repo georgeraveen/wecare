@@ -51,7 +51,7 @@ class viewPendingQueue extends Controller{
         $this->model('claimCase');
         $editClaimCase = new ClaimCase();
         $result= $editClaimCase->setValueDoc(
-                $this->valValidate($_POST['doctorComment']),$this->valValidate($_POST['healthCondition']));
+        $this->valValidate($_POST['doctorComment']),$this->valValidate($_POST['healthCondition']));
                
         $result= $editClaimCase->updateSingleCaseDoc($this->valValidate($_POST['claimID']));
         $_SESSION["successMsg"]="Case Updated Successfully!";

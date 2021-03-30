@@ -5,7 +5,7 @@ class Models{
         define('DB_SERVER', 'localhost');
         define('DB_SERVER_USERNAME', 'root');
         define('DB_SERVER_PASSWORD', '');
-        define('DB_DATABASE', 'wecare2');
+        define('DB_DATABASE', 'wecare');
 
 
         define('PROJECT_NAME', 'WeCare Life Insurance Management System');
