@@ -8,6 +8,7 @@ class viewPendingCases extends Controller{
         include './../app/footer.php';
     }
     public function viewCase(){
+      //echo "blah";
         //var_dump("Hereitis");
         //echo $_SESSION["user_id"];
         $this->checkPermission("MED");
@@ -79,18 +80,6 @@ class viewPendingCases extends Controller{
                 echo"submit accept";
                 $this->model('claimCase');
             }
-            if($_POST['assignDoc']){
-                 var_dump($_POST['claimID']);
-                 var_dump($data['claimID']);
-                 echo "blah";
-                 var_dump($_POST['doctorID']);
-                 var_dump($data['empID']);
-                echo "blah";
-                // $this->viewCase();  
-                // $_SESSION["successMsg"]="Doctor Assigned Successfully!";    
-                // header("Location: ./viewCase");
-                // exit; 
-            }
             if($_POST['cancel']){
                 $this->viewCase();
                 $_SESSION["successMsg"]="No changes have been done to the case!";    
@@ -106,50 +95,18 @@ class viewPendingCases extends Controller{
     }
 
     public function assignDoc(){
-        //var_dump("tests");
+    //   var_dump($_POST['claimID']);
+    //   var_dump($_POST['Doc']);
+    //   var_dump($_SESSION['user_id']);
         $this->checkPermission("MED");
-        try{ 
-            $this->model('claimCase');
-            $caseDetails= new ClaimCase();
-            $this->model('employee');
-            $empMod= new Employee();
-            if($_POST['assignDoc']){
-                //  var_dump($_POST['claimID']);
-                //  var_dump($data['claimID']);
-                //  echo "blah";
-                //  var_dump($_POST['doctorID']);
-                //  var_dump($data['empID']);
-                //     echo "blah";
-                $_SESSION["successMsg"]="Doctor Assigned Successfully!";    
-                header("Location: ./viewCase");
-                exit; 
-            }
+        $this->model('claimCase');
+        $caseDetails= new ClaimCase();
+        if($_POST['assignDoc']){
+        $caseDetails->updateAssignDoc($_POST['claimID'],$_POST['Doc']);
+            $_SESSION["successMsg"]="Doctor Assigned Successfully!";  
+            header("Location: ./viewCase");
+            exit;   
         }
-        catch(\Throwable $th) {
-                $_SESSION["errorMsg"]="Error occured while performing operation.";
-                header("Location: ./index");
-        }
-
-        // try{     
-        //     $this->checkPermission("MED");
-        //     //var_dump("tests");
-        //         if($_POST['editSingleCaseDetails']){
-        //         $this->model('claimCase');
-        //         $editClaimCase = new ClaimCase();
-        //         $result= $editClaimCase->setValueDoc(
-        //                 $this->valValidate($_POST['doctorComment']),$this->valValidate($_POST['healthCondition']));
-                       
-        //         $result= $editClaimCase->updateSingleCaseDoc($this->valValidate($_POST['claimID']));
-        //         $_SESSION["successMsg"]="Case Updated Successfully!";
-        //         header("Location: ./viewCase");
-        //         exit;
-        //         }
-        //     }
-        // catch(\Throwable $th) {
-        //         $newCustomer->transRollBack();
-        //         $_SESSION["errorMsg"]="Error occured when creating a new customer.";
-        //         header("Location: ./index");
-        // }
     }
 
     public function editCase(){

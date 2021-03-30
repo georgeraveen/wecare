@@ -74,6 +74,7 @@
                           <?php
                           try {
                           $dir ="./../documents/claimCases/". $data['singleCaseDetails'][0]['claimID'];
+                          //var_dump($data);
                           // Sort in ascending order - this is default
                           $ls = scandir($dir);
 
@@ -103,31 +104,21 @@
                     </div>
                 </div>
             </div>
+            
             <div class="row">
-              <div class="column">
+            <div class="column">
+                <?php echo "Please Validate the data before Submitting" ?>
                 </div>
-              </div>
-
-              <div class="column">
-              <div class="formInput">
+                <div class="column">
+                    <div class="formInput">
                         <label for="payAmount">Payable Amount</label><br>
                         <input type="number" id="payAmount" name="payAmount" class="input"><br>
                     </div>
-              </div>      
-            </div> 
-            <div class="row"> 
-              <div class="column">
-                <!-- <div class="formInput">
-                <input type="submit" id="assignDoc" name="assignDoc" class="btn-submit" value= "Assign Doctor" ><br>
-                <input type="hidden" id="assignDoc" name="claimID" value= <?php echo $data['claimID'];?> >
-                <input type="hidden" id="assignDoc" name="docID" value= <?php echo $data['empID'];?> >
-                </div> -->
-              </div>
-              <div class="column">
-              </div>
-              <div class="column">
-              </div>
-              <div class="column">
+                </div>
+                
+            </div>
+            <div class="row">  
+                <div class="column">
                 <div class="formInput">
                 <input type="submit" id="caseSubmit" name="caseSubmit" class="btn-submit" value= "Submit" ><br>
                 </div>
@@ -141,8 +132,10 @@
                 <div class="formInput">
                 <input type="submit" id="cancel" name="cancel" class="btn-submit" value= "Cancel" ><br>
                 </div>
-              </div>
+              </div>      
             </div>
+             
+
     </form>
   </div>
 
@@ -161,14 +154,18 @@
                   }
                   ?>
                   </select><br>
+                </div>
+                <?php
+                //var_dump($data);
+                ?>
+  
               </div>
-          </div>
+        </div>
           <div class="row">
           <div class="column">
                 <div class="formInput">
                 <input type="submit" id="assignDoc" name="assignDoc" class="btn-submit" value= "Assign Doctor" ><br>
-                <input type="hidden" id="assignDoc" name="claimID" value= <?php echo $data['claimID'];?> >
-                <input type="hidden" id="assignDoc" name="docID" value= <?php echo $data['empID'];?> >
+                <input type="hidden" id="assignDoc" name="claimID" value= <?php echo $data['singleCaseDetails'][0]['claimID'];?>>
                 </div>
           </div>
           </div>

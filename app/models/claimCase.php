@@ -172,7 +172,6 @@ class ClaimCase extends Models{
             case "FAG":
                 $emp=" FieldAgID = $empID";
                 break;
-            
             case "DOC":
                 $emp=" doctorID = $empID";
                 break;
@@ -202,6 +201,16 @@ class ClaimCase extends Models{
         $stmt->execute();
         return $stmt->fetchAll();
     }
+
+    public function updateAssignDoc($claimID,$doctorID){
+        //var_dump($claimID);
+       //var_dump($doctorID);
+        //$claimID,$doctorID
+        //var_dump($_SESSION["user_id"]);
+        $stmt= $this->conn->prepare("UPDATE claim_case SET caseStatus=\"Doctor pending\",doctorID=$doctorID WHERE (claimID=$claimID) AND (medScruID=".$_SESSION["user_id"].");");
+       // var_dump($stmt);
+         $stmt->execute();
+     }
 
     //**************************************** FUNCTIONS OF DOCTOR **********************************************
 
