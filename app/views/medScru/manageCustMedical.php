@@ -24,7 +24,7 @@
                 </div>
               </div>
               <div class="column"style="flex:25%">
-              <input type="submit" id="addMedCondition" name="addMedCondition" class="btn-submit" value="Add medical condition"><br>
+              <input type="submit" id="addMedCondition" name="addMedCondition" class="btn-submit" value="View Medical records"><br>
               </div> 
 
       </div> 

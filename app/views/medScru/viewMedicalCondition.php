@@ -8,7 +8,7 @@
     <li><a href="./../manageCustMedical/manageCustMedicalCondtions">Select Customer</a></li>
     <li>View medical details</a></li>
     </ul>
-  <h1>Past Health conditions of Customer ID <?php echo $data['customerID'];
+  <h1>Past Health conditions of Customer with ID: <?php echo $data['customerID'];
       ?> </h1>
   <div class="row">
     <div class="column">
