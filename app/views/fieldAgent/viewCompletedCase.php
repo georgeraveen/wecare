@@ -3,6 +3,11 @@
 ?> 
 <link rel="stylesheet" href= "./../../css/home.css">
 <link rel="stylesheet" href= "./../../css/style.css">
+<ul class="breadcrumb">
+    <li><a href="./../fieldAgHome/index">Home</a></li>
+    <li><a href="./../viewCompletedQueue/index">My Completed Queue</a></li>
+    <li>View Case</a></li>
+  </ul>
 
 <div class="containers">
     <h1>View Case</h1><br>
