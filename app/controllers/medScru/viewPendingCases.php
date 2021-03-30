@@ -103,27 +103,6 @@ class viewPendingCases extends Controller{
                 $_SESSION["errorMsg"]="Error occured while performing operation.";
                 header("Location: ./index");
         }
-
-        // try{     
-        //     $this->checkPermission("MED");
-        //     //var_dump("tests");
-        //         if($_POST['editSingleCaseDetails']){
-        //         $this->model('claimCase');
-        //         $editClaimCase = new ClaimCase();
-        //         $result= $editClaimCase->setValueDoc(
-        //                 $this->valValidate($_POST['doctorComment']),$this->valValidate($_POST['healthCondition']));
-                       
-        //         $result= $editClaimCase->updateSingleCaseDoc($this->valValidate($_POST['claimID']));
-        //         $_SESSION["successMsg"]="Case Updated Successfully!";
-        //         header("Location: ./viewCase");
-        //         exit;
-        //         }
-        //     }
-        // catch(\Throwable $th) {
-        //         $newCustomer->transRollBack();
-        //         $_SESSION["errorMsg"]="Error occured when creating a new customer.";
-        //         header("Location: ./index");
-        // }
     }
 
     public function assignDoc(){
@@ -141,7 +120,6 @@ class viewPendingCases extends Controller{
                 //  var_dump($_POST['doctorID']);
                 //  var_dump($data['empID']);
                 //     echo "blah";
-                $this->viewCase();  
                 $_SESSION["successMsg"]="Doctor Assigned Successfully!";    
                 header("Location: ./viewCase");
                 exit; 
