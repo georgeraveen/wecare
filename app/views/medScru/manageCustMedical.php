@@ -2,73 +2,35 @@
 <link rel="stylesheet" href= "./../../css/home.css">
 <link rel="stylesheet" href= "./../../css/style.css">
 <div class="containers">
-  <h1>Select Customer Profile</h1><br>
+    <ul class="breadcrumb">
+    <li><a href="./../medScruHome/index">Home</a></li>
+    <li><a href="./../manageCustMedical/index">Manage medical details of customers</a></li>
+    <li>Select customer</a></li>
+    </ul>
+  <h1>Customer past medical history</h1><br>
+  <h2 style="text-align:center">Select customer</h2><br>
   <div class="form-container2">
-    <form>
-      <div class="row">
-        <div class="column">
-        <select id="customer" name="customer" required>
-              <!-- <option>Customer ID - Customer Name</option> -->
-              <?php               
-               foreach ($data['custList'] as $customersRow){
-                echo "<option value= \"".$customersRow['custID']."\"> CUST".$customersRow['custID']." - ".$customersRow['custName']."</option>";
-                }
-              ?>  
-            </select><br>
-        </div>
-        <div class="column">
-          <div class="formInput">
-            <a id="a" href="./../manageCustMedical/viewConditions" class="btn-submit" >Submit</a>
-          </div>
-        </div>
-      </div>
-    </form>
+  <form action="./viewConditions" method="post">
+    <div class="row">
+              <div class="column" style="flex:25%">
+              <div class="formInput">
+                <input type="number" id="customer" name="customerID" class="input" value="" required>
+                </div>
+              </div>
+              <div class="column"style="flex:50%">
+                <div class="formInput">
+                  <input type="text" id="custNameBox" name="custName" class="input"  onkeyup="showResult(this.value)" placeholder="Search by customer ID"><br>
+                  <div id="livesearch" class="dropdown-content"></div>
+                </div>
+              </div>
+              <div class="column"style="flex:25%">
+              <input type="submit" id="addMedCondition" name="addMedCondition" class="btn-submit" value="View Medical records"><br>
+              </div> 
+
+      </div> 
+
   </div>
-  <br><br>
-  <h1>Search Customer Profile</h1>
-  <h2>Search by</h1>
-  <div class="form-container2">
-    <form>
-      <div class="row">
-        <div class="column">
-          <select id="custData" name="custData" required>
-            <option>Name</option>
-            <option>Customer ID</option>
-            <option>NIC</option>
-            <option>Phone Number</option>
-          </select>
-        </div>
-        <div class="column">
-          <div class="formInput">
-            <label for="custData"></label>
-            <input type="data" id="data" name="data" class="input">          
-          </div>
-        </div>
-        </div>
-        <div class="row">
-        <input type="submit" id="setOption" name="setOption" class="btn-submit" value="Search"><br>
-        </div>
-    </form><br>
-    </div>
-    <div class="table-container">
-    <table class="table-view">
-      <tr>
-        <th>Name</th>
-        <th>Customer ID</th>
-        <th>NIC</th>
-        <th>Phone Number</th>
-        <th>Action</th>
-      </tr>
-      <?php
-      foreach($data['custBasicList'] as $row){
-        echo "<tr>"."<td>".$row['custID']."</td>".
-              "<td>".$row['custName']."</td>".
-              "<td>".$row['custNIC']."</td>".
-              "<td>".$row['custContact']."</td>".
-              "<td><a class=\"viewBtn\" href=\"./../manageCustMedical/viewConditions\">View</a> "."</td>"."</tr>";
-      }
-      ?>
-    </table>
-  </div>
+
+
 
   

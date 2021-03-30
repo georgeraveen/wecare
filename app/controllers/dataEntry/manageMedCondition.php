@@ -57,8 +57,7 @@ class manageMedCondition extends Controller
             echo $xml->asXML();
         }
     }
-    public function createNewConditon()
-    {
+    public function createNewConditon(){
         try {        
             $this->checkPermission("DEO");
             if ($_POST['addMedCondition']) {
