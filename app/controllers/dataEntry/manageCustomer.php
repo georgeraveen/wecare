@@ -110,7 +110,7 @@ class manageCustomer extends Controller{
             exit;
         } catch (\Throwable $th) {
             $editCustomer->transRollBack();
-            $_SESSION["errorMsg"]="Error occured when updating values".$th->getMessage();
+            $_SESSION["errorMsg"]="Error occured when updating values ".$th->getMessage();
             header("Location: ./updateCustomer");
         }
         
