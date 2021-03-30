@@ -27,7 +27,7 @@ class Promotion  extends Models{
     }
 
     public function getAll(){
-        $stmt= $this->conn->prepare("select * from $this->table order by id desc");
+        $stmt= $this->conn->prepare("select * from $this->table  order by id desc");
         $stmt->execute();
         return $stmt->fetchAll();
     }

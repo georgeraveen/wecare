@@ -4,6 +4,7 @@
 <div class="containers">
   <ul class="breadcrumb">
     <li><a href="./../dataEntryHome/index">Home</a></li>
+    <li><a href="./../manageCustomer/updateCustomer">Manage Customer Profile</a></li>
     <li>New Customer Profile</a></li>
   </ul>
   <h1>Create Customer Profile</h1><br>
