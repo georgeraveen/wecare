@@ -59,24 +59,23 @@ class manageMedCondition extends Controller
     }
     public function createNewConditon()
     {
-        echo"na;;a";
-        // try {        
-        //     $this->checkPermission("DEO");
-        //     if ($_POST['addMedCondition']) {
-        //         $this->model('medicalCondition');
-        //         $newMedicalCondition = new medicalCondition();
-        //         $result= $newMedicalCondition->setValue($this->valValidate($_POST['custID']), $this->valValidate($_POST['medDate']), $this->valValidate($_POST['type']), $this->valValidate($_POST['healthCondition']), $this->valValidate($_POST['comments']));
-        //         $result= $newMedicalCondition->create();
-        //         $_SESSION["successMsg"]="Medical condition added successfully";
-        //         sleep(1);
-        //         header("Location: ./index");
-        //         exit;
-        //     }
-        // } catch (\Throwable $th) {
-        //     $_SESSION["errorMsg"]="Error occured when inserting values";
-        //     header("Location: ./index");
-        //     // throw $th;
-        // }
+        try {        
+            $this->checkPermission("DEO");
+            if ($_POST['addMedCondition']) {
+                $this->model('medicalCondition');
+                $newMedicalCondition = new medicalCondition();
+                $result= $newMedicalCondition->setValue($this->valValidate($_POST['custID']), $this->valValidate($_POST['medDate']), $this->valValidate($_POST['type']), $this->valValidate($_POST['healthCondition']), $this->valValidate($_POST['comments']));
+                $result= $newMedicalCondition->create();
+                $_SESSION["successMsg"]="Medical condition added successfully";
+                sleep(1);
+                header("Location: ./index");
+                exit;
+            }
+        } catch (\Throwable $th) {
+            $_SESSION["errorMsg"]="Error occured when inserting values";
+            header("Location: ./index");
+            // throw $th;
+        }
     }
     public function updateConditon()
     {
