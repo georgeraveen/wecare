@@ -2,7 +2,12 @@
 <link rel="stylesheet" href= "./../../css/style.css">
 <link rel="stylesheet" href= "./../../css/dropdown.css">
 <div class="containers">
-  <h1>Add New Medical Condition</h1><br>
+<ul class="breadcrumb">
+    <li><a href="./../medScruHome/index">Home</a></li>
+    <li><a href="./../manageCustMedical/index">Manage medical details of customers</a></li>
+    <li>Add new conditions</a></li>
+    </ul>
+  <h1 style="text-align:center">Add New Medical Condition</h1><br>
   <div class="form-container2">
     <form action="./createNewConditon" method="post">
     <div class="row">

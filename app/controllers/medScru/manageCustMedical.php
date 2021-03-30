@@ -1,7 +1,6 @@
 <?php
 
 class manageCustMedical extends Controller{
-    
     public function index(){
         $this->checkPermission("MED");
         include './../app/header.php';
@@ -15,7 +14,7 @@ class manageCustMedical extends Controller{
         include './../app/footer.php';
     }
 
-    public function manageCustMedicalCondtions(){
+    public function manageCustMedicalCondtions(){ 
         $this->checkPermission("MED");
         $this->model('customer');
         $customerMod= new Customer();
@@ -36,7 +35,8 @@ class manageCustMedical extends Controller{
 
     public function createNewConditon(){
         $this->checkPermission("MED");
-        if($_POST['addMedCondition']){
+        try {
+            if($_POST['addMedCondition']){
             $this->model('medicalCondition');
             $newMedicalCondition = new medicalCondition();
             $result= $newMedicalCondition->setValue($this->valValidate($_POST['customerID']),$this->valValidate($_POST['medDate']),$this->valValidate($_POST['type']),$this->valValidate($_POST['healthCondition']),$this->valValidate($_POST['comments']));
@@ -44,6 +44,12 @@ class manageCustMedical extends Controller{
             $_SESSION["successMsg"]="Medical condition added Successfully!";  
             header("Location: ./index");
             exit;
+            }
         }
+        catch (\Throwable $th) {
+            $_SESSION["errorMsg"]="Customer not found,Please contact Data entry officer";
+            header("Location: ./index");
+        }
+
     }  
 }
