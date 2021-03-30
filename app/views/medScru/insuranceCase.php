@@ -12,7 +12,7 @@
             <div class="row">
                 <div class="column">
                     <div class="formInput">
-                        <label for="customer">Customer</label><br>
+                        <label for="customer">Customer Name</label><br>
                        <input type="text" id="customer" name="custName" class="input" value=<?php echo $data['singleCaseDetails'][0]['custName']?> readonly><br>
                     </div>
                 </div>
@@ -68,36 +68,34 @@
             <div class="row">
                 <div class="column">
                     <div class="row">
-                    <div class="column">
-                    
-                    <h4 for="fileToUpload">Hospital Documents</h4>
-                    <ul>
-                    <?php
-                    try {
-                        $dir ="./../documents/claimCases/". $data['singleCaseDetails'][0]['claimID'];
-                        // Sort in ascending order - this is default
-                        $ls = scandir($dir);
+                      <div class="column">
+                        <h4 for="fileToUpload">Hospital Documents</h4>
+                          <ul>
+                          <?php
+                          try {
+                          $dir ="./../documents/claimCases/". $data['singleCaseDetails'][0]['claimID'];
+                          // Sort in ascending order - this is default
+                          $ls = scandir($dir);
 
-                        // Sort in descending order
-                        //$b = scandir($dir,1);
-                        // var_dump($ls);
-                        for($i=2;$i < count($ls);$i++){
+                          // Sort in descending order
+                          //$b = scandir($dir,1);
+                          // var_dump($ls);
+                            for($i=2;$i < count($ls);$i++){
                             $filename=pathinfo($ls[$i],PATHINFO_FILENAME);
                             $ext=pathinfo($ls[$i],PATHINFO_EXTENSION);
                             echo "<li>";
                             echo "<a href =\"./viewFil/". $data['singleCaseDetails'][0]['claimID'] . "/". $filename."/".$ext ."\">".$ls[$i]."</a>";
                             echo "</li>";
-                        }
-                    } catch (\Throwable $th) {
-                        echo "Empty Directory";
-                    }
-                    ?>
-                    </ul>
-                </div>
-                        
-                    </div>
-                    
-                </div>
+                            }
+                          } 
+                          catch (\Throwable $th) {
+                          echo "Empty Directory";
+                          }
+                          ?>
+                          </ul>
+                      </div>   
+                    </div> 
+                  </div>
                 <div class="column">
                     <div class="formInput">
                         <label for="doctorComment">Doctor's Comment</label><br>
@@ -106,10 +104,56 @@
                 </div>
             </div>
             <div class="row">
-            <div class="formInput">
-            <input type="submit" id="submit" name="editSingleCaseDetails" class="btn-submit" value= "Submit" ><br>
-           
-          </div>
+              <div class="column">
+                <div class="formInput">
+                  <label for="medScrut">Assign Doctor</label><br>
+                  <select id="Doc" name="Doc">
+                  <?php               
+                  foreach ($data['medList'] as $medsRow){
+                  echo "<option value= \"".$medsRow['empID']."\"> MED".$medsRow['empID']." - ".$medsRow['empFirstName']." ".$medsRow['empLastName']."</option>";
+                  }
+                  ?>
+                  <!-- <option>User ID - Name</option> -->
+                  </select><br>
+                </div>
+              </div>
+
+              <div class="column">
+              <div class="formInput">
+                        <label for="payAmount">Payable Amount</label><br>
+                        <input type="number" id="payAmount" name="payAmount" class="input"><br>
+                    </div>
+              </div>      
+
+
+
+            </div> 
+
+            <div class="row"> 
+              <div class="column">
+                <div class="formInput">
+                <input type="submit" id="assignDoc" name="assignDoc" class="btn-submit" value= "Assign Doctor" ><br>
+                </div>
+              </div>
+              <div class="column">
+              </div>
+              <div class="column">
+              </div>
+              <div class="column">
+                <div class="formInput">
+                <input type="submit" id="caseSubmit" name="caseSubmit" class="btn-submit" value= "Submit" ><br>
+                </div>
+              </div>
+              <div class="column">
+                <div class="formInput">
+                <input type="submit" id="caseReject" name="caseReject" class="btn-submit" value= "Reject" ><br>
+                </div>
+              </div>
+              <div class="column">
+                <div class="formInput">
+                <input type="submit" id="cancel" name="cancel" class="btn-submit" value= "Cancel" ><br>
+                </div>
+              </div>
             </div>
     </form>
   </div>

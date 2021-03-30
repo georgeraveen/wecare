@@ -64,27 +64,55 @@ class viewPendingCases extends Controller{
 
     }
     public function updateCase(){
-        try{     
-            $this->checkPermission("DEO");
-                //if($_POST['editSingleCaseDetails']){
+        //var_dump("tests");
+        try{ 
+            $this->checkPermission("MED");
+            if($_POST['caseReject']){
+                echo"case reject";
                 $this->model('claimCase');
-                $editClaimCase = new ClaimCase();
-                $result= $editClaimCase->setValueDoc(
-                        $this->valValidate($_POST['doctorComment']),$this->valValidate($_POST['healthCondition']));
-                       
-                $result= $editClaimCase->updateSingleCaseDoc($this->valValidate($_POST['claimID']));
-                $_SESSION["successMsg"]="Case Updated Successfully!";
-                header("Location: ./viewCase");
-                exit;
-                //}
             }
-        catch(\Throwable $th) {
-                $newCustomer->transRollBack();
-                $_SESSION["errorMsg"]="Error occured when creating a new customer.";
-                header("Location: ./index");
+            if($_POST['caseSubmit']){
+                echo"submit accept";
+                $this->model('claimCase');
+            }
+            if($_POST['assignDoc']){
+                echo"assign doc";
+                include './../app/header.php';
+                $this->controller('./viewCase');
+                //$this->view('medScru/pendingCases');
+                include './../app/footer.php';
+            }
+            if($_POST['cancel']){
+                include './../app/header.php';
+                $this->viewCase();
+                include './../app/footer.php';   
+            }
+
         }
+        catch(\Throwable $th) {
+        }
+
+        // try{     
+        //     $this->checkPermission("MED");
+        //     //var_dump("tests");
+        //         if($_POST['editSingleCaseDetails']){
+        //         $this->model('claimCase');
+        //         $editClaimCase = new ClaimCase();
+        //         $result= $editClaimCase->setValueDoc(
+        //                 $this->valValidate($_POST['doctorComment']),$this->valValidate($_POST['healthCondition']));
+                       
+        //         $result= $editClaimCase->updateSingleCaseDoc($this->valValidate($_POST['claimID']));
+        //         $_SESSION["successMsg"]="Case Updated Successfully!";
+        //         header("Location: ./viewCase");
+        //         exit;
+        //         }
+        //     }
+        // catch(\Throwable $th) {
+        //         $newCustomer->transRollBack();
+        //         $_SESSION["errorMsg"]="Error occured when creating a new customer.";
+        //         header("Location: ./index");
+        // }
     }
-    
     public function editCase(){
         $this->checkPermission("MED");
         //var_dump($_GET['id']);
