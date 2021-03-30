@@ -19,6 +19,18 @@
         <th>Health Condition</th>
         <th>Comments</th>
       </tr>
+      <!-- <?php
+      foreach($data['queue'] as $row){
+        echo "<tr>"."<td>".$row['claimID']."</td>".
+              "<td>".$row['dischargeDate']."</td>".
+              "<td>".$row['caseStatus']."</td>".
+              "<td>".$row['name']."</td>".
+              "<td>".$row['fag']."</td>".
+              "<td>".$row['doc']."</td>".
+              "<td><a class=\"editBtn\" href=\"./editCase?action=edit&id=".$row['claimID']."\">View/Edit</a> "."</td>"."</tr>";
+      }
+      ?> -->
+
      
     </table>
     

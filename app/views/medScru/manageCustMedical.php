@@ -10,38 +10,27 @@
   <h1>Customer past medical history</h1><br>
   <h2 style="text-align:center">Select customer</h2><br>
   <div class="form-container2">
-    <form>
-      <div class="row">
-        <div class="column">
-        <select id="customer" name="customer" required>
-              <!-- <option>Customer ID - Customer Name</option> -->
-              <?php               
-               foreach ($data['custList'] as $customersRow){
-                echo "<option value= \"".$customersRow['custID']."\"> CUST".$customersRow['custID']." - ".$customersRow['custName']."</option>";
-                }
-              ?>  
-            </select><br>
-        </div>
-        <div class="column">
-          <div class="formInput">
-            <a id="a" href="./../manageCustMedical/viewConditions" class="btn-submit" >Submit</a>
-          </div>
-        </div>
-      </div>
-    </form>
+  <form action="./viewConditions" method="post">
+    <div class="row">
+              <div class="column" style="flex:25%">
+              <div class="formInput">
+                <input type="number" id="customer" name="customerID" class="input" value="" required>
+                </div>
+              </div>
+              <div class="column"style="flex:50%">
+                <div class="formInput">
+                  <input type="text" id="custNameBox" name="custName" class="input"  onkeyup="showResult(this.value)" placeholder="Search by customer ID"><br>
+                  <div id="livesearch" class="dropdown-content"></div>
+                </div>
+              </div>
+              <div class="column"style="flex:25%">
+              <input type="submit" id="addMedCondition" name="addMedCondition" class="btn-submit" value="Add medical condition"><br>
+              </div> 
+
+      </div> 
+
   </div>
 
 
-
-
-      <!-- <?php
-      foreach($data['custBasicList'] as $row){
-        echo "<tr>"."<td>".$row['custID']."</td>".
-              "<td>".$row['custName']."</td>".
-              "<td>".$row['custNIC']."</td>".
-              "<td>".$row['custContact']."</td>".
-              "<td><a class=\"viewBtn\" href=\"./../manageCustMedical/viewConditions\">View</a> "."</td>"."</tr>";
-      }
-      ?> -->
 
   

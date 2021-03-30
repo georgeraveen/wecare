@@ -27,7 +27,11 @@ class manageCustMedical extends Controller{
     }
 
     public function viewConditions(){
+        //var_dump($_POST["customerID"]);
         $this->checkPermission("MED");
+        $this->model('medicalCondition');
+        $medicalConditionMod= new medicalCondition();
+        $medicalConditionList=$medicalConditionMod->getCustMedicalHistory($_POST["customerID"]);
         include './../app/header.php';
         $this->view('medScru/viewMedicalCondition');
         include './../app/footer.php';
