@@ -33,7 +33,8 @@ class manageCustMedical extends Controller{
         $medicalConditionMod= new medicalCondition();
         $medicalConditionList=$medicalConditionMod->getCustMedicalHistory($_POST["customerID"]);
         include './../app/header.php';
-        $this->view('medScru/viewMedicalCondition');
+        //var_dump($medicalConditionList);
+        $this->view('medScru/viewMedicalCondition',["medicalConditionList"=>$medicalConditionList,'customerID'=>$_POST["customerID"]]);
         include './../app/footer.php';
     }
 

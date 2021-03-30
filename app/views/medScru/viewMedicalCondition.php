@@ -8,31 +8,33 @@
     <li><a href="./../manageCustMedical/manageCustMedicalCondtions">Select Customer</a></li>
     <li>View medical details</a></li>
     </ul>
-  <h1>Past Health conditions of Customer *Customer Name*, *Cust ID*</h1>
+  <h1>Past Health conditions of Customer ID <?php echo $data['customerID'];
+      ?> </h1>
+  <div class="row">
+    <div class="column">
+     
+    </div>
+  </div>
+
   <div class="table-container">
     <table class="table-view">
       <tr>
         <th>Record ID</th>
-        <th>Customer ID</th>
         <th>Date</th>
         <th>Type</th>
         <th>Health Condition</th>
         <th>Comments</th>
       </tr>
-      <!-- <?php
-      foreach($data['queue'] as $row){
-        echo "<tr>"."<td>".$row['claimID']."</td>".
-              "<td>".$row['dischargeDate']."</td>".
-              "<td>".$row['caseStatus']."</td>".
-              "<td>".$row['name']."</td>".
-              "<td>".$row['fag']."</td>".
-              "<td>".$row['doc']."</td>".
-              "<td><a class=\"editBtn\" href=\"./editCase?action=edit&id=".$row['claimID']."\">View/Edit</a> "."</td>"."</tr>";
+      <?php
+      foreach($data['medicalConditionList'] as $row){
+        echo "<tr>"."<td>".$row['recordID']."</td>".
+              "<td>".$row['date']."</td>".
+              "<td>".$row['type']."</td>".
+              "<td>".$row['healthCondition']."</td>".
+              "<td>".$row['comments']."</td>".
+              "</tr>";
       }
-      ?> -->
-
-     
+      ?>
     </table>
-    
   </div>
 </div>
