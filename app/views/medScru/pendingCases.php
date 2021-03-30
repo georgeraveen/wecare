@@ -18,7 +18,6 @@
         <th>Status</th>
         <th>Hospital</th>
         <th>Field Agent</th>
-        <th>Med Scrutinizer</th>
         <th>Doctor</th>
         <th>Action</th>
       </tr>
@@ -29,7 +28,6 @@
               "<td>".$row['caseStatus']."</td>".
               "<td>".$row['name']."</td>".
               "<td>".$row['fag']."</td>".
-              "<td>".$row['med']."</td>".
               "<td>".$row['doc']."</td>".
               "<td><a class=\"editBtn\" href=\"./editCase?action=edit&id=".$row['claimID']."\">View/Edit</a> "."</td>"."</tr>";
       }

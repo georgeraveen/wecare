@@ -79,7 +79,7 @@
               "<td>".$row['name']."</td>".
               "<td>".$row['fag']."</td>".
               "<td>".$row['doc']."</td>".
-              "<td><a class=\"editBtn\" href=\"./editCase?action=edit&id=".$row['claimID']."\">View/Edit</a> "."</td>"."</tr>";
+              "<td><a class=\"editBtn\" href=\"./reviewCase?action=edit&id=".$row['claimID']."\">View/Edit</a> "."</td>"."</tr>";
       }
 
       ?>

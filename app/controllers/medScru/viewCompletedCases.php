@@ -62,6 +62,45 @@ class viewCompletedCases extends Controller{
         include './../app/footer.php';
 
     }
+    public function reviewCase(){
+        $this->checkPermission("MED");
+        //var_dump($_SESSION['user_id']);
+        //var_dump($_GET['id']);
 
+        $this->model('claimCase');
+        $caseDetails= new ClaimCase();
+        $this->model('employee');
+        $empMod= new Employee();
+        $docList=$empMod->getEmpByTypeList("DOC");
+        //var_dump($docList);
+        $singleCaseDetails=$caseDetails->getCaseDetailsMed( $this->valValidate($_GET['id']));  
+        if($_GET['action']=="edit"){
+            include './../app/header.php';
+            $this->view('medScru/reviewCase',['docList'=>$docList,'id'=>$this->valValidate($_GET['id']),'singleCaseDetails'=>$singleCaseDetails]);
+            include './../app/footer.php';
+        }
+        else{
+            header("Location: ./viewCase");
+            exit;
+        }
+     }
+
+     public function viewFil($filePath,$fileName,$type){
+        $this->checkPermission("MED");
+        try {
+            $this->model('claimCase');
+            $caseDetails= new ClaimCase();
+            $isPermission = $caseDetails->checkCasePermission($filePath,"MED",$_SESSION["user_id"]);
+            if(count($isPermission)){
+                $this->viewFile("claimCases/".$filePath."/".$fileName.".".$type,$type);
+            }
+            else{
+                $this->permissionError();
+            }
+        } catch (\Throwable $th) {
+            $this->permissionError();
+        }
+        
+    }  
 
 }

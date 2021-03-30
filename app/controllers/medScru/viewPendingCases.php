@@ -67,25 +67,24 @@ class viewPendingCases extends Controller{
     public function updateCase(){
         //var_dump("tests");
         $this->checkPermission("MED");
+        //var_dump($_POST);
         try{ 
             $this->model('claimCase');
             $caseDetails= new ClaimCase();
             $this->model('employee');
             $empMod= new Employee();
-
-            if($_POST['caseReject']){
-                $caseDetails->updateCaseReject($_POST['claimID']);
-                $_SESSION["successMsg"]="Case has been sucessfully rejected!";    
-                header("Location: ./viewCase");
-                exit;
-        
-            }
             if($_POST['cancel']){
                 $_SESSION["successMsg"]="No changes have been done to the case!";    
                 header("Location: ./viewCase");
                 exit;
             }
-            if($_POST['caseSubmit']){
+            else if($_POST['caseReject']){
+                $caseDetails->updateCaseReject($_POST['claimID']);
+                $_SESSION["successMsg"]="Case has been sucessfully rejected!";    
+                header("Location: ./viewCase");
+                exit;
+            }
+            else if($_POST['caseSubmit']){
                 if($_POST['payAmount']==("" || 0)){
                     $_SESSION["errorMsg"]="Please enter a valid payable amount before submitting.";
                     header("Location: ./viewCase");

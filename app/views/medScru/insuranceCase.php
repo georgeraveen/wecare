@@ -115,19 +115,16 @@
                         <input type="number" id="payAmount" name="payAmount" class="input"><br>
                     </div>
                 </div>
-                
             </div>
             <div class="row">  
                 <div class="column">
                 <div class="formInput">
                 <input type="submit" id="caseSubmit" name="caseSubmit" class="btn-submit" value= "Submit" ><br>
-                <input type="hidden" id="caseSubmit" name="caseSubmit" value= <?php echo $data['singleCaseDetails'][0]['claimID'];?>>
                 </div>
               </div>
               <div class="column">
                 <div class="formInput">
                 <input type="submit" id="caseReject" name="caseReject" class="btn-submit" value= "Reject" ><br>
-                <input type="hidden" id="caseReject" name="caseReject" value= <?php echo $data['singleCaseDetails'][0]['claimID'];?>>
                 </div>
               </div>
               <div class="column">
