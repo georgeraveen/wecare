@@ -24,7 +24,7 @@ class CustomerProfile extends Controller{
                 $updateCust->startTrans();
 
                 $result= $updateCust->setValueUpdateCust($this->valValidate($_SESSION["user_id"]),
-                        $this->valValidate($_POST['email']),
+                        $this->isEmail($_POST['email']),
                         $this->valValidate($_POST['custAddress']),$this->valValidate($_POST['custContact']));
                         
                     
@@ -38,7 +38,7 @@ class CustomerProfile extends Controller{
         }
     
         catch (\Throwable $th) {
-           $_SESSION["errorMsg"]="Error occured when updating";
+           $_SESSION["errorMsg"]="Error occured when updating ".$th->getMessage();
             $updateCust->transRollBack();
             header("Location: ./index");
        }

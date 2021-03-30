@@ -98,7 +98,7 @@ class manageCustomer extends Controller{
             $editCustomer->startTrans();
             if($_POST['editCustomer']){
                 $result= $editCustomer->setValue($this->valValidate($_POST['custID']),$this->valValidate($_POST['custName']),$this->valValidate($_POST['custAddress']),
-                        $this->valValidate($_POST['custNIC']),$this->valValidate($_POST['dob']),$this->valValidate($_POST['email']),
+                        $this->valValidate($_POST['custNIC']),$this->valValidate($_POST['dob']),$this->isEmail($_POST['email']),
                         $this->valValidate($_POST['gender']),$this->valValidate($_POST['policyID']),$this->valValidate($_POST['custContact']),
                         $this->valValidate($_POST['custType']),$this->valValidate($_POST['paymentDate']));
                 $result= $editCustomer->update();
@@ -110,7 +110,7 @@ class manageCustomer extends Controller{
             exit;
         } catch (\Throwable $th) {
             $editCustomer->transRollBack();
-            $_SESSION["errorMsg"]="Error occured when updating values";
+            $_SESSION["errorMsg"]="Error occured when updating values".$th->getMessage();
             header("Location: ./updateCustomer");
         }
         
