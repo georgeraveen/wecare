@@ -212,6 +212,11 @@ class ClaimCase extends Models{
        // var_dump($stmt);
          $stmt->execute();
      }
+     public function updateCaseReject($claimID){
+        $stmt= $this->conn->prepare("UPDATE claim_case SET caseStatus=\"Rejected\",payableAmount=0 WHERE (claimID=$claimID) AND (medScruID=".$_SESSION["user_id"].");");
+       // var_dump($stmt);
+         $stmt->execute();
+     }
     //**************************************** FUNCTIONS OF DOCTOR **********************************************
 
     //Docter-view pending queue

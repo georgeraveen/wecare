@@ -74,13 +74,18 @@ class viewPendingCases extends Controller{
             $empMod= new Employee();
 
             if($_POST['caseReject']){
-                echo"case reject";
+                $caseDetails->updateCaseReject($_POST['claimID']);
+                $_SESSION["successMsg"]="Case has been sucessfully rejected!";    
+                header("Location: ./viewCase");
+                exit;
         
             }
+            if($_POST['cancel']){
+                $_SESSION["successMsg"]="No changes have been done to the case!";    
+                header("Location: ./viewCase");
+                exit;
+            }
             if($_POST['caseSubmit']){
-               //echo"submit accept";
-                //var_dump($_POST['payAmount']);
-                //var_dump($_POST['claimID']);
                 if($_POST['payAmount']==("" || 0)){
                     $_SESSION["errorMsg"]="Please enter a valid payable amount before submitting.";
                     header("Location: ./viewCase");
@@ -93,12 +98,7 @@ class viewPendingCases extends Controller{
                     exit;   
                 }
             }
-            if($_POST['cancel']){
-                $this->viewCase();
-                $_SESSION["successMsg"]="No changes have been done to the case!";    
-                header("Location: ./viewCase");
-                exit;
-            }
+          
         }
         catch(\Throwable $th) {
                 $_SESSION["errorMsg"]="Error occured while performing operation.";

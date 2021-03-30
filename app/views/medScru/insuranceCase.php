@@ -127,11 +127,12 @@
               <div class="column">
                 <div class="formInput">
                 <input type="submit" id="caseReject" name="caseReject" class="btn-submit" value= "Reject" ><br>
+                <input type="hidden" id="caseReject" name="caseReject" value= <?php echo $data['singleCaseDetails'][0]['claimID'];?>>
                 </div>
               </div>
               <div class="column">
                 <div class="formInput">
-                <input type="submit" id="cancel" name="cancel" class="btn-submit" value= "Cancel" ><br>
+                <input type="submit" id="cancel" name="cancel" class="btn-submit" value= "Cancel"><br>
                 </div>
               </div>      
             </div>
