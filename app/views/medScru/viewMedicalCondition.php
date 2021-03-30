@@ -17,14 +17,7 @@
         <th>Health Condition</th>
         <th>Comments</th>
       </tr>
-      <tr>
-        <td>007</td>
-        <td>00024</td>
-        <td>2020/11/10</td>
-        <td>Congenital</td>
-        <td>Lung Condition</td>
-        <td>Insert comment here when creating medical condiitons</td>
-      </tr>
+     
     </table>
     
   </div>

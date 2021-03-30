@@ -2,7 +2,8 @@
 <link rel="stylesheet" href= "./../../css/home.css">
 <link rel="stylesheet" href= "./../../css/style.css">
 <div class="containers">
-  <h1>Select Customer Profile</h1><br>
+  <h1>Customer past medical history</h1><br>
+  <h2 style="text-align:center">Select customer</h2><br>
   <div class="form-container2">
     <form>
       <div class="row">
@@ -24,7 +25,11 @@
       </div>
     </form>
   </div>
-  <br><br>
+
+
+
+
+  <!-- <br><br>
   <h1>Search Customer Profile</h1>
   <h2>Search by</h1>
   <div class="form-container2">
@@ -69,6 +74,6 @@
       }
       ?>
     </table>
-  </div>
+  </div> -->
 
   
