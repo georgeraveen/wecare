@@ -16,9 +16,19 @@
       </tr>
       <?php
       $chartData = [];
+      $chartLabel = [];
+      $chartBackColor = [];
+      $r = 0;
+      $g = 100;
+      $b = 70;
       foreach ($data as $row) {
         //echo "gyff";
+        $r += 50;
+        $g += 20;
+        $b += 30;
+        array_push($chartBackColor, "rgba($r,$g,$b,1)");
         array_push($chartData, $row['num']);
+        array_push($chartLabel, $row['empName']);
         echo "<tr>" . "<td>" . $row['medScruID'] . "</td>" .
           "<td>" . $row['num'] . "</td>" .
           "<td>" . $row['empName'] . "</td>" . "</tr>";
@@ -42,25 +52,22 @@
     data: {
       datasets: [{
         data: <?php echo json_encode($chartData) ?>,
-        backgroundColor: [
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(153, 102, 255, 0.2)',
-          'rgba(255, 159, 64, 0.2)'
-        ],
-        borderColor: [
-          'rgba(75, 192, 192, 1)',
-          'rgba(153, 102, 255, 1)',
-          'rgba(255, 159, 64, 1)'
-        ]
+        backgroundColor: <?php echo json_encode($chartBackColor) ?>,
+        // backgroundColor: [
+        //   'rgba(75, 192, 192, 0.2)',
+        //   'rgba(153, 102, 255, 0.2)',
+        //   'rgba(255, 159, 64, 0.2)'
+        // ],
+        // borderColor: [
+        //   'rgba(75, 192, 192, 1)',
+        //   'rgba(153, 102, 255, 1)',
+        //   'rgba(255, 159, 64, 1)'
+        // ]
       }],
 
       borderWidth: 1,
       // These labels appear in the legend and in the tooltips when hovering different arcs
-      labels: [
-        'Red',
-        'Yellow',
-        'Blue'
-      ]
+      labels: <?php echo json_encode($chartLabel) ?>,
     },
 
     // Configuration options go here
