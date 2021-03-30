@@ -8,6 +8,12 @@ class manageCustMedical extends Controller{
         $this->view('medScru/manageMedicalConditions');
         include './../app/footer.php';
     }
+    public function addNewCondition(){
+        $this->checkPermission("MED");
+        include './../app/header.php';
+        $this->view('medScru/addNewCondition');
+        include './../app/footer.php';
+    }
 
     public function manageCustMedicalCondtions(){
         $this->checkPermission("MED");
@@ -27,31 +33,17 @@ class manageCustMedical extends Controller{
         $this->view('medScru/viewMedicalCondition');
         include './../app/footer.php';
     }
+
     public function createNewConditon(){
         $this->checkPermission("MED");
-        // echo "hi";
-        var_dump($_POST);
         if($_POST['addMedCondition']){
             $this->model('medicalCondition');
             $newMedicalCondition = new medicalCondition();
             $result= $newMedicalCondition->setValue($this->valValidate($_POST['customerID']),$this->valValidate($_POST['medDate']),$this->valValidate($_POST['type']),$this->valValidate($_POST['healthCondition']),$this->valValidate($_POST['comments']));
             $result= $newMedicalCondition->create();
+            $_SESSION["successMsg"]="Medical condition added Successfully!";  
             header("Location: ./index");
             exit;
         }
     }  
-
-    public function addNewCondition(){
-        $this->checkPermission("MED");
-        include './../app/header.php';
-        $this->view('medScru/addNewCondition');
-        include './../app/footer.php';
-    }
-    public function newCondition(){
-        $this->checkPermission("MED");
-        include './../app/header.php';
-        $this->view('medScru/newCondition');
-        include './../app/footer.php';
-    }
-
 }

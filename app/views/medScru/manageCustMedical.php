@@ -28,43 +28,7 @@
 
 
 
-
-  <!-- <br><br>
-  <h1>Search Customer Profile</h1>
-  <h2>Search by</h1>
-  <div class="form-container2">
-    <form>
-      <div class="row">
-        <div class="column">
-          <select id="custData" name="custData" required>
-            <option>Name</option>
-            <option>Customer ID</option>
-            <option>NIC</option>
-            <option>Phone Number</option>
-          </select>
-        </div>
-        <div class="column">
-          <div class="formInput">
-            <label for="custData"></label>
-            <input type="data" id="data" name="data" class="input">          
-          </div>
-        </div>
-        </div>
-        <div class="row">
-        <input type="submit" id="setOption" name="setOption" class="btn-submit" value="Search"><br>
-        </div>
-    </form><br>
-    </div>
-    <div class="table-container">
-    <table class="table-view">
-      <tr>
-        <th>Name</th>
-        <th>Customer ID</th>
-        <th>NIC</th>
-        <th>Phone Number</th>
-        <th>Action</th>
-      </tr>
-      <?php
+      <!-- <?php
       foreach($data['custBasicList'] as $row){
         echo "<tr>"."<td>".$row['custID']."</td>".
               "<td>".$row['custName']."</td>".
@@ -72,8 +36,6 @@
               "<td>".$row['custContact']."</td>".
               "<td><a class=\"viewBtn\" href=\"./../manageCustMedical/viewConditions\">View</a> "."</td>"."</tr>";
       }
-      ?>
-    </table>
-  </div> -->
+      ?> -->
 
   
