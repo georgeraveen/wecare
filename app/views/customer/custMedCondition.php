@@ -18,6 +18,10 @@
 <link rel="stylesheet" href= "./../../css/modal.css">
 <img src="./../../images/undraw_medical_research_qg4d.svg" class="img-background img-left">
 <div class="containersMed">
+<ul class="breadcrumb">
+    <li><a href="./../customerHome/index">Home</a></li>
+    
+    </ul>
   <h1>View Medical History</h1><br>
   <div class="table-container">
     <table class="table-view">

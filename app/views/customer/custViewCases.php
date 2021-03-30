@@ -8,6 +8,10 @@
 
 <img src="./../../images/undraw_progress_data_4ebj.svg" class="img-background img-right">
 <div class="containers">
+<ul class="breadcrumb">
+    <li><a href="./../customerHome/index">Home</a></li>
+   
+    </ul>
 
   <h1>View My Insurance Claim Cases</h1><br>
   <div class="table-container">
