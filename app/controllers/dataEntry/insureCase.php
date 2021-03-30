@@ -137,7 +137,7 @@ class insureCase extends Controller{
             header("Location: ./viewCase");
             exit;
         }
-    }
+    }\\
     public function updateCase(){
         try {
             $this->checkPermission("DEO");

@@ -76,20 +76,22 @@ class viewPendingCases extends Controller{
                 $this->model('claimCase');
             }
             if($_POST['assignDoc']){
-                echo"assign doc";
-                include './../app/header.php';
-                $this->controller('./viewCase');
-                //$this->view('medScru/pendingCases');
-                include './../app/footer.php';
+                $this->viewCase();  
+                $_SESSION["successMsg"]="Doctor Assigned Successfully!";    
+                header("Location: ./viewCase");
+                exit; 
             }
             if($_POST['cancel']){
-                include './../app/header.php';
                 $this->viewCase();
-                include './../app/footer.php';   
+                $_SESSION["successMsg"]="No changes have been done to the case!";    
+                header("Location: ./viewCase");
+                exit;
             }
 
         }
         catch(\Throwable $th) {
+                $_SESSION["errorMsg"]="Error occured while performing operation.";
+                header("Location: ./index");
         }
 
         // try{     
