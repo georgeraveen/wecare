@@ -125,6 +125,55 @@ class viewPendingCases extends Controller{
         //         header("Location: ./index");
         // }
     }
+
+    public function assignDoc(){
+        //var_dump("tests");
+        $this->checkPermission("MED");
+        try{ 
+            $this->model('claimCase');
+            $caseDetails= new ClaimCase();
+            $this->model('employee');
+            $empMod= new Employee();
+            if($_POST['assignDoc']){
+                //  var_dump($_POST['claimID']);
+                //  var_dump($data['claimID']);
+                //  echo "blah";
+                //  var_dump($_POST['doctorID']);
+                //  var_dump($data['empID']);
+                //     echo "blah";
+                $this->viewCase();  
+                $_SESSION["successMsg"]="Doctor Assigned Successfully!";    
+                header("Location: ./viewCase");
+                exit; 
+            }
+        }
+        catch(\Throwable $th) {
+                $_SESSION["errorMsg"]="Error occured while performing operation.";
+                header("Location: ./index");
+        }
+
+        // try{     
+        //     $this->checkPermission("MED");
+        //     //var_dump("tests");
+        //         if($_POST['editSingleCaseDetails']){
+        //         $this->model('claimCase');
+        //         $editClaimCase = new ClaimCase();
+        //         $result= $editClaimCase->setValueDoc(
+        //                 $this->valValidate($_POST['doctorComment']),$this->valValidate($_POST['healthCondition']));
+                       
+        //         $result= $editClaimCase->updateSingleCaseDoc($this->valValidate($_POST['claimID']));
+        //         $_SESSION["successMsg"]="Case Updated Successfully!";
+        //         header("Location: ./viewCase");
+        //         exit;
+        //         }
+        //     }
+        // catch(\Throwable $th) {
+        //         $newCustomer->transRollBack();
+        //         $_SESSION["errorMsg"]="Error occured when creating a new customer.";
+        //         header("Location: ./index");
+        // }
+    }
+
     public function editCase(){
         $this->checkPermission("MED");
         //var_dump($_GET['id']);

@@ -105,17 +105,6 @@
             </div>
             <div class="row">
               <div class="column">
-                <div class="formInput">
-                  <label for="Doc">Assign Doctor</label><br>
-                  <select id="Doc" name="Doc">
-                  <?php
-                  foreach ($data['docList'] as $docsRow){
-                  echo "<option value= \"".$docsRow['empID']."\"";
-                  if($docsRow['empID']==$data['caseDetails'][0]['doctorID']) echo "selected=\"selected\"";
-                  echo "> DOC".$docsRow['empID']." - ".$docsRow['empFirstName']." ".$docsRow['empLastName']."</option>";
-                  }
-                  ?>
-                  </select><br>
                 </div>
               </div>
 
@@ -125,21 +114,16 @@
                         <input type="number" id="payAmount" name="payAmount" class="input"><br>
                     </div>
               </div>      
-
-
-
             </div> 
-
             <div class="row"> 
               <div class="column">
-                <div class="formInput">
+                <!-- <div class="formInput">
                 <input type="submit" id="assignDoc" name="assignDoc" class="btn-submit" value= "Assign Doctor" ><br>
                 <input type="hidden" id="assignDoc" name="claimID" value= <?php echo $data['claimID'];?> >
                 <input type="hidden" id="assignDoc" name="docID" value= <?php echo $data['empID'];?> >
-                </div>
+                </div> -->
               </div>
               <div class="column">
-  
               </div>
               <div class="column">
               </div>
@@ -161,4 +145,32 @@
             </div>
     </form>
   </div>
+
+  <div class="form-container2">
+  <form action="./assignDoc" method="post" onSubmit="showLoader()">
+        <div class="row">
+              <div class="column">
+                <div class="formInput">
+                  <label for="Doc">Assign Doctor</label><br>
+                  <select id="Doc" name="Doc">
+                  <?php
+                  foreach ($data['docList'] as $docsRow){
+                  echo "<option value= \"".$docsRow['empID']."\"";
+                  if($docsRow['empID']==$data['caseDetails'][0]['doctorID']) echo "selected=\"selected\"";
+                  echo "> DOC".$docsRow['empID']." - ".$docsRow['empFirstName']." ".$docsRow['empLastName']."</option>";
+                  }
+                  ?>
+                  </select><br>
+              </div>
+          </div>
+          <div class="row">
+          <div class="column">
+                <div class="formInput">
+                <input type="submit" id="assignDoc" name="assignDoc" class="btn-submit" value= "Assign Doctor" ><br>
+                <input type="hidden" id="assignDoc" name="claimID" value= <?php echo $data['claimID'];?> >
+                <input type="hidden" id="assignDoc" name="docID" value= <?php echo $data['empID'];?> >
+                </div>
+          </div>
+          </div>
+  </form>
 </div>
