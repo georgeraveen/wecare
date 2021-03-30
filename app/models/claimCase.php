@@ -384,6 +384,84 @@ public function getCompletedCases($fieldAgID){
     return $stmt->fetchAll();
 
 }
+////////////////manager
+public function getAllReview($fromdate,$todate,$type){
+    // var_dump($this->conn);
+    //echo $type;
+    $stmt= $this->conn->prepare("SELECT claimID,dischargeDate,c.custName,ins.type, i.policyID, caseStatus  from $this->table as i 
+                inner join customer as c on i.custID = c.custID 
+                inner join cust_insurance as ins on i.custID = ins.custID
+                WHERE (dischargeDate BETWEEN '$fromdate' AND '$todate') AND (ins.type='$type') AND i.overPaid=0 AND (caseStatus='Completed' OR caseStatus='Rejected')");
+    
+    $stmt->execute();
+    return $stmt->fetchAll();
+}
+public function viewCases($_id){
+    $stmt= $this->conn->prepare("SELECT claimID,dischargeDate,payableAmount,h.name, policyID,custFeedback, caseStatus  from $this->table as i 
+                inner join hospital as h on i.hospitalID = h.hospitalID
+                WHERE claimID=$_id");
+    
+    $stmt->execute();
+    return $stmt->fetchAll();
+}
+public function overPayments($_id,$value,$remark){
+    $stmt= $this->conn->prepare("insert into over_paid (claimID,overPaidAmount,remark) 
+                                                            values (:claimID,:overPaidAmount,:remark)");
+    $stmt -> bindParam(':claimID', $_id );
+    $stmt -> bindParam(':overPaidAmount', $value );
+    $stmt -> bindParam(':remark', $remark );
+   // var_dump()
+    $stmt->execute();
+    $stmt1= $this->conn->prepare("update $this->table set overPaid= 1
+                                                            where claimID = $_id ") ;   
+    $stmt1->execute();   
+
+}
+public function getOverPaid($fromdate,$todate){
+
+    $stmt= $this->conn->prepare("SELECT o.claimID,dischargeDate,concat(e.empFirstName,' ',e.emplastName) as empName, o.overPaidAmount, o.remark  from $this->table as i 
+                inner join employee as e on e.empID = i.medScruID 
+                inner join over_paid as o on i.claimID = o.claimID
+                WHERE (dischargeDate BETWEEN '$fromdate' AND '$todate')");
+    //var_dump($stmt);
+    $stmt->execute();
+    return $stmt->fetchAll();
+}
+public function getOverPaidView($_id){
+    $stmt= $this->conn->prepare("SELECT o.claimID,dischargeDate,concat(e.empFirstName,' ',e.emplastName) as empName, o.overPaidAmount, o.remark  from $this->table as i 
+                inner join employee as e on e.empID = i.medScruID 
+                inner join over_paid as o on i.claimID = o.claimID
+                WHERE o.claimID=$_id");
+//var_dump($stmt);
+$stmt->execute();
+return $stmt->fetchAll();
+}
+public function editOverPayments($_id,$value,$remark){
+
+    $stmt= $this->conn->prepare("update over_paid set overPaidAmount=:overPaidAmount ,remark=:remark
+                                                            where claimID = $_id ") ; 
+    $stmt -> bindParam(':overPaidAmount', $value );
+    $stmt -> bindParam(':remark', $remark ); 
+    $stmt->execute();   
+}
+public function deleteOverPayments($_id){
+    $stmt= $this->conn->prepare("delete from over_paid where claimID= $_id");
+    $stmt->execute();
+    $stmt1= $this->conn->prepare("update $this->table set overPaid= 0
+                                                            where claimID = $_id ") ;   
+    $stmt1->execute();   
+}
+public function performanceView($fromdate,$todate){
+    $stmt= $this->conn->prepare("SELECT medScruID,COUNT(claimID) as num,concat(e.empFirstName,' ',e.emplastName) as empName from $this->table as i 
+    inner join employee as e on e.empID = i.medScruID
+    WHERE (dischargeDate BETWEEN '$fromdate' AND '$todate')
+    GROUP BY medScruID ");
+
+//var_dump($stmt);
+$stmt->execute();
+return $stmt->fetchAll();
+}
+
 //**************************** Functions for customer***********************
 //set value for feedback
     
@@ -412,6 +490,7 @@ public function getAllCustCases($custID){
     $stmt->execute();
     return $stmt->fetchAll();
 }
+
 
 }
 ?>
