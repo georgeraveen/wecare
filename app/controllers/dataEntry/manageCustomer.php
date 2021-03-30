@@ -19,7 +19,7 @@ class manageCustomer extends Controller{
             $newCustomer->startTrans();
             if($_POST['newCustomer']){
                 $result= $newCustomer->setValue("nullID",$this->valValidate($_POST['custName']),$this->valValidate($_POST['custAddress']),
-                        $this->valValidate($_POST['custNIC']),$this->valValidate($_POST['custDOB']),$this->valValidate($_POST['email']),
+                        $this->valValidate($_POST['custNIC']),$this->valValidate($_POST['custDOB']),$this->isEmail($_POST['email']),
                         $this->valValidate($_POST['gender']),$this->valValidate($_POST['policyID']),$this->valValidate($_POST['custContact']),
                         $this->valValidate($_POST['custType']),$this->valValidate($_POST['paymentDate']));
                 $result= $newCustomer->create();
@@ -30,7 +30,7 @@ class manageCustomer extends Controller{
             }
         } catch (\Throwable $th) {
             $newCustomer->transRollBack();
-            $_SESSION["errorMsg"]="Error occured when creating a new customer.";
+            $_SESSION["errorMsg"]="Error occured when creating a new customer. ".$th->getMessage();
             header("Location: ./index");
         }
         
