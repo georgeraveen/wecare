@@ -72,13 +72,26 @@ class viewPendingCases extends Controller{
             $caseDetails= new ClaimCase();
             $this->model('employee');
             $empMod= new Employee();
+
             if($_POST['caseReject']){
                 echo"case reject";
-                $this->model('claimCase');
+        
             }
             if($_POST['caseSubmit']){
-                echo"submit accept";
-                $this->model('claimCase');
+               //echo"submit accept";
+                //var_dump($_POST['payAmount']);
+                //var_dump($_POST['claimID']);
+                if($_POST['payAmount']==("" || 0)){
+                    $_SESSION["errorMsg"]="Please enter a valid payable amount before submitting.";
+                    header("Location: ./viewCase");
+                    exit;
+                }
+                else{ 
+                    $caseDetails->updateCaseAmount($_POST['claimID'],$_POST['payAmount']);
+                    $_SESSION["successMsg"]="Case Completed successfully!";  
+                    header("Location: ./viewCase");
+                    exit;   
+                }
             }
             if($_POST['cancel']){
                 $this->viewCase();
@@ -86,7 +99,6 @@ class viewPendingCases extends Controller{
                 header("Location: ./viewCase");
                 exit;
             }
-
         }
         catch(\Throwable $th) {
                 $_SESSION["errorMsg"]="Error occured while performing operation.";

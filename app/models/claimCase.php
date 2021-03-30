@@ -203,15 +203,15 @@ class ClaimCase extends Models{
     }
 
     public function updateAssignDoc($claimID,$doctorID){
-        //var_dump($claimID);
-       //var_dump($doctorID);
-        //$claimID,$doctorID
-        //var_dump($_SESSION["user_id"]);
         $stmt= $this->conn->prepare("UPDATE claim_case SET caseStatus=\"Doctor pending\",doctorID=$doctorID WHERE (claimID=$claimID) AND (medScruID=".$_SESSION["user_id"].");");
        // var_dump($stmt);
          $stmt->execute();
      }
-
+     public function updateCaseAmount($claimID,$payableAmount){
+        $stmt= $this->conn->prepare("UPDATE claim_case SET caseStatus=\"Completed\",payableAmount=$payableAmount WHERE (claimID=$claimID) AND (medScruID=".$_SESSION["user_id"].");");
+       // var_dump($stmt);
+         $stmt->execute();
+     }
     //**************************************** FUNCTIONS OF DOCTOR **********************************************
 
     //Docter-view pending queue

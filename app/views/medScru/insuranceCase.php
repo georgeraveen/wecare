@@ -121,6 +121,7 @@
                 <div class="column">
                 <div class="formInput">
                 <input type="submit" id="caseSubmit" name="caseSubmit" class="btn-submit" value= "Submit" ><br>
+                <input type="hidden" id="caseSubmit" name="caseSubmit" value= <?php echo $data['singleCaseDetails'][0]['claimID'];?>>
                 </div>
               </div>
               <div class="column">
@@ -138,7 +139,6 @@
 
     </form>
   </div>
-
   <div class="form-container2">
   <form action="./assignDoc" method="post" onSubmit="showLoader()">
         <div class="row">
@@ -158,7 +158,6 @@
                 <?php
                 //var_dump($data);
                 ?>
-  
               </div>
         </div>
           <div class="row">
