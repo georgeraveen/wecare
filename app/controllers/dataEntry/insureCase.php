@@ -10,13 +10,14 @@ class insureCase extends Controller{
 
         $this->model('hospital');
         $hospitalMod= new Hospital();
-        $hospList=$hospitalMod->getAllNames();
+        $hospList=$hospitalMod->getAll();
 
         $this->model('employee');
         $empMod= new Employee();
         $medList=$empMod->getEmpByTypeList("MED");
 
         $fagList=$empMod->getEmpByTypeList("FAG");
+        // var_dump($hospList);
 
         include './../app/header.php';
         $this->view('dataEntry/newInsureCase',['custList'=>$custList,'hospList'=>$hospList,'medList'=>$medList,'fagList'=>$fagList]);
@@ -58,7 +59,7 @@ class insureCase extends Controller{
         //////for filters
         $this->model('hospital');
         $hospitalMod= new Hospital();
-        $hospList=$hospitalMod->getAllNames();
+        $hospList=$hospitalMod->getAll();
 
         $this->model('employee');
         $empMod= new Employee();
@@ -114,8 +115,8 @@ class insureCase extends Controller{
         $this->model('claimCase');
         $editCase= new ClaimCase();
 
-        // $this->model('customer');
-        // $customerMod= new Customer();
+        $this->model('customer');
+        $customerMod= new Customer();
 
         $this->model('hospital');
         $hospitalMod= new Hospital();
@@ -124,20 +125,20 @@ class insureCase extends Controller{
         $empMod= new Employee();
 
         if($_GET['action']=="edit"){
-            // $custList=$customerMod->getList();
-            $hospList=$hospitalMod->getAllNames();
+            $custList=$customerMod->getList();
+            $hospList=$hospitalMod->getAll();
             $medList=$empMod->getEmpByTypeList("MED");
             $fagList=$empMod->getEmpByTypeList("FAG");
             $caseDetails=$editCase->getDetails($this->valValidate($_GET['id']));
             include './../app/header.php';
-            $this->view('dataEntry/editInsureCase',['id'=>$this->valValidate($_GET['id']),'caseDetails'=>$caseDetails,'hospList'=>$hospList,'medList'=>$medList,'fagList'=>$fagList]);
+            $this->view('dataEntry/editInsureCase',['id'=>$this->valValidate($_GET['id']),'caseDetails'=>$caseDetails,'custList'=>$custList,'hospList'=>$hospList,'medList'=>$medList,'fagList'=>$fagList]);
             include './../app/footer.php';
         }
         else{
             header("Location: ./viewCase");
             exit;
         }
-    }\\
+    }
     public function updateCase(){
         try {
             $this->checkPermission("DEO");
