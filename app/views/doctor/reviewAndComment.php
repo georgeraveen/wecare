@@ -9,12 +9,17 @@
 <link rel="stylesheet" href= "./../../css/style.css">
 
 <div class="containers">
+<ul class="breadcrumb">
+    <li><a href="./../doctorHome/index">Home</a></li>
+    <li><a href="./../viewPendingQueue/index">My Pending Queue</a></li>
+    <li>Review And Comments</a></li>
+  </ul>
     <h1>Review And Comments</h1><br>
 <div class="form-container">
 
 
 
-<form action="./updateCase" method="post">
+<form action="./updateCase" method="post"  onSubmit="showLoader()">
             <div class="row">
                 <div class="column">
                     <div class="formInput">
