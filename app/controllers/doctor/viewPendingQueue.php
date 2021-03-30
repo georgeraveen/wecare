@@ -60,7 +60,7 @@ class viewPendingQueue extends Controller{
     }
 }catch(\Throwable $th) {
         $newCustomer->transRollBack();
-        $_SESSION["errorMsg"]="Error occured when creating a new customer.";
+        $_SESSION["errorMsg"]="Error occured when update!.";
         header("Location: ./index");
     }
 

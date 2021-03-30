@@ -172,6 +172,7 @@ class ClaimCase extends Models{
             case "FAG":
                 $emp=" FieldAgID = $empID";
                 break;
+            
             case "DOC":
                 $emp=" doctorID = $empID";
                 break;
@@ -368,6 +369,34 @@ public function getCompletedCases($fieldAgID){
     $stmt->execute();
     return $stmt->fetchAll();
 
+}
+//**************************** Functions for customer***********************
+//set value for feedback
+    
+    public function setFeedbackValue($PclaimID,$PcustFeedback){
+       // var_dump($PclaimID);
+        $this->claimID= !empty($PclaimID) ? $PclaimID : null;
+        $this->custFeedback =  !empty($PcustFeedback) ? $PcustFeedback : null;
+       
+}
+//update customer feedback
+public function addFeedback(){
+   // var_dump($_SESSION["user_id"]);
+    $stmt= $this->conn->prepare("UPDATE $this->table set custFeedback= :custFeedback WHERE claimID =  $this->claimID AND custID=".$_SESSION['user_id']);
+
+    $stmt -> bindParam(':custFeedback', $this->custFeedback );
+    
+  // var_dump($stmt);
+    $stmt->execute();
+}
+//get customer claim history
+public function getAllCustCases($custID){
+    $stmt= $this->conn->prepare("SELECT claimID,dischargeDate,caseStatus,hospital.name,payableAmount,custFeedback
+    FROM claim_case
+    INNER JOIN hospital ON claim_case.hospitalID=hospital.hospitalID
+    WHERE custID = $custID ORDER BY claimID DESC");
+    $stmt->execute();
+    return $stmt->fetchAll();
 }
 
 }

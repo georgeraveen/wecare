@@ -1,4 +1,6 @@
-
+<?php
+//var_dump($data);
+?>
 <!-- <link rel="stylesheet" href= "./../css/home.css">   -->
 <link rel="stylesheet" href= "./../../css/custStyle.css">
 <link rel="stylesheet" href= "./../../css/custStyle2.css">
@@ -26,7 +28,7 @@
               "<td>".$row['name']."</td>".
               "<td>".$row['payableAmount']."</td>".
               "<td> <a class=\"editBtn\" href=\"#\" onClick=\"openFeedback(".$row['claimID'].")\">Add</a> "."</td> </tr>".
-              " <textarea id=\"custFeedbackBox-".$row['claimID']."\" name=\"custFeedback\" hidden class=\"commentBox hide\">dadsadsa</textarea>"." ";
+              " <textarea id=\"custFeedbackBox-".$row['claimID']."\" name=\"custFeedback\" hidden class=\"commentBox hide\">".$row['custFeedback']."</textarea>"." ";
       }
 
       ?>
@@ -39,7 +41,7 @@
   <!-- Modal content -->
   <div class="modal-content">
     <span class="close">&times;</span>
-    <form action="#" method="get">
+    <form action="./addFeedback" method="post">
       
       <div class="row">
         <div class="column">
