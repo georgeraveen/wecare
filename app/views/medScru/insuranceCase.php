@@ -8,7 +8,7 @@
   </ul>
   <h1>Process insurance Claim Case</h1><br>
   <div class="form-container">
-  <form action="./updateCase" method="post">
+  <form action="./updateCase" method="post" onSubmit="showLoader()">
             <div class="row">
                 <div class="column">
                     <div class="formInput">
@@ -106,14 +106,15 @@
             <div class="row">
               <div class="column">
                 <div class="formInput">
-                  <label for="medScrut">Assign Doctor</label><br>
+                  <label for="Doc">Assign Doctor</label><br>
                   <select id="Doc" name="Doc">
-                  <?php               
-                  foreach ($data['medList'] as $medsRow){
-                  echo "<option value= \"".$medsRow['empID']."\"> MED".$medsRow['empID']." - ".$medsRow['empFirstName']." ".$medsRow['empLastName']."</option>";
+                  <?php
+                  foreach ($data['docList'] as $docsRow){
+                  echo "<option value= \"".$docsRow['empID']."\"";
+                  if($docsRow['empID']==$data['caseDetails'][0]['doctorID']) echo "selected=\"selected\"";
+                  echo "> DOC".$docsRow['empID']." - ".$docsRow['empFirstName']." ".$docsRow['empLastName']."</option>";
                   }
                   ?>
-                  <!-- <option>User ID - Name</option> -->
                   </select><br>
                 </div>
               </div>
@@ -133,9 +134,12 @@
               <div class="column">
                 <div class="formInput">
                 <input type="submit" id="assignDoc" name="assignDoc" class="btn-submit" value= "Assign Doctor" ><br>
+                <input type="hidden" id="assignDoc" name="claimID" value= <?php echo $data['claimID'];?> >
+                <input type="hidden" id="assignDoc" name="docID" value= <?php echo $data['empID'];?> >
                 </div>
               </div>
               <div class="column">
+  
               </div>
               <div class="column">
               </div>

@@ -65,8 +65,12 @@ class viewPendingCases extends Controller{
     }
     public function updateCase(){
         //var_dump("tests");
+        $this->checkPermission("MED");
         try{ 
-            $this->checkPermission("MED");
+            $this->model('claimCase');
+            $caseDetails= new ClaimCase();
+            $this->model('employee');
+            $empMod= new Employee();
             if($_POST['caseReject']){
                 echo"case reject";
                 $this->model('claimCase');
@@ -76,10 +80,16 @@ class viewPendingCases extends Controller{
                 $this->model('claimCase');
             }
             if($_POST['assignDoc']){
-                $this->viewCase();  
-                $_SESSION["successMsg"]="Doctor Assigned Successfully!";    
-                header("Location: ./viewCase");
-                exit; 
+                 var_dump($_POST['claimID']);
+                 var_dump($data['claimID']);
+                 echo "blah";
+                 var_dump($_POST['doctorID']);
+                 var_dump($data['empID']);
+                echo "blah";
+                // $this->viewCase();  
+                // $_SESSION["successMsg"]="Doctor Assigned Successfully!";    
+                // header("Location: ./viewCase");
+                // exit; 
             }
             if($_POST['cancel']){
                 $this->viewCase();
@@ -118,14 +128,16 @@ class viewPendingCases extends Controller{
     public function editCase(){
         $this->checkPermission("MED");
         //var_dump($_GET['id']);
-        //var_dump("oogabooga");
         $this->model('claimCase');
         $caseDetails= new ClaimCase();
-        //$doctorID=$_SESSION["user_id"];
+        $this->model('employee');
+        $empMod= new Employee();
+        $docList=$empMod->getEmpByTypeList("DOC");
+        //var_dump($docList);
         $singleCaseDetails=$caseDetails->getCaseDetailsMed( $this->valValidate($_GET['id']));  
         if($_GET['action']=="edit"){
             include './../app/header.php';
-            $this->view('medScru/insuranceCase',['id'=>$this->valValidate($_GET['id']),'singleCaseDetails'=>$singleCaseDetails]);
+            $this->view('medScru/insuranceCase',['docList'=>$docList,'id'=>$this->valValidate($_GET['id']),'singleCaseDetails'=>$singleCaseDetails]);
             include './../app/footer.php';
         }
         else{
