@@ -17,6 +17,7 @@ class insureCase extends Controller{
         $medList=$empMod->getEmpByTypeList("MED");
 
         $fagList=$empMod->getEmpByTypeList("FAG");
+        // var_dump($hospList);
 
         include './../app/header.php';
         $this->view('dataEntry/newInsureCase',['custList'=>$custList,'hospList'=>$hospList,'medList'=>$medList,'fagList'=>$fagList]);
@@ -114,8 +115,8 @@ class insureCase extends Controller{
         $this->model('claimCase');
         $editCase= new ClaimCase();
 
-        // $this->model('customer');
-        // $customerMod= new Customer();
+        //$this->model('customer');
+        //$customerMod= new Customer();
 
         $this->model('hospital');
         $hospitalMod= new Hospital();
@@ -124,7 +125,7 @@ class insureCase extends Controller{
         $empMod= new Employee();
 
         if($_GET['action']=="edit"){
-            // $custList=$customerMod->getList();
+            //$custList=$customerMod->getList();
             $hospList=$hospitalMod->getAllNames();
             $medList=$empMod->getEmpByTypeList("MED");
             $fagList=$empMod->getEmpByTypeList("FAG");

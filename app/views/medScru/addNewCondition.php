@@ -1,20 +1,28 @@
 <link rel="stylesheet" href= "./../../css/home.css">
 <link rel="stylesheet" href= "./../../css/style.css">
+<link rel="stylesheet" href= "./../../css/dropdown.css">
 <div class="containers">
-  <h1>Add New Medical Condition</h1><br>
+<ul class="breadcrumb">
+    <li><a href="./../medScruHome/index">Home</a></li>
+    <li><a href="./../manageCustMedical/index">Manage medical details of customers</a></li>
+    <li>Add new conditions</a></li>
+    </ul>
+  <h1 style="text-align:center">Add New Medical Condition</h1><br>
   <div class="form-container2">
-    
     <form action="./createNewConditon" method="post">
-
     <div class="row">
-        <div class="column">
-          <div class="formInput">
-            <label for="custID">Customer ID</label><br>
-            <input type="text" id="custID" name="customerID" class="input" value="Enter customer ID"><br>
-          </div>
-        </div>
+              <div class="column" style="flex:25%">
+              <div class="formInput">
+                <input type="number" id="customer" name="customerID" class="input" value="" required>
+                </div>
+              </div>
+              <div class="column"style="flex:75%">
+                <div class="formInput">
+                  <input type="text" id="custNameBox" name="custName" class="input"  onkeyup="showResult(this.value)" placeholder="Search by customer ID"><br>
+                  <div id="livesearch" class="dropdown-content"></div>
+                </div>
+              </div>
       </div> 
-
       <div class="row">
         <div class="column">
           <div class="formInput">
@@ -41,7 +49,7 @@
         <div class="column">
           <div class="formInput">
             <label for="healthCondition">Health Condition</label><br>
-            <textarea id="healthCondition" name="healthCondition" class="commentBox"></textarea> <br>
+            <textarea id="healthCondition" name="healthCondition" class="commentBox" required></textarea> <br>
           </div>
         </div>
       </div> 
@@ -57,10 +65,12 @@
         <div class="column">
           <div class="formInput">
             <input type="submit" id="addMedCondition" name="addMedCondition" class="btn-submit" value="Add medical condition"><br>
-            
           </div>
         </div>
       </div>
     </form>
   </div>
 </div>
+<script src="./../../js/common.js"></script>
+<script src="./../../js/searchCustomerList.js"></script>
+

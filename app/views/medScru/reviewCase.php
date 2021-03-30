@@ -1,34 +1,25 @@
 <link rel="stylesheet" href= "./../../css/home.css">
 <link rel="stylesheet" href= "./../../css/style.css">
-<div class="containers">
-    <h1>Insurance claim case</h1><br>
-<div class="form-container">
-    <form action="#">
+<div class="containers">  
+<ul class="breadcrumb">
+    <li><a href="./../medScruHome/index">Home</a></li>
+    <li><a href="./../viewCompletedCases/viewCase">Scrutinizer Completed cases queue</a></li>
+    <li>Review case</a></li>
+  </ul>
+  <h1>Review insurance Claim Case</h1><br>
+  <div class="form-container">
+  <form action="./reviewCase" method="post" onSubmit="showLoader()">
             <div class="row">
                 <div class="column">
                     <div class="formInput">
-                        <label for="customer">Medical Scrutinizer</label><br>
-                       <input type="text" id="medScru" name="medScruName" class="input" value="Amal" readonly><br>
-                    </div>
-                </div>
-                <div class="column">
-                    <div class="formInput">
-                        <label for="customer">Field Agent</label><br>
-                       <input type="text" id="fieldAgent" name="fieldAgentName" class="input" value="Kamal" readonly><br>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="column">
-                    <div class="formInput">
-                        <label for="customer">Customer</label><br>
-                       <input type="text" id="customer" name="custName" class="input" value="MR.Perera" readonly><br>
+                        <label for="customer">Customer Name</label><br>
+                       <input type="text" id="customer" name="custName" class="input" value=<?php echo $data['singleCaseDetails'][0]['custName']?> readonly><br>
                     </div>
                 </div>
                 <div class="column">
                     <div class="formInput">
                         <label for="claimID" >Claim ID</label><br>
-                        <input type="text" id="claimID" name="claimID" class="input" value="005" readonly><br>
+                        <input type="text" id="claimID" name="claimID" class="input" value=<?php echo $data['singleCaseDetails'][0]['claimID']?>  readonly><br>
                     </div>
                 </div>
             </div>
@@ -36,13 +27,13 @@
                 <div class="column">
                     <div class="formInput">
                         <label for="admitDate">Admit Date</label><br>
-                        <input type="date" id="admitDate" name="admitDate" class="input" value="2019-08-08" ><br>
+                        <input type="date" id="admitDate" name="admitDate" class="input" value=<?php echo $data['singleCaseDetails'][0]['admitDate']?> readonly><br>
                     </div>
                 </div>
                 <div class="column">
                     <div class="formInput">
                         <label for="ICUfromDate" >ICU from Date</label><br>
-                        <input type="date" id="ICUfromDate" name="ICUfromDate" class="input"  value="2019-08-10" ><br>
+                        <input type="date" id="ICUfromDate" name="ICUfromDate" class="input"  value=<?php echo $data['singleCaseDetails'][0]['icuFromDate']?> readonly><br>
                     </div>
                 </div>
             </div>
@@ -50,13 +41,13 @@
                 <div class="column">
                     <div class="formInput">
                         <label for="dischargeDate" >Discharge Date</label><br>
-                        <input type="date" id="dischargeDate" name="dischargeDate" class="input" value="2019-08-15"  ><br>
+                        <input type="date" id="dischargeDate" name="dischargeDate" class="input" value=<?php echo $data['singleCaseDetails'][0]['dischargeDate']?> readonly><br>
                     </div>
                 </div>
                 <div class="column">
                     <div class="formInput">
                         <label  for="ICUtoDate">ICU to Date</label><br>
-                        <input type="date" id="ICUtoDate" name="ICUtoDate" class="input" value="2019-08-12"  ><br>
+                        <input type="date" id="ICUtoDate" name="ICUtoDate" class="input" value=<?php echo $data['singleCaseDetails'][0]['icuToDate']?> readonly><br>
                     </div>
                 </div>
             </div>
@@ -64,72 +55,80 @@
                 <div class="column">
                     <div class="formInput">
                         <label for="hospital">Hospital</label><br>
-                        <input type="text" id="hospital" name="hospital" class="input" value="Asiri" readonly><br>
+                        <input type="text" id="hospital" name="hospital" class="input" value="<?php echo $data['singleCaseDetails'][0]['name']?>" readonly><br>
                     </div>
                 </div>
                 <div class="column">
                     <div class="formInput">
                         <label for="condition" >condition</label><br>
-                        <textarea type="text" id="condition" name="condition" class="commentBox" value="Conditions..."></textarea>
+                        <textarea readonly  id="healthCondition" name="healthCondition" class="commentBox" ><?php echo $data['singleCaseDetails'][0]['healthCondition']?></textarea>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="column">
                     <div class="row">
-                        <div class="column">
-                        <textarea readonly>DOC1</textarea>
-                        </div>
-                        <div class="column">
-                        <input type="view" id="view"  class="editBtn" value= "View File" ><br>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <textarea>DOC2</textarea>
-                    </div>
-                </div>
+                      <div class="column">
+                        <h4 for="fileToUpload">Hospital Documents</h4>
+                          <ul>
+                          <?php
+                          try {
+                          $dir ="./../documents/claimCases/". $data['singleCaseDetails'][0]['claimID'];
+                          //var_dump($data);
+                          // Sort in ascending order - this is default
+                          $ls = scandir($dir);
+
+                          // Sort in descending order
+                          //$b = scandir($dir,1);
+                          // var_dump($ls);
+                            for($i=2;$i < count($ls);$i++){
+                            $filename=pathinfo($ls[$i],PATHINFO_FILENAME);
+                            $ext=pathinfo($ls[$i],PATHINFO_EXTENSION);
+                            echo "<li>";
+                            echo "<a href =\"./viewFil/". $data['singleCaseDetails'][0]['claimID'] . "/". $filename."/".$ext ."\">".$ls[$i]."</a>";
+                            echo "</li>";
+                            }
+                          } 
+                          catch (\Throwable $th) {
+                          echo "Empty Directory";
+                          }
+                          ?>
+                          </ul>
+                      </div>   
+                    </div> 
+                  </div>
                 <div class="column">
                     <div class="formInput">
-                        <label for="doctorComment">Scrutinizers' Comment</label><br>
-                        <textarea  type="text" id="scruComment" name="scruComment" class="commentBox" placeholder="comments..."></textarea><br>
+                        <label for="doctorComment">Doctor's Comment</label><br>
+                        <textarea  type="text" id="doctorComment" name="doctorComment" class="commentBox" readonly ><?php echo $data['singleCaseDetails'][0]['doctorComment']?></textarea><br>
                     </div>
                 </div>
             </div>
-
+            
             <div class="row">
-                <div class="column">
-                    
-                <!---->
+            <div class="column">
+                <?php echo "For review purposes only" ?>
                 </div>
-               
-
                 <div class="column">
                     <div class="formInput">
-                        <label for="doctorComment">Doctors' Comment</label><br>
-                        <textarea  type="text" id="doctorComment" name="doctorComment" class="commentBox" placeholder="comments..."></textarea><br>
+                        <label for="payAmount">Payable Amount</label><br>
+                        <input type="number" id="payAmount" name="payAmount" class="input" value="<?php echo $data['singleCaseDetails'][0]['payableAmount']?>" readonly><br>
                     </div>
                 </div>
+                
             </div>
+            <div class="row">  
+                <div class="column">
+              </div>
+              <div class="column">
+              </div>
+              <div class="column">
+                <div class="formInput">
+                <input type="submit" id="cancel" name="cancel" class="btn-submit" value= "Cancel"><br>
+                </div>
+              </div>      
+            </div>
+             
 
-            <div class="row">
-                    <div class="column">
-                    <div class="formInput">
-                        <a id="a" href="./../viewPendingCases/index" class="btn-submit" >Cancel</a>
-                        </div>   
-                    </div>
-                    <div class="column">
-                        <!--cmnt-->
-                    </div>
-                    <div class="column">
-                        <!--cmnt-->
-                    </div>
-                    <div class="column">
-                        <div class="formInput">
-                         <input type="submit" id="submit" name="reviewCase" class="btn-submit" value= "OK" ><br>
-                        </div> 
-                    </div>
-                    
-            </div>
     </form>
-</div>
-</div>
+  </div>

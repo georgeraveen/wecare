@@ -8,6 +8,7 @@ class viewPendingCases extends Controller{
         include './../app/footer.php';
     }
     public function viewCase(){
+      //echo "blah";
         //var_dump("Hereitis");
         //echo $_SESSION["user_id"];
         $this->checkPermission("MED");
@@ -64,62 +65,74 @@ class viewPendingCases extends Controller{
 
     }
     public function updateCase(){
-        try {
-            $this->checkPermission("MED");
-            if($_POST['editInsurance']){
-                $this->model('customer');
-                $customerMod= new Customer();
-                $currentPolicy=$customerMod->getPolicy($this->valValidate($_POST['customer']));
-                $this->model('claimCase');
-                $editClaimCase = new ClaimCase();
-                if($_SESSION["deoType"]=="Trainee"){
-                    $casePermission=$editClaimCase->checkCasePermission($this->valValidate($_POST['claimID']),"DEO",$_SESSION["user_id"]);
-                    if(count($casePermission)==0){
-                        throw new Exception("Trainee is not allowed to update this case", 1);
-                        
-                    }
-                }
-                $result= $editClaimCase->setValue($this->valValidate($_POST['customer']),$this->valValidate($_POST['hospital']),
-                        $this->valValidate($_POST['admitDate']),$this->valValidate($_POST['dischargeDate']),$this->valValidate($_POST['icuFromDate']),
-                        $this->valValidate($_POST['icuToDate']),$this->valValidate($_POST['medScrut']),$this->valValidate($_POST['fieldAg']),
-                        $this->valValidate($_POST['healthCondition']),$currentPolicy[0]['policyID']);
-                $result= $editClaimCase->update($this->valValidate($_POST['claimID']));
-                $_SESSION["successMsg"]="Case details updated successfully";
-                sleep(1);
+        //var_dump("tests");
+        $this->checkPermission("MED");
+        //var_dump($_POST);
+        try{ 
+            $this->model('claimCase');
+            $caseDetails= new ClaimCase();
+            $this->model('employee');
+            $empMod= new Employee();
+            if($_POST['cancel']){
+                $_SESSION["successMsg"]="No changes have been done to the case!";    
                 header("Location: ./viewCase");
                 exit;
             }
-        } catch (\Throwable $th) {
-            $_SESSION["errorMsg"]=$th->getMessage();
-            // var_dump($th->getMessage());
-            // throw $th;
-            header("Location: ./viewCase");
+            else if($_POST['caseReject']){
+                $caseDetails->updateCaseReject($_POST['claimID']);
+                $_SESSION["successMsg"]="Case has been sucessfully rejected!";    
+                header("Location: ./viewCase");
+                exit;
+            }
+            else if($_POST['caseSubmit']){
+                if($_POST['payAmount']==("" || 0)){
+                    $_SESSION["errorMsg"]="Please enter a valid payable amount before submitting.";
+                    header("Location: ./viewCase");
+                    exit;
+                }
+                else{ 
+                    $caseDetails->updateCaseAmount($_POST['claimID'],$_POST['payAmount']);
+                    $_SESSION["successMsg"]="Case Completed successfully!";  
+                    header("Location: ./viewCase");
+                    exit;   
+                }
+            }
+          
+        }
+        catch(\Throwable $th) {
+                $_SESSION["errorMsg"]="Error occured while performing operation.";
+                header("Location: ./index");
         }
     }
 
+    public function assignDoc(){
+    //   var_dump($_POST['claimID']);
+    //   var_dump($_POST['Doc']);
+    //   var_dump($_SESSION['user_id']);
+        $this->checkPermission("MED");
+        $this->model('claimCase');
+        $caseDetails= new ClaimCase();
+        if($_POST['assignDoc']){
+        $caseDetails->updateAssignDoc($_POST['claimID'],$_POST['Doc']);
+            $_SESSION["successMsg"]="Doctor Assigned Successfully!";  
+            header("Location: ./viewCase");
+            exit;   
+        }
+    }
 
     public function editCase(){
         $this->checkPermission("MED");
+        //var_dump($_GET['id']);
         $this->model('claimCase');
-        $editCase= new ClaimCase();
-
-        // $this->model('customer');
-        // $customerMod= new Customer();
-
-        $this->model('hospital');
-        $hospitalMod= new Hospital();
-
+        $caseDetails= new ClaimCase();
         $this->model('employee');
         $empMod= new Employee();
-
+        $docList=$empMod->getEmpByTypeList("DOC");
+        //var_dump($docList);
+        $singleCaseDetails=$caseDetails->getCaseDetailsMed( $this->valValidate($_GET['id']));  
         if($_GET['action']=="edit"){
-            // $custList=$customerMod->getList();
-            $hospList=$hospitalMod->getAllNames();
-            $medList=$empMod->getEmpByTypeList("MED");
-            $fagList=$empMod->getEmpByTypeList("FAG");
-            $caseDetails=$editCase->getDetails($this->valValidate($_GET['id']));
             include './../app/header.php';
-            $this->view('medScru/insuranceCase',['id'=>$this->valValidate($_GET['id']),'caseDetails'=>$caseDetails,'hospList'=>$hospList,'medList'=>$medList,'fagList'=>$fagList]);
+            $this->view('medScru/insuranceCase',['docList'=>$docList,'id'=>$this->valValidate($_GET['id']),'singleCaseDetails'=>$singleCaseDetails]);
             include './../app/footer.php';
         }
         else{
@@ -127,6 +140,24 @@ class viewPendingCases extends Controller{
             exit;
         }
     }
+
+    public function viewFil($filePath,$fileName,$type){
+        $this->checkPermission("MED");
+        try {
+            $this->model('claimCase');
+            $caseDetails= new ClaimCase();
+            $isPermission = $caseDetails->checkCasePermission($filePath,"MED",$_SESSION["user_id"]);
+            if(count($isPermission)){
+                $this->viewFile("claimCases/".$filePath."/".$fileName.".".$type,$type);
+            }
+            else{
+                $this->permissionError();
+            }
+        } catch (\Throwable $th) {
+            $this->permissionError();
+        }
+        
+    }  
 
 
 }

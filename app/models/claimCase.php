@@ -84,6 +84,21 @@ class ClaimCase extends Models{
         $stmt->execute();
         return $stmt->fetchAll();
     }
+    public function getAllQueueLimitCompleted($page,$filter){
+        //var_dump($filter);
+        $limit=10;
+        $start=$page* $limit;
+        $stmt= $this->conn->prepare("SELECT claimID,dischargeDate,h.name,med.empFirstName as med, fag.empFirstName as fag, doc.empFirstName as doc, payableAmount, caseStatus  from $this->table as i 
+                    inner join hospital as h on i.hospitalID = h.hospitalID 
+                    inner join employee as med on i.medScruID = med.empID 
+                    inner join employee as fag on i.FieldAgID = fag.empID
+                    left join employee as doc on i.doctorID = doc.empID 
+                    ".$filter." AND (i.medScruID=".$_SESSION["user_id"].")
+                    order by claimID DESC LIMIT $start, $limit;");
+        // var_dump($filterParams);  
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
     
     public function getAllQueueLimitPending($page,$filter){
         //echo $_SESSION["user_id"];
@@ -98,6 +113,7 @@ class ClaimCase extends Models{
                     where caseStatus NOT IN ('Completed','Rejected') and i.medScruID=".$_SESSION["user_id"].";
                     ".$filter."
                     order by claimID DESC LIMIT $start, $limit");
+                    //please look at here later need fix
         // var_dump($filterParams);
         
         $stmt->execute();
@@ -105,6 +121,13 @@ class ClaimCase extends Models{
     }
     public function getAllCountPending($filter){
         $stmt= $this->conn->prepare("SELECT count(claimID) AS cnt from $this->table as i where caseStatus NOT IN ('Completed','Rejected');".$filter);
+        $stmt->execute();
+        return $stmt->fetchAll();
+        //again look here later need fix
+    }
+    public function getAllCountCompleted($filter){
+        var_dump($filter);
+        $stmt= $this->conn->prepare("SELECT count(claimID) AS cnt from $this->table as i ".$filter." AND (i.medScruID=".$_SESSION["user_id"].");");
         $stmt->execute();
         return $stmt->fetchAll();
     }
@@ -149,7 +172,6 @@ class ClaimCase extends Models{
             case "FAG":
                 $emp=" FieldAgID = $empID";
                 break;
-            
             case "DOC":
                 $emp=" doctorID = $empID";
                 break;
@@ -167,8 +189,34 @@ class ClaimCase extends Models{
         $stmt->execute();
         return $stmt->fetchAll();
     }
+    public function getCaseDetailsMed($claimID){
+        $stmt= $this->conn->prepare("SELECT customer.custName,claimID ,admitDate,icuFromDate,dischargeDate,icuToDate,hospital.name,doctorComment,healthCondition,payableAmount 
+        FROM claim_case  
+        INNER JOIN hospital 
+            ON claim_case.hospitalID=hospital.hospitalID 
+        INNER JOIN customer
+            ON claim_case.custID=customer.custID 
+           
+        WHERE claimID = $claimID");
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
 
-
+    public function updateAssignDoc($claimID,$doctorID){
+        $stmt= $this->conn->prepare("UPDATE claim_case SET caseStatus=\"Doctor pending\",doctorID=$doctorID WHERE (claimID=$claimID) AND (medScruID=".$_SESSION["user_id"].");");
+       // var_dump($stmt);
+         $stmt->execute();
+     }
+     public function updateCaseAmount($claimID,$payableAmount){
+        $stmt= $this->conn->prepare("UPDATE claim_case SET caseStatus=\"Completed\",payableAmount=$payableAmount WHERE (claimID=$claimID) AND (medScruID=".$_SESSION["user_id"].");");
+       // var_dump($stmt);
+         $stmt->execute();
+     }
+     public function updateCaseReject($claimID){
+        $stmt= $this->conn->prepare("UPDATE claim_case SET caseStatus=\"Rejected\",payableAmount=0 WHERE (claimID=$claimID) AND (medScruID=".$_SESSION["user_id"].");");
+       // var_dump($stmt);
+         $stmt->execute();
+     }
     //**************************************** FUNCTIONS OF DOCTOR **********************************************
 
     //Docter-view pending queue
@@ -205,6 +253,7 @@ class ClaimCase extends Models{
         $stmt->execute();
         return $stmt->fetchAll();
     }
+
     public function setValueDoc($doctorComment,$healthCondition){
        
         $this->healthCondition= !empty($healthCondition) ? $healthCondition : null;

@@ -52,20 +52,25 @@ class medicalCondition extends Models{
     }
     public function deleteMed($_id){
         $stmt= $this->conn->prepare("delete from $this->table where recordID= $_id");
-        return $stmt->execute();
-        
+        return $stmt->execute();   
     }
     //get customer medical history
     public function getCustMedicalHistory($custID){
-        $stmt=$this->conn->prepare("SELECT recordID,date,type,healthCondition
+        //var_dump($custID);
+        $stmt=$this->conn->prepare("SELECT recordID,custID,date,type,healthCondition,comments
         FROM med_record 
         WHERE custID=$custID ORDER BY recordID DESC");
         $stmt->execute();
         return $stmt->fetchAll();
-
-
-
     }
+    // public function getAllMedRecords($custID){
+    //     
+    //     $stmt=$this->conn->prepare("SELECT ALL
+    //     FROM med_record 
+    //     WHERE custID=$custID ORDER BY recordID DESC");
+    //     $stmt->execute();
+    //     return $stmt->fetchAll();
+    // }
    // public function getFieldAgList($fieldAgID){
         // var_dump($this->conn);
     //    $stmt= $this->conn->prepare("SELECT claimID, customer.custName,admitDate, CONCAT(employee.empFirstName, \" \", employee.empLastName) AS medSrcName , hospital.name ,caseStatus
