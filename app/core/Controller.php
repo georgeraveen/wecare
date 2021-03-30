@@ -60,4 +60,9 @@ class Controller{
             throw new Exception('invalid number');
         }
     }
+    public function isName($name){
+        if (!preg_match("/^[a-zA-Z-' ]*$/",$name)) {
+            throw new Exception("Only letters and white space allowed");
+        }
+    }
 }
