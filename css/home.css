@@ -51,9 +51,11 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: transform 0.2s;
 }
 .grid-item:hover {
   background-color: #c3f2fa;
+  transform: scale(1.1);
 }
 html,
 body,

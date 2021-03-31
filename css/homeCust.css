@@ -1,165 +1,170 @@
-body{
-    /* background-color: #ffd149; */
-   /* background-image: linear-gradient(to bottom right,#cabbc8,  #ddbbd7);*/
-    background-image: linear-gradient(to bottom right,#cabbc8);
-    background-attachment: fixed;
-    background-attachment: fixed;
+body {
+  /* background-color: #ffd149; */
+  /* background-image: linear-gradient(to bottom right,#cabbc8,  #ddbbd7);*/
+  background-image: linear-gradient(to bottom right, #cabbc8);
+  background-attachment: fixed;
+  background-attachment: fixed;
 }
-.promoImg{
+.promoImg {
   height: auto;
   width: 100%;
 }
 
 .grid-container {
-    margin: 120px 100px;
-    display: grid;
-    grid-template-columns: auto auto auto;
-    /* background-color: #ffa000; */
-    opacity: 80%;
-    padding: 50px;
-    grid-gap: 50px;
-    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
-  }
-  .grid-item {
-    /* background-color: #c67100; */
-    background-color: #157474;
-    padding: 20px;
-    font-size: 50px;
-    text-align: center;
-    height: auto;
-    font-style: normal;
-    text-decoration: none;
-    color: white;
-    font-size:x-large;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    border-radius: 30px;
-    border-color:black;
-  
-
-  }
-  .grid-item:hover{
-    background-color: #0f534e;
-  }
-  .homeIcon{
-    width: 130px;
-    filter: invert(100%);
-  }
-  html, body, h1, h2, h3, h4, h5, h6 {
-    font-family: "Verdana", cursive, sans-serif;
-  }
-  .img-background{
-    margin-top: 20;
-    position: fixed;
-    z-index: -1;
-    display: flex;
-    height: 100%;
-    width: 100%;
-  }
-  .hide{
-    visibility: hidden;
-    
-  }
-  .container-notifi{
-    /* margin-top: 100px; */
-    margin-left: 40px;
-    position: absolute;
-    
-  }
-  .notification-item{
-    position: fixed;
-    background-color: #54114D;
-    padding: 10px;
-    border-radius: 50px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  }
-  .notiIcon{
-    width: 100%;
-    filter: invert(100%);
-  }
-  .notification-item:hover{
-    background-color: #6e2c68;
+  margin: 120px 100px;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  /* background-color: #ffa000; */
+  opacity: 80%;
+  padding: 50px;
+  grid-gap: 50px;
+  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+}
+.grid-item {
+  /* background-color: #c67100; */
+  background-color: #157474;
+  padding: 20px;
+  font-size: 50px;
+  text-align: center;
+  height: auto;
+  font-style: normal;
+  text-decoration: none;
+  color: white;
+  font-size: x-large;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 30px;
+  border-color: black;
+  transition: transform 0.2s;
+}
+.grid-item:hover {
+  background-color: #0f534e;
+  transform: scale(1.1);
+}
+.homeIcon {
+  width: 130px;
+  filter: invert(100%);
+}
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Verdana", cursive, sans-serif;
+}
+.img-background {
+  margin-top: 20;
+  position: fixed;
+  z-index: -1;
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+.hide {
+  visibility: hidden;
+}
+.container-notifi {
+  /* margin-top: 100px; */
+  margin-left: 40px;
+  position: absolute;
+}
+.notification-item {
+  position: fixed;
+  background-color: #54114d;
+  padding: 10px;
+  border-radius: 50px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.notiIcon {
+  width: 100%;
+  filter: invert(100%);
+}
+.notification-item:hover {
+  background-color: #6e2c68;
 }
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
-  .grid-container{
+  .grid-container {
     margin: 150px 10px;
-    grid-template-columns: auto ;
+    grid-template-columns: auto;
     /* padding: 150px 0;
     grid-gap: 30px; */
   }
-  .hide{
+  .hide {
     display: none;
   }
-  .notification-item{
-    box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.8), 0 6px 20px 0 rgba(255, 255, 255, 0.7);
+  .notification-item {
+    box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.8),
+      0 6px 20px 0 rgba(255, 255, 255, 0.7);
   }
-  .container-notifi{
+  .container-notifi {
     margin-top: -60px;
   }
-  .notiIcon{
+  .notiIcon {
     width: 50%;
   }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
-  .grid-container{
+  .grid-container {
     margin: 150px 10px;
     grid-template-columns: auto auto;
     /* padding: 150px 0;
     grid-gap: 30px; */
   }
-  .hide{
+  .hide {
     display: none;
   }
-  .notification-item{
-    box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.8), 0 6px 20px 0 rgba(255, 255, 255, 0.7);
+  .notification-item {
+    box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.8),
+      0 6px 20px 0 rgba(255, 255, 255, 0.7);
   }
-  .container-notifi{
+  .container-notifi {
     margin-top: -60px;
   }
-  .notiIcon{
+  .notiIcon {
     width: 50%;
   }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
-  .grid-container{
+  .grid-container {
     margin: 150px 10px;
     grid-template-columns: auto auto auto;
     /* padding: 150px 0;
     grid-gap: 30px; */
   }
-  .hide{
+  .hide {
     display: grid;
   }
-  
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
-  .grid-container{
+  .grid-container {
     margin: 150px 10px;
     /* grid-template-columns: auto auto; */
     /* padding: 150px 0;
     grid-gap: 30px; */
   }
-  .hide{
+  .hide {
     /* display: none; */
   }
-  .notification-item{
+  .notification-item {
     /* box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.8), 0 6px 20px 0 rgba(255, 255, 255, 0.7); */
   }
-  .container-notifi{
+  .container-notifi {
     margin-top: -40px;
   }
-  .notiIcon{
+  .notiIcon {
     /* width: 50%; */
   }
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
-
 }

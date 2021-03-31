@@ -1,6 +1,6 @@
-body{
-   /* background-image: linear-gradient(to bottom right,#cabbc8,  #ddbbd7);*/
-    /* background-color: #ffd149; */
+body {
+  /* background-image: linear-gradient(to bottom right,#cabbc8,  #ddbbd7);*/
+  /* background-color: #ffd149; */
 }
 
 .profile-container {
@@ -14,7 +14,7 @@ body{
   justify-content: end;
   /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
 }
-.boxCard{
+.boxCard {
   margin-right: 0px;
   background-color: #003b36;
   padding: 20px;
@@ -23,7 +23,7 @@ body{
   width: 500px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-.input{
+.input {
   border: none;
   width: 300px;
 }
@@ -33,13 +33,13 @@ body{
 .address{
   width: 300px;
 } */
-.contact{
+.contact {
   width: 200px;
 }
-.contactList{
+.contactList {
   margin-left: 100px;
 }
-.btn-submit{
+.btn-submit {
   padding: 10px 30px;
   background-color: #efa33a;
   border: none;
@@ -47,21 +47,28 @@ body{
   text-decoration: none;
   color: black;
 }
-.btn-add{
+.btn-add {
   background-color: #bd7b20;
   color: white;
 }
-.btn-rm{
-  background-color: #54114D;
+.btn-rm {
+  background-color: #54114d;
   color: white;
 }
-html, body, h1, h2, h3, h4, h5, h6 {
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: "Verdana", cursive, sans-serif;
 }
-h1{
-  text-shadow: 2px 2px 5px white;
+h1 {
+  text-shadow: 4px 2px 7px white;
 }
-.img-background{
+.img-background {
   margin-top: 20;
   position: fixed;
   z-index: -1;
@@ -69,52 +76,51 @@ h1{
   height: 100%;
   width: 100%;
 }
-.img-right{
+.img-right {
   right: -60px;
 }
-.img-left{
+.img-left {
   left: -150px;
 }
-.hide{
+.hide {
   visibility: hidden;
 }
-.policylink{
+.policylink {
   background-color: white;
   padding: 6px;
-
 }
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
-  .profile-container{
+  .profile-container {
     justify-content: left;
     margin: 160px 0;
     padding: 5px;
   }
-  .boxCard{
+  .boxCard {
     width: auto;
   }
-  .img-left{
+  .img-left {
     left: 0;
   }
-  .img-background{
+  .img-background {
     margin-top: -200px;
   }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
-  .profile-container{
+  .profile-container {
     margin: 160px 10px;
     padding: 0px;
   }
-  .img-left{
+  .img-left {
     left: 0;
   }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
-  .profile-container{
+  .profile-container {
     margin: 140px 10px;
     padding: 20px;
   }
@@ -122,18 +128,18 @@ h1{
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
-  .profile-container{
+  .profile-container {
     margin: 120px 60px;
     padding: 50px;
   }
-  .img-left{
+  .img-left {
     left: -120px;
   }
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
-  .img-left{
+  .img-left {
     left: -150px;
   }
 }
