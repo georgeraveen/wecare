@@ -27,15 +27,29 @@ class manageCustMedical extends Controller{
     }
 
     public function viewConditions(){
-        //var_dump($_POST["customerID"]);
         $this->checkPermission("MED");
+        //var_dump($_POST["customerID"]);
+       try{
         $this->model('medicalCondition');
         $medicalConditionMod= new medicalCondition();
         $medicalConditionList=$medicalConditionMod->getCustMedicalHistory($_POST["customerID"]);
+        if (empty($medicalConditionList)){
+            $_SESSION["errorMsg"]="Customer not found,Please contact Data entry officer";
+            header("Location: ./index");
+            exit;
+       }
+       $_SESSION["successMsg"]="Medical conditios loaded Successfully!"; 
         include './../app/header.php';
         //var_dump($medicalConditionList);
         $this->view('medScru/viewMedicalCondition',["medicalConditionList"=>$medicalConditionList,'customerID'=>$_POST["customerID"]]);
         include './../app/footer.php';
+        exit;
+       }
+       catch (\Throwable $th) {
+        $_SESSION["errorMsg"]="Customer not found,Please contact Data entry officer";
+        header("Location: ./index");
+    }
+      
     }
 
     public function createNewConditon(){
