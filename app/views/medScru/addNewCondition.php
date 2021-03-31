@@ -13,15 +13,16 @@
     <div class="row">
               <div class="column" style="flex:25%">
               <div class="formInput">
+              <label for="customer">Select by customer ID</label><br>
                 <input type="number" id="customer" name="customerID" class="input" value="" required>
                 </div>
               </div>
-              <div class="column"style="flex:75%">
+              <!-- <div class="column"style="flex:75%">
                 <div class="formInput">
                   <input type="text" id="custNameBox" name="custName" class="input"  onkeyup="showResult(this.value)" placeholder="Search by customer ID"><br>
                   <div id="livesearch" class="dropdown-content"></div>
                 </div>
-              </div>
+              </div> -->
       </div> 
       <div class="row">
         <div class="column">
