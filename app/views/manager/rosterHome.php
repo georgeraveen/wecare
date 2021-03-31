@@ -10,10 +10,10 @@
         <form action="./viewRoster">
             <div class="row">
                 <div class="column">
-                    <div class="formInput">
+                    <!-- <div class="formInput">
                         <label for="rosterDate">Date</label><br>
                         <input type="Date" id="rosterDate" name="rosterDate" class="input" value="" placeholder="New roster date"><br>
-                    </div>
+                    </div> -->
                 </div>
 
                 <div class="column">
