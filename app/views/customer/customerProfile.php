@@ -4,8 +4,13 @@
 ?>
 <link rel="stylesheet" href= "./../../css/custStyle.css">
 <img src="./../../images/undraw_personal_site_xyd1.svg" class="img-background">
-
+<ul class="breadcrumb">
+    <li><a href="./../customerHome/index">Home</a></li>
+   
+    </ul>
 <div class="profile-container">
+
+
   <form method="post" action="./updateCustDeatails">
     <div class="boxCard">
       <h2>View My Profile</h2>
@@ -30,7 +35,7 @@
       <div class="column">
                     
                     <input type="text" id="deleteFile" name="deleteFile" class="input hide" hidden>
-                    <h4 for="fileToUpload">policy Documents</h4>
+                    <h4 for="fileToUpload">Policy Documents</h4>
                     <table>
                     <?php
                     try {
@@ -45,7 +50,7 @@
                             $filename=pathinfo($ls[$i],PATHINFO_FILENAME);
                             $ext=pathinfo($ls[$i],PATHINFO_EXTENSION);
                             echo "<tr id=\"file$i\">";
-                            echo "<td><a id=\"txt-$i\" href =\"./viewFil/". $data[0][0]['policyID'] . "/". $filename."/".$ext ."\">".$ls[$i]."</a></td>";
+                            echo "<td><a class =\"policylink\"  id=\"txt-$i\" href =\"./viewFil/". $data[0][0]['policyID'] . "/". $filename."/".$ext ."\">".$ls[$i]."</a></td>";
                            // echo  "<td>  <div id=\"btn-$i\" class=\"btn-delete\" onClick=\"sendDelete($i)\"> X </div></td>";
                             echo "</tr>";
                         }
